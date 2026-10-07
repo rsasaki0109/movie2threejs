@@ -9,7 +9,6 @@ import urllib.request
 from pathlib import Path
 
 import numpy as np
-from PIL import Image as PILImage
 
 from playworld.colmap_io import Camera, Reconstruction, read_model, write_model
 
@@ -17,7 +16,25 @@ BASE = 'https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/Ey
 REVISION = '06a01a4915afc872b893c20a025a0e14598c8478'
 
 
-def prepare(dataset: str, out: Path, frames: int = 64, camera: str = '19') -> dict:
+def select_views(images, camera: str, frames: int, start_index: int = 0,
+                 stop_index: int | None = None):
+    """Sample the same ordinal capture interval independently for each camera."""
+    if start_index < 0 or (stop_index is not None and stop_index <= start_index):
+        raise ValueError('Expected 0 <= start-index < stop-index (exclusive)')
+    candidates = sorted((im for im in images if Path(im.name).name.startswith(camera + '_')),
+                        key=lambda im: im.name)
+    if stop_index is not None and stop_index > len(candidates):
+        raise ValueError(f'Camera {camera} has only {len(candidates)} photographs')
+    candidates = candidates[start_index:stop_index]
+    if frames < 16 or len(candidates) < 16:
+        raise ValueError(f'Camera {camera} needs at least sixteen photographs in the selected interval')
+    indices = np.unique(np.linspace(0, len(candidates)-1, min(frames, len(candidates))).round().astype(int))
+    return [candidates[i] for i in indices]
+
+
+def prepare(dataset: str, out: Path, frames: int = 64, camera: str = '19',
+            start_index: int = 0, stop_index: int | None = None) -> dict:
+    from PIL import Image as PILImage
     if dataset not in {'office1b', 'kitchen', 'office_view2', 'raf_furnishedroom', 'apartment'}:
         raise ValueError('Choose a reviewed MIT-licensed public dataset')
     if frames < 16:
@@ -48,10 +65,7 @@ def prepare(dataset: str, out: Path, frames: int = 64, camera: str = '19') -> di
     chosen = []
     primary = []
     for name in camera_names:
-        candidates = [im for im in rec.sorted_images() if Path(im.name).name.startswith(name + '_')]
-        if len(candidates) < 16:
-            raise ValueError(f'Camera {name} has fewer than sixteen photographs')
-        selected = [candidates[i] for i in np.unique(np.linspace(0, len(candidates)-1, min(frames, len(candidates))).round().astype(int))]
+        selected = select_views(rec.images.values(), name, frames, start_index, stop_index)
         chosen.extend(selected)
         if name == camera_names[0]:
             primary = selected
@@ -87,6 +101,7 @@ def prepare(dataset: str, out: Path, frames: int = 64, camera: str = '19') -> di
     write_model(Reconstruction(cameras, {im.id: im for im in subset}, model.xyz, model.rgb), segment / 'sparse')
     report = {'dataset': dataset, 'camera': camera, 'primary_camera': camera_names[0],
               'frames_per_camera_requested': frames, 'frames': len(chosen), 'segmentation_frames': len(subset),
+              'start_index': start_index, 'stop_index_exclusive': stop_index,
               'initial_points': len(model.xyz), 'camera_source': 'dataset-provided Metashape COLMAP calibration',
               'images': 'dataset-provided undistorted colmap/images_8 JPEGs',
               'vggt_used': False, 'license': 'MIT', 'license_revision': REVISION, 'downloads': downloads}
@@ -100,6 +115,8 @@ if __name__ == '__main__':
     parser.add_argument('--out', type=Path, required=True)
     parser.add_argument('--frames', type=int, default=64)
     parser.add_argument('--camera', default='19', help='one ID or comma-separated IDs; first camera supplies SAM views')
+    parser.add_argument('--start-index', type=int, default=0, help='first photograph ordinal, separately per camera')
+    parser.add_argument('--stop-index', type=int, help='exclusive last photograph ordinal, separately per camera')
     args = parser.parse_args()
-    result = prepare(args.dataset, args.out, args.frames, args.camera)
+    result = prepare(args.dataset, args.out, args.frames, args.camera, args.start_index, args.stop_index)
     print(json.dumps({k: v for k, v in result.items() if k != 'downloads'}, indent=2))

@@ -62,6 +62,10 @@ pass `--gifski /path/to/gifski`. The encoder adjusts quality or palette/fps to f
 8,000,000 bytes and fails if it cannot meet that limit. Inspect the GIF and MP4 before
 adding the README image. Preserve the dataset attribution and MIT notice alongside them.
 
+`--video-start` selects the source excerpt. `--video-speed 0.5` plays one second
+of that source over the two-second comparison. The playback speed is recorded in
+the encoding receipt; it affects the source comparison, not recorded physics.
+
 The synthetic encoding check produced a 960×540, 13.00 s looping GIF at 15 fps:
 4,384,897 bytes with gifski quality 90. Its 1920×1080 MP4 was 6,989,834 bytes.
 These validate capture and packaging only; they are not a real-data reconstruction or

@@ -1,4 +1,4 @@
-"""Combine your original phone video and captured world; encode MP4 and a <8 MB GIF."""
+"""Combine source capture and recorded world; encode MP4 and a <8 MB GIF."""
 from __future__ import annotations
 
 import argparse
@@ -48,12 +48,15 @@ def main():
     parser.add_argument("--frames", required=True, type=Path)
     parser.add_argument("--out", default=Path("docs"), type=Path)
     parser.add_argument("--video-start", type=float, default=0)
+    parser.add_argument("--video-speed", type=float, default=1, help="source comparison playback speed (0.5 means half speed)")
     parser.add_argument("--gifski", type=Path, help="optional gifski executable; otherwise use PATH or ffmpeg")
     parser.add_argument('--labels', action='store_true', help='minimal source/walk/physics labels')
     parser.add_argument('--font', type=Path, help='TrueType font for labels (Arial on Windows by default)')
     parser.add_argument('--gif-settings', type=int, nargs=4, metavar=('FPS', 'QUALITY', 'MOTION', 'LOSSY'),
                         help='first gifski settings; lower settings are tried if the GIF exceeds 8 MB')
     args = parser.parse_args()
+    if not 0 < args.video_speed <= 4:
+        raise ValueError('--video-speed must be in (0, 4]')
     capture = json.loads((args.frames / "capture.json").read_text())
     duration = capture["captured_frames"] / capture["fps"]
     if not 10 <= duration <= 15 or capture["captured_frames"] != capture["frames"]:
@@ -68,7 +71,7 @@ def main():
         f"[0:v]fps={capture['fps']},scale=1920:1080,setsar=1,format=rgb24,split=2[all][intro];"
         "[intro]trim=duration=2,setpts=PTS-STARTPTS,scale=960:1080:force_original_aspect_ratio=increase,"
         "crop=960:1080[right];"
-        f"[1:v]trim=duration=2,setpts=PTS-STARTPTS,fps={capture['fps']},"
+        f"[1:v]setpts=(PTS-STARTPTS)/{args.video_speed},trim=duration=2,fps={capture['fps']},"
         "scale=960:1080:force_original_aspect_ratio=increase,"
         "format=rgb24,crop=960:1080[left];"
         "[left][right]hstack=inputs=2[compare];"
@@ -140,6 +143,7 @@ def main():
     report = {
         "source_video_sha256": sha256(args.video), "source_video_name": args.video.name,
         "source_video_start_seconds": args.video_start, "labels": args.labels,
+        "source_video_playback_speed": args.video_speed,
         "capture_world_sha256": capture["world_sha256"], "shot_sha256": capture["shot_sha256"],
         "duration_seconds": duration, "gif_measured_seconds": round(gif_duration, 3),
         "mp4_measured_seconds": float(json.loads(subprocess.check_output([

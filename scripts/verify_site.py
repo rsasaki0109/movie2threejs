@@ -25,6 +25,7 @@ def verify(url: str, out: Path):
             page.goto(url + "?record=hero-shot.json")
             page.wait_for_function("window.playworld?.ready || window.playworldError", timeout=180_000)
             assert page.evaluate("window.playworldError") is None
+            subject = page.evaluate("playworld.world.demo?.subject_id ?? 6")
             states = [page.evaluate("n => playworld.record.nextFrame(n)", n) for n in [0, 180, 270]]
             if repeat == 0:
                 page.locator("canvas").screenshot(path=str(out / "physics.png"))
@@ -33,11 +34,11 @@ def verify(url: str, out: Path):
             print(f"Real-room replay {repeat + 1}/2 complete", flush=True)
         assert runs[0] == runs[1], "physics differed between static-world replays"
         initial, final = runs[0][0], runs[0][-1]
-        box_before = next(o for o in initial["objects"] if o["id"] == 6)
-        box_after = next(o for o in final["objects"] if o["id"] == 6)
+        box_before = next(o for o in initial["objects"] if o["id"] == subject)
+        box_after = next(o for o in final["objects"] if o["id"] == subject)
         drop = box_before["position"]["y"] - box_after["position"]["y"]
         assert drop > .5, "box did not fall off the workbench"
-        assert any(a.get("object") == 6 for a in final["actions"]), "push missed the box"
+        assert any(a.get("object") == subject for a in final["actions"]), "push missed the box"
         assert len(final["balls"]) == 1
         page = browser.new_page(viewport={"width": 1280, "height": 720})
         page.on("pageerror", lambda error: errors.append(str(error)))
@@ -57,10 +58,11 @@ def verify(url: str, out: Path):
         assert movement > .1, f"WASD movement failed: {movement}"
         page.keyboard.press("Escape")
         page.wait_for_function("!playworld.controls.isLocked")
+        push_label = page.locator("#featured-push").inner_text()
         page.locator("#featured-push").click()
         assert page.locator("#featured-push").inner_text() == "Pushed!"
         page.locator("#reset-world").click()
-        assert page.locator("#featured-push").inner_text() == "Knock the box over"
+        assert page.locator("#featured-push").inner_text() == push_label
         page.close()
         context = browser.new_context(viewport={"width": 390, "height": 844}, is_mobile=True, has_touch=True, device_scale_factor=1)
         page = context.new_page()
@@ -94,7 +96,7 @@ def verify(url: str, out: Path):
         browser.close()
     assert not errors, errors
     assert not failed, failed
-    report = {"url": url, "replay_equal": True, "box_drop_m": drop,
+    report = {"url": url, "replay_equal": True, "subject_id": subject, "box_drop_m": drop,
               "keyboard_walk_m": movement, "desktop_pointer_lock": True,
               "touch_entry_and_throw": True, "touch_walk_m": touch_movement,
               "touch_swipe_look": True, "mobile_scope": "Chromium emulation, not physical hardware",

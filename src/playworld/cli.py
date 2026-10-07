@@ -89,7 +89,10 @@ def train_splats(scene: Path, gsplat_dir: Path, steps: int, python: str = sys.ex
             python, Path(gsplat_dir) / "examples" / "simple_trainer.py", strategy,
             "--data-dir", scene, "--data-factor", "1", "--result-dir", scene / "gs",
             "--max-steps", "30000", "--steps-scaler", str(steps / 30000),
-            "--save-ply", "--ply-steps", "30000", "--eval-steps", "30000", "--save-steps", "30000",
+            # Keep intermediate weights and renderable Gaussians when a run is
+            # interrupted. gsplat scales these milestones with the full schedule.
+            "--save-ply", "--ply-steps", "5000", "10000", "15000", "20000", "25000", "30000",
+            "--eval-steps", "30000", "--save-steps", "5000", "10000", "15000", "20000", "25000", "30000",
             "--no-normalize-world-space",  # keep the COLMAP frame so splats and cameras agree
             "--test-every", "8", "--disable-viewer", "--disable-video",
         ]

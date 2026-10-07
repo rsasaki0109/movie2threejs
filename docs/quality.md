@@ -9,6 +9,14 @@ Short training now scales the entire gsplat schedule with `--steps-scaler`, incl
 densification, opacity resets and the final settling period. Previously, reducing only
 `max_steps` stopped training partway through the default 30,000-step strategy.
 
+The CLI now schedules weight checkpoints and PLY exports at six milestones across
+that scaled schedule. A 30,000-step run saves every 5,000 steps. This replaces the
+final-only setting that lost the interrupted calibrated workbench at step 26,995.
+Regression tests cover interruption during both 7,000- and 30,000-step command
+schedules; the revised saving schedule still needs confirmation on a new GPU run.
+Upstream checkpoints preserve Gaussian weights and the saved step, but do not
+contain the training optimizers: they are not exact training-resume snapshots.
+
 `playworld world --clean-splats` conservatively rejects thick background volumes in the
 aligned, assumed metric frame. Thin walls and low-opacity thin detail are retained.
 The synthetic regression verifies that adding a diffuse background blob removes that
@@ -78,6 +86,32 @@ count and SHA-256. Intrinsics are resized to the exact downloaded image dimensio
 camera rotations, translations and point coordinates retain their shared source frame.
 SAM 3 can run on the generated sixteen-view `segment-scene`, in that same frame,
 while gsplat trains on all selected photographs.
+
+For a selected part of a longer capture, `--start-index` and `--stop-index` select
+an ordinal interval independently in each camera's sorted photographs. The stop
+index is exclusive; `--frames` is a maximum per camera. This apartment interval
+downloads 52 photographs per camera, 156 total, rather than training on unrelated
+parts of the full apartment sequence:
+
+```bash
+python scripts/prepare_calibrated_public.py apartment --out scenes/calibrated-workbench --frames 64 --camera 19,16,22 --start-index 60 --stop-index 112
+```
+
+The manifest retains the interval and exact photographs. Ordinals refer to sorted
+capture photographs, not seconds in an arbitrary input video.
+
+`scripts/run_calibrated.py` runs preparation, training, segmentation and assembly
+with the same isolated GPU environments, and writes stage logs and a timing report.
+It checks SAM 3 access before preparing data and requires fresh output directories.
+For the selected workbench interval, the prepared command is:
+
+```bash
+python scripts/run_calibrated.py apartment --scene scenes/calibrated-workbench-run --out calibrated_workbench_world --camera 19,16,22 --frames 64 --start-index 60 --stop-index 112 --steps 30000 --seed-frame 5
+```
+
+Install `.[showcase]` in the core environment for calibrated-image preparation.
+The wrapper and revised save schedule are prepared for GPU validation; this command
+does not describe a completed reconstruction. Review masks before publishing outputs.
 
 Only reviewed MIT-licensed Eyeful Tower scenes are accepted. Keep the dataset's
 [MIT notice](EYEFULTOWER-LICENSE.txt) with redistributed outputs. Dataset attribution

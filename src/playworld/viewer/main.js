@@ -54,7 +54,23 @@ async function main() {
     const geometry = new THREE.ShapeGeometry(shape);
     geometry.rotateX(-Math.PI / 2);
     const color = new THREE.Color().setRGB(...patch.color, THREE.SRGBColorSpace);
-    const mesh = new THREE.Mesh(geometry, new THREE.MeshBasicMaterial({ color, side: THREE.DoubleSide }));
+    const vertexColors = patch.vertex_colors?.length === patch.polygon_xz.length;
+    if (vertexColors) {
+      const positions = geometry.getAttribute('position');
+      const colors = [];
+      // ShapeGeometry may reverse contour order when triangulating the shape.
+      // Match coordinates, so the observed colors stay on their actual corners.
+      for (let i = 0; i < positions.count; i++) {
+        const distances = patch.polygon_xz.map(([x, z]) =>
+          (x - positions.getX(i)) ** 2 + (z - positions.getZ(i)) ** 2);
+        const index = distances.indexOf(Math.min(...distances));
+        colors.push(...new THREE.Color().setRGB(...patch.vertex_colors[index], THREE.SRGBColorSpace).toArray());
+      }
+      geometry.setAttribute('color', new THREE.Float32BufferAttribute(colors, 3));
+    }
+    const mesh = new THREE.Mesh(geometry, new THREE.MeshBasicMaterial({
+      color: vertexColors ? 0xffffff : color, vertexColors, side: THREE.DoubleSide,
+    }));
     mesh.position.y = patch.y;
     scene.add(mesh);
   }
