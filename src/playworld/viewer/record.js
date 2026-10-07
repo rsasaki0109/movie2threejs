@@ -3,6 +3,7 @@ export function validateShot(shot) {
   if (shot.version !== 1) throw new Error("shot version must be 1");
   if (![15, 20, 30, 60].includes(shot.fps)) throw new Error("fps must divide 60 (15, 20, 30 or 60)");
   if (!Number.isFinite(shot.duration) || shot.duration <= 0) throw new Error("duration must be positive");
+  if (shot.fov !== undefined && (!Number.isFinite(shot.fov) || shot.fov < 20 || shot.fov > 120)) throw new Error('fov must be between 20 and 120');
   if (!Array.isArray(shot.camera) || shot.camera.length < 2) throw new Error("at least two camera keyframes are required");
   let previous = -1;
   for (const key of shot.camera) {
@@ -17,6 +18,12 @@ export function validateShot(shot) {
   for (const event of shot.events ?? []) {
     if (!Number.isFinite(event.time) || event.time < 0 || event.time >= shot.duration) throw new Error("event time outside shot");
     if (!["push", "throw", "walk"].includes(event.type)) throw new Error(`unknown event ${event.type}`);
+    if (event.strength !== undefined && (!Number.isFinite(event.strength) || event.strength <= 0)) throw new Error('push strength must be positive');
+    for (const name of ['origin', 'target']) {
+      if (event[name] !== undefined && (!Array.isArray(event[name]) || event[name].length !== 3 || !event[name].every(Number.isFinite))) throw new Error(`invalid event ${name}`);
+    }
+    if ((event.origin === undefined) !== (event.target === undefined)) throw new Error('event origin and target must be provided together');
+    if (event.origin && event.origin.every((v, i) => v === event.target[i])) throw new Error('event target must differ from origin');
     if (event.type === "walk" && (!Array.isArray(event.keys) || !event.keys.every(k => ["KeyW", "KeyA", "KeyS", "KeyD", "Space", "ShiftLeft"].includes(k)))) throw new Error("invalid walk keys");
   }
   return shot;

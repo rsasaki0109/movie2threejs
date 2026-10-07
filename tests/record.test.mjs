@@ -28,3 +28,14 @@ test("same-time events preserve JSON order", () => {
   const events = [{time: 1, type: "throw"}, {time: 0, type: "walk", keys: ["KeyW"]}, {time: 1, type: "push"}];
   assert.deepEqual(orderedEvents(events).map(e => e.type), ["walk", "throw", "push"]);
 });
+
+test('scripted action rays require a finite origin and a distinct target', () => {
+  const s = shot(); s.events[0].origin = [0, 1, 2];
+  assert.throws(() => validateShot(s), /together/);
+  s.events[0].target = [0, 1, 2];
+  assert.throws(() => validateShot(s), /differ/);
+  s.events[0].target = [0, 1, 0];
+  assert.equal(validateShot(s), s);
+  s.events[0].origin[0] = NaN;
+  assert.throws(() => validateShot(s), /origin/);
+});

@@ -119,3 +119,34 @@ def floor_box(points: np.ndarray, margin: float = 2.0, thickness: float = 0.5) -
     c = (lo + hi) / 2
     h = (hi - lo) / 2
     return Box(np.array([c[0], -thickness / 2, c[1]]), np.array([h[0], thickness / 2, h[1]]))
+
+
+def carve_boxes(boxes: list[Box], lo: np.ndarray, hi: np.ndarray) -> list[Box]:
+    """Subtract an object's clearance box, preserving the rest of merged walls/tables."""
+    result = []
+    for box in boxes:
+        blo, bhi = box.center - box.half_extents, box.center + box.half_extents
+        cut_lo, cut_hi = np.maximum(blo, lo), np.minimum(bhi, hi)
+        if np.any(cut_hi <= cut_lo):
+            result.append(box)
+            continue
+        # Split the complement into disjoint slabs, progressively narrowing
+        # the remaining core. No collider still intersects the removed region.
+        core_lo, core_hi = blo.copy(), bhi.copy()
+        for axis in range(3):
+            if cut_lo[axis] > core_lo[axis]:
+                end = core_hi.copy(); end[axis] = cut_lo[axis]
+                result.append(Box((core_lo + end) / 2, (end - core_lo) / 2))
+            if cut_hi[axis] < core_hi[axis]:
+                start = core_lo.copy(); start[axis] = cut_hi[axis]
+                result.append(Box((start + core_hi) / 2, (core_hi - start) / 2))
+            core_lo[axis], core_hi[axis] = cut_lo[axis], cut_hi[axis]
+    return result
+
+
+def support_box(footprint: np.ndarray, height: float, thickness: float = 0.04) -> Box:
+    """A hidden support slab whose top is exactly the inferred tabletop height."""
+    lo, hi = footprint[:, [0, 2]].min(axis=0), footprint[:, [0, 2]].max(axis=0)
+    center, half = (lo + hi) / 2, (hi - lo) / 2
+    return Box(np.array([center[0], height - thickness / 2, center[1]]),
+               np.array([half[0], thickness / 2, half[1]]))

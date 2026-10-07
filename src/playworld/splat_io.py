@@ -62,6 +62,18 @@ def max_scale(props: dict[str, np.ndarray]) -> np.ndarray:
     return np.exp(np.stack([props[f"scale_{i}"] for i in range(3)], axis=1)).max(axis=1)
 
 
+def horizontal_mask(props: dict[str, np.ndarray], alignment: np.ndarray) -> np.ndarray:
+    """Thin Gaussians whose covariance normal is within 26 degrees of world up."""
+    scales = np.stack([props[f'scale_{i}'] for i in range(3)], axis=1)
+    axes = np.eye(3)[scales.argmin(axis=1)]
+    q = np.stack([props[f'rot_{i}'] for i in range(4)], axis=1).astype(float)
+    q /= np.maximum(np.linalg.norm(q, axis=1, keepdims=True), 1e-12)
+    cross = np.cross(q[:, 1:], axes)
+    normals = axes + 2 * (q[:, :1] * cross + np.cross(q[:, 1:], cross))
+    up = alignment[1, :3] / np.linalg.norm(alignment[1, :3])
+    return ((scales.max(axis=1) - scales.min(axis=1)) > np.log(3)) & (np.abs(normals @ up) > .9)
+
+
 def make_splats(xyz: np.ndarray, rgb: np.ndarray, scale: float | np.ndarray, alpha: float = 0.95) -> dict[str, np.ndarray]:
     """Isotropic, view-independent gaussians (used for synthetic scenes and tests)."""
     n = len(xyz)

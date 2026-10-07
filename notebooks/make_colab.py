@@ -16,7 +16,9 @@ def code(text):
 md("""
 # playworld: experimental phone video → physical browser world
 
-**This GPU recipe has not yet been validated end to end on a real video.**
+The shared GPU scripts have completed a real public room capture on a Colab L4.
+The notebook's upload/preview UI has not been automated. See `docs/benchmarks.md`
+for actual stage timings; environment setup and model downloads are separate.
 
 1. Select a GPU runtime. For movable objects use an Ampere-or-newer GPU (L4/A100 etc.).
    The pinned SAM 3 uses bf16; **T4 is not validated** and the script rejects it for SAM 3.
@@ -31,11 +33,14 @@ The VGGT default weights have non-commercial restrictions. Read each model's ter
 """)
 
 code("""
-NUM_FRAMES = 24       # starting setting, not a measured memory guarantee
+NUM_FRAMES = 24       # verified for the public workbench input on L4
 DATA_SOURCE = "public"  # "public" = Eyeful Tower apartment; "upload" = your video
-TRAIN_STEPS = 7000    # tune after the first real run
-PROMPTS = "chair,box,mug,bottle"   # use "" only for an explicitly static world
+TRAIN_STEPS = 7000
+PROMPTS = "cardboard box,plastic bottle,folding chair"
 EYE_HEIGHT = 1.5      # actual height of the phone above the floor, meters
+POSE_CONFIDENCE = 1.5 if DATA_SOURCE == "public" else 5.0
+USE_BA = DATA_SOURCE == "public"
+BA_REPROJECTION_ERROR = 32.0  # initial matching tolerance, not final BA error
 """)
 
 code("""
@@ -64,6 +69,7 @@ if PROMPTS.strip():
 os.environ["PLAYWORLD_NUM_FRAMES"] = str(NUM_FRAMES)
 os.environ["PLAYWORLD_TRAIN_STEPS"] = str(TRAIN_STEPS)
 os.environ["PLAYWORLD_PROMPTS"] = PROMPTS
+os.environ["PLAYWORLD_POSE_CONFIDENCE"] = str(POSE_CONFIDENCE)
 import torch
 assert torch.cuda.is_available(), "Select a GPU runtime first"
 print(torch.cuda.get_device_name(0), torch.cuda.get_device_properties(0).total_memory // 2**20, "MiB")
@@ -83,9 +89,9 @@ import subprocess
 if DATA_SOURCE == "public":
     subprocess.run([
         "/content/playworld/.gpu/envs/core/bin/python",
-        "/content/playworld/scripts/download_public.py", "--out", "/content/public_source",
+        "/content/playworld/scripts/download_public.py", "--out", "/content/public_source", "--workshop",
     ], check=True)
-    VIDEO = "/content/public_source/apartment-camera19.mp4"
+    VIDEO = "/content/public_source/apartment-workshop.mp4"
 elif DATA_SOURCE == "upload":
     video_upload = files.upload()
     assert len(video_upload) == 1, "Upload one room video"
@@ -96,10 +102,13 @@ else:
 
 code("""
 import subprocess
-subprocess.run([
+command = [
     "bash", "/content/playworld/scripts/run.sh", VIDEO, "/content/scene", "/content/world",
     "--eye-height", str(EYE_HEIGHT),
-], check=True)
+]
+if USE_BA:
+    command += ["--ba", "--shared-camera", "--ba-reprojection-error", str(BA_REPROJECTION_ERROR)]
+subprocess.run(command, check=True)
 """)
 
 md("""

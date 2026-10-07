@@ -7,6 +7,7 @@ import argparse
 import hashlib
 import json
 import shutil
+import subprocess
 import urllib.request
 from pathlib import Path
 
@@ -45,8 +46,31 @@ def download(out: Path):
     return target
 
 
+def workshop(video: Path) -> Path:
+    """The short, overlapping workbench section used for the measured L4 run."""
+    target = video.with_name('apartment-workshop.mp4')
+    if not target.exists():
+        subprocess.run(['ffmpeg', '-hide_banner', '-loglevel', 'error', '-ss', '5.0',
+                        '-i', str(video), '-t', '4.2', '-map', '0:v:0', '-an',
+                        '-c:v', 'libx264', '-crf', '15', '-preset', 'fast',
+                        '-pix_fmt', 'yuv420p', str(target)], check=True)
+    details = json.loads(subprocess.check_output([
+        'ffprobe', '-v', 'error', '-show_entries', 'format=duration,size', '-of', 'json', str(target)]))
+    metadata = {'source': video.name, 'source_sha256': hashlib.sha256(video.read_bytes()).hexdigest(),
+                'derived': target.name, 'sha256': hashlib.sha256(target.read_bytes()).hexdigest(),
+                'start_seconds': 5.0, 'requested_duration_seconds': 4.2,
+                'measured_duration_seconds': float(details['format']['duration']),
+                'bytes': target.stat().st_size, 'license': 'MIT',
+                'kind': 'trimmed capture-rig photograph sequence visualization'}
+    target.with_suffix('.source.json').write_text(json.dumps(metadata, indent=2) + '\n', encoding='utf-8')
+    return target
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--out", type=Path, default=Path("scenes/public_source"))
+    parser.add_argument('--workshop', action='store_true', help='trim the verified overlapping workbench section')
     args = parser.parse_args()
-    download(args.out)
+    video = download(args.out)
+    if args.workshop:
+        print(workshop(video), flush=True)

@@ -42,7 +42,7 @@ async function main() {
   const scene = new THREE.Scene();
   scene.background = new THREE.Color(0x202024);
   scene.add(new THREE.HemisphereLight(0xffffff, 0x444444, 2.0));
-  const camera = new THREE.PerspectiveCamera(70, innerWidth / innerHeight, 0.03, 500);
+  const camera = new THREE.PerspectiveCamera(shot?.fov ?? 70, innerWidth / innerHeight, 0.03, 500);
   const spark = new SparkRenderer({ renderer, autoUpdate: !recording, preUpdate: !recording, enableLod: !recording });
   if (recording) spark.minSortIntervalMs = 0;
   scene.add(spark);
@@ -129,9 +129,9 @@ async function main() {
   const balls = [];
   const ballGeo = new THREE.SphereGeometry(0.08, 16, 12);
   const ballMat = new THREE.MeshStandardMaterial({ color: 0xff5533, roughness: 0.4 });
-  function throwBall() {
-    const p = eye().addScaledVector(look(), 0.4);
-    const v = look().multiplyScalar(12);
+  function throwBall(origin = eye(), direction = look()) {
+    const p = origin.clone().addScaledVector(direction, 0.4);
+    const v = direction.clone().multiplyScalar(12);
     const body = phys.createRigidBody(RAPIER.RigidBodyDesc.dynamic().setTranslation(p.x, p.y, p.z).setLinvel(v.x, v.y, v.z).setCcdEnabled(true));
     phys.createCollider(RAPIER.ColliderDesc.ball(0.08).setMass(0.4).setRestitution(0.4), body);
     const mesh = new THREE.Mesh(ballGeo, ballMat);
@@ -144,14 +144,15 @@ async function main() {
     }
   }
 
-  function push() {
-    const o = eye(), d = look();
+  function push(o = eye(), direction = look(), strength = 3) {
+    const d = direction.clone();
     const hit = phys.castRay(new RAPIER.Ray(o, d), 4, true, undefined, undefined, playerCol);
     const body = hit?.collider.parent();
-    if (!body || !body.isDynamic()) return;
+    if (!body || !body.isDynamic()) return null;
     const p = new RAPIER.Ray(o, d).pointAt(hit.timeOfImpact);
-    const impulse = d.multiplyScalar(3 * body.mass());
+    const impulse = d.multiplyScalar(strength * body.mass());
     body.applyImpulseAtPoint(impulse, p, true);
+    return objects.find(object => object.body === body)?.o.id ?? null;
   }
 
   function reset() {
@@ -226,6 +227,7 @@ async function main() {
   if (recording) {
     let tick = 0, frameIndex = 0, nextEvent = 0, busy = false;
     const events = orderedEvents(shot.events);
+    const actions = [];
     function applyCamera(time) {
       const pose = cameraAt(shot.camera, time);
       camera.position.fromArray(pose.position);
@@ -234,12 +236,14 @@ async function main() {
     function applyEvents() {
       while (nextEvent < events.length && events[nextEvent].time <= tick * STEP + 1e-9) {
         const event = events[nextEvent++];
-        if (event.type === "push") push();
-        if (event.type === "throw") throwBall();
+        const origin = event.origin ? new THREE.Vector3().fromArray(event.origin) : eye();
+        const direction = event.target ? new THREE.Vector3().fromArray(event.target).sub(origin).normalize() : look();
+        if (event.type === "push") actions.push({ time: tick * STEP, type: "push", object: push(origin, direction, event.strength ?? 3) });
+        if (event.type === "throw") { throwBall(origin, direction); actions.push({ time: tick * STEP, type: "throw" }); }
         if (event.type === "walk") { keys.clear(); event.keys.forEach(k => keys.add(k)); }
       }
     }
-    const snapshot = () => ({ tick, objects: objects.map(({ o, body }) => ({ id: o.id, position: body.translation(), rotation: body.rotation() })), player: playerBody.translation(), balls: balls.map(({body}) => body.translation()) });
+    const snapshot = () => ({ tick, objects: objects.map(({ o, body }) => ({ id: o.id, position: body.translation(), rotation: body.rotation() })), player: playerBody.translation(), balls: balls.map(({body}) => body.translation()), actions: [...actions] });
     async function renderRecorded() {
       syncMeshes();
       scene.updateMatrixWorld(true);
@@ -252,12 +256,12 @@ async function main() {
     await renderRecorded();
     window.playworld.record = {
       fps: shot.fps, frames: Math.round(shot.duration * shot.fps), snapshot,
-      async nextFrame() {
+      async nextFrame(requestedFrame = frameIndex) {
         if (busy) throw new Error("record frames must be requested sequentially");
-        if (frameIndex >= this.frames) throw new Error("shot finished");
+        if (!Number.isInteger(requestedFrame) || requestedFrame < frameIndex || requestedFrame >= this.frames) throw new Error("frame must advance within the shot");
         busy = true;
         try {
-          const targetTick = frameIndex * (60 / shot.fps);
+          const targetTick = requestedFrame * (60 / shot.fps);
           while (tick < targetTick) {
             applyCamera(tick * STEP);
             applyEvents();
@@ -268,7 +272,8 @@ async function main() {
           applyCamera(tick * STEP);
           applyEvents();
           await renderRecorded();
-          return { frame: frameIndex++, time: tick * STEP, ...snapshot() };
+          frameIndex = requestedFrame + 1;
+          return { frame: requestedFrame, time: tick * STEP, ...snapshot() };
         } finally { busy = false; }
       }
     };

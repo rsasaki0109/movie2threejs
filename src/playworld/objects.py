@@ -79,6 +79,11 @@ def inlier_mask(points: np.ndarray, k: float = 3.0) -> np.ndarray:
     return (np.abs(points - med) <= k * 1.4826 * mad).all(axis=1)
 
 
+def movable_splat_mask(points: np.ndarray, sizes: np.ndarray, max_size: float = 0.1) -> np.ndarray:
+    """Keep the object's bulk and reject broad foreground/background spill."""
+    return inlier_mask(points) & np.isfinite(sizes) & (sizes <= max_size)
+
+
 @dataclass
 class RigidObject:
     label: int
@@ -98,14 +103,14 @@ class RigidObject:
         }
 
 
-def support_height(obj_pts: np.ndarray, static_pts: np.ndarray, cell: float = 0.05, ring: float = 0.12, band: float = 0.02, min_cover: float = 0.4) -> float:
+def support_height(obj_pts: np.ndarray, static_pts: np.ndarray, cell: float = 0.05, ring: float = 0.12, band: float = 0.04, min_cover: float = 0.4) -> float:
     """Height of the surface the object rests on (floor = 0).
 
     The surface right under an object is never visible, so we look at a ring around its footprint
     and take the highest horizontal band (below the object) that covers most of that ring.
     """
     lo, hi = obj_pts[:, [0, 2]].min(axis=0), obj_pts[:, [0, 2]].max(axis=0)
-    bottom = obj_pts[:, 1].min()
+    bottom = np.percentile(obj_pts[:, 1], 5)
     xz = static_pts[:, [0, 2]]
     in_outer = np.all((xz > lo - ring) & (xz < hi + ring), axis=1)
     in_inner = np.all((xz > lo) & (xz < hi), axis=1)
@@ -127,6 +132,10 @@ def rigid_object(points_world: np.ndarray, label: int, name: str, support_y: flo
     pts = points_world[inlier_mask(points_world)]
     if len(pts) < 8:
         return None
+    # A few noisy points can lie below an otherwise well-supported tabletop.
+    # Keep the collision body above its support rather than starting embedded.
+    pts = pts.copy()
+    pts[:, 1] = np.maximum(pts[:, 1], support_y + 0.005)
     # Only the visible surfaces were reconstructed. Assume the object is solid down to the surface
     # it rests on, so it has real volume and stands instead of being a hollow shell.
     foot = pts.copy()

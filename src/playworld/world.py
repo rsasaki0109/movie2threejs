@@ -74,11 +74,25 @@ def build_world(
 
     g_world = gravity.apply(T, g_means)
     p_world = gravity.apply(T, rec.xyz)
-    collider_labels = labels.copy()
-    world_objects = []
+    world_scale = np.linalg.norm(T[:3, 0])
+    sizes = splat_io.max_scale(splats) * world_scale
+    # A rigid body must not carry distant or very broad segmentation spill.
+    # Discard those splats rather than leaving a static ghost at its old pose.
     for label in sorted(set(np.unique(labels)) - {0}):
+        ids = np.flatnonzero(labels == label)
+        clean = objects.movable_splat_mask(g_world[ids], sizes[ids])
+        if clean.sum() >= 8:
+            labels[ids[~clean]] = -1
+    collider_labels = labels.copy()
+    # Sparse tracks often miss an untextured tabletop. Use compact opaque
+    # background Gaussians too, while excluding objects and diffuse floaters.
+    compact = (labels == 0) & (splat_io.opacity(splats) > 0.5) & (splat_io.max_scale(splats) * np.linalg.norm(T[:3, 0]) < 0.1)
+    support_points = np.vstack([p_world[point_labels == 0], g_world[compact]])
+    world_objects = []
+    for label in sorted(set(np.unique(labels)) - {0, -1}):
         sel = labels == label
-        support = objects.support_height(g_world[sel], p_world[point_labels == 0])
+        obj_points = g_world[sel]
+        support = objects.support_height(obj_points[objects.inlier_mask(obj_points)], support_points)
         obj = objects.rigid_object(g_world[sel], int(label), names.get(int(label), f"object{label}"), support)
         if obj is None:
             labels[sel] = 0
@@ -104,10 +118,12 @@ def build_world(
     # or the captured Gaussian count; they are explicitly approximate surfaces.
     background = labels == 0
     rgb = np.stack([splats[f"f_dc_{i}"] for i in range(3)], axis=1) * splat_io.SH_C0 + 0.5
+    horizontal = background & splat_io.horizontal_mask(splats, T) & (splat_io.opacity(splats) > 0.5)
+    color_samples = horizontal if horizontal.sum() >= 3 else background
     patches = []
     for obj in world_objects:
         footprint = np.array(obj["hull"]) + obj["centroid"]
-        patch = surface_patch(footprint, obj["support_y"], g_world[background], rgb[background])
+        patch = surface_patch(footprint, obj["support_y"], g_world[color_samples], rgb[color_samples], ring=0.3)
         if patch is not None:
             patches.append({"object_id": obj["id"], **patch})
 
@@ -117,7 +133,11 @@ def build_world(
     boxes = colliders.static_boxes(static_pts, voxel=voxel)
     for o in world_objects:
         h = np.array(o["hull"]) + o["centroid"]
-        boxes = colliders.drop_overlapping(boxes, h.min(axis=0) - 0.05, h.max(axis=0) + 0.05)
+        boxes = colliders.carve_boxes(boxes, h.min(axis=0) - 0.08, h.max(axis=0) + 0.08)
+    for o in world_objects:
+        if o['support_y'] > 0.05:
+            h = np.array(o['hull']) + o['centroid']
+            boxes.append(colliders.support_box(h, o['support_y']))
     boxes = [colliders.floor_box(static_pts)] + boxes
 
     spawn = gravity.apply(T, centers[:1])[0]
@@ -134,7 +154,9 @@ def build_world(
         "stats": {
             "cameras": len(images),
             "points": int(len(rec.xyz)),
-            "gaussians": int(len(g_means)),
+            "gaussians": int((labels >= 0).sum()),
+            "input_gaussians": int(len(g_means)),
+            "discarded_object_gaussians": int((labels < 0).sum()),
             "objects": len(world_objects),
             "colliders": len(boxes),
             "support_patches": len(patches),
