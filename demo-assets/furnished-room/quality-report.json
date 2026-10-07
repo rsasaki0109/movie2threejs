@@ -1,0 +1,21 @@
+{
+  "id": "furnished-room",
+  "method": "original reconstruction; conservative background volume cleanup; SH3-preserving SPZ v3",
+  "original_world_sha256": "8126e8226dcb0d5e8abaf657daba63469fceb1167423992fba972f01f8efa9ee",
+  "discarded_diffuse_gaussians": 1874,
+  "seconds": 0.687,
+  "stats": {
+    "cameras": 16,
+    "points": 13841,
+    "gaussians": 110655,
+    "input_gaussians": 112714,
+    "discarded_object_gaussians": 185,
+    "objects": 4,
+    "colliders": 1471,
+    "support_patches": 2,
+    "floor_inliers": 4232,
+    "scale_m_per_unit": 11.388525,
+    "discarded_diffuse_gaussians": 1874,
+    "clean_splats": true
+  }
+}

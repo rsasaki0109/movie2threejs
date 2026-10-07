@@ -1,0 +1,54 @@
+{
+  "id": "furnished-room",
+  "exit_code": 0,
+  "seconds": 464.756,
+  "scene": "/content/playworld-gallery-20261007/furnished-room/scene",
+  "actual_steps": 15000,
+  "gpu": "NVIDIA L4, 23034 MiB",
+  "stats": {
+    "cameras": 16,
+    "points": 13841,
+    "gaussians": 324257,
+    "input_gaussians": 326775,
+    "discarded_object_gaussians": 358,
+    "discarded_diffuse_gaussians": 2160,
+    "clean_splats": true,
+    "discarded_bounds_gaussians": 0,
+    "bounds_margin_m": null,
+    "objects": 7,
+    "colliders": 2356,
+    "support_patches": 1,
+    "floor_inliers": 4232,
+    "scale_m_per_unit": 11.388525
+  },
+  "world_seconds": 2.336,
+  "old_training_stats": {
+    "val_step4499.json": {
+      "psnr": 19.82782554626465,
+      "ssim": 0.7878086566925049,
+      "lpips": 0.47865498065948486,
+      "ellipse_time": 0.0032089948654174805,
+      "num_GS": 112714
+    },
+    "train_step4499_rank0.json": {
+      "mem": 0.23542070388793945,
+      "ellipse_time": 58.63416242599487,
+      "num_GS": 112714
+    }
+  },
+  "quality_training_stats": {
+    "train_step14999_rank0.json": {
+      "mem": 0.5361466407775879,
+      "ellipse_time": 455.2304537296295,
+      "num_GS": 326775
+    },
+    "val_step14999.json": {
+      "psnr": 18.485563278198242,
+      "ssim": 0.7011693120002747,
+      "lpips": 0.5136517286300659,
+      "ellipse_time": 0.009537100791931152,
+      "num_GS": 326775
+    }
+  },
+  "input_ply_sha256": "b5d1a2702ef9d836f609f7b1b232263d50b440e5cea9a22d9fb92335e55515f7"
+}

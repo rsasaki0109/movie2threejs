@@ -11,6 +11,7 @@ import numpy as np
 
 from . import colliders, gravity, objects, splat_io
 from .support import surface_patch
+from .cleanup import surface_splat_mask
 from .colmap_io import Reconstruction, read_model
 
 FORMAT = "playworld/1"
@@ -48,6 +49,7 @@ def build_world(
     density: float = 400.0,
     copy_viewer: bool = True,
     bounds_margin: float | None = None,
+    clean_splats: bool = False,
 ) -> dict:
     out_dir = Path(out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
@@ -83,6 +85,11 @@ def build_world(
         point_labels[~colliders.near_capture(p_world, aligned_cameras, bounds_margin)] = -1
     world_scale = np.linalg.norm(T[:3, 0])
     sizes = splat_io.max_scale(splats) * world_scale
+    discarded_diffuse = np.zeros(len(g_world), dtype=bool)
+    if clean_splats:
+        scales = np.exp(np.stack([splats[f"scale_{i}"] for i in range(3)], axis=1)) * world_scale
+        discarded_diffuse = (labels == 0) & ~surface_splat_mask(scales, splat_io.opacity(splats))
+        labels[discarded_diffuse] = -1
     # A rigid body must not carry distant or very broad segmentation spill.
     # Discard those splats rather than leaving a static ghost at its old pose.
     for label in sorted(set(np.unique(labels)) - {0, -1}):
@@ -166,7 +173,9 @@ def build_world(
             "points": int(len(rec.xyz)),
             "gaussians": int((labels >= 0).sum()),
             "input_gaussians": int(len(g_means)),
-            "discarded_object_gaussians": int(((labels < 0) & within_bounds).sum()),
+            "discarded_object_gaussians": int(((labels < 0) & within_bounds & ~discarded_diffuse).sum()),
+            "discarded_diffuse_gaussians": int(discarded_diffuse.sum()),
+            "clean_splats": clean_splats,
             "discarded_bounds_gaussians": int((~within_bounds).sum()),
             "bounds_margin_m": bounds_margin,
             "objects": len(world_objects),

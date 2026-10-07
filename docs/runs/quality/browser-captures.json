@@ -1,0 +1,60 @@
+{
+  "scope": "Actual native Chromium captures; recording times exclude GPU reconstruction",
+  "rooms": [
+    {
+      "id": "workbench",
+      "fps": 30,
+      "frames": 390,
+      "renderer": "ANGLE (NVIDIA, NVIDIA GeForce GTX 1660 Ti (0x00002191) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "width": 1920,
+      "height": 1080,
+      "seconds": 540.943,
+      "world_sha256": "dd285c40ae5b72a31ab9b03f21a2cb7fb7c8f3956ce1e9ded7054c417fa19461",
+      "shot_sha256": "4f872eb76881297708acbcc577d17b64fbcb66e0605ce7a287eed20874cdb150"
+    },
+    {
+      "id": "meeting-room",
+      "fps": 15,
+      "frames": 120,
+      "renderer": "ANGLE (NVIDIA, NVIDIA GeForce GTX 1660 Ti (0x00002191) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "width": 1280,
+      "height": 720,
+      "seconds": 91.357,
+      "world_sha256": "98c9620cdea732fbb4ee5e62c0c49ff6d1a5501f1a68b91b659d6fab7dcd5052",
+      "shot_sha256": "d362107b2bd6300ed65f5d7a3117b9a68ac09ad753634262a1f87291b6c61132"
+    },
+    {
+      "id": "cafe",
+      "fps": 15,
+      "frames": 120,
+      "renderer": "ANGLE (NVIDIA, NVIDIA GeForce GTX 1660 Ti (0x00002191) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "width": 1280,
+      "height": 720,
+      "seconds": 85.834,
+      "world_sha256": "6accc75f03cfb99532571f2582da8385ba87ccc96c85b1e24a7d83288e167ec5",
+      "shot_sha256": "1014b3ac8a47f1eb36295af8b319696ef35c39ff8ecec9e5c06e3f3764daae6a"
+    },
+    {
+      "id": "lounge",
+      "fps": 15,
+      "frames": 120,
+      "renderer": "ANGLE (NVIDIA, NVIDIA GeForce GTX 1660 Ti (0x00002191) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "width": 1280,
+      "height": 720,
+      "seconds": 74.693,
+      "world_sha256": "74d5f27ac3d2ea49ddc37b4dffd884a7dbbf5f96ac1a222361f287ed4adc53e2",
+      "shot_sha256": "3a87ae61a9847996cc8a8804ee197ed33d7ffdfa1b54d90527e8accdd5746b7d"
+    },
+    {
+      "id": "furnished-room",
+      "fps": 15,
+      "frames": 120,
+      "renderer": "ANGLE (NVIDIA, NVIDIA GeForce GTX 1660 Ti (0x00002191) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "width": 1280,
+      "height": 720,
+      "seconds": 77.322,
+      "world_sha256": "5e4d305037a12e0fbca2e0404637f3724b457fdc142f647b8a72f538608eca86",
+      "shot_sha256": "ac84a83f82b4f6c494305e7751d4560d6414ccfc4a834ba95d5f21f9625eed0a"
+    }
+  ]
+}

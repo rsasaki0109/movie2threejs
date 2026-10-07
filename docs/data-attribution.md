@@ -34,11 +34,13 @@ The exact source trim is shared by the notebook and `scripts/download_public.py 
 
 ## Additional room gallery
 
-All four additional examples use the same MIT-licensed Eyeful Tower dataset and camera-19 photograph-sequence videos. Their browser recordings are rendered from our VGGT/gsplat/SAM 3 reconstructions. No dataset ground-truth camera poses were supplied.
+All four additional examples use the same MIT-licensed Eyeful Tower dataset. Kitchen/cafe, window office and furnished room use camera-19 photograph-sequence videos with VGGT-estimated poses; no provided camera calibration was used for those three.
+
+The current **meeting room** uses 192 undistorted photographs from cameras **19,16,22**, dataset-provided COLMAP camera calibration **and sparse point initialization**, with 30,000-step gsplat training and SAM 3 masks. It does not use VGGT and does not demonstrate automatic video-pose estimation. The previously committed video/VGGT run is preserved as historical benchmark evidence.
 
 | Demo | Dataset | Source trim (start / requested seconds) | Exact provenance |
 |---|---|---|---|
-| Meeting room | office1b | 0 / 2.75 | [Source and hashes](../demo-assets/meeting-room/source.json) |
+| Meeting room | office1b | 192 calibrated photographs; no video trim | [Photographs, calibration and hashes](../demo-assets/meeting-room/source.json) |
 | Kitchen/cafe | kitchen | 14 / 6 | [Source and hashes](../demo-assets/cafe/source.json) |
 | Window office | office_view2 | 0 / 5.5 | [Source and hashes](../demo-assets/lounge/source.json) |
 | Furnished room | raf_furnishedroom | 0 / 3.5 | [Source and hashes](../demo-assets/furnished-room/source.json) |

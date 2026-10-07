@@ -1,0 +1,54 @@
+{
+  "id": "cafe",
+  "exit_code": 0,
+  "seconds": 558.734,
+  "scene": "/content/playworld-gallery-20261007/cafe/scene",
+  "actual_steps": 15000,
+  "gpu": "NVIDIA L4, 23034 MiB",
+  "stats": {
+    "cameras": 16,
+    "points": 27157,
+    "gaussians": 1063521,
+    "input_gaussians": 1069156,
+    "discarded_object_gaussians": 3406,
+    "discarded_diffuse_gaussians": 2229,
+    "clean_splats": true,
+    "discarded_bounds_gaussians": 0,
+    "bounds_margin_m": null,
+    "objects": 6,
+    "colliders": 2197,
+    "support_patches": 6,
+    "floor_inliers": 2098,
+    "scale_m_per_unit": 4.37529
+  },
+  "world_seconds": 7.15,
+  "old_training_stats": {
+    "val_step4499.json": {
+      "psnr": 17.53656005859375,
+      "ssim": 0.7614362239837646,
+      "lpips": 0.35858309268951416,
+      "ellipse_time": 0.004045724868774414,
+      "num_GS": 358469
+    },
+    "train_step4499_rank0.json": {
+      "mem": 0.5701541900634766,
+      "ellipse_time": 73.77409434318542,
+      "num_GS": 358469
+    }
+  },
+  "quality_training_stats": {
+    "train_step14999_rank0.json": {
+      "mem": 1.6331090927124023,
+      "ellipse_time": 547.797928571701,
+      "num_GS": 1069156
+    },
+    "val_step14999.json": {
+      "psnr": 18.453773498535156,
+      "ssim": 0.7668662071228027,
+      "lpips": 0.34911131858825684,
+      "ellipse_time": 0.006577253341674805,
+      "num_GS": 1069156
+    }
+  },
+  "input_ply_sha256": "efd9bac9430466cb9e3e47bcba038288ff02f93a3435f5445493eb82fbb3d6d1"
+}

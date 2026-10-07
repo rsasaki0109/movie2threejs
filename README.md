@@ -3,7 +3,7 @@
 **Real room capture → a walkable, physical three.js world.**
 
 <table>
-<tr><th>Meeting room · push a chair</th><th>Kitchen & cafe · knock a chair over</th></tr>
+<tr><th>Meeting room · calibrated capture</th><th>Kitchen & cafe · knock a chair over</th></tr>
 <tr>
 <td><a href="docs/live-demo.md"><img src="docs/demos/meeting-room.gif" width="480" alt="Walking into a real meeting room and pushing a captured chair over"></a></td>
 <td><a href="docs/live-demo.md"><img src="docs/demos/cafe.gif" width="480" alt="Walking inside a real cafe and knocking its captured chair over"></a></td>
@@ -16,6 +16,8 @@
 </table>
 
 **Five real captures, five playable demos.** [Run the browser gallery locally](docs/live-demo.md) · [Measured runs](docs/benchmarks.md#additional-gallery-captures) · [Data & license](docs/data-attribution.md). These use public capture-rig photographs. Public hosting is on hold.
+
+The meeting room uses **192 photographs, provided camera calibration and sparse points** for a clearer showcase; VGGT was not used for that example. The other four rooms use estimated VGGT poses. [Quality comparison and remaining artifacts](docs/quality.md).
 
 <table>
 <tr><th>Explore</th><th>Push</th><th>Throw</th></tr>
@@ -69,7 +71,7 @@ For your own video, keep the phone upright, move slowly in a bright room, and ca
 
 The [recording workflow](docs/recording.md) uses a JSON timeline, fixed 1/60 s physics and Playwright canvas capture. [The hero shot](shots/hero.json) records camera positions, a push and a throw; its action ray is specified independently of the cinematic camera. Interactive walking uses Rapier's capsule character controller.
 
-The [static demo gallery](docs/live-demo.md) includes five actual captured spaces, with desktop and touch controls. The workbench is a 28 MB room download; the additional rooms use smaller packed exports. GitHub Pages publication is on hold while the repository stays private.
+The [static demo gallery](docs/live-demo.md) includes five actual captured spaces, with desktop and touch controls. The workbench is a 17.1 MB SPZ download with view-dependent color retained. [Quality comparisons](docs/quality.md) record adopted changes and rejected experiments. GitHub Pages publication is on hold while the repository stays private.
 
 ## Stages
 

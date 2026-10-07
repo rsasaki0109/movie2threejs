@@ -71,32 +71,42 @@ def estimate_poses(scene: Path, vggt_dir: Path, use_ba: bool, python: str = sys.
     print(f"validated {len(reconstruction.images)} poses and {len(reconstruction.xyz)} finite points", flush=True)
 
 
-def train_splats(scene: Path, gsplat_dir: Path, steps: int, python: str = sys.executable) -> Path:
+def train_splats(scene: Path, gsplat_dir: Path, steps: int, python: str = sys.executable, quality: bool = False,
+                 strategy: str = 'default', gaussian_limit: int | None = None) -> Path:
     scene = Path(scene).resolve()
     gsplat_dir = gsplat_dir.resolve()
     if steps < 1:
         raise ValueError("steps must be positive")
+    if strategy not in {'default', 'mcmc'}:
+        raise ValueError('unknown gsplat strategy')
+    if gaussian_limit is not None and (strategy != 'mcmc' or gaussian_limit < 4):
+        raise ValueError('gaussian-limit requires MCMC and at least four Gaussians')
     previous = {path: path.stat().st_mtime_ns for path in (scene / "gs" / "ply").glob("*.ply")}
-    run(
-        [
-            python, Path(gsplat_dir) / "examples" / "simple_trainer.py", "default",
+    # Scale the complete 30k schedule, including densification, opacity resets
+    # and the final settling period. Changing max_steps alone used to stop short
+    # runs while the strategy was still splitting/resetting Gaussians.
+    command = [
+            python, Path(gsplat_dir) / "examples" / "simple_trainer.py", strategy,
             "--data-dir", scene, "--data-factor", "1", "--result-dir", scene / "gs",
-            "--max-steps", str(steps), "--save-ply", "--ply-steps", str(steps),
-            "--eval-steps", str(steps), "--save-steps", str(steps),
+            "--max-steps", "30000", "--steps-scaler", str(steps / 30000),
+            "--save-ply", "--ply-steps", "30000", "--eval-steps", "30000", "--save-steps", "30000",
             "--no-normalize-world-space",  # keep the COLMAP frame so splats and cameras agree
             "--test-every", "8", "--disable-viewer", "--disable-video",
-        ],
-        cwd=Path(gsplat_dir) / "examples",
-    )
+        ]
+    if quality:
+        command += ["--pose-opt", "--scale-reg", "0.01", "--opacity-reg", "0.005"]
+    if gaussian_limit is not None:
+        command += ['--strategy.cap-max', str(gaussian_limit)]
+    run(command, cwd=Path(gsplat_dir) / "examples")
     produced = [p for p in (scene / "gs" / "ply").glob("*.ply") if previous.get(p) != p.stat().st_mtime_ns]
     if not produced:
         raise FileNotFoundError("trainer returned without exporting a new PLY; refusing to reuse a stale export")
     return max(produced, key=lambda p: p.stat().st_mtime_ns)
 
 
-def segment_objects(scene: Path, prompts: str, python: str = sys.executable) -> None:
+def segment_objects(scene: Path, prompts: str, python: str = sys.executable, seed_frame: int = 0) -> None:
     # The SAM 3 environment does not need playworld installed: run the module file directly.
-    run([python, Path(__file__).with_name("segment.py"), Path(scene).resolve(), "--prompts", prompts])
+    run([python, Path(__file__).with_name("segment.py"), Path(scene).resolve(), "--prompts", prompts, '--seed-frame', str(seed_frame)])
 
 
 def latest_ply(scene: Path) -> Path:
@@ -130,6 +140,9 @@ def main(argv: list[str] | None = None) -> None:
     p.add_argument("scene", type=Path)
     p.add_argument("--gsplat-dir", type=Path, required=True)
     p.add_argument("--steps", type=int, default=7000)
+    p.add_argument('--strategy', choices=['default', 'mcmc'], default='default')
+    p.add_argument('--gaussian-limit', type=int, help='optional MCMC Gaussian count limit')
+    p.add_argument("--quality", action="store_true", help="experimental camera optimization and volume regularization; compare held-out views before adopting")
     p.add_argument("--python", default=sys.executable, help="interpreter of the gsplat environment")
 
     from .segment import DEFAULT_PROMPTS
@@ -137,6 +150,7 @@ def main(argv: list[str] | None = None) -> None:
     p = sub.add_parser("segment")
     p.add_argument("scene", type=Path)
     p.add_argument("--prompts", default=",".join(DEFAULT_PROMPTS))
+    p.add_argument('--seed-frame', type=int, default=0)
     p.add_argument("--python", default=sys.executable, help="interpreter of the SAM 3 environment")
 
     def world_args(p):
@@ -145,6 +159,7 @@ def main(argv: list[str] | None = None) -> None:
         p.add_argument("--eye-height", type=float, default=1.5, help="phone height above floor in meters")
         p.add_argument("--voxel", type=float, default=0.1)
         p.add_argument("--bounds-margin", type=float, help="crop distant points/splats outside the camera path plus this margin in assumed meters")
+        p.add_argument("--clean-splats", action="store_true", help="reject thick diffuse background Gaussians while retaining thin surfaces")
 
     p = sub.add_parser("world")
     p.add_argument("scene", type=Path)
@@ -164,10 +179,14 @@ def main(argv: list[str] | None = None) -> None:
     p.add_argument("--ba-track-budget", type=int, default=32768, help="maximum frame-point pairs per tracking batch (BA)")
     p.add_argument("--ba-reprojection-error", type=float, default=8.0, help="initial reprojection inlier tolerance in pixels (BA)")
     p.add_argument("--steps", type=int, default=7000)
+    p.add_argument('--strategy', choices=['default', 'mcmc'], default='default')
+    p.add_argument('--gaussian-limit', type=int, help='optional MCMC Gaussian count limit')
+    p.add_argument("--quality", action="store_true", help="experimental camera optimization and volume regularization; compare held-out views before adopting")
     p.add_argument("--prompts", default=",".join(DEFAULT_PROMPTS), help="movable things; empty = static world only")
     p.add_argument("--vggt-python", default=sys.executable)
     p.add_argument("--gsplat-python", default=sys.executable)
     p.add_argument("--sam3-python", default=sys.executable)
+    p.add_argument('--segment-seed-frame', type=int, default=0, help='seed detection at a clear object view; propagate in both directions')
     p.add_argument("--report", type=Path, help="measured run JSON (default: SCENE/run.json)")
     p.add_argument("--start-at", choices=["frames", "poses", "train", "segment", "world"], default="frames",
                    help="explicitly reuse earlier stage outputs; skipped stages are not timed")
@@ -185,12 +204,12 @@ def main(argv: list[str] | None = None) -> None:
     elif a.cmd == "poses":
         estimate_poses(a.scene, a.vggt_dir, a.ba, a.python, a.pose_confidence, a.shared_camera, a.ba_track_budget, a.ba_reprojection_error)
     elif a.cmd == "train":
-        print(train_splats(a.scene, a.gsplat_dir, a.steps, a.python))
+        print(train_splats(a.scene, a.gsplat_dir, a.steps, a.python, a.quality, a.strategy, a.gaussian_limit))
     elif a.cmd == "segment":
-        segment_objects(a.scene, a.prompts, a.python)
+        segment_objects(a.scene, a.prompts, a.python, a.seed_frame)
     elif a.cmd == "world":
         masks = a.masks or ((a.scene / "masks") if (a.scene / "masks" / "labels.json").exists() else None)
-        w = build_world(a.scene / "sparse", a.splats or latest_ply(a.scene), a.out, masks, a.eye_height, a.voxel, bounds_margin=a.bounds_margin)
+        w = build_world(a.scene / "sparse", a.splats or latest_ply(a.scene), a.out, masks, a.eye_height, a.voxel, bounds_margin=a.bounds_margin, clean_splats=a.clean_splats)
         print(json.dumps(w["stats"], indent=1))
     elif a.cmd == "all":
         from .run_report import RunReport
@@ -208,16 +227,16 @@ def main(argv: list[str] | None = None) -> None:
 
         stage("frames", extract_frames, a.video, a.scene, a.num, a.max_size)
         stage("poses", estimate_poses, a.scene, a.vggt_dir, a.ba, a.vggt_python, a.pose_confidence, a.shared_camera, a.ba_track_budget, a.ba_reprojection_error)
-        ply = stage("train", train_splats, a.scene, a.gsplat_dir, a.steps, a.gsplat_python)
+        ply = stage("train", train_splats, a.scene, a.gsplat_dir, a.steps, a.gsplat_python, a.quality, a.strategy, a.gaussian_limit)
         if ply is None:
             ply = report.stage("validate_reused_splats", latest_ply, a.scene)
         masks = a.masks
         if masks is None and a.prompts.strip():
-            stage("segment", segment_objects, a.scene, a.prompts, a.sam3_python)
+            stage("segment", segment_objects, a.scene, a.prompts, a.sam3_python, a.segment_seed_frame)
             masks = a.scene / "masks"
         else:
             report.data["stages"]["segment"] = {"status": "provided" if masks else "disabled", "seconds": None}
-        w = stage("world", build_world, a.scene / "sparse", ply, a.out, masks, a.eye_height, a.voxel, 400.0, True, a.bounds_margin)
+        w = stage("world", build_world, a.scene / "sparse", ply, a.out, masks, a.eye_height, a.voxel, 400.0, True, a.bounds_margin, a.clean_splats)
         report.finish(w)
         print(json.dumps(report.data, indent=1))
     elif a.cmd == "demo":

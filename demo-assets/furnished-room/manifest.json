@@ -1,41 +1,41 @@
 {
-  "source_world_sha256": "8126e8226dcb0d5e8abaf657daba63469fceb1167423992fba972f01f8efa9ee",
-  "format": "antimatter15 .splat (DC color, 8-bit opacity/rotation)",
-  "higher_order_sh": "omitted for download size",
+  "source_world_sha256": "7af1eedb86a02fec0f132409645010b36921631fc709670caba66d37ec6b491c",
+  "format": "Niantic SPZ v3",
+  "higher_order_sh": "preserved through SH3 (quantized)",
   "files": [
     {
-      "path": "background.splat",
-      "gaussians": 109550,
-      "bytes": 3505600,
-      "sha256": "2934f5b350e28509ed2d5218f364653bcecf832b07bc511c1c29f0448c32af81"
+      "path": "background.spz",
+      "gaussians": 107676,
+      "bytes": 1892488,
+      "sha256": "bded391ce4296ebeba2e5797187cea92aeddc1830dd9c3f667b92416520a3521"
     },
     {
-      "path": "objects/2.splat",
+      "path": "objects/2.spz",
       "gaussians": 366,
-      "bytes": 11712,
-      "sha256": "fd0aaa386ac9e4ecacccfdcd627943dac98f35bb8308e14de57ecdcaf3fb0293"
+      "bytes": 7095,
+      "sha256": "cc9eb04337d1c3c53b47758215b963d0051dfd66bf8c65b69522363c9134f633"
     },
     {
-      "path": "objects/4.splat",
+      "path": "objects/4.spz",
       "gaussians": 482,
-      "bytes": 15424,
-      "sha256": "02bc327572f637ecf56efaa429c513c4e7864892c0c3ffd2918c5b42f9997cc3"
+      "bytes": 9005,
+      "sha256": "5c3998705ea29057551c50b8bb15feb1d4d89f762e4ba3b292c43c65f34685a8"
     },
     {
-      "path": "objects/5.splat",
+      "path": "objects/5.spz",
       "gaussians": 460,
-      "bytes": 14720,
-      "sha256": "747c3ce83e194a0b3b76cde51a969bb37f3391f43ddd931cd14d34de8ad8c48b"
+      "bytes": 8742,
+      "sha256": "08e2a85e9d5573c2e3b5828ffbf805dd4f8761d7c7bd1ef2b2751cf56f2ded48"
     },
     {
-      "path": "objects/8.splat",
+      "path": "objects/8.spz",
       "gaussians": 1671,
-      "bytes": 53472,
-      "sha256": "5a0c6a69d543ce7279c0963467516bc16a8abaf11a0b26a7ded489b947acac99"
+      "bytes": 30540,
+      "sha256": "3252b2a0f7884445670b9337f6680c4a583511a5050df6627949b4623dd67a34"
     }
   ],
-  "gaussians": 112529,
-  "splat_bytes": 3600928,
+  "gaussians": 110655,
+  "splat_bytes": 1947870,
   "objects": 4,
   "colliders": 1471
 }

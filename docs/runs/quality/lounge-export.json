@@ -1,0 +1,23 @@
+{
+  "id": "lounge",
+  "method": "original reconstruction; conservative background volume cleanup; SH3-preserving SPZ v3",
+  "original_world_sha256": "b610e8685a254b0aaf9dd03a26580e5a521553f0be2e1f15b42dbc11a094ce82",
+  "discarded_diffuse_gaussians": 4733,
+  "seconds": 2.334,
+  "stats": {
+    "cameras": 16,
+    "points": 21148,
+    "gaussians": 342056,
+    "input_gaussians": 359750,
+    "discarded_object_gaussians": 522,
+    "discarded_bounds_gaussians": 12439,
+    "bounds_margin_m": 6,
+    "objects": 2,
+    "colliders": 4169,
+    "support_patches": 0,
+    "floor_inliers": 3871,
+    "scale_m_per_unit": 6.996121,
+    "discarded_diffuse_gaussians": 4733,
+    "clean_splats": true
+  }
+}

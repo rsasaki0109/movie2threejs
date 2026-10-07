@@ -1,0 +1,92 @@
+{
+  "id": "meeting-room",
+  "camera_source": "dataset-provided calibration and sparse initialization; no VGGT",
+  "status": "complete",
+  "stages": {
+    "train": {
+      "seconds": 475.976,
+      "exit_code": 0,
+      "command": [
+        "/content/playworld/.gpu/envs/gsplat/bin/python",
+        "/content/playworld-calibrated-20261007/entry.py",
+        "/content/playworld/.gpu/repos/gsplat/examples/simple_trainer.py",
+        "mcmc",
+        "--strategy.cap-max",
+        "500000",
+        "--data-dir",
+        "/content/playworld-calibrated-20261007/meeting-room/scene",
+        "--data-factor",
+        "1",
+        "--result-dir",
+        "/content/playworld-calibrated-mcmc-20261007/meeting-room/gs",
+        "--max-steps",
+        "30000",
+        "--steps-scaler",
+        ".5",
+        "--save-ply",
+        "--ply-steps",
+        "30000",
+        "--eval-steps",
+        "30000",
+        "--save-steps",
+        "30000",
+        "--no-normalize-world-space",
+        "--test-every",
+        "8",
+        "--disable-viewer",
+        "--disable-video"
+      ]
+    },
+    "segment": {
+      "seconds": 32.052,
+      "exit_code": 0,
+      "command": [
+        "/content/playworld/.gpu/envs/sam3/bin/python",
+        "/content/playworld-calibrated-20261007/entry.py",
+        "/content/playworld-quality-20261007/code/src/playworld/segment.py",
+        "/content/playworld-calibrated-mcmc-20261007/meeting-room/segment-scene",
+        "--prompts",
+        "chair",
+        "--seed-frame",
+        "5"
+      ]
+    },
+    "world": {
+      "seconds": 3.528,
+      "exit_code": 0
+    }
+  },
+  "reused_scene": "/content/playworld-calibrated-20261007/meeting-room/scene",
+  "segmentation_seed_frame": 5,
+  "gpu": "NVIDIA L4, 23034 MiB",
+  "train_metrics": {
+    "train_step14999_rank0.json": {
+      "mem": 0.6953520774841309,
+      "ellipse_time": 462.40085458755493,
+      "num_GS": 500000
+    },
+    "val_step14999.json": {
+      "psnr": 21.118427276611328,
+      "ssim": 0.8750590682029724,
+      "lpips": 0.30747708678245544,
+      "ellipse_time": 0.00510743260383606,
+      "num_GS": 500000
+    }
+  },
+  "stats": {
+    "cameras": 16,
+    "points": 100000,
+    "gaussians": 483645,
+    "input_gaussians": 500000,
+    "discarded_object_gaussians": 228,
+    "discarded_diffuse_gaussians": 4157,
+    "clean_splats": true,
+    "discarded_bounds_gaussians": 11970,
+    "bounds_margin_m": 6,
+    "objects": 4,
+    "colliders": 693,
+    "support_patches": 0,
+    "floor_inliers": 58517,
+    "scale_m_per_unit": 1.323943
+  }
+}

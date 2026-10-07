@@ -1,53 +1,53 @@
 {
-  "source_world_sha256": "f8c93894ff0ee9400f07202edfd85cebd33a629229df337af39d85b0a4859dc5",
-  "format": "antimatter15 .splat (DC color, 8-bit opacity/rotation)",
-  "higher_order_sh": "omitted for download size",
+  "source_world_sha256": "10c5a303be75dbbc7430440102a69a0758ebc516b9f3e83b5a75117a32f1a842",
+  "format": "Niantic SPZ v3",
+  "higher_order_sh": "preserved through SH3 (quantized)",
   "files": [
     {
-      "path": "background.splat",
-      "gaussians": 333838,
-      "bytes": 10682816,
-      "sha256": "6a238ae8b9c8c4880858d632095b3b5744007be870a0e9fc4a594fcb849474ec"
+      "path": "background.spz",
+      "gaussians": 1012943,
+      "bytes": 19510211,
+      "sha256": "5c5792c70948dcfd42567d34e6f5e34cbec07ee81f863d470e6d81774022ecd3"
     },
     {
-      "path": "objects/1.splat",
-      "gaussians": 1667,
-      "bytes": 53344,
-      "sha256": "689f06a15290f330bc1cd5f2a92b322773792fa7811aed0f59d8c77b09721c8d"
+      "path": "objects/1.spz",
+      "gaussians": 5754,
+      "bytes": 116655,
+      "sha256": "d52bf569242a43ac0d9ebcc92955caea2c8f167874c0e3d7f80ea25ccbf5808b"
     },
     {
-      "path": "objects/2.splat",
-      "gaussians": 718,
-      "bytes": 22976,
-      "sha256": "3e9f1120d8e0693498efb77d4f6054e012078b633ed86dc49edaaad8c5865966"
+      "path": "objects/2.spz",
+      "gaussians": 1218,
+      "bytes": 28364,
+      "sha256": "dd8628b1312c39717ad425605ac298cec37d0164b381a95fa27f4df4d206f0c1"
     },
     {
-      "path": "objects/3.splat",
-      "gaussians": 590,
-      "bytes": 18880,
-      "sha256": "5ef7db608a06089ad963d488fa26e6b8162ced7fcf3d63a74cabcf4a6e97eebd"
+      "path": "objects/3.spz",
+      "gaussians": 445,
+      "bytes": 8641,
+      "sha256": "1e98f9cd791e546c8c4dde2903df9aa75e5c42cc261b30211e073ea5310bbe4e"
     },
     {
-      "path": "objects/9.splat",
-      "gaussians": 14197,
-      "bytes": 454304,
-      "sha256": "b55e88b8d1be66d9da6a68e1c667574ded1824e45932ce84dfb67c704546061c"
+      "path": "objects/9.spz",
+      "gaussians": 31217,
+      "bytes": 624168,
+      "sha256": "9a88ae2a42623e874dbd5c5090664d76b7ac4f18c7e5ba49d731fb05244d5326"
     },
     {
-      "path": "objects/11.splat",
-      "gaussians": 800,
-      "bytes": 25600,
-      "sha256": "1398ac5253fa3ff401720fe8187875196599e748e737fae657468bd25e0d4b07"
+      "path": "objects/11.spz",
+      "gaussians": 193,
+      "bytes": 5163,
+      "sha256": "e36350fa91d79584d925c567a5a493946876a752070e78e786fab1bee463da35"
     },
     {
-      "path": "objects/12.splat",
-      "gaussians": 2427,
-      "bytes": 77664,
-      "sha256": "6a8e2b0fb2cd7df5fd732b2f746f5832fd44762585f1428f00191ce4887de18c"
+      "path": "objects/12.spz",
+      "gaussians": 11751,
+      "bytes": 216851,
+      "sha256": "01352df32b3c2a6d3ae4e5c9465f2961a8412e0e5f2e1a118bd72bb0195c1338"
     }
   ],
-  "gaussians": 354237,
-  "splat_bytes": 11335584,
+  "gaussians": 1063521,
+  "splat_bytes": 20510053,
   "objects": 6,
-  "colliders": 2520
+  "colliders": 2197
 }

@@ -1,29 +1,29 @@
 {
-  "source_world_sha256": "b610e8685a254b0aaf9dd03a26580e5a521553f0be2e1f15b42dbc11a094ce82",
-  "format": "antimatter15 .splat (DC color, 8-bit opacity/rotation)",
-  "higher_order_sh": "omitted for download size",
+  "source_world_sha256": "a0dcb23c24a59618995704552f7c889fbcae9c0340fb1fd238d408dc2122c9da",
+  "format": "Niantic SPZ v3",
+  "higher_order_sh": "preserved through SH3 (quantized)",
   "files": [
     {
-      "path": "background.splat",
-      "gaussians": 343002,
-      "bytes": 10976064,
-      "sha256": "eb290ea6c1d19f775befddbe2a9df31d48ec6ec6968e204f8aeaccac67edfaa9"
+      "path": "background.spz",
+      "gaussians": 338269,
+      "bytes": 6227173,
+      "sha256": "a8d11456887befd63758575dcf043a983671253f66ce3a9de03872a5854952e2"
     },
     {
-      "path": "objects/1.splat",
+      "path": "objects/1.spz",
       "gaussians": 2597,
-      "bytes": 83104,
-      "sha256": "fa4c19909be0a70f7efe43afe05b68c9c5272bf6240d0201ab59514763da282c"
+      "bytes": 44047,
+      "sha256": "689b45644d6c57401deed34bbccbc56713a76e66e1a250dbdca4cbdcc45975cd"
     },
     {
-      "path": "objects/5.splat",
+      "path": "objects/5.spz",
       "gaussians": 1190,
-      "bytes": 38080,
-      "sha256": "b197c1d410f6558e79dfa4dbd7cb893344c208843d1b331079ab87932a98e550"
+      "bytes": 23108,
+      "sha256": "d262f17cd04c35e6ed53c9fb39b7f72383c00819934bd7f7e1a14024c5122b2a"
     }
   ],
-  "gaussians": 346789,
-  "splat_bytes": 11097248,
+  "gaussians": 342056,
+  "splat_bytes": 6294328,
   "objects": 2,
   "colliders": 4169
 }

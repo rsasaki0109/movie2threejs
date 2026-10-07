@@ -1,0 +1,99 @@
+{
+  "id": "meeting-room",
+  "camera_source": "dataset-provided COLMAP calibration; no VGGT",
+  "status": "complete",
+  "stages": {
+    "prepare": {
+      "seconds": 40.902,
+      "exit_code": 0,
+      "command": [
+        "/content/playworld/.gpu/envs/core/bin/python",
+        "/content/playworld-quality-20261007/code/scripts/prepare_calibrated_public.py",
+        "office1b",
+        "--out",
+        "/content/playworld-calibrated-20261007/meeting-room/scene",
+        "--frames",
+        "64"
+      ]
+    },
+    "train": {
+      "seconds": 334.597,
+      "exit_code": 0,
+      "command": [
+        "/content/playworld/.gpu/envs/gsplat/bin/python",
+        "/content/playworld-calibrated-20261007/entry.py",
+        "/content/playworld/.gpu/repos/gsplat/examples/simple_trainer.py",
+        "default",
+        "--data-dir",
+        "/content/playworld-calibrated-20261007/meeting-room/scene",
+        "--data-factor",
+        "1",
+        "--result-dir",
+        "/content/playworld-calibrated-20261007/meeting-room/scene/gs",
+        "--max-steps",
+        "30000",
+        "--steps-scaler",
+        ".5",
+        "--save-ply",
+        "--ply-steps",
+        "30000",
+        "--eval-steps",
+        "30000",
+        "--save-steps",
+        "30000",
+        "--no-normalize-world-space",
+        "--test-every",
+        "8",
+        "--disable-viewer",
+        "--disable-video"
+      ]
+    },
+    "segment": {
+      "seconds": 31.772,
+      "exit_code": 0,
+      "command": [
+        "/content/playworld/.gpu/envs/sam3/bin/python",
+        "/content/playworld-calibrated-20261007/entry.py",
+        "/content/playworld-quality-20261007/code/src/playworld/segment.py",
+        "/content/playworld-calibrated-20261007/meeting-room/scene/segment-scene",
+        "--prompts",
+        "chair"
+      ]
+    },
+    "world": {
+      "seconds": 5.125,
+      "exit_code": 0
+    }
+  },
+  "gpu": "NVIDIA L4, 23034 MiB",
+  "train_metrics": {
+    "train_step14999_rank0.json": {
+      "mem": 0.8062453269958496,
+      "ellipse_time": 320.9995667934418,
+      "num_GS": 510714
+    },
+    "val_step14999.json": {
+      "psnr": 23.140522003173828,
+      "ssim": 0.8731902241706848,
+      "lpips": 0.3052702248096466,
+      "ellipse_time": 0.0041679441928863525,
+      "num_GS": 510714
+    }
+  },
+  "stats": {
+    "cameras": 16,
+    "points": 100000,
+    "gaussians": 506810,
+    "input_gaussians": 510714,
+    "discarded_object_gaussians": 1874,
+    "discarded_diffuse_gaussians": 2030,
+    "clean_splats": true,
+    "discarded_bounds_gaussians": 0,
+    "bounds_margin_m": 6,
+    "objects": 3,
+    "colliders": 2206,
+    "support_patches": 3,
+    "floor_inliers": 58517,
+    "scale_m_per_unit": 1.323943
+  }
+}

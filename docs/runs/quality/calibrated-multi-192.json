@@ -1,0 +1,134 @@
+{
+  "id": "meeting-room",
+  "camera_source": "dataset-provided COLMAP calibration; no VGGT",
+  "status": "complete",
+  "stages": {
+    "prepare": {
+      "seconds": 76.258,
+      "exit_code": 0,
+      "command": [
+        "/content/playworld/.gpu/envs/core/bin/python",
+        "/content/playworld-quality-20261007/code/scripts/prepare_calibrated_public.py",
+        "office1b",
+        "--out",
+        "/content/playworld-calibrated-multi-20261008/meeting-room/scene",
+        "--frames",
+        "64",
+        "--camera",
+        "19,16,22"
+      ]
+    },
+    "train": {
+      "seconds": 704.616,
+      "exit_code": 0,
+      "command": [
+        "/content/playworld/.gpu/envs/gsplat/bin/python",
+        "/content/playworld-calibrated-multi-20261008/entry.py",
+        "/content/playworld/.gpu/repos/gsplat/examples/simple_trainer.py",
+        "default",
+        "--data-dir",
+        "/content/playworld-calibrated-multi-20261008/meeting-room/scene",
+        "--data-factor",
+        "1",
+        "--result-dir",
+        "/content/playworld-calibrated-multi-20261008/meeting-room/scene/gs",
+        "--max-steps",
+        "30000",
+        "--steps-scaler",
+        "1",
+        "--save-ply",
+        "--ply-steps",
+        "30000",
+        "--eval-steps",
+        "30000",
+        "--save-steps",
+        "30000",
+        "--no-normalize-world-space",
+        "--test-every",
+        "8",
+        "--disable-viewer",
+        "--disable-video"
+      ]
+    },
+    "segment": {
+      "seconds": 29.755,
+      "exit_code": 0,
+      "command": [
+        "/content/playworld/.gpu/envs/sam3/bin/python",
+        "/content/playworld-calibrated-multi-20261008/entry.py",
+        "/content/playworld-quality-20261007/code/src/playworld/segment.py",
+        "/content/playworld-calibrated-multi-20261008/meeting-room/scene/segment-scene",
+        "--prompts",
+        "chair",
+        "--seed-frame",
+        "5"
+      ]
+    },
+    "world": {
+      "seconds": 6.027,
+      "exit_code": 0
+    }
+  },
+  "gpu": "NVIDIA L4, 23034 MiB",
+  "train_metrics": {
+    "val_step29999.json": {
+      "psnr": 26.917888641357422,
+      "ssim": 0.9009420871734619,
+      "lpips": 0.24692106246948242,
+      "ellipse_time": 0.005010426044464111,
+      "num_GS": 621184
+    },
+    "train_step29999_rank0.json": {
+      "mem": 0.959599494934082,
+      "ellipse_time": 681.2161583900452,
+      "num_GS": 621184
+    }
+  },
+  "stats": {
+    "cameras": 16,
+    "points": 100000,
+    "gaussians": 617815,
+    "input_gaussians": 621184,
+    "discarded_object_gaussians": 1562,
+    "discarded_diffuse_gaussians": 1807,
+    "clean_splats": true,
+    "discarded_bounds_gaussians": 0,
+    "bounds_margin_m": 6,
+    "objects": 1,
+    "colliders": 1936,
+    "support_patches": 1,
+    "floor_inliers": 58517,
+    "scale_m_per_unit": 1.323943
+  },
+  "review": {
+    "mask_source": "/content/playworld-calibrated-20261007/meeting-room/scene/segment-scene/masks",
+    "seed_frame": 0,
+    "retained_labels": [
+      1
+    ],
+    "manual_review": true,
+    "assembly_seconds": 5.41,
+    "rejected_seed5_labels": [
+      2,
+      4,
+      5,
+      7
+    ]
+  },
+  "unreviewed_stats": {
+    "cameras": 16,
+    "points": 100000,
+    "gaussians": 618611,
+    "input_gaussians": 621184,
+    "discarded_object_gaussians": 765,
+    "discarded_diffuse_gaussians": 1808,
+    "clean_splats": true,
+    "discarded_bounds_gaussians": 0,
+    "bounds_margin_m": 6,
+    "objects": 4,
+    "colliders": 1975,
+    "support_patches": 4,
+    "floor_inliers": 58517,
+    "scale_m_per_unit": 1.323943
+  }
+}

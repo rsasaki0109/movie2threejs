@@ -1,7 +1,7 @@
 {
   "scope": "real public Eyeful Tower workbench; cinematic camera plus Rapier actions",
   "capture_renderer": "ANGLE (NVIDIA, NVIDIA GeForce GTX 1660 Ti (0x00002191) Direct3D11 vs_5_0 ps_5_0, D3D11)",
-  "capture_seconds": 650.214,
+  "capture_seconds": 540.943,
   "capture_frames": 390,
   "capture_resolution": [
     1920,
@@ -13,14 +13,14 @@
   "pushed_object_displacement_m": 1.2807677503131412,
   "pushed_object_drop_m": 0.8593009114265442,
   "pushed_object_final_up_dot": -0.9912824542406629,
-  "player_displacement_m": 1.0999623803165535,
+  "player_displacement_m": 1.0633121703883535,
   "thrown_balls": 1,
   "equal_physics_samples": 12,
   "repeat_first_and_last_pixels_equal": true,
-  "gif_bytes": 7691721,
+  "gif_bytes": 7626417,
   "gif_duration_seconds": 13.07,
-  "mp4_bytes": 10110964,
+  "mp4_bytes": 10025458,
   "mp4_duration_seconds": 13.066667,
-  "gif_sha256": "4aefb6e93585157b42dc748acbafa7c9cb6dbb25257176700694e73c43133ef9",
-  "mp4_sha256": "defcac69fc7d8bcbb0fcfe0d5a8e90051ba4794db5efdf32775cc9e8d817c358"
+  "gif_sha256": "d8bee4842de72d7672991ff67bd350b9644a34c13bc692c8c7c7d5d6550f6392",
+  "mp4_sha256": "7c7eb268e6d74a0f572592c656c80d18f9af283477e22d527b6c540bb99f38dd"
 }

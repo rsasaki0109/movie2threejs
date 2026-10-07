@@ -1,0 +1,21 @@
+{
+  "id": "workbench",
+  "method": "original reconstruction; conservative background volume cleanup; SH3-preserving SPZ v3",
+  "original_world_sha256": "d1829d61321f1b29e4bbe54fbf7bbcd96ebc53df4425db33b5dbe760b8d7332f",
+  "discarded_diffuse_gaussians": 878,
+  "seconds": 6.966,
+  "stats": {
+    "cameras": 24,
+    "points": 26852,
+    "gaussians": 874365,
+    "input_gaussians": 875478,
+    "discarded_object_gaussians": 235,
+    "objects": 8,
+    "colliders": 1928,
+    "support_patches": 8,
+    "floor_inliers": 1908,
+    "scale_m_per_unit": 6.298026,
+    "discarded_diffuse_gaussians": 878,
+    "clean_splats": true
+  }
+}

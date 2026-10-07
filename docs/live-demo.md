@@ -2,7 +2,12 @@
 
 The static gallery contains five actual Eyeful Tower captures reconstructed on an existing Colab L4: apartment workbench, meeting room, kitchen/cafe, window office and furnished room. No inference runs on the website. Each room includes its recorded timeline, preview, exact source and checksum manifest.
 
-`demo-assets/workbench/` contains 28,007,776 bytes of `.splat` data, its `world.json` and a checksum manifest. This format retains Gaussian positions and scales as float32, quantizes color/opacity/rotation and omits view-dependent higher-order spherical harmonics. It reduces the original approximately 207 MB download; the hero media retains the original rendering. Dataset attribution and its MIT notice accompany the published site. Model restrictions still apply.
+The meeting room is a calibrated 192-photograph showcase using provided camera poses
+and sparse initialization; it does not use VGGT. The other four rooms use estimated
+VGGT poses. The selected meeting-room viewpoint avoids the worst close mesh-chair
+artifacts; walking to other views can still reveal them.
+
+`demo-assets/workbench/` contains 17,147,580 bytes of SPZ v3 data, its `world.json` and a checksum manifest. This quantized format retains view-dependent spherical harmonics through SH3. The hero and packaged viewer use the same SPZ export. Conservative background-volume cleanup retains thin surfaces; it does not reconstruct unseen geometry. Dataset attribution and the MIT notice accompany each room. Model restrictions still apply.
 
 ## Local preview
 
@@ -20,10 +25,10 @@ Run `python scripts/verify_gallery.py` to verify all five rooms, their asset che
 
 The additional 8 s previews are actual 1280×720 fixed-step browser captures, encoded as MP4 and 480×270 looping GIFs below 2 MB each. Their recordings are [camera/event JSON files](../shots/gallery/), with encoding receipts under `docs/demos/`.
 
-To regenerate the packed world from a local measured result, choose a fresh output directory:
+To regenerate an SPZ world, install the optional encoder with `bash scripts/setup_spz.sh` in Linux/Colab and choose fresh asset and site directories:
 
 ```bash
-python scripts/build_demo.py --world scenes/hero-result/world --profile shots/gallery/workbench-profile.json --out .cache/site-preview
+python scripts/build_demo.py --world scenes/hero-result/world --profile shots/gallery/workbench-profile.json --format spz --assets .cache/spz-assets --out .cache/site-preview
 ```
 
 ## GitHub Pages

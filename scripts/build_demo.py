@@ -40,7 +40,29 @@ def pack_splat(source: Path, target: Path) -> int:
     return n
 
 
-def package_world(source: Path, out: Path, profile: dict | None = None):
+def pack_spz(source: Path, target: Path) -> int:
+    """Preserve SH3 in SPZ v3. Requires the optional Niantic SPZ bindings.
+
+    The capture coordinates are object-local coordinates: world.align already
+    maps them to Three.js. Apply no extra RDF/RUB flip here. Spark's SPZ reader
+    uses the stored axes directly, as verified against the PLY/.splat viewer.
+    """
+    import spz
+    cloud = spz.load_splat_from_ply(str(source))
+    if cloud.num_points < 1:
+        raise ValueError(f"empty Gaussian cloud: {source}")
+    options = spz.PackOptions()
+    options.from_coord = spz.CoordinateSystem.RUB
+    options.version = 3
+    target.parent.mkdir(parents=True, exist_ok=True)
+    if not spz.save_spz(cloud, options, str(target)):
+        raise RuntimeError(f"SPZ export failed: {target}")
+    return cloud.num_points
+
+
+def package_world(source: Path, out: Path, profile: dict | None = None, format: str = "splat"):
+    if format not in {"splat", "spz"}:
+        raise ValueError(f"unsupported splat format: {format}")
     out.mkdir(parents=True, exist_ok=True)
     world = json.loads((source / "world.json").read_text())
     paths = [world["background"], *(o["splat"] for o in world["objects"])]
@@ -49,21 +71,21 @@ def package_world(source: Path, out: Path, profile: dict | None = None):
         relative = Path(path)
         if relative.is_absolute() or ".." in relative.parts:
             raise ValueError(f"unsafe world path {path}")
-        packed = relative.with_suffix(".splat")
-        count = pack_splat(source / relative, out / packed)
+        packed = relative.with_suffix("." + format)
+        count = (pack_spz if format == "spz" else pack_splat)(source / relative, out / packed)
         files.append({"path": packed.as_posix(), "gaussians": count,
                       "bytes": (out / packed).stat().st_size,
                       "sha256": hashlib.sha256((out / packed).read_bytes()).hexdigest()})
-    world["background"] = Path(world["background"]).with_suffix(".splat").as_posix()
+    world["background"] = Path(world["background"]).with_suffix("." + format).as_posix()
     for obj in world["objects"]:
-        obj["splat"] = Path(obj["splat"]).with_suffix(".splat").as_posix()
+        obj["splat"] = Path(obj["splat"]).with_suffix("." + format).as_posix()
     if profile is not None:
         world["player"].update(profile.get("player", {}))
         world["demo"] = profile.get("demo", {})
     (out / "world.json").write_text(json.dumps(world, separators=(",", ":")), encoding="utf-8")
     manifest = {"source_world_sha256": hashlib.sha256((source / "world.json").read_bytes()).hexdigest(),
-                "format": "antimatter15 .splat (DC color, 8-bit opacity/rotation)",
-                "higher_order_sh": "omitted for download size", "files": files,
+                "format": "Niantic SPZ v3" if format == "spz" else "antimatter15 .splat (DC color, 8-bit opacity/rotation)",
+                "higher_order_sh": "preserved through SH3 (quantized)" if format == "spz" else "omitted for download size", "files": files,
                 "gaussians": sum(f["gaussians"] for f in files),
                 "splat_bytes": sum(f["bytes"] for f in files),
                 "objects": len(world["objects"]), "colliders": len(world["colliders"])}
@@ -92,11 +114,12 @@ def main():
     parser.add_argument("--world", type=Path, help="Convert a world into --assets once")
     parser.add_argument("--assets", type=Path, default=ROOT / "demo-assets/workbench")
     parser.add_argument("--profile", type=Path, help="Optional player and featured action overrides")
+    parser.add_argument("--format", choices=["splat", "spz"], default="splat", help="SPZ retains view-dependent color; install optional Niantic SPZ bindings")
     parser.add_argument("--out", type=Path, default=ROOT / "_site")
     args = parser.parse_args()
     if args.world:
         profile = json.loads(args.profile.read_text()) if args.profile else None
-        package_world(args.world, args.assets, profile)
+        package_world(args.world, args.assets, profile, args.format)
     build_site(args.assets, args.out)
 
 

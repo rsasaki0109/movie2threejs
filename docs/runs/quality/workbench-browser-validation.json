@@ -1,0 +1,13 @@
+{
+  "url": "http://127.0.0.1:55388/movie2threejs/demos/workbench/",
+  "replay_equal": true,
+  "box_drop_m": 0.8640139997005463,
+  "keyboard_walk_m": 1.6129464975847574,
+  "desktop_pointer_lock": true,
+  "touch_entry_and_throw": true,
+  "touch_walk_m": 1.151554225138419,
+  "touch_swipe_look": true,
+  "mobile_scope": "Chromium emulation, not physical hardware",
+  "page_errors": [],
+  "failed_requests": []
+}

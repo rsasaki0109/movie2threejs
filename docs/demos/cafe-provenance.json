@@ -1,7 +1,7 @@
 {
   "id": "cafe",
   "title": "Kitchen and cafe",
-  "capture_world_sha256": "0891f903dcf28fd2a830aec691ccc29580cb3511f87d1cc17341d479a38e6c48",
+  "capture_world_sha256": "6accc75f03cfb99532571f2582da8385ba87ccc96c85b1e24a7d83288e167ec5",
   "shot_sha256": "1014b3ac8a47f1eb36295af8b319696ef35c39ff8ecec9e5c06e3f3764daae6a",
   "captured_frames": 120,
   "source": "Actual fixed-step browser viewer output; no generated imagery",
@@ -10,8 +10,8 @@
   "quality": 65,
   "gif_width": 480,
   "gif_height": 270,
-  "gif_bytes": 983461,
-  "mp4_bytes": 1638772,
-  "gif_sha256": "01c66b3909a3d5dda079e99aaf02c1920786b7a10270445367b89e71652a1b66",
-  "mp4_sha256": "38f3004a9226a62c02abda4692d2cd50e3cc7594ffb8db9e90bc7fbe392c7e99"
+  "gif_bytes": 868270,
+  "mp4_bytes": 1669079,
+  "gif_sha256": "e53a2c5a1f023df27dc7bc8d180940cc528e8919c01749a50c7f3715b77f5f09",
+  "mp4_sha256": "191a9f8ad0a28edfcc35d1e49d206fe246c09f7dd6788d12249a6a99953c5096"
 }

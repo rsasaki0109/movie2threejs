@@ -19,13 +19,15 @@ import numpy as np
 DEFAULT_PROMPTS = ["chair", "box", "cup", "mug", "bottle", "ball", "plant pot", "lamp", "backpack", "book", "pillow", "stool"]
 
 
-def segment(scene: Path, prompts: list[str], min_area: float = 0.0005) -> dict[int, str]:
+def segment(scene: Path, prompts: list[str], min_area: float = 0.0005, seed_frame: int = 0) -> dict[int, str]:
     from PIL import Image
-    from sam3.model_builder import build_sam3_video_predictor
 
     frames = sorted((scene / "images").glob("*"))
     if not frames:
         raise FileNotFoundError(f"no frames in {scene / 'images'}")
+    if not 0 <= seed_frame < len(frames):
+        raise ValueError(f'seed frame must be between 0 and {len(frames)-1}')
+    from sam3.model_builder import build_sam3_video_predictor
     jpg_dir = scene / "_sam3_frames"  # SAM 3 reads a folder of <index>.jpg
     shutil.rmtree(jpg_dir, ignore_errors=True)
     jpg_dir.mkdir()
@@ -39,9 +41,10 @@ def segment(scene: Path, prompts: list[str], min_area: float = 0.0005) -> dict[i
     session = predictor.handle_request(dict(type="start_session", resource_path=str(jpg_dir)))["session_id"]
     for prompt in prompts:
         predictor.handle_request(dict(type="reset_session", session_id=session))
-        predictor.handle_request(dict(type="add_prompt", session_id=session, frame_index=0, text=prompt))
+        predictor.handle_request(dict(type="add_prompt", session_id=session, frame_index=seed_frame, text=prompt))
         ids: dict[int, int] = {}  # SAM 3 object id -> playworld label
-        for resp in predictor.handle_stream_request(dict(type="propagate_in_video", session_id=session)):
+        for resp in predictor.handle_stream_request(dict(type="propagate_in_video", session_id=session,
+                                                        start_frame_index=seed_frame, propagation_direction='both')):
             fi, out = resp["frame_index"], resp["outputs"]
             for obj_id, m in zip(np.asarray(out["out_obj_ids"]).tolist(), np.asarray(out["out_binary_masks"])):
                 if m.shape != (h, w) or m.mean() < min_area:
@@ -71,8 +74,9 @@ def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("scene", type=Path)
     ap.add_argument("--prompts", default=",".join(DEFAULT_PROMPTS), help="comma-separated things that should be movable")
+    ap.add_argument('--seed-frame', type=int, default=0, help='seed detection at a clear object view; propagate in both directions')
     a = ap.parse_args()
-    names = segment(a.scene, [p.strip() for p in a.prompts.split(",") if p.strip()])
+    names = segment(a.scene, [p.strip() for p in a.prompts.split(",") if p.strip()], seed_frame=a.seed_frame)
     print(json.dumps(names, indent=1))
 
 

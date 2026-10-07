@@ -85,7 +85,7 @@ done
 # Resolve tyro/API issues before uploading a long video or starting training.
 ( cd "$GPU_ROOT/repos/vggt" && "$VGGT" demo_colmap.py --help ) > "$GPU_ROOT/vggt-help.txt"
 ( cd "$GPU_ROOT/repos/gsplat/examples" && "$GSPLAT" simple_trainer.py default --help ) > "$GPU_ROOT/gsplat-help.txt"
-for flag in --no-normalize-world-space --save-ply --ply-steps --disable-video; do
+for flag in --no-normalize-world-space --save-ply --ply-steps --disable-video --steps-scaler --pose-opt --scale-reg --opacity-reg; do
   grep -q -- "$flag" "$GPU_ROOT/gsplat-help.txt" || { echo "Missing trainer flag $flag" >&2; exit 1; }
 done
 "$SAM3" -c 'from sam3.model_builder import build_sam3_video_predictor; print("SAM 3 API imports (weights not loaded)")'

@@ -1,0 +1,21 @@
+{
+  "id": "meeting-room",
+  "method": "original reconstruction; conservative background volume cleanup; SH3-preserving SPZ v3",
+  "original_world_sha256": "34a9df315eb0604240d75d34526eab3ba6330da16f59e7de926aa891fef3da8e",
+  "discarded_diffuse_gaussians": 1979,
+  "seconds": 0.812,
+  "stats": {
+    "cameras": 16,
+    "points": 16250,
+    "gaussians": 123498,
+    "input_gaussians": 125952,
+    "discarded_object_gaussians": 475,
+    "objects": 1,
+    "colliders": 1139,
+    "support_patches": 0,
+    "floor_inliers": 519,
+    "scale_m_per_unit": 3.292917,
+    "discarded_diffuse_gaussians": 1979,
+    "clean_splats": true
+  }
+}

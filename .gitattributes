@@ -1,5 +1,6 @@
 *.sh text eol=lf
 *.splat binary
+*.spz binary
 *.json text eol=lf
 *.gif binary
 *.mp4 binary

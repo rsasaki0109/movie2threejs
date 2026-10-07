@@ -3,17 +3,17 @@
   "source_video_name": "apartment-workshop.mp4",
   "source_video_start_seconds": 2.0,
   "labels": true,
-  "capture_world_sha256": "47f6bfd231442f38d7b1c42678130c4431fc096079f270d05a6d300bc59e2834",
+  "capture_world_sha256": "dd285c40ae5b72a31ab9b03f21a2cb7fb7c8f3956ce1e9ded7054c417fa19461",
   "shot_sha256": "4f872eb76881297708acbcc577d17b64fbcb66e0605ce7a287eed20874cdb150",
   "duration_seconds": 13.0,
   "gif_measured_seconds": 13.07,
+  "mp4_measured_seconds": 13.066667,
   "gif_fps": 15,
   "palette_colors": null,
   "quality": 50,
-  "gif_encoder": "gifski",
-  "gif_bytes": 7691721,
-  "mp4_bytes": 10110964,
-  "mp4_measured_seconds": 13.066667,
   "motion_quality": 45,
-  "lossy_quality": 45
+  "lossy_quality": 45,
+  "gif_encoder": "gifski",
+  "gif_bytes": 7626417,
+  "mp4_bytes": 10025458
 }
