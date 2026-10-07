@@ -2,6 +2,7 @@
 # Linux (Colab / an already provisioned GPU host); does not create paid resources.
 set -euo pipefail
 unset PYTHONPATH
+export MPLBACKEND=Agg
 ROOT="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
 GPU_ROOT="${PLAYWORLD_GPU_ROOT:-$ROOT/.gpu}"
 source "$ROOT/scripts/gpu-revisions.env"
@@ -13,6 +14,20 @@ fi
 for cmd in git ffmpeg ffprobe nvidia-smi nvcc; do
   command -v "$cmd" >/dev/null || { echo "Missing $cmd (CUDA toolkit, not only a GPU driver, is required)." >&2; exit 1; }
 done
+# Native extensions must use the same CUDA family as the installed PyTorch.
+CUDA_HOME="${CUDA_HOME:-$(dirname "$(dirname "$(readlink -f "$(command -v nvcc)")")")}"
+export CUDA_HOME
+NVCC_VERSION="$("$CUDA_HOME/bin/nvcc" --version)"
+[[ "$NVCC_VERSION" =~ release\ ([0-9]+\.[0-9]+) ]] || { echo 'Cannot identify the CUDA compiler version.' >&2; exit 1; }
+CUDA_RELEASE="${BASH_REMATCH[1]}"
+case "$CUDA_RELEASE" in
+  12.6) TORCH_BACKEND=cu126 ;;
+  12.8) TORCH_BACKEND=cu128 ;;
+  13.0) TORCH_BACKEND=cu130 ;;
+  *) echo "CUDA $CUDA_RELEASE has no tested package selection in this recipe; use a 12.6, 12.8 or 13.0 toolkit." >&2; exit 1 ;;
+esac
+export MAX_JOBS="${MAX_JOBS:-2}"
+printf 'CUDA compiler: %s; PyTorch backend: %s; build jobs: %s\n' "$CUDA_RELEASE" "$TORCH_BACKEND" "$MAX_JOBS"
 nvidia-smi --query-gpu=name,memory.total,driver_version --format=csv
 df -h "$ROOT"
 mkdir -p "$GPU_ROOT/repos" "$GPU_ROOT/envs"
@@ -28,6 +43,7 @@ clone_revision() {
   fi
   git -C "$target" fetch --depth 1 origin "$revision"
   git -C "$target" checkout --detach "$revision"
+  git -C "$target" submodule update --init --recursive --depth 1
 }
 clone_revision facebookresearch/vggt "$VGGT_REV" "$GPU_ROOT/repos/vggt"
 clone_revision nerfstudio-project/gsplat "$GSPLAT_REV" "$GPU_ROOT/repos/gsplat"
@@ -43,15 +59,19 @@ SAM3="$GPU_ROOT/envs/sam3/bin/python"
 uv pip install --python "$CORE" -e "$ROOT"
 # Use upstream gsplat's stable examples with its matching fork of pycolmap;
 # VGGT uses the official bindings in a different environment.
-uv pip install --python "$VGGT" --torch-backend cu128 torch==2.9.1 torchvision==0.24.1 'numpy==1.26.4'
-uv pip install --python "$VGGT" 'setuptools<81' scipy trimesh pycolmap==3.10.0 pyceres==2.3 \
+uv pip install --python "$VGGT" --torch-backend "$TORCH_BACKEND" "torch==2.9.1+$TORCH_BACKEND" "torchvision==0.24.1+$TORCH_BACKEND" 'numpy==1.26.4'
+uv pip install --python "$VGGT" 'setuptools<81' scipy trimesh hydra-core omegaconf pycolmap==3.10.0 pyceres==2.3 \
   'lightglue @ git+https://github.com/jytime/LightGlue.git' -e "$GPU_ROOT/repos/vggt"
-uv pip install --python "$GSPLAT" --torch-backend cu128 torch==2.9.1 torchvision==0.24.1 \
+uv pip install --python "$GSPLAT" --torch-backend "$TORCH_BACKEND" "torch==2.9.1+$TORCH_BACKEND" "torchvision==0.24.1+$TORCH_BACKEND" \
   'numpy==1.26.4' setuptools wheel ninja
-uv pip install --python "$GSPLAT" --no-build-isolation -e "$GPU_ROOT/repos/gsplat" \
-  -r "$GPU_ROOT/repos/gsplat/examples/requirements.txt"
-uv pip install --python "$SAM3" --torch-backend cu128 torch==2.10.0 torchvision==0.25.0 'numpy==1.26.4'
-uv pip install --python "$SAM3" 'setuptools<81' pillow einops psutil opencv-python-headless scipy \
+if "$GSPLAT" -c 'import gsplat.csrc, fused_ssim, fused_bilagrid' >/dev/null 2>&1; then
+  echo 'Reusing importable native gsplat/SSIM/bilateral extensions.'
+else
+  uv pip install --python "$GSPLAT" --no-build-isolation -e "$GPU_ROOT/repos/gsplat" \
+    -r "$GPU_ROOT/repos/gsplat/examples/requirements.txt"
+fi
+uv pip install --python "$SAM3" --torch-backend "$TORCH_BACKEND" "torch==2.10.0+$TORCH_BACKEND" "torchvision==0.25.0+$TORCH_BACKEND" 'numpy==1.26.4'
+uv pip install --python "$SAM3" 'setuptools<81' pillow einops psutil opencv-python-headless scipy pycocotools \
   -e "$GPU_ROOT/repos/sam3"
 
 for stage in vggt gsplat sam3; do

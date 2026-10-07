@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 unset PYTHONPATH
+export MPLBACKEND=Agg
 ROOT="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
 GPU_ROOT="${PLAYWORLD_GPU_ROOT:-$ROOT/.gpu}"
 if [[ "${1:-}" == "--check" ]]; then

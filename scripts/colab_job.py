@@ -24,6 +24,11 @@ def preflight():
     gpu = torch.cuda.is_available()
     properties = torch.cuda.get_device_properties(0) if gpu else None
     token = os.environ.get("HF_TOKEN")
+    token_file = CONTENT / ".playworld-hf-token"
+    if not token and token_file.is_file():
+        token_file.chmod(0o600)
+        token = token_file.read_text().strip()
+        token_file.unlink()
     if prompts.strip() and not token:
         try:
             from google.colab import userdata
@@ -88,6 +93,31 @@ def setup(project):
             raise subprocess.CalledProcessError(process.returncode, process.args)
 
 
+def setup_or_reuse(project):
+    if os.environ.get("PLAYWORLD_CLI_SKIP_SETUP") != "1":
+        setup(project)
+        return
+    # An explicit reuse request still needs evidence that every setup check passed.
+    log = CONTENT / "setup.log"
+    gpu_root = Path(os.environ.get("PLAYWORLD_GPU_ROOT", project / ".gpu"))
+    required = [gpu_root / f"{stage}-freeze.txt" for stage in ("core", "vggt", "gsplat", "sam3")]
+    required += [gpu_root / "vggt-help.txt", gpu_root / "gsplat-help.txt"]
+    if not log.is_file() or "Setup complete (no model inference yet)." not in log.read_text():
+        raise RuntimeError("Cannot reuse setup: no successful setup log")
+    if any(not path.is_file() or not path.stat().st_size for path in required):
+        raise RuntimeError("Cannot reuse setup: environment/API check evidence is missing")
+    print("Reusing the explicitly requested, checked GPU environments.", flush=True)
+
+
+def run_streamed(command):
+    # Child stdout must be relayed through the kernel's IOPub stream for CLI users.
+    process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
+    for line in process.stdout:
+        print(line, end="", flush=True)
+    if process.wait():
+        raise subprocess.CalledProcessError(process.returncode, command)
+
+
 def bundle(completed):
     # A failed retry must not export an earlier successful world as its own result.
     staging = CONTENT / "playworld-cli-result"
@@ -109,10 +139,17 @@ def bundle(completed):
 
 def main():
     action = os.environ.get("PLAYWORLD_CLI_ACTION", "check")
-    if action not in {"check", "run"}:
-        raise ValueError("PLAYWORLD_CLI_ACTION must be check or run")
+    if action not in {"check", "setup", "run"}:
+        raise ValueError("PLAYWORLD_CLI_ACTION must be check, setup or run")
     ready = preflight()
     if action == "check":
+        return
+    if action == "setup":
+        # Installation is independent of gated weight approval. Never infer
+        # that a successful installation proves the GPU pipeline works.
+        if not json.loads((CONTENT / "playworld-preflight.json").read_text())["gpu"]:
+            raise RuntimeError("Select a GPU runtime before setup")
+        setup(unpack_project())
         return
     if not ready:
         raise RuntimeError("GPU/SAM 3 preflight failed; inspect playworld-preflight.json before running")
@@ -121,13 +158,13 @@ def main():
     project = unpack_project()
     completed = False
     try:
-        setup(project)
+        setup_or_reuse(project)
         core = project / ".gpu/envs/core/bin/python"
-        subprocess.run([str(core), str(project / "scripts/download_public.py"),
-                        "--out", str(CONTENT / "public_source")], check=True)
-        subprocess.run(["bash", str(project / "scripts/run.sh"),
-                        str(CONTENT / "public_source/apartment-camera19.mp4"),
-                        str(CONTENT / "scene"), str(CONTENT / "world")], check=True)
+        run_streamed([str(core), str(project / "scripts/download_public.py"),
+                      "--out", str(CONTENT / "public_source")])
+        run_streamed(["bash", str(project / "scripts/run.sh"),
+                      str(CONTENT / "public_source/apartment-camera19.mp4"),
+                      str(CONTENT / "scene"), str(CONTENT / "world")])
         completed = True
     finally:
         bundle(completed)

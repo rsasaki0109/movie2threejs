@@ -5,7 +5,8 @@ No script creates a VM, Pod, repository, or paid resource. The same setup and ru
 are used by the notebook and the shell recipe.
 
 The [Colab CLI workflow](colab-cli.md) can transfer and execute the same scripts without
-the notebook upload dialogs. Its remote GPU execution is also awaiting validation.
+the notebook upload dialogs. Setup, GPU access, trainer help flags and SAM 3 API imports
+passed on an existing Colab L4; full model inference is still awaiting validation.
 
 ```bash
 bash scripts/setup_gpu.sh
@@ -17,9 +18,11 @@ The setup creates three isolated GPU environments (VGGT, gsplat, SAM 3) plus a l
 core environment, pins upstream revisions, checks trainer help flags/imports, and saves
 package versions. Linux, Python 3.12, ffmpeg, git, an NVIDIA GPU driver and the CUDA toolkit
 (`nvcc`) are required. Set `PLAYWORLD_GPU_ROOT` to relocate environments and repositories.
-Setup does not prove model inference works. The local shell syntax and `--check` paths have
-been checked; installations, trainer flags at runtime, gated weight access, and GPU inference
-still require the Colab run.
+Setup does not prove model inference works. On 2026-10-07, the Colab setup passed with
+CUDA 13.0, PyTorch 2.9.1+cu130 for VGGT/gsplat and 2.10.0+cu130 for SAM 3. Gated weight
+access was approved from the runtime; full model inference is still pending.
+The setup selects PyTorch wheels matching the installed CUDA compiler (12.6, 12.8 or 13.0),
+fetches gsplat's GLM submodule, and uses the noninteractive Matplotlib backend in its venvs.
 
 The selected [gsplat v1.5.3 trainer](https://github.com/nerfstudio-project/gsplat/blob/937e29912570c372bed6747a5c9bf85fed877bae/examples/simple_trainer.py)
 defines PLY export, disabling normalization, and disabling its extra trajectory video.
