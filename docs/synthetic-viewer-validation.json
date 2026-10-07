@@ -1,0 +1,9 @@
+{
+  "physics_replay_equal": true,
+  "final_pixels_equal": true,
+  "chair_displacement_m": 2.1121261403632303,
+  "chair_quaternion_tilt": 0.7071063553959535,
+  "player_displacement_m": 0.7716705805305596,
+  "thrown_balls": 1,
+  "scope": "synthetic room only"
+}

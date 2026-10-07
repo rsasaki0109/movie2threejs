@@ -17,7 +17,6 @@ import json
 import shutil
 import subprocess
 import sys
-import time
 from pathlib import Path
 
 
@@ -27,8 +26,14 @@ def run(cmd: list[str], cwd: Path | None = None) -> None:
 
 
 def extract_frames(video: Path, scene: Path, num: int, max_size: int) -> None:
+    if not video.is_file():
+        raise FileNotFoundError(video)
+    if num < 2 or max_size < 32:
+        raise ValueError("at least two frames and max-size >= 32 required")
     out = scene / "images"
     if out.exists():
+        if not out.resolve().is_relative_to(scene.resolve()):
+            raise ValueError("refusing to remove an images directory outside the requested scene")
         shutil.rmtree(out)
     out.mkdir(parents=True)
     duration = float(
@@ -44,6 +49,7 @@ def extract_frames(video: Path, scene: Path, num: int, max_size: int) -> None:
 
 
 def estimate_poses(scene: Path, vggt_dir: Path, use_ba: bool, python: str = sys.executable) -> None:
+    vggt_dir = vggt_dir.resolve()
     cmd = [python, Path(vggt_dir) / "demo_colmap.py", f"--scene_dir={Path(scene).resolve()}"]
     if use_ba:
         cmd.append("--use_ba")
@@ -52,6 +58,10 @@ def estimate_poses(scene: Path, vggt_dir: Path, use_ba: bool, python: str = sys.
 
 def train_splats(scene: Path, gsplat_dir: Path, steps: int, python: str = sys.executable) -> Path:
     scene = Path(scene).resolve()
+    gsplat_dir = gsplat_dir.resolve()
+    if steps < 1:
+        raise ValueError("steps must be positive")
+    previous = {path: path.stat().st_mtime_ns for path in (scene / "gs" / "ply").glob("*.ply")}
     run(
         [
             python, Path(gsplat_dir) / "examples" / "simple_trainer.py", "default",
@@ -59,11 +69,14 @@ def train_splats(scene: Path, gsplat_dir: Path, steps: int, python: str = sys.ex
             "--max-steps", str(steps), "--save-ply", "--ply-steps", str(steps),
             "--eval-steps", str(steps), "--save-steps", str(steps),
             "--no-normalize-world-space",  # keep the COLMAP frame so splats and cameras agree
-            "--test-every", "100000", "--disable-viewer",
+            "--test-every", "8", "--disable-viewer", "--disable-video",
         ],
         cwd=Path(gsplat_dir) / "examples",
     )
-    return latest_ply(scene)
+    produced = [p for p in (scene / "gs" / "ply").glob("*.ply") if previous.get(p) != p.stat().st_mtime_ns]
+    if not produced:
+        raise FileNotFoundError("trainer returned without exporting a new PLY; refusing to reuse a stale export")
+    return max(produced, key=lambda p: p.stat().st_mtime_ns)
 
 
 def segment_objects(scene: Path, prompts: str, python: str = sys.executable) -> None:
@@ -131,6 +144,9 @@ def main(argv: list[str] | None = None) -> None:
     p.add_argument("--vggt-python", default=sys.executable)
     p.add_argument("--gsplat-python", default=sys.executable)
     p.add_argument("--sam3-python", default=sys.executable)
+    p.add_argument("--report", type=Path, help="measured run JSON (default: SCENE/run.json)")
+    p.add_argument("--start-at", choices=["frames", "poses", "train", "segment", "world"], default="frames",
+                   help="explicitly reuse earlier stage outputs; skipped stages are not timed")
     world_args(p)
 
     p = sub.add_parser("demo")
@@ -139,15 +155,6 @@ def main(argv: list[str] | None = None) -> None:
 
     a = ap.parse_args(argv)
     from .world import build_world  # numpy/scipy import deferred so --help is instant
-
-    timings = {}
-
-    def stage(name, fn, *args):
-        t0 = time.time()
-        r = fn(*args)
-        timings[name] = round(time.time() - t0, 1)
-        print(f"[{name}] {timings[name]} s", flush=True)
-        return r
 
     if a.cmd == "frames":
         extract_frames(a.video, a.scene, a.num, a.max_size)
@@ -162,15 +169,33 @@ def main(argv: list[str] | None = None) -> None:
         w = build_world(a.scene / "sparse", a.splats or latest_ply(a.scene), a.out, masks, a.eye_height, a.voxel)
         print(json.dumps(w["stats"], indent=1))
     elif a.cmd == "all":
+        from .run_report import RunReport
+
+        settings = {k: str(v) if isinstance(v, Path) else v for k, v in vars(a).items()}
+        report = RunReport(a.report or a.scene / "run.json", a.video, settings)
+        stages = ["frames", "poses", "train", "segment", "world"]
+
+        def stage(name, fn, *args):
+            if stages.index(name) < stages.index(a.start_at):
+                report.data["stages"][name] = {"status": "reused", "seconds": None}
+                report.save()
+                return None
+            return report.stage(name, fn, *args)
+
         stage("frames", extract_frames, a.video, a.scene, a.num, a.max_size)
         stage("poses", estimate_poses, a.scene, a.vggt_dir, a.ba, a.vggt_python)
         ply = stage("train", train_splats, a.scene, a.gsplat_dir, a.steps, a.gsplat_python)
+        if ply is None:
+            ply = report.stage("validate_reused_splats", latest_ply, a.scene)
         masks = a.masks
         if masks is None and a.prompts.strip():
             stage("segment", segment_objects, a.scene, a.prompts, a.sam3_python)
             masks = a.scene / "masks"
+        else:
+            report.data["stages"]["segment"] = {"status": "provided" if masks else "disabled", "seconds": None}
         w = stage("world", build_world, a.scene / "sparse", ply, a.out, masks, a.eye_height, a.voxel)
-        print(json.dumps({**w["stats"], "seconds": timings}, indent=1))
+        report.finish(w)
+        print(json.dumps(report.data, indent=1))
     elif a.cmd == "demo":
         from .synthetic import make_scene
 

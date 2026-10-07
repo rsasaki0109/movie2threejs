@@ -1,10 +1,28 @@
 # playworld (working name)
 
-**Phone video → a walkable, physical 3D world in the browser.** Walk through your own room,
-kick the chair over, throw things at the mugs. Built on three.js, gaussian splatting and Rapier.
+<!-- Add docs/hero.gif here only after the real-data reconstruction and recording pass. -->
 
-> Status: pre-alpha. The geometry and the viewer are tested on a synthetic room; the GPU stages
-> (VGGT, gsplat, SAM 3) are wired up but have not yet been run end to end on a real video.
+**Walk around and knock things over in your browser.** A room-capture prototype built with three.js, Spark and Rapier.
+
+[![Open Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/)
+Upload [the notebook](notebooks/playworld_colab.ipynb) and the current project ZIP; no public repository is available yet.
+
+## Quick start
+
+From the project directory, try the verified synthetic room with three commands:
+
+```bash
+pip install -e .
+playworld demo --out demo_world
+python -m http.server -d demo_world 8000
+```
+
+Open http://localhost:8000. **WASD** walk · **Space** jump · **Click** throw · **E** push · **R** reset · **C** colliders.
+
+> Pre-alpha: geometry, browser rendering, walking, pushing, throwing and repeatable capture
+> are verified on a synthetic room. A public apartment capture has passed frame extraction.
+> VGGT, gsplat, SAM 3 and the Colab GPU recipe have not yet been validated end to end.
+> The real-data hero GIF/MP4 are pending. See [measurements](docs/benchmarks.md).
 
 ## How it works
 
@@ -24,19 +42,17 @@ video ──frames──▶ VGGT (camera poses + points, COLMAP format)
                world.json + splats + viewer (three.js + Spark + Rapier)
 ```
 
-## Try it
+## Real captures and recording
 
-No GPU, synthetic room:
+The [GPU recipe](docs/gpu.md) uses isolated environments and saves stage timings, failures,
+GPU information and source hashes. Colab runs the same setup/run scripts as a Linux host.
+For the public-data demo, the notebook downloads an Eyeful Tower apartment capture with
+its MIT notice. This is a capture-rig photograph sequence, not a smartphone video.
+See [data attribution](docs/data-attribution.md).
 
-```bash
-pip install -e .
-playworld demo --out demo_world
-python -m http.server -d demo_world 8000   # open http://localhost:8000
-```
-
-Your own video: open `notebooks/playworld_colab.ipynb` in Colab (GPU runtime).
-
-Controls: **WASD** walk · **Space** jump · **Click** throw · **E** push · **R** reset · **C** colliders.
+The [recording workflow](docs/recording.md) uses a JSON camera/event timeline, fixed 1/60 s
+physics and Playwright frame capture. The encoder targets a 13 s, 960px looping GIF below
+8 MB and a 1920×1080 MP4. Those are output targets, not completed real-data artifacts.
 
 ## Stages
 
@@ -53,15 +69,20 @@ VGGT, gsplat and SAM 3 pin incompatible numpy/torch versions, so each runs in it
 
 ## Known limitations
 
-- Scale comes from an assumed eye height (`--eye-height`, default 1.5 m); expect a few percent error.
+- Scale comes from an assumed phone/camera height (`--eye-height`, default 1.5 m); real-data accuracy is unmeasured.
 - Gravity assumes the phone was held roughly upright.
-- Moving an object reveals a hole where it stood (nothing was ever seen there).
+- Unseen surfaces are missing. Small flat patches use nearby support-surface colors to cover
+  object footprints when samples exist; this approximation is tested only on synthetic data.
+- Floater removal, room boundary cropping, real object masks and collision quality still need real-data review.
 - Only surfaces the camera saw exist; objects are made solid by extending their hull to the surface below.
 - Weights: the default VGGT checkpoint is non-commercial; SAM 3 weights are gated on Hugging Face.
+- T4/SAM 3 compatibility is not verified. The current GPU recipe requires native bf16 hardware for movable objects.
 
 ## Development
 
 ```bash
 pip install -e '.[dev]' && pytest
 python notebooks/make_colab.py   # regenerate the notebook
+node --test tests/record.test.mjs
+python scripts/verify_viewer.py # after installing .[record], Chromium and generating demo_world
 ```

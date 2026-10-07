@@ -3,6 +3,7 @@ import * as THREE from "three";
 import { PointerLockControls } from "three/addons/controls/PointerLockControls.js";
 import { SparkRenderer, SplatMesh } from "@sparkjsdev/spark";
 import RAPIER from "@dimforge/rapier3d-compat";
+import { validateShot, cameraAt, orderedEvents } from "./record.js";
 
 const statusEl = document.getElementById("status");
 const startEl = document.getElementById("start");
@@ -10,6 +11,7 @@ const setStatus = (s) => { statusEl.textContent = s; };
 
 const params = new URLSearchParams(location.search);
 const base = (params.get("world") ?? ".").replace(/\/?$/, "/");
+const recording = params.has("record");
 
 const PLAYER_RADIUS = 0.25;
 const PLAYER_HALF = 0.5; // capsule half-height (without the caps)
@@ -21,18 +23,38 @@ const STEP = 1 / 60;
 async function main() {
   setStatus("loading world.json…");
   const world = await (await fetch(base + "world.json")).json();
+  let shot = null;
+  if (recording) {
+    const response = await fetch(params.get("record"));
+    if (!response.ok) throw new Error(`shot HTTP ${response.status}`);
+    shot = validateShot(await response.json());
+    startEl.classList.add("hidden");
+    document.getElementById("hud").classList.add("hidden");
+    document.getElementById("cross").classList.add("hidden");
+  }
   await RAPIER.init();
 
   // --- rendering -----------------------------------------------------------
-  const renderer = new THREE.WebGLRenderer({ antialias: false });
-  renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+  const renderer = new THREE.WebGLRenderer({ antialias: false, preserveDrawingBuffer: recording });
+  renderer.setPixelRatio(recording ? 1 : Math.min(devicePixelRatio, 2));
   renderer.setSize(innerWidth, innerHeight);
   document.body.prepend(renderer.domElement);
   const scene = new THREE.Scene();
   scene.background = new THREE.Color(0x202024);
   scene.add(new THREE.HemisphereLight(0xffffff, 0x444444, 2.0));
   const camera = new THREE.PerspectiveCamera(70, innerWidth / innerHeight, 0.03, 500);
-  scene.add(new SparkRenderer({ renderer }));
+  const spark = new SparkRenderer({ renderer, autoUpdate: !recording, preUpdate: !recording, enableLod: !recording });
+  if (recording) spark.minSortIntervalMs = 0;
+  scene.add(spark);
+  for (const patch of world.support_patches ?? []) {
+    const shape = new THREE.Shape(patch.polygon_xz.map(([x, z]) => new THREE.Vector2(x, -z)));
+    const geometry = new THREE.ShapeGeometry(shape);
+    geometry.rotateX(-Math.PI / 2);
+    const color = new THREE.Color().setRGB(...patch.color, THREE.SRGBColorSpace);
+    const mesh = new THREE.Mesh(geometry, new THREE.MeshBasicMaterial({ color, side: THREE.DoubleSide }));
+    mesh.position.y = patch.y;
+    scene.add(mesh);
+  }
   addEventListener("resize", () => {
     camera.aspect = innerWidth / innerHeight;
     camera.updateProjectionMatrix();
@@ -92,13 +114,14 @@ async function main() {
   controls.addEventListener("unlock", () => startEl.classList.remove("hidden"));
   const keys = new Set();
   addEventListener("keydown", (e) => {
+    if (recording) return;
     keys.add(e.code);
     if (e.code === "KeyC") toggleDebug();
     if (e.code === "KeyR") reset();
     if (e.code === "KeyE") push();
   });
-  addEventListener("keyup", (e) => keys.delete(e.code));
-  addEventListener("mousedown", () => { if (controls.isLocked) throwBall(); });
+  addEventListener("keyup", (e) => { if (!recording) keys.delete(e.code); });
+  addEventListener("mousedown", () => { if (!recording && controls.isLocked) throwBall(); });
 
   const eye = () => camera.getWorldPosition(new THREE.Vector3());
   const look = () => camera.getWorldDirection(new THREE.Vector3());
@@ -176,14 +199,7 @@ async function main() {
     if (t.y < -20) reset();
   }
 
-  function frame(now) {
-    acc += Math.min((now - last) / 1000, 0.1);
-    last = now;
-    while (acc >= STEP) {
-      if (controls.isLocked) stepPlayer(STEP);
-      phys.step();
-      acc -= STEP;
-    }
+  function syncMeshes() {
     const t = playerBody.translation();
     if (!window.playworld?.freeCamera) camera.position.set(t.x, t.y + eyeOffset, t.z); // free camera: scripted shots
     for (const { body, offset, mesh } of objects) {
@@ -200,16 +216,78 @@ async function main() {
       debugLines.geometry.setAttribute("position", new THREE.BufferAttribute(vertices, 3));
       debugLines.geometry.setAttribute("color", new THREE.BufferAttribute(colors, 4));
     }
-    renderer.render(scene, camera);
-    requestAnimationFrame(frame);
   }
   camera.position.set(sx, standY + eyeOffset, sz);
-  requestAnimationFrame(frame);
 
   setStatus(`loading ${1 + objects.length} splats…`);
   await Promise.all(loading);
   setStatus(`${world.objects.length} physical objects · ${world.colliders.length} static colliders`);
-  window.playworld = { world, phys, objects, camera, controls }; // handy for debugging and tests
+  window.playworld = { world, phys, objects, camera, controls, renderer, push, throwBall, reset, freeCamera: recording };
+  if (recording) {
+    let tick = 0, frameIndex = 0, nextEvent = 0, busy = false;
+    const events = orderedEvents(shot.events);
+    function applyCamera(time) {
+      const pose = cameraAt(shot.camera, time);
+      camera.position.fromArray(pose.position);
+      camera.lookAt(new THREE.Vector3().fromArray(pose.target));
+    }
+    function applyEvents() {
+      while (nextEvent < events.length && events[nextEvent].time <= tick * STEP + 1e-9) {
+        const event = events[nextEvent++];
+        if (event.type === "push") push();
+        if (event.type === "throw") throwBall();
+        if (event.type === "walk") { keys.clear(); event.keys.forEach(k => keys.add(k)); }
+      }
+    }
+    const snapshot = () => ({ tick, objects: objects.map(({ o, body }) => ({ id: o.id, position: body.translation(), rotation: body.rotation() })), player: playerBody.translation(), balls: balls.map(({body}) => body.translation()) });
+    async function renderRecorded() {
+      syncMeshes();
+      scene.updateMatrixWorld(true);
+      camera.updateMatrixWorld(true);
+      await spark.update({ scene, camera }); // includes asynchronous depth sorting
+      renderer.render(scene, camera);
+      renderer.getContext().finish();
+    }
+    applyCamera(0);
+    await renderRecorded();
+    window.playworld.record = {
+      fps: shot.fps, frames: Math.round(shot.duration * shot.fps), snapshot,
+      async nextFrame() {
+        if (busy) throw new Error("record frames must be requested sequentially");
+        if (frameIndex >= this.frames) throw new Error("shot finished");
+        busy = true;
+        try {
+          const targetTick = frameIndex * (60 / shot.fps);
+          while (tick < targetTick) {
+            applyCamera(tick * STEP);
+            applyEvents();
+            if (keys.size) stepPlayer(STEP);
+            phys.step();
+            tick++;
+          }
+          applyCamera(tick * STEP);
+          applyEvents();
+          await renderRecorded();
+          return { frame: frameIndex++, time: tick * STEP, ...snapshot() };
+        } finally { busy = false; }
+      }
+    };
+  } else {
+    function frame(now) {
+      acc += Math.min((now - last) / 1000, 0.1);
+      last = now;
+      while (acc >= STEP) {
+        if (controls.isLocked) stepPlayer(STEP);
+        phys.step();
+        acc -= STEP;
+      }
+      syncMeshes();
+      renderer.render(scene, camera);
+      requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+  }
+  window.playworld.ready = true;
 }
 
-main().catch((e) => { console.error(e); setStatus("error: " + e.message); });
+main().catch((e) => { console.error(e); window.playworldError = e.stack ?? e.message; setStatus("error: " + e.message); });

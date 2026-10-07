@@ -1,0 +1,68 @@
+# Recording the README hero
+
+The final GIF must come from a successfully reconstructed real capture. `shots/demo.json`
+is a synthetic-room example only. Do not put synthetic checks in `docs/hero.gif`.
+
+Install the capture tools and browser:
+
+```bash
+pip install -e '.[record]'
+python -m playwright install chromium
+```
+
+After importing the real world returned by Colab, make and tune the shot:
+
+```bash
+python scripts/make_shot.py world shots/hero.json
+python scripts/record.py --world world --shot shots/hero.json --out recordings/hero
+python scripts/encode_hero.py --video scenes/public_source/apartment-camera19.mp4 --frames recordings/hero --out docs
+```
+
+Use `--software` for SwiftShader if the headless browser cannot use hardware rendering.
+The initial smoke run used SwiftShader. The recorder now enables the browser GPU and
+uses D3D11 on Windows; a complete 13 s synthetic capture used the local GTX 1660 Ti
+and took 99.909 s (960×540, 195 frames). This is capture time, not reconstruction time.
+Hardware enablement follows [Chromium's headless GPU guidance](https://chromium.googlesource.com/chromium/src/+/main/docs/gpu/using-gpu-hardware-in-headless-chrome.md).
+The default capture is 1920×1080 at 30 fps; software rendering may take several minutes.
+
+The provisional camera plan needs review: camera positions must stay inside the room,
+the push ray must hit a floor object, and the ball must hit the tabletop object. It is
+a cinematic camera path; interactive walking is separately controlled by Rapier's
+character controller. Never infer collision correctness from a camera fly-through.
+
+Shot JSON:
+
+```json
+{
+  "version": 1, "fps": 30, "duration": 13,
+  "camera": [
+    {"time": 0, "position": [0, 1.5, 2], "target": [0, 0.5, 0]},
+    {"time": 13, "position": [0, 1.5, 1.5], "target": [0, 0.5, 0]}
+  ],
+  "events": [{"time": 6, "type": "push"}, {"time": 9, "type": "throw"}]
+}
+```
+
+Camera interpolation is smoothstep (or `"ease": "linear"` on the starting key).
+Physics uses 1/60 s steps. Supported output rates are 15, 20, 30 and 60 fps.
+`push` and `throw` use the same ray/ball behavior as the interactive viewer.
+`walk` events set character keys, e.g. `{"time": 2, "type": "walk", "keys": ["KeyW"]}`;
+an empty keys array stops walking. Events run on the first physics tick at or after their time.
+
+`?record=shots/hero.json` loads a shot relative to the viewer URL; copy the shot into that
+served directory when using the query directly. The Playwright script serves the selected
+shot itself, captures only the canvas, and writes `capture.json` with every physics snapshot.
+The same shot reloaded in the same build starts a new physics world and repeats deterministically.
+
+The encoder creates a two-second source/world comparison, the remaining world footage,
+and a half-second dissolve back to the first comparison frame. It writes a high-quality
+H.264 MP4, a looping 960px GIF, and SHA-256 provenance. If [gifski](https://github.com/ImageOptim/gifski)
+is on PATH, it uses gifski; otherwise it uses ffmpeg palettegen/paletteuse. You can also
+pass `--gifski /path/to/gifski`. The encoder adjusts quality or palette/fps to fit
+8,000,000 bytes and fails if it cannot meet that limit. Inspect the GIF and MP4 before
+adding the README image. Preserve the dataset attribution and MIT notice alongside them.
+
+The synthetic encoding check produced a 960×540, 13.00 s looping GIF at 15 fps:
+4,384,897 bytes with gifski quality 90. Its 1920×1080 MP4 was 6,989,834 bytes.
+These validate capture and packaging only; they are not a real-data reconstruction or
+the README hero. See [the validation record](synthetic-encoding-validation.json).

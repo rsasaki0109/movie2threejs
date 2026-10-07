@@ -10,6 +10,7 @@ from pathlib import Path
 import numpy as np
 
 from . import colliders, gravity, objects, splat_io
+from .support import surface_patch
 from .colmap_io import Reconstruction, read_model
 
 FORMAT = "playworld/1"
@@ -99,6 +100,17 @@ def build_world(
         world_objects.append(obj.to_json(rel, density) | {"support_y": round(support, 3)})
     splat_io.write_ply(out_dir / "background.ply", splat_io.subset(splats, labels == 0))
 
+    # Patches remain in the room when a body moves. Do not add them to collisions
+    # or the captured Gaussian count; they are explicitly approximate surfaces.
+    background = labels == 0
+    rgb = np.stack([splats[f"f_dc_{i}"] for i in range(3)], axis=1) * splat_io.SH_C0 + 0.5
+    patches = []
+    for obj in world_objects:
+        footprint = np.array(obj["hull"]) + obj["centroid"]
+        patch = surface_patch(footprint, obj["support_y"], g_world[background], rgb[background])
+        if patch is not None:
+            patches.append({"object_id": obj["id"], **patch})
+
     # Collision points: the sparse reconstruction plus solid, compact gaussians (much denser).
     solid = (collider_labels == 0) & (splat_io.opacity(splats) > 0.5) & (splat_io.max_scale(splats) * np.linalg.norm(T[:3, 0]) < 0.1)
     static_pts = np.vstack([p_world[point_labels == 0], g_world[solid]])
@@ -118,10 +130,14 @@ def build_world(
         "player": {"spawn": [round(float(spawn[0]), 3), 0.0, round(float(spawn[2]), 3)], "eye_height": eye_height},
         "colliders": [b.to_json() for b in boxes],
         "objects": world_objects,
+        "support_patches": patches,
         "stats": {
             "cameras": len(images),
             "points": int(len(rec.xyz)),
             "gaussians": int(len(g_means)),
+            "objects": len(world_objects),
+            "colliders": len(boxes),
+            "support_patches": len(patches),
             "floor_inliers": int(floor.inliers.sum()),
             "scale_m_per_unit": round(float(np.linalg.norm(T[:3, 0])), 6),
         },
@@ -133,6 +149,6 @@ def build_world(
 
 
 def install_viewer(out_dir: Path) -> None:
-    for name in ("index.html", "main.js"):
+    for name in ("index.html", "main.js", "record.js"):
         with resources.as_file(resources.files("playworld.viewer") / name) as src:
             shutil.copy(src, Path(out_dir) / name)

@@ -1,0 +1,23 @@
+{
+  "scope": "Synthetic capture and encoding validation only; not the real-data README hero",
+  "source_video_name": "synthetic-encoder-source.mp4",
+  "source_video_sha256": "9c2efbdf98097e78b893cca57d24b4c88728b51261485e5c4a1a6e2af9c69529",
+  "capture_world_sha256": "8c7ed34376908895878afcd19d6c1acfc640acea248250c83e8e7662b4476f8a",
+  "shot_sha256": "f1b585509a44d9781d9c6c978785097c056361c8851a86ca20956a11f12cc0c9",
+  "capture_renderer": "GTX 1660 Ti, Chromium ANGLE D3D11",
+  "capture_width": 960,
+  "capture_height": 540,
+  "capture_frames": 195,
+  "capture_seconds": 99.909,
+  "duration_seconds": 13.0,
+  "gif_width": 960,
+  "gif_height": 540,
+  "gif_fps": 15,
+  "gif_loop": 0,
+  "gif_encoder": "gifski",
+  "gif_quality": 90,
+  "gif_bytes": 4384897,
+  "mp4_width": 1920,
+  "mp4_height": 1080,
+  "mp4_bytes": 6989834
+}
