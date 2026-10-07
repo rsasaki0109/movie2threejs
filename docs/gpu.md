@@ -44,6 +44,13 @@ or speed guarantees. The 15 minute target remains unmeasured. Optional settings:
 PLAYWORLD_NUM_FRAMES=32 PLAYWORLD_TRAIN_STEPS=7000 bash scripts/run.sh room.mp4 scenes/room world
 ```
 
+The public apartment video required `PLAYWORLD_POSE_CONFIDENCE=1.5`: on 24 frames,
+VGGT's measured maximum confidence was 2.6803, so the upstream default threshold 5.0
+exported zero points. The explicit 1.5 retry exported 100,000 finite points with 24 poses.
+This is a measured setting for this capture, not a universal quality threshold. Inspect
+the reconstruction before lowering it for other inputs. Empty/nonfinite exports now
+fail the pose stage before starting gsplat. The CLI also accepts `--pose-confidence`.
+
 After a failed stage, explicitly reuse earlier outputs:
 
 ```bash

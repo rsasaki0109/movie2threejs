@@ -48,12 +48,23 @@ def extract_frames(video: Path, scene: Path, num: int, max_size: int) -> None:
     print(f"extracted {len(list(out.glob('*.png')))} frames")
 
 
-def estimate_poses(scene: Path, vggt_dir: Path, use_ba: bool, python: str = sys.executable) -> None:
+def estimate_poses(scene: Path, vggt_dir: Path, use_ba: bool, python: str = sys.executable,
+                   confidence: float = 5.0) -> None:
+    import math
+    if not math.isfinite(confidence) or confidence <= 0:
+        raise ValueError("pose confidence must be a finite positive value")
     vggt_dir = vggt_dir.resolve()
-    cmd = [python, Path(vggt_dir) / "demo_colmap.py", f"--scene_dir={Path(scene).resolve()}"]
+    cmd = [python, Path(vggt_dir) / "demo_colmap.py", f"--scene_dir={Path(scene).resolve()}",
+           f"--conf_thres_value={confidence}"]
     if use_ba:
         cmd.append("--use_ba")
     run(cmd, cwd=vggt_dir)
+    from .colmap_io import read_model
+    import numpy as np
+    reconstruction = read_model(Path(scene) / "sparse")
+    if len(reconstruction.xyz) < 4 or not np.isfinite(reconstruction.xyz).all():
+        raise ValueError("VGGT exported fewer than four finite points; inspect reconstruction/confidence before training (adjust --pose-confidence explicitly if appropriate)")
+    print(f"validated {len(reconstruction.images)} poses and {len(reconstruction.xyz)} finite points", flush=True)
 
 
 def train_splats(scene: Path, gsplat_dir: Path, steps: int, python: str = sys.executable) -> Path:
@@ -105,6 +116,7 @@ def main(argv: list[str] | None = None) -> None:
     p.add_argument("scene", type=Path)
     p.add_argument("--vggt-dir", type=Path, required=True)
     p.add_argument("--ba", action="store_true", help="bundle adjustment (slower, sharper)")
+    p.add_argument("--pose-confidence", type=float, default=5.0, help="VGGT depth confidence threshold (without BA)")
     p.add_argument("--python", default=sys.executable, help="interpreter of the VGGT environment")
 
     p = sub.add_parser("train")
@@ -139,6 +151,7 @@ def main(argv: list[str] | None = None) -> None:
     p.add_argument("--num", type=int, default=48)
     p.add_argument("--max-size", type=int, default=1280)
     p.add_argument("--ba", action="store_true")
+    p.add_argument("--pose-confidence", type=float, default=5.0, help="VGGT depth confidence threshold (without BA)")
     p.add_argument("--steps", type=int, default=7000)
     p.add_argument("--prompts", default=",".join(DEFAULT_PROMPTS), help="movable things; empty = static world only")
     p.add_argument("--vggt-python", default=sys.executable)
@@ -159,7 +172,7 @@ def main(argv: list[str] | None = None) -> None:
     if a.cmd == "frames":
         extract_frames(a.video, a.scene, a.num, a.max_size)
     elif a.cmd == "poses":
-        estimate_poses(a.scene, a.vggt_dir, a.ba, a.python)
+        estimate_poses(a.scene, a.vggt_dir, a.ba, a.python, a.pose_confidence)
     elif a.cmd == "train":
         print(train_splats(a.scene, a.gsplat_dir, a.steps, a.python))
     elif a.cmd == "segment":
@@ -183,7 +196,7 @@ def main(argv: list[str] | None = None) -> None:
             return report.stage(name, fn, *args)
 
         stage("frames", extract_frames, a.video, a.scene, a.num, a.max_size)
-        stage("poses", estimate_poses, a.scene, a.vggt_dir, a.ba, a.vggt_python)
+        stage("poses", estimate_poses, a.scene, a.vggt_dir, a.ba, a.vggt_python, a.pose_confidence)
         ply = stage("train", train_splats, a.scene, a.gsplat_dir, a.steps, a.gsplat_python)
         if ply is None:
             ply = report.stage("validate_reused_splats", latest_ply, a.scene)

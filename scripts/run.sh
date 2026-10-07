@@ -35,4 +35,5 @@ cp "$ROOT/scripts/gpu-revisions.env" "$SCENE/gpu-revisions.env"
   --vggt-python "$GPU_ROOT/envs/vggt/bin/python" --gsplat-python "$GPU_ROOT/envs/gsplat/bin/python" \
   --sam3-python "$GPU_ROOT/envs/sam3/bin/python" --num "${PLAYWORLD_NUM_FRAMES:-24}" \
   --steps "${PLAYWORLD_TRAIN_STEPS:-7000}" --prompts "$PROMPTS" \
+  --pose-confidence "${PLAYWORLD_POSE_CONFIDENCE:-5.0}" \
   --report "$SCENE/run-$STAMP.json" "$@" 2>&1 | tee "$SCENE/run-$STAMP.log"
