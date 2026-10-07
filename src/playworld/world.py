@@ -88,6 +88,7 @@ def build_world(
     # background Gaussians too, while excluding objects and diffuse floaters.
     compact = (labels == 0) & (splat_io.opacity(splats) > 0.5) & (splat_io.max_scale(splats) * np.linalg.norm(T[:3, 0]) < 0.1)
     support_points = np.vstack([p_world[point_labels == 0], g_world[compact]])
+    rgb = np.stack([splats[f"f_dc_{i}"] for i in range(3)], axis=1) * splat_io.SH_C0 + 0.5
     world_objects = []
     for label in sorted(set(np.unique(labels)) - {0, -1}):
         sel = labels == label
@@ -111,13 +112,15 @@ def build_world(
         sel = labels == label
         rel = f"objects/{label}.ply"
         splat_io.write_ply(out_dir / rel, splat_io.subset(splats, sel))
-        world_objects.append(obj.to_json(rel, density) | {"support_y": round(support, 3)})
+        world_objects.append(obj.to_json(rel, density) | {
+            "support_y": round(support, 3),
+            "fill_color": np.median(rgb[sel], axis=0).clip(0, 1).round(5).tolist(),
+        })
     splat_io.write_ply(out_dir / "background.ply", splat_io.subset(splats, labels == 0))
 
     # Patches remain in the room when a body moves. Do not add them to collisions
     # or the captured Gaussian count; they are explicitly approximate surfaces.
     background = labels == 0
-    rgb = np.stack([splats[f"f_dc_{i}"] for i in range(3)], axis=1) * splat_io.SH_C0 + 0.5
     horizontal = background & splat_io.horizontal_mask(splats, T) & (splat_io.opacity(splats) > 0.5)
     color_samples = horizontal if horizontal.sum() >= 3 else background
     patches = []

@@ -1,15 +1,11 @@
-# playworld (working name)
+![Real public room capture becoming a walkable browser world, with a box pushed over](docs/hero.gif)
 
-<!-- Add docs/hero.gif here only after the real-data reconstruction and recording pass. -->
-
-**Walk around and knock things over in your browser.** A room-capture prototype built with three.js, Spark and Rapier.
+**Real room capture → a walkable, physical three.js world.**
 
 [![Open Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/)
-Upload [the notebook](notebooks/playworld_colab.ipynb) and the current project ZIP; no public repository is available yet.
+Upload [the notebook](notebooks/playworld_colab.ipynb) and the current project ZIP. There is no public repository to clone yet.
 
-## Quick start
-
-From the project directory, try the verified synthetic room with three commands:
+Try the verified synthetic room in three commands:
 
 ```bash
 pip install -e .
@@ -19,71 +15,62 @@ python -m http.server -d demo_world 8000
 
 Open http://localhost:8000. **WASD** walk · **Space** jump · **Click** throw · **E** push · **R** reset · **C** colliders.
 
-> Pre-alpha: geometry, browser rendering, walking, pushing, throwing and repeatable capture
-> are verified on a synthetic room. VGGT, gsplat and SAM 3 completed an Eyeful Tower
-> apartment capture on a Colab L4 in 273.476 s (setup excluded), exporting four objects.
-> Its first reconstruction has substantial blur; real-data quality and physical interaction
-> are still being reviewed. The hero GIF/MP4 are pending. See [measurements](docs/benchmarks.md).
+# playworld (working name)
+
+The hero uses a real public apartment capture from **Eyeful Tower (MIT)**, visualized from capture-rig photographs. It is not a smartphone recording or the author's room. [Source and license](docs/data-attribution.md) · [High-quality MP4](docs/hero.mp4) · [Measured GPU runs](docs/benchmarks.md).
+
+VGGT, gsplat and SAM 3 ran on an existing Colab L4. The complete workbench reconstruction took **419.079 s** with cached weights, excluding setup. Subsequent measured refinements reuse its poses and Gaussians; the final world has **8 movable objects and 1,928 static colliders**. Browser checks confirm walking, a ray push that drops a box from the workbench, a thrown ball, and fixed-step replay. The 13 s hero is actual viewer output with a scripted camera and physics events.
 
 ## How it works
 
 ```
-video ──frames──▶ VGGT (camera poses + points, COLMAP format)
-                    │
-                    ├─▶ gsplat (3D gaussian splatting)
-                    ├─▶ SAM 3 (movable things by text prompt, tracked through the video)
-                    ▼
-               playworld world
-                 • gravity from how the phone was held + RANSAC floor
-                 • metric scale from eye height
-                 • 2D masks lifted onto gaussians (z-buffer visibility, majority vote)
-                 • each object → solid convex hull down to the surface it rests on
-                 • walls and furniture → a few merged, hole-free boxes
-                    ▼
-               world.json + splats + viewer (three.js + Spark + Rapier)
+video → frames → VGGT camera poses + points
+                   ├─ gsplat → Gaussian reconstruction
+                   └─ SAM 3 → tracked object masks
+                          ↓
+                 floor, scale, rigid bodies + static colliders
+                          ↓
+                 three.js + Spark + Rapier → browser world
 ```
 
-## Real captures and recording
+The world builder estimates gravity from upright camera poses, fits the lower supported floor and assumes a camera height for scale. It lifts masks onto visible Gaussians, separates movable objects, and makes each object solid down to its support. Compact background points become merged static collision boxes. Object spill is removed before export; small flat support patches and colored convex interiors cover unobserved surfaces approximately.
 
-The [GPU recipe](docs/gpu.md) uses isolated environments and saves stage timings, failures,
-GPU information and source hashes. Colab runs the same setup/run scripts as a Linux host.
-For the public-data demo, the notebook downloads an Eyeful Tower apartment capture with
-its MIT notice. This is a capture-rig photograph sequence, not a smartphone video.
-See [data attribution](docs/data-attribution.md).
+## Make a real capture
 
-The [recording workflow](docs/recording.md) uses a JSON camera/event timeline, fixed 1/60 s
-physics and Playwright frame capture. The encoder targets a 13 s, 960px looping GIF below
-8 MB and a 1920×1080 MP4. Those are output targets, not completed real-data artifacts.
+The [GPU recipe](docs/gpu.md) and notebook share the same isolated VGGT, gsplat and SAM 3 environments. The public workbench recipe uses 24 frames, 7,000 training steps and bundle adjustment. Stage reports preserve timings, failures, source hashes and actual GPU information. [Colab CLI instructions](docs/colab-cli.md) use an existing runtime.
+
+For your own video, keep the phone upright, move slowly in a bright room, and capture the floor and the sides of objects. The pipeline accepts video input; a real smartphone capture has not been validated yet. Review floor height, masks and collisions before recording.
+
+The [recording workflow](docs/recording.md) uses a JSON timeline, fixed 1/60 s physics and Playwright canvas capture. [The hero shot](shots/hero.json) records camera positions, a push and a throw; its action ray is specified independently of the cinematic camera. Interactive walking uses Rapier's capsule character controller.
 
 ## Stages
 
-| command | does | environment |
-|---|---|---|
-| `playworld frames VIDEO SCENE` | evenly sampled frames | ffmpeg |
-| `playworld poses SCENE --vggt-dir` | VGGT feed-forward poses → `SCENE/sparse` | VGGT env |
-| `playworld train SCENE --gsplat-dir` | gaussian splatting → `SCENE/gs/ply` | gsplat env |
-| `playworld segment SCENE --prompts "chair,box"` | instance masks → `SCENE/masks` | SAM 3 env |
-| `playworld world SCENE --out OUT` | world.json, split splats, viewer | numpy + scipy |
-| `playworld all VIDEO SCENE --out OUT ...` | everything | per-stage `--*-python` |
-
-VGGT, gsplat and SAM 3 pin incompatible numpy/torch versions, so each runs in its own environment.
+| command | output |
+|---|---|
+| `playworld frames VIDEO SCENE` | evenly sampled frames |
+| `playworld poses SCENE --vggt-dir ...` | VGGT poses and points in COLMAP format |
+| `playworld train SCENE --gsplat-dir ...` | trained Gaussians |
+| `playworld segment SCENE --prompts "chair,box"` | tracked instance masks |
+| `playworld world SCENE --out OUT` | world.json, split splats and viewer |
+| `playworld all VIDEO SCENE --out OUT ...` | measured pipeline; per-stage Python environments |
 
 ## Known limitations
 
-- Scale comes from an assumed phone/camera height (`--eye-height`, default 1.5 m); real-data accuracy is unmeasured.
-- Gravity assumes the phone was held roughly upright.
-- Unseen surfaces are missing. Small flat patches use nearby support-surface colors to cover
-  object footprints when samples exist; this approximation is tested only on synthetic data.
-- Floater removal, room boundary cropping, real object masks and collision quality still need real-data review.
-- Only surfaces the camera saw exist; objects are made solid by extending their hull to the surface below.
-- Weights: the default VGGT checkpoint is non-commercial; SAM 3 weights are gated on Hugging Face.
-- T4/SAM 3 compatibility is not verified. The current GPU recipe requires native bf16 hardware for movable objects.
+- Metric scale assumes a camera height (`--eye-height`, default 1.5 m); true scale accuracy is unmeasured. Gravity assumes an upright camera.
+- Unseen surfaces lack photographic texture. Flat support patches and inward-facing colored convex hulls are simple approximations. Thin or open objects can look solid when turned over.
+- The public workbench has blur and incomplete floor/edge coverage outside the observed viewpoints. There is no general room inpainting or automatic boundary completion.
+- Masks, convex colliders and masses are estimates. Review them before using a new scene; not every detected label becomes a useful movable object.
+- The default VGGT weights are non-commercial. SAM 3 weights require approved Hugging Face access; model terms apply separately from the dataset's MIT license.
+- SAM 3 was verified on L4. T4 compatibility is unverified; the current object recipe requires native bf16 hardware.
+- Shared GPU scripts were executed through Colab CLI. The notebook's interactive upload/preview UI was not automated.
 
 ## Development
 
 ```bash
-pip install -e '.[dev]' && pytest
-python notebooks/make_colab.py   # regenerate the notebook
+pip install -e '.[dev]'
+pytest
+python notebooks/make_colab.py
 node --test tests/record.test.mjs
-python scripts/verify_viewer.py # after installing .[record], Chromium and generating demo_world
 ```
+
+For capture: `pip install -e '.[record]'` and `python -m playwright install chromium`.

@@ -13,9 +13,9 @@ python -m playwright install chromium
 After importing the real world returned by Colab, make and tune the shot:
 
 ```bash
-python scripts/make_shot.py world shots/hero.json
-python scripts/record.py --world world --shot shots/hero.json --out recordings/hero
-python scripts/encode_hero.py --video scenes/public_source/apartment-camera19.mp4 --frames recordings/hero --out docs
+python scripts/make_shot.py world shots/your-shot.json
+python scripts/record.py --world world --shot shots/your-shot.json --out recordings/your-capture
+python scripts/encode_hero.py --video scenes/public_source/apartment-workshop.mp4 --video-start 2 --frames recordings/your-capture --out docs --labels
 ```
 
 Use `--software` for SwiftShader if the headless browser cannot use hardware rendering.
@@ -26,7 +26,7 @@ Hardware enablement follows [Chromium's headless GPU guidance](https://chromium.
 The default capture is 1920×1080 at 30 fps; software rendering may take several minutes.
 
 The provisional camera plan needs review: camera positions must stay inside the room,
-the push ray must hit a floor object, and the ball must hit the tabletop object. It is
+the push ray must hit the selected movable object, and the ball must hit the tabletop object. It is
 a cinematic camera path; interactive walking is separately controlled by Rapier's
 character controller. Never infer collision correctness from a camera fly-through.
 
@@ -66,3 +66,20 @@ The synthetic encoding check produced a 960×540, 13.00 s looping GIF at 15 fps:
 4,384,897 bytes with gifski quality 90. Its 1920×1080 MP4 was 6,989,834 bytes.
 These validate capture and packaging only; they are not a real-data reconstruction or
 the README hero. See [the validation record](synthetic-encoding-validation.json).
+
+## Actual hero shot
+
+`shots/hero.json` belongs to the measured Eyeful Tower workbench world; its coordinates are not reusable for another room. It lasts 13 s at 30 fps, with 50-degree vertical field of view. The intro is a source/world split-screen; then a camera approach, a box pushed from the workbench, a thrown ball, and a return to the opening view. The push specifies an action ray independently of the camera: `origin`, `target`, and impulse strength in m/s times body mass. The throw uses the viewer camera. Both use the interactive physics functions; there is no animation of the object's recorded pose.
+
+Optional shot `fov` is 20–120 degrees; push `strength` is positive (interactive default 3). An event's `origin` and `target` must be provided together as distinct finite xyz vectors. `record.nextFrame(n)` can advance to a later frame for quick QA; every intervening physics tick and event is still simulated. Full exports call `nextFrame()` sequentially and write every frame.
+
+Use `scripts/verify_hero.py` after encoding to check the actual asset sizes/durations, source hash, physical push, walking, ball creation, and matching physics at repeated sampled frames. [Hero validation](hero-validation.json) stores the results. Keep the [MIT notice](EYEFULTOWER-LICENSE.txt) with the media. The physical interior fill and support patch are deliberately simple color approximations.
+
+Reproduce the measured asset after importing its world:
+
+```bash
+python scripts/record.py --world scenes/hero-result/world --shot shots/hero.json --out recordings/hero
+python scripts/encode_hero.py --video scenes/public_source/apartment-workshop.mp4 --video-start 2 --frames recordings/hero --out docs --gifski /path/to/gifski --labels --font /path/to/font.ttf --gif-settings 15 50 45 45
+```
+
+The measured Windows capture used the installed Arial font and gifski 1.34.0. Encoding appends a short hold of the opening comparison so the final dissolve closes the loop; measured output durations are saved separately from the 13 s timeline.

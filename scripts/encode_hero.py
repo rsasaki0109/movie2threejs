@@ -49,6 +49,10 @@ def main():
     parser.add_argument("--out", default=Path("docs"), type=Path)
     parser.add_argument("--video-start", type=float, default=0)
     parser.add_argument("--gifski", type=Path, help="optional gifski executable; otherwise use PATH or ffmpeg")
+    parser.add_argument('--labels', action='store_true', help='minimal source/walk/physics labels')
+    parser.add_argument('--font', type=Path, help='TrueType font for labels (Arial on Windows by default)')
+    parser.add_argument('--gif-settings', type=int, nargs=4, metavar=('FPS', 'QUALITY', 'MOTION', 'LOSSY'),
+                        help='first gifski settings; lower settings are tried if the GIF exceeds 8 MB')
     args = parser.parse_args()
     capture = json.loads((args.frames / "capture.json").read_text())
     duration = capture["captured_frames"] / capture["fps"]
@@ -62,19 +66,33 @@ def main():
     # half-second dissolves to the first split frame for a continuous GIF loop.
     filters = (
         f"[0:v]fps={capture['fps']},scale=1920:1080,setsar=1,format=rgb24,split=2[all][intro];"
-        "[intro]trim=duration=2,setpts=PTS-STARTPTS,scale=960:1080:force_original_aspect_ratio=decrease,"
-        "pad=960:1080:(ow-iw)/2:(oh-ih)/2:color=0x111318[right];"
+        "[intro]trim=duration=2,setpts=PTS-STARTPTS,scale=960:1080:force_original_aspect_ratio=increase,"
+        "crop=960:1080[right];"
         f"[1:v]trim=duration=2,setpts=PTS-STARTPTS,fps={capture['fps']},"
-        "scale=960:1080:force_original_aspect_ratio=decrease,"
-        "format=rgb24,pad=960:1080:(ow-iw)/2:(oh-ih)/2:color=0x111318[left];"
+        "scale=960:1080:force_original_aspect_ratio=increase,"
+        "format=rgb24,crop=960:1080[left];"
         "[left][right]hstack=inputs=2[compare];"
         "[all]trim=start=2,setpts=PTS-STARTPTS[walk];"
         f"[compare][walk]concat=n=2:v=1:a=0,fps={capture['fps']},settb=AVTB,split=2[body][first];"
         f"[first]trim=end_frame=1,loop=loop=-1:size=1:start=0,setpts=N/({capture['fps']}*TB),"
-        f"trim=duration={duration},format=rgba,fade=t=in:st={duration-0.5-1/capture['fps']:.6f}:d=0.5:alpha=1[still];"
-        f"[body][still]overlay=shortest=1:format=rgb,trim=duration={duration},"
+        f"trim=duration={duration},format=rgba,fade=t=in:st={duration-0.5-1/capture['fps']:.6f}:d={0.5-1/capture['fps']:.6f}:alpha=1[still];"
+        f"[body][still]overlay=shortest=1:format=rgb,tpad=stop_mode=clone:stop_duration=1,trim=duration={duration},"
         "scale=out_color_matrix=bt709:out_range=tv,format=yuv420p[out]"
     )
+    if args.labels:
+        font = args.font or Path('C:/Windows/Fonts/arial.ttf')
+        if not font.is_file():
+            raise FileNotFoundError('Pass --font with an installed TrueType font')
+        escaped = font.resolve().as_posix().replace(':', r'\:')
+        style = f"fontfile='{escaped}':fontcolor=white:fontsize=40:box=1:boxcolor=black@0.5:boxborderw=14:y=42"
+        labels = (
+            f"drawtext={style}:x=48:text='PUBLIC ROOM CAPTURE':enable='lt(t,2)',"
+            f"drawtext={style}:x=1008:text='PLAYABLE 3D':enable='lt(t,2)',"
+            f"drawtext={style}:x=48:text='WALK':enable='between(t,2,5.9)',"
+            f"drawtext={style}:x=48:text='PUSH + PHYSICS':enable='between(t,5.9,8.3)',"
+            f"drawtext={style}:x=48:text='THROW':enable='between(t,8.3,10.5)'"
+        )
+        filters = filters.replace('settb=AVTB,split=2[body][first]', 'settb=AVTB,' + labels + ',split=2[body][first]')
     run("ffmpeg", "-hide_banner", "-loglevel", "error", "-y", "-framerate", capture["fps"],
         "-i", args.frames / "frame_%05d.png", "-ss", args.video_start, "-i", args.video,
         "-filter_complex", filters, "-map", "[out]", "-an", "-c:v", "libx264", "-crf", "17",
@@ -82,9 +100,15 @@ def main():
         "-color_trc", "bt709", "-movflags", "+faststart", mp4)
     # Keep 960px. Reduce palette/fps only as needed; reject output over the limit.
     executable = args.gifski or shutil.which("gifski")
+    if args.gif_settings:
+        if not executable or not 1 <= args.gif_settings[0] <= 60 or not all(1 <= value <= 100 for value in args.gif_settings[1:]):
+            raise ValueError('--gif-settings requires gifski, FPS 1–60 and quality values 1–100')
     colors, quality = None, None
     if executable:
-        attempts = [(20, 90, 90, 90), (20, 80, 70, 70), (15, 70, 60, 60), (15, 60, 50, 50), (10, 40, 30, 30)]
+        attempts = [(20, 90, 90, 90), (20, 80, 70, 70), (15, 70, 60, 60), (15, 60, 50, 50), (15, 50, 45, 45), (15, 45, 40, 40), (10, 70, 60, 60), (10, 40, 30, 30)]
+        if args.gif_settings:
+            requested = tuple(args.gif_settings)
+            attempts = [requested] + [item for item in attempts if item[0] <= requested[0] and item[1] < requested[1]]
         for fps, quality, motion, lossy in attempts:
             fps = min(fps, capture["fps"])
             encode_with_gifski(executable, mp4, gif, fps, quality, motion, lossy)
@@ -115,9 +139,14 @@ def main():
             raise RuntimeError("GIF dimensions, loop or measured duration do not meet hero requirements")
     report = {
         "source_video_sha256": sha256(args.video), "source_video_name": args.video.name,
+        "source_video_start_seconds": args.video_start, "labels": args.labels,
         "capture_world_sha256": capture["world_sha256"], "shot_sha256": capture["shot_sha256"],
         "duration_seconds": duration, "gif_measured_seconds": round(gif_duration, 3),
+        "mp4_measured_seconds": float(json.loads(subprocess.check_output([
+            'ffprobe', '-v', 'error', '-show_entries', 'format=duration', '-of', 'json', str(mp4)
+        ]))['format']['duration']),
         "gif_fps": fps, "palette_colors": colors, "quality": quality,
+        "motion_quality": motion if executable else None, "lossy_quality": lossy if executable else None,
         "gif_encoder": "gifski" if executable else "ffmpeg",
         "gif_bytes": gif.stat().st_size, "mp4_bytes": mp4.stat().st_size,
     }

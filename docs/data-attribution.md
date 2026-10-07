@@ -23,3 +23,11 @@ Mip-NeRF 360 and Tanks and Temples were considered but not selected for redistri
 hero assets: an explicit redistribution license was not established for Mip-NeRF 360,
 and Tanks and Temples' license page contains conflicting redistribution clauses.
 The selected dataset license does not remove VGGT or SAM 3 weight restrictions.
+
+## Hero derivative
+
+The hero uses the workbench excerpt `apartment-workshop.mp4`: start 5.0 s, requested duration 4.2 s, measured 4.250 s, 51 frames, 9,199,102 bytes. SHA-256: `a0a387a1af7f8483d8c5d13861dc17907054784f090a4c26e8370624b4e4263e`. The original photograph sequence is sampled to 24 images; no dataset ground-truth camera poses were supplied to VGGT or gsplat.
+
+The first two seconds of the hero show this public source beside the browser world. Text identifies it as **PUBLIC ROOM CAPTURE**. Camera movement, the pushed box, thrown ball and their collisions come from the browser viewer. Hidden faces use simple colored convex interiors; this does not invent photographic texture.
+
+The exact source trim is shared by the notebook and `scripts/download_public.py --workshop`. The source offset used for the split-screen comparison is recorded in `hero-provenance.json`. Keep `EYEFULTOWER-LICENSE.txt` with `hero.gif`, `hero.mp4` and any redistributed derivatives.

@@ -1,6 +1,7 @@
 // playworld viewer: walk around a captured gaussian-splat world and knock things over.
 import * as THREE from "three";
 import { PointerLockControls } from "three/addons/controls/PointerLockControls.js";
+import { ConvexGeometry } from "three/addons/geometries/ConvexGeometry.js";
 import { SparkRenderer, SplatMesh } from "@sparkjsdev/spark";
 import RAPIER from "@dimforge/rapier3d-compat";
 import { validateShot, cameraAt, orderedEvents } from "./record.js";
@@ -92,7 +93,16 @@ async function main() {
       ?? RAPIER.ColliderDesc.ball(0.1);
     phys.createCollider(desc.setMass(o.mass).setFriction(0.8), body);
     const offset = new THREE.Matrix4().makeTranslation(-cx, -cy, -cz).multiply(align);
-    return { o, body, offset, mesh: splat(o.splat, offset) };
+    let interior = null;
+    if (o.fill_color) {
+      const geometry = new ConvexGeometry(o.hull.map(p => new THREE.Vector3(...p).multiplyScalar(.985)));
+      const color = new THREE.Color().setRGB(...o.fill_color, THREE.SRGBColorSpace);
+      // Only the far, inward-facing surface fills holes; the photographed
+      // front surface remains in front of it instead of becoming a solid blob.
+      interior = new THREE.Mesh(geometry, new THREE.MeshBasicMaterial({ color, side: THREE.BackSide }));
+      scene.add(interior);
+    }
+    return { o, body, offset, interior, mesh: splat(o.splat, offset) };
   });
 
   // Player: kinematic capsule moved by Rapier's character controller (pushes dynamic bodies too).
@@ -203,10 +213,11 @@ async function main() {
   function syncMeshes() {
     const t = playerBody.translation();
     if (!window.playworld?.freeCamera) camera.position.set(t.x, t.y + eyeOffset, t.z); // free camera: scripted shots
-    for (const { body, offset, mesh } of objects) {
+    for (const { body, offset, mesh, interior } of objects) {
       const p = body.translation(), q = body.rotation();
       mesh.matrix.compose(tmpV.set(p.x, p.y, p.z), tmpQ.set(q.x, q.y, q.z, q.w), one).multiply(offset);
       mesh.matrixWorldNeedsUpdate = true;
+      if (interior) { interior.position.copy(p); interior.quaternion.copy(q); }
     }
     for (const { body, mesh } of balls) {
       mesh.position.copy(body.translation());

@@ -1,0 +1,83 @@
+{
+  "format": "playworld-run/1",
+  "started_utc": "2026-10-07T08:35:53.918063+00:00",
+  "status": "ok",
+  "source": {
+    "kind": "video",
+    "name": "apartment-workshop.mp4",
+    "sha256": "a0a387a1af7f8483d8c5d13861dc17907054784f090a4c26e8370624b4e4263e",
+    "bytes": 9199102
+  },
+  "platform": "Linux-6.6.122+-x86_64-with-glibc2.39",
+  "python": "3.12.3",
+  "gpu": "NVIDIA L4, 23034 MiB, 580.82.07",
+  "settings": {
+    "cmd": "all",
+    "video": "/content/public_source/apartment-workshop.mp4",
+    "scene": "/content/scene-workshop-ba",
+    "vggt_dir": "/content/playworld/.gpu/repos/vggt",
+    "gsplat_dir": "/content/playworld/.gpu/repos/gsplat",
+    "num": 24,
+    "max_size": 1280,
+    "ba": true,
+    "pose_confidence": 1.5,
+    "shared_camera": true,
+    "ba_track_budget": 32768,
+    "ba_reprojection_error": 32.0,
+    "steps": 7000,
+    "prompts": "chair,box,mug,bottle",
+    "vggt_python": "/content/playworld/.gpu/envs/vggt/bin/python",
+    "gsplat_python": "/content/playworld/.gpu/envs/gsplat/bin/python",
+    "sam3_python": "/content/playworld/.gpu/envs/sam3/bin/python",
+    "report": "/content/scene-workshop-ba/run-20261007T083553Z.json",
+    "start_at": "frames",
+    "out": "/content/world-workshop-ba",
+    "masks": null,
+    "eye_height": 1.5,
+    "voxel": 0.1
+  },
+  "stages": {
+    "frames": {
+      "status": "ok",
+      "started_utc": "2026-10-07T08:35:53.920206+00:00",
+      "seconds": 0.949,
+      "finished_utc": "2026-10-07T08:35:54.869300+00:00"
+    },
+    "poses": {
+      "status": "ok",
+      "started_utc": "2026-10-07T08:35:54.869691+00:00",
+      "seconds": 143.385,
+      "finished_utc": "2026-10-07T08:38:18.254799+00:00"
+    },
+    "train": {
+      "status": "ok",
+      "started_utc": "2026-10-07T08:38:18.255290+00:00",
+      "seconds": 210.861,
+      "finished_utc": "2026-10-07T08:41:49.115954+00:00"
+    },
+    "segment": {
+      "status": "ok",
+      "started_utc": "2026-10-07T08:41:49.116421+00:00",
+      "seconds": 55.467,
+      "finished_utc": "2026-10-07T08:42:44.583490+00:00"
+    },
+    "world": {
+      "status": "ok",
+      "started_utc": "2026-10-07T08:42:44.584156+00:00",
+      "seconds": 8.36,
+      "finished_utc": "2026-10-07T08:42:52.944245+00:00"
+    }
+  },
+  "finished_utc": "2026-10-07T08:42:52.944659+00:00",
+  "total_seconds": 419.079,
+  "stats": {
+    "cameras": 24,
+    "points": 26852,
+    "gaussians": 875478,
+    "objects": 14,
+    "colliders": 2214,
+    "support_patches": 12,
+    "floor_inliers": 6199,
+    "scale_m_per_unit": 12.287294
+  }
+}

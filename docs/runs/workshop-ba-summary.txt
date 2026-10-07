@@ -1,0 +1,7 @@
+Measured bundle adjustment output from run-20261007T083553Z.log
+
+   Iterations : 22
+         Time : 5.9397 [s]
+ Initial cost : 10.9906 [px]
+   Final cost : 0.566998 [px]
+  Termination : Convergence

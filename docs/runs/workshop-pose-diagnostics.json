@@ -1,0 +1,14 @@
+{
+  "confidence_percentiles": {
+    "min": 1.0,
+    "p10": 1.0,
+    "p50": 1.0137122869491577,
+    "p90": 1.544006586074829,
+    "p99": 1.7872333824634552,
+    "max": 2.208960771560669
+  },
+  "confidence_threshold": 1.5,
+  "samples_above_threshold": 815051,
+  "finite_depth": true,
+  "tracking_batch_budget": 32768
+}

@@ -6,13 +6,14 @@ are used by the notebook and the shell recipe.
 
 The [Colab CLI workflow](colab-cli.md) can transfer and execute the same scripts without
 the notebook upload dialogs. Setup, GPU access, trainer help flags and SAM 3 API imports
-passed on an existing Colab L4. The full public apartment pipeline completed in 273.476 s
-(setup excluded); the first preview has substantial blur and is not the hero asset.
+passed on an existing Colab L4. The short public workbench reconstruction completed in
+419.079 s with cached weights (setup excluded). Later object/world refinements reuse its
+poses and trained Gaussians; see the separate [measured reports](benchmarks.md).
 
 ```bash
 bash scripts/setup_gpu.sh
-python scripts/download_public.py --out scenes/public_source
-PLAYWORLD_POSE_CONFIDENCE=1.5 bash scripts/run.sh scenes/public_source/apartment-camera19.mp4
+python scripts/download_public.py --out scenes/public_source --workshop
+PLAYWORLD_POSE_CONFIDENCE=1.5 PLAYWORLD_PROMPTS='cardboard box,plastic bottle,folding chair' bash scripts/run.sh scenes/public_source/apartment-workshop.mp4 scenes/workshop world --ba --shared-camera --ba-reprojection-error 32.0
 ```
 
 The setup creates three isolated GPU environments (VGGT, gsplat, SAM 3) plus a lightweight
@@ -38,8 +39,8 @@ with a static world silently. To deliberately test static reconstruction only, u
 `PLAYWORLD_PROMPTS=''`. SAM 3 also requires approved Hugging Face access to `facebook/sam3`;
 set `HF_TOKEN` in Colab secrets or the host environment, never in committed files.
 
-Defaults of 24 frames and 7,000 training steps are starting settings, not measured VRAM
-or speed guarantees. One no-BA capture completed below the 15 minute target; see
+The workbench used 24 frames and 7,000 training steps. These are not general VRAM
+or speed guarantees. This BA reconstruction completed below the 15 minute target; see
 [actual settings and quality limits](benchmarks.md). Optional settings:
 
 ```bash

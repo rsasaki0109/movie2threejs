@@ -141,6 +141,8 @@ def main():
     action = os.environ.get("PLAYWORLD_CLI_ACTION", "check")
     if action not in {"check", "setup", "run"}:
         raise ValueError("PLAYWORLD_CLI_ACTION must be check, setup or run")
+    os.environ.setdefault('PLAYWORLD_PROMPTS', 'cardboard box,plastic bottle,folding chair')
+    os.environ.setdefault('PLAYWORLD_POSE_CONFIDENCE', '1.5')
     ready = preflight()
     if action == "check":
         return
@@ -161,10 +163,11 @@ def main():
         setup_or_reuse(project)
         core = project / ".gpu/envs/core/bin/python"
         run_streamed([str(core), str(project / "scripts/download_public.py"),
-                      "--out", str(CONTENT / "public_source")])
+                      "--out", str(CONTENT / "public_source"), '--workshop'])
         run_streamed(["bash", str(project / "scripts/run.sh"),
-                      str(CONTENT / "public_source/apartment-camera19.mp4"),
-                      str(CONTENT / "scene"), str(CONTENT / "world")])
+                      str(CONTENT / "public_source/apartment-workshop.mp4"),
+                      str(CONTENT / "scene"), str(CONTENT / "world"),
+                      '--ba', '--shared-camera', '--ba-reprojection-error', '32.0'])
         completed = True
     finally:
         bundle(completed)

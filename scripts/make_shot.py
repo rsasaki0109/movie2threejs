@@ -7,9 +7,10 @@ from pathlib import Path
 def make_shot(world: dict) -> dict:
     objects = world["objects"]
     floor_objects = [o for o in objects if o["support_y"] < 0.1]
-    if not floor_objects:
-        raise ValueError("a floor object is needed for the push shot")
-    subject = max(floor_objects, key=lambda o: max(p[1] for p in o["hull"]) - min(p[1] for p in o["hull"]))
+    if not objects:
+        raise ValueError("a movable object is needed for the push shot")
+    subject = (max(floor_objects, key=lambda o: max(p[1] for p in o["hull"]) - min(p[1] for p in o["hull"]))
+               if floor_objects else max(objects, key=lambda o: o['mass']))
     x, y, z = subject["centroid"]
     height = world["player"]["eye_height"]
     sx, _, sz = world["player"]["spawn"]
