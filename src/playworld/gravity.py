@@ -43,7 +43,7 @@ def fit_floor(
     inlier_frac: float = 0.01,
     seed: int = 0,
 ) -> Floor:
-    """RANSAC for the dominant horizontal plane below the cameras.
+    """RANSAC for the lowest well-supported horizontal plane below the cameras.
 
     inlier_frac: inlier distance threshold as a fraction of the robust scene extent.
     """
@@ -60,9 +60,21 @@ def fit_floor(
     cos_tol = np.cos(np.deg2rad(max_tilt_deg))
     pool_pts = points[pool]
 
+    # Textured tabletops can have far more tracked points than a bare floor.
+    # Sample the lower tail as well, then prefer the lowest supported plane.
+    lower_pool = np.argsort(pool_pts @ down)[-max(3, int(np.ceil(len(pool_pts) * 0.2))):]
+    min_support = max(3, int(np.ceil(len(pool_pts) * 0.05)))
+    lowest_level = np.percentile(h, 98)
+    camera_level = np.median(hc)
     best_n, best_d, best_count = None, None, -1
-    for _ in range(iters):
-        a, b, c = pool_pts[rng.choice(len(pool_pts), 3, replace=False)]
+    lower_candidates = []
+    dominant_level = None
+    for iteration in range(iters * 2):
+        if iteration == iters and best_n is not None:
+            dominant_level = camera_level + (best_d - np.median(camera_centers @ best_n)) / (best_n @ down)
+        sample = (rng.choice(len(pool_pts), 3, replace=False) if iteration < iters
+                  else rng.choice(lower_pool, 3, replace=False))
+        a, b, c = pool_pts[sample]
         n = np.cross(b - a, c - a)
         norm = np.linalg.norm(n)
         if norm < 1e-12:
@@ -74,8 +86,23 @@ def fit_floor(
             continue
         d = n @ a
         count = int(np.count_nonzero(np.abs(pool_pts @ n - d) < thresh))
-        if count > best_count:
-            best_n, best_d, best_count = n, d, count
+        if iteration < iters:
+            if count > best_count:
+                best_n, best_d, best_count = n, d, count
+            continue
+        # Evaluate the plane below the median camera position, not the world
+        # origin; this also avoids rewarding tilted planes extrapolated afar.
+        level = camera_level + (d - np.median(camera_centers @ n)) / (n @ down)
+        if (count < min_support or level > lowest_level + thresh or level <= camera_level
+                or dominant_level is None or level <= dominant_level + 3 * thresh):
+            continue
+        lower_candidates.append((n, d, count, level))
+    if lower_candidates:
+        lowest = max(candidate[3] for candidate in lower_candidates)
+        best_n, best_d, best_count, _ = max(
+            (candidate for candidate in lower_candidates if candidate[3] >= lowest - 3 * thresh),
+            key=lambda candidate: candidate[2],
+        )
     if best_n is None:
         raise ValueError("no horizontal plane found; is the video upright?")
 
