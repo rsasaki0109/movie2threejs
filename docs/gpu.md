@@ -4,6 +4,9 @@ Use `notebooks/playworld_colab.ipynb` in Colab, or an already provisioned Linux 
 No script creates a VM, Pod, repository, or paid resource. The same setup and run scripts
 are used by the notebook and the shell recipe.
 
+The [Colab CLI workflow](colab-cli.md) can transfer and execute the same scripts without
+the notebook upload dialogs. Its remote GPU execution is also awaiting validation.
+
 ```bash
 bash scripts/setup_gpu.sh
 python scripts/download_public.py --out scenes/public_source
