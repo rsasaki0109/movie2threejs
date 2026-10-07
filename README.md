@@ -20,9 +20,10 @@ python -m http.server -d demo_world 8000
 Open http://localhost:8000. **WASD** walk · **Space** jump · **Click** throw · **E** push · **R** reset · **C** colliders.
 
 > Pre-alpha: geometry, browser rendering, walking, pushing, throwing and repeatable capture
-> are verified on a synthetic room. A public apartment capture has passed frame extraction.
-> VGGT, gsplat, SAM 3 and the Colab GPU recipe have not yet been validated end to end.
-> The real-data hero GIF/MP4 are pending. See [measurements](docs/benchmarks.md).
+> are verified on a synthetic room. VGGT, gsplat and SAM 3 completed an Eyeful Tower
+> apartment capture on a Colab L4 in 273.476 s (setup excluded), exporting four objects.
+> Its first reconstruction has substantial blur; real-data quality and physical interaction
+> are still being reviewed. The hero GIF/MP4 are pending. See [measurements](docs/benchmarks.md).
 
 ## How it works
 

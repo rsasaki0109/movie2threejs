@@ -1,11 +1,13 @@
-# Colab CLI (full reconstruction not yet validated)
+# Colab CLI
 
 The official [Google Colab CLI](https://github.com/googlecolab/google-colab-cli)
 supports Linux/macOS. On this PC it is installed as version 0.7.4 in WSL Ubuntu-22.04,
 at `/root/.local/bin/colab`. Google authentication succeeded. An existing L4 assignment
 was attached as `playworld-l4`, and project upload and remote preflight succeeded.
 Preflight measured NVIDIA L4, 22,563 MiB PyTorch-reported GPU memory and native bf16. SAM 3
-weight access was confirmed from the runtime (`approved`); model inference has not run.
+weight access was confirmed from the runtime (`approved`). A complete apartment reconstruction
+ran through VGGT, gsplat, SAM 3 and world export in 273.476 seconds, excluding setup.
+Its first preview has substantial blur; this is execution validation, not accepted hero quality.
 Setup, trainer help flags and SAM 3 API imports passed on 2026-10-07. No runtime was allocated.
 
 Authenticate in your own PowerShell terminal:

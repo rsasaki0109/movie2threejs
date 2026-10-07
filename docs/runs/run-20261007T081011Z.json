@@ -1,0 +1,56 @@
+{
+  "format": "playworld-run/1",
+  "started_utc": "2026-10-07T08:10:12.494591+00:00",
+  "status": "failed",
+  "source": {
+    "kind": "video",
+    "name": "apartment-camera19.mp4",
+    "sha256": "adc56a3cf265dd420cc195254a83c69603a2f3fcd37288e52f68dc41da7e0989",
+    "bytes": 11665667
+  },
+  "platform": "Linux-6.6.122+-x86_64-with-glibc2.39",
+  "python": "3.12.3",
+  "gpu": "NVIDIA L4, 23034 MiB, 580.82.07",
+  "settings": {
+    "cmd": "all",
+    "video": "/content/public_source/apartment-camera19.mp4",
+    "scene": "/content/scene",
+    "vggt_dir": "/content/playworld/.gpu/repos/vggt",
+    "gsplat_dir": "/content/playworld/.gpu/repos/gsplat",
+    "num": 24,
+    "max_size": 1280,
+    "ba": false,
+    "steps": 7000,
+    "prompts": "chair,box,mug,bottle",
+    "vggt_python": "/content/playworld/.gpu/envs/vggt/bin/python",
+    "gsplat_python": "/content/playworld/.gpu/envs/gsplat/bin/python",
+    "sam3_python": "/content/playworld/.gpu/envs/sam3/bin/python",
+    "report": "/content/scene/run-20261007T081011Z.json",
+    "start_at": "frames",
+    "out": "/content/world",
+    "masks": null,
+    "eye_height": 1.5,
+    "voxel": 0.1
+  },
+  "stages": {
+    "frames": {
+      "status": "ok",
+      "started_utc": "2026-10-07T08:10:12.496748+00:00",
+      "seconds": 1.79,
+      "finished_utc": "2026-10-07T08:10:14.286491+00:00"
+    },
+    "poses": {
+      "status": "ok",
+      "started_utc": "2026-10-07T08:10:14.286931+00:00",
+      "seconds": 114.696,
+      "finished_utc": "2026-10-07T08:12:08.982574+00:00"
+    },
+    "train": {
+      "status": "failed",
+      "started_utc": "2026-10-07T08:12:08.983188+00:00",
+      "error": "CalledProcessError: Command '['/content/playworld/.gpu/envs/gsplat/bin/python', '/content/playworld/.gpu/repos/gsplat/examples/simple_trainer.py', 'default', '--data-dir', '/content/scene', '--data-factor', '1', '--result-dir', '/content/scene/gs', '--max-steps', '7000', '--save-ply', '--ply-steps', '7000', '--eval-steps', '7000', '--save-steps', '7000', '--no-normalize-world-space', '--test-every', '8', '--disable-viewer', '--disable-video']' returned non-zero exit status 1.",
+      "seconds": 6.607,
+      "finished_utc": "2026-10-07T08:12:15.590329+00:00"
+    }
+  }
+}

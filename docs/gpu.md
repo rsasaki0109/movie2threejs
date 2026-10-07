@@ -1,4 +1,4 @@
-# GPU execution (not yet validated end to end)
+# GPU execution
 
 Use `notebooks/playworld_colab.ipynb` in Colab, or an already provisioned Linux GPU host.
 No script creates a VM, Pod, repository, or paid resource. The same setup and run scripts
@@ -6,12 +6,13 @@ are used by the notebook and the shell recipe.
 
 The [Colab CLI workflow](colab-cli.md) can transfer and execute the same scripts without
 the notebook upload dialogs. Setup, GPU access, trainer help flags and SAM 3 API imports
-passed on an existing Colab L4; full model inference is still awaiting validation.
+passed on an existing Colab L4. The full public apartment pipeline completed in 273.476 s
+(setup excluded); the first preview has substantial blur and is not the hero asset.
 
 ```bash
 bash scripts/setup_gpu.sh
 python scripts/download_public.py --out scenes/public_source
-bash scripts/run.sh scenes/public_source/apartment-camera19.mp4
+PLAYWORLD_POSE_CONFIDENCE=1.5 bash scripts/run.sh scenes/public_source/apartment-camera19.mp4
 ```
 
 The setup creates three isolated GPU environments (VGGT, gsplat, SAM 3) plus a lightweight
@@ -20,7 +21,7 @@ package versions. Linux, Python 3.12, ffmpeg, git, an NVIDIA GPU driver and the 
 (`nvcc`) are required. Set `PLAYWORLD_GPU_ROOT` to relocate environments and repositories.
 Setup does not prove model inference works. On 2026-10-07, the Colab setup passed with
 CUDA 13.0, PyTorch 2.9.1+cu130 for VGGT/gsplat and 2.10.0+cu130 for SAM 3. Gated weight
-access was approved from the runtime; full model inference is still pending.
+access and full model inference were confirmed from the runtime.
 The setup selects PyTorch wheels matching the installed CUDA compiler (12.6, 12.8 or 13.0),
 fetches gsplat's GLM submodule, and uses the noninteractive Matplotlib backend in its venvs.
 
@@ -38,7 +39,8 @@ with a static world silently. To deliberately test static reconstruction only, u
 set `HF_TOKEN` in Colab secrets or the host environment, never in committed files.
 
 Defaults of 24 frames and 7,000 training steps are starting settings, not measured VRAM
-or speed guarantees. The 15 minute target remains unmeasured. Optional settings:
+or speed guarantees. One no-BA capture completed below the 15 minute target; see
+[actual settings and quality limits](benchmarks.md). Optional settings:
 
 ```bash
 PLAYWORLD_NUM_FRAMES=32 PLAYWORLD_TRAIN_STEPS=7000 bash scripts/run.sh room.mp4 scenes/room world

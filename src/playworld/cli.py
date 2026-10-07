@@ -49,15 +49,19 @@ def extract_frames(video: Path, scene: Path, num: int, max_size: int) -> None:
 
 
 def estimate_poses(scene: Path, vggt_dir: Path, use_ba: bool, python: str = sys.executable,
-                   confidence: float = 5.0) -> None:
+                   confidence: float = 5.0, shared_camera: bool = False, track_budget: int = 32768,
+                   reprojection_error: float = 8.0) -> None:
     import math
     if not math.isfinite(confidence) or confidence <= 0:
         raise ValueError("pose confidence must be a finite positive value")
     vggt_dir = vggt_dir.resolve()
-    cmd = [python, Path(vggt_dir) / "demo_colmap.py", f"--scene_dir={Path(scene).resolve()}",
+    cmd = [python, Path(__file__).with_name("vggt_runner.py"), "--vggt-dir", vggt_dir,
+           "--track-budget", str(track_budget), f"--scene_dir={Path(scene).resolve()}",
            f"--conf_thres_value={confidence}"]
     if use_ba:
-        cmd.append("--use_ba")
+        cmd.extend(["--use_ba", "--max_reproj_error", str(reprojection_error)])
+    if shared_camera:
+        cmd.append("--shared_camera")
     run(cmd, cwd=vggt_dir)
     from .colmap_io import read_model
     import numpy as np
@@ -117,6 +121,9 @@ def main(argv: list[str] | None = None) -> None:
     p.add_argument("--vggt-dir", type=Path, required=True)
     p.add_argument("--ba", action="store_true", help="bundle adjustment (slower, sharper)")
     p.add_argument("--pose-confidence", type=float, default=5.0, help="VGGT depth confidence threshold (without BA)")
+    p.add_argument("--shared-camera", action="store_true", help="share intrinsics for a capture made without zoom changes (BA)")
+    p.add_argument("--ba-track-budget", type=int, default=32768, help="maximum frame-point pairs per tracking batch (BA)")
+    p.add_argument("--ba-reprojection-error", type=float, default=8.0, help="initial reprojection inlier tolerance in pixels (BA)")
     p.add_argument("--python", default=sys.executable, help="interpreter of the VGGT environment")
 
     p = sub.add_parser("train")
@@ -152,6 +159,9 @@ def main(argv: list[str] | None = None) -> None:
     p.add_argument("--max-size", type=int, default=1280)
     p.add_argument("--ba", action="store_true")
     p.add_argument("--pose-confidence", type=float, default=5.0, help="VGGT depth confidence threshold (without BA)")
+    p.add_argument("--shared-camera", action="store_true", help="share intrinsics for a capture made without zoom changes (BA)")
+    p.add_argument("--ba-track-budget", type=int, default=32768, help="maximum frame-point pairs per tracking batch (BA)")
+    p.add_argument("--ba-reprojection-error", type=float, default=8.0, help="initial reprojection inlier tolerance in pixels (BA)")
     p.add_argument("--steps", type=int, default=7000)
     p.add_argument("--prompts", default=",".join(DEFAULT_PROMPTS), help="movable things; empty = static world only")
     p.add_argument("--vggt-python", default=sys.executable)
@@ -172,7 +182,7 @@ def main(argv: list[str] | None = None) -> None:
     if a.cmd == "frames":
         extract_frames(a.video, a.scene, a.num, a.max_size)
     elif a.cmd == "poses":
-        estimate_poses(a.scene, a.vggt_dir, a.ba, a.python, a.pose_confidence)
+        estimate_poses(a.scene, a.vggt_dir, a.ba, a.python, a.pose_confidence, a.shared_camera, a.ba_track_budget, a.ba_reprojection_error)
     elif a.cmd == "train":
         print(train_splats(a.scene, a.gsplat_dir, a.steps, a.python))
     elif a.cmd == "segment":
@@ -196,7 +206,7 @@ def main(argv: list[str] | None = None) -> None:
             return report.stage(name, fn, *args)
 
         stage("frames", extract_frames, a.video, a.scene, a.num, a.max_size)
-        stage("poses", estimate_poses, a.scene, a.vggt_dir, a.ba, a.vggt_python, a.pose_confidence)
+        stage("poses", estimate_poses, a.scene, a.vggt_dir, a.ba, a.vggt_python, a.pose_confidence, a.shared_camera, a.ba_track_budget, a.ba_reprojection_error)
         ply = stage("train", train_splats, a.scene, a.gsplat_dir, a.steps, a.gsplat_python)
         if ply is None:
             ply = report.stage("validate_reused_splats", latest_ply, a.scene)
