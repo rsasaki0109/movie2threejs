@@ -24,6 +24,17 @@ class Box:
         }
 
 
+def near_capture(points: np.ndarray, camera_centers: np.ndarray, margin: float) -> np.ndarray:
+    """Keep finite points within an explicit world-meter margin of the camera path."""
+    if not np.isfinite(margin) or margin <= 0:
+        raise ValueError('capture margin must be positive and finite')
+    cameras = np.asarray(camera_centers)
+    if cameras.ndim != 2 or cameras.shape[1] != 3 or not len(cameras) or not np.isfinite(cameras).all():
+        raise ValueError('finite camera centers are required for capture bounds')
+    lo, hi = cameras.min(axis=0) - margin, cameras.max(axis=0) + margin
+    return np.isfinite(points).all(axis=1) & np.all((points >= lo) & (points <= hi), axis=1)
+
+
 def greedy_boxes(grid: np.ndarray) -> list[tuple[np.ndarray, np.ndarray]]:
     """Cover occupied cells with axis-aligned boxes; returns (min_index, max_index_exclusive) pairs."""
     todo = grid.copy()

@@ -31,3 +31,16 @@ The hero uses the workbench excerpt `apartment-workshop.mp4`: start 5.0 s, reque
 The first two seconds of the hero show this public source beside the browser world. Text identifies it as **PUBLIC ROOM CAPTURE**. Camera movement, the pushed box, thrown ball and their collisions come from the browser viewer. Hidden faces use simple colored convex interiors; this does not invent photographic texture.
 
 The exact source trim is shared by the notebook and `scripts/download_public.py --workshop`. The source offset used for the split-screen comparison is recorded in `hero-provenance.json`. Keep `EYEFULTOWER-LICENSE.txt` with `hero.gif`, `hero.mp4` and any redistributed derivatives.
+
+## Additional room gallery
+
+All four additional examples use the same MIT-licensed Eyeful Tower dataset and camera-19 photograph-sequence videos. Their browser recordings are rendered from our VGGT/gsplat/SAM 3 reconstructions. No dataset ground-truth camera poses were supplied.
+
+| Demo | Dataset | Source trim (start / requested seconds) | Exact provenance |
+|---|---|---|---|
+| Meeting room | office1b | 0 / 2.75 | [Source and hashes](../demo-assets/meeting-room/source.json) |
+| Kitchen/cafe | kitchen | 14 / 6 | [Source and hashes](../demo-assets/cafe/source.json) |
+| Window office | office_view2 | 0 / 5.5 | [Source and hashes](../demo-assets/lounge/source.json) |
+| Furnished room | raf_furnishedroom | 0 / 3.5 | [Source and hashes](../demo-assets/furnished-room/source.json) |
+
+Each packaged viewer includes its room-specific source, attribution and MIT notice. Keep the dataset notice with all previews and exports. Model-weight licenses apply separately. The three Explore/Push/Throw GIF excerpts are from the original apartment workbench, rather than additional spaces.

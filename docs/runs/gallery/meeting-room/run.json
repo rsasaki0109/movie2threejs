@@ -1,0 +1,60 @@
+{
+  "format": "playworld-run/1",
+  "started_utc": "2026-10-07T10:45:23.779628+00:00",
+  "status": "failed",
+  "source": {
+    "kind": "video",
+    "name": "input.mp4",
+    "sha256": "f196d41d2298eddcd3ea34cced26080f6abe73af59f4d709eef228def80c5604",
+    "bytes": 4254449
+  },
+  "platform": "Linux-6.6.122+-x86_64-with-glibc2.39",
+  "python": "3.12.3",
+  "gpu": "NVIDIA L4, 23034 MiB, 580.82.07",
+  "settings": {
+    "cmd": "all",
+    "video": "/content/playworld-gallery-20261007/meeting-room/input.mp4",
+    "scene": "/content/playworld-gallery-20261007/meeting-room/scene",
+    "vggt_dir": "/content/playworld/.gpu/repos/vggt",
+    "gsplat_dir": "/content/playworld/.gpu/repos/gsplat",
+    "num": 16,
+    "max_size": 1024,
+    "ba": true,
+    "pose_confidence": 1.5,
+    "shared_camera": true,
+    "ba_track_budget": 8192,
+    "ba_reprojection_error": 32.0,
+    "steps": 4500,
+    "prompts": "office chair,laptop,water bottle",
+    "vggt_python": "/content/playworld-gallery-20261007/vggt-python",
+    "gsplat_python": "/content/playworld-gallery-20261007/gsplat-python",
+    "sam3_python": "/content/playworld-gallery-20261007/sam3-python",
+    "report": "/content/playworld-gallery-20261007/meeting-room/run.json",
+    "start_at": "frames",
+    "out": "/content/playworld-gallery-20261007/meeting-room/world",
+    "masks": null,
+    "eye_height": 1.5,
+    "voxel": 0.1
+  },
+  "stages": {
+    "frames": {
+      "status": "ok",
+      "started_utc": "2026-10-07T10:45:23.783254+00:00",
+      "seconds": 0.652,
+      "finished_utc": "2026-10-07T10:45:24.434853+00:00"
+    },
+    "poses": {
+      "status": "ok",
+      "started_utc": "2026-10-07T10:45:24.435247+00:00",
+      "seconds": 166.235,
+      "finished_utc": "2026-10-07T10:48:10.670310+00:00"
+    },
+    "train": {
+      "status": "failed",
+      "started_utc": "2026-10-07T10:48:10.670786+00:00",
+      "error": "CalledProcessError: Command '['/content/playworld-gallery-20261007/gsplat-python', '/content/playworld/.gpu/repos/gsplat/examples/simple_trainer.py', 'default', '--data-dir', '/content/playworld-gallery-20261007/meeting-room/scene', '--data-factor', '1', '--result-dir', '/content/playworld-gallery-20261007/meeting-room/scene/gs', '--max-steps', '4500', '--save-ply', '--ply-steps', '4500', '--eval-steps', '4500', '--save-steps', '4500', '--no-normalize-world-space', '--test-every', '8', '--disable-viewer', '--disable-video']' returned non-zero exit status 1.",
+      "seconds": 3.657,
+      "finished_utc": "2026-10-07T10:48:14.328129+00:00"
+    }
+  }
+}

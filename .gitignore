@@ -8,4 +8,5 @@ scenes/
 .gpu/
 recordings/
 world/
+_site/
 *.log

@@ -1,0 +1,15 @@
+{
+  "id": "furnished-room",
+  "title": "Furnished room",
+  "dataset": "raf_furnishedroom",
+  "camera": 19,
+  "start": 0,
+  "duration": 3.5,
+  "prompts": "chair,cushion,potted plant",
+  "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/raf_furnishedroom/images-jpeg-2k/19.mp4",
+  "kind": "capture-rig photograph sequence visualization",
+  "license": "MIT",
+  "license_revision": "06a01a4915afc872b893c20a025a0e14598c8478",
+  "source_sha256": "e83132dcdce81ecd909d9b61f6cb040498c4fc56a86d0bf7a9fde58006101bbd",
+  "input_sha256": "267f7093850cd0a63c2eed23960b92e1a694da04a7edbc502a2dade0517d28c2"
+}

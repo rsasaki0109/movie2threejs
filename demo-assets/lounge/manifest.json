@@ -1,0 +1,29 @@
+{
+  "source_world_sha256": "b610e8685a254b0aaf9dd03a26580e5a521553f0be2e1f15b42dbc11a094ce82",
+  "format": "antimatter15 .splat (DC color, 8-bit opacity/rotation)",
+  "higher_order_sh": "omitted for download size",
+  "files": [
+    {
+      "path": "background.splat",
+      "gaussians": 343002,
+      "bytes": 10976064,
+      "sha256": "eb290ea6c1d19f775befddbe2a9df31d48ec6ec6968e204f8aeaccac67edfaa9"
+    },
+    {
+      "path": "objects/1.splat",
+      "gaussians": 2597,
+      "bytes": 83104,
+      "sha256": "fa4c19909be0a70f7efe43afe05b68c9c5272bf6240d0201ab59514763da282c"
+    },
+    {
+      "path": "objects/5.splat",
+      "gaussians": 1190,
+      "bytes": 38080,
+      "sha256": "b197c1d410f6558e79dfa4dbd7cb893344c208843d1b331079ab87932a98e550"
+    }
+  ],
+  "gaussians": 346789,
+  "splat_bytes": 11097248,
+  "objects": 2,
+  "colliders": 4169
+}

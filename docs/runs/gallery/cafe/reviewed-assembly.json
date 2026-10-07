@@ -1,0 +1,38 @@
+{
+  "selection": "Manual browser review of reconstructed instances",
+  "kept_instance_ids": [
+    1,
+    2,
+    3,
+    9,
+    11,
+    12
+  ],
+  "original_sam_labels": {
+    "1": "chair",
+    "2": "chair 2",
+    "3": "chair 3",
+    "4": "chair 4",
+    "5": "chair 5",
+    "6": "chair 6",
+    "7": "chair 7",
+    "8": "potted plant",
+    "9": "potted plant 2",
+    "10": "potted plant 3",
+    "11": "potted plant 4",
+    "12": "potted plant 5"
+  },
+  "world_seconds": 3.386,
+  "stats": {
+    "cameras": 16,
+    "points": 27157,
+    "gaussians": 354237,
+    "input_gaussians": 358469,
+    "discarded_object_gaussians": 4232,
+    "objects": 6,
+    "colliders": 2520,
+    "support_patches": 5,
+    "floor_inliers": 2098,
+    "scale_m_per_unit": 4.37529
+  }
+}

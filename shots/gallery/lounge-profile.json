@@ -1,0 +1,37 @@
+{
+  "player": {
+    "spawn": [
+      1.6921,
+      0,
+      -1.47697
+    ],
+    "eye_height": 1.5,
+    "look_at": [
+      -1.706,
+      0.5478000000000001,
+      -2.2504
+    ],
+    "fov": 70
+  },
+  "demo": {
+    "id": "lounge",
+    "title": "Window office",
+    "description": "Explore the captured room. Push a cushion and throw a ball.",
+    "dataset": "office_view2",
+    "subject_id": 5,
+    "push_label": "Push the cushion",
+    "push": {
+      "origin": [
+        -1.37658,
+        0.51216,
+        -2.57973
+      ],
+      "target": [
+        -1.70573,
+        0.51216,
+        -2.25058
+      ],
+      "strength": 7
+    }
+  }
+}

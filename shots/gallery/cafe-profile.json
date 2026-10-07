@@ -1,0 +1,37 @@
+{
+  "player": {
+    "spawn": [
+      -3.30838,
+      0,
+      -2.0191
+    ],
+    "eye_height": 1.5,
+    "look_at": [
+      -2.9957,
+      0.75,
+      -2.7978
+    ],
+    "fov": 70
+  },
+  "demo": {
+    "id": "cafe",
+    "title": "Kitchen & cafe",
+    "description": "Explore the captured cafe. Push a chair and throw a ball.",
+    "dataset": "kitchen",
+    "subject_id": 1,
+    "push_label": "Push the chair",
+    "push": {
+      "origin": [
+        -3.40864,
+        0.71193,
+        -2.44354
+      ],
+      "target": [
+        -3.03218,
+        0.71193,
+        -2.82
+      ],
+      "strength": 7
+    }
+  }
+}

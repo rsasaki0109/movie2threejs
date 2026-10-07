@@ -2,6 +2,32 @@
 
 **Real room capture → a walkable, physical three.js world.**
 
+<table>
+<tr><th>Meeting room · push a chair</th><th>Kitchen & cafe · knock a chair over</th></tr>
+<tr>
+<td><a href="docs/live-demo.md"><img src="docs/demos/meeting-room.gif" width="480" alt="Walking into a real meeting room and pushing a captured chair over"></a></td>
+<td><a href="docs/live-demo.md"><img src="docs/demos/cafe.gif" width="480" alt="Walking inside a real cafe and knocking its captured chair over"></a></td>
+</tr>
+<tr><th>Window office · move a cushion</th><th>Furnished room · send a cushion flying</th></tr>
+<tr>
+<td><a href="docs/live-demo.md"><img src="docs/demos/lounge.gif" width="480" alt="Exploring a captured window office and pushing a cushion across the floor"></a></td>
+<td><a href="docs/live-demo.md"><img src="docs/demos/furnished-room.gif" width="480" alt="A captured room with a couch and lamp, with a cushion pushed off the couch"></a></td>
+</tr>
+</table>
+
+**Five real captures, five playable demos.** [Run the browser gallery locally](docs/live-demo.md) · [Measured runs](docs/benchmarks.md#additional-gallery-captures) · [Data & license](docs/data-attribution.md). These use public capture-rig photographs. Public hosting is on hold.
+
+<table>
+<tr><th>Explore</th><th>Push</th><th>Throw</th></tr>
+<tr>
+<td><img src="docs/demos/explore.gif" width="300" alt="Exploring the captured apartment workbench in first person"></td>
+<td><img src="docs/demos/push.gif" width="300" alt="A captured box falling off the workbench after a physics push"></td>
+<td><img src="docs/demos/throw.gif" width="300" alt="A ball thrown into the captured room in the physics viewer"></td>
+</tr>
+</table>
+
+Explore, push and throw excerpts above are three interactions in the same apartment workbench.
+
 [![Open Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/)
 Upload [the notebook](notebooks/playworld_colab.ipynb) and the current project ZIP. There is no public repository to clone yet.
 
@@ -42,6 +68,8 @@ The [GPU recipe](docs/gpu.md) and notebook share the same isolated VGGT, gsplat 
 For your own video, keep the phone upright, move slowly in a bright room, and capture the floor and the sides of objects. The pipeline accepts video input; a real smartphone capture has not been validated yet. Review floor height, masks and collisions before recording.
 
 The [recording workflow](docs/recording.md) uses a JSON timeline, fixed 1/60 s physics and Playwright canvas capture. [The hero shot](shots/hero.json) records camera positions, a push and a throw; its action ray is specified independently of the cinematic camera. Interactive walking uses Rapier's capsule character controller.
+
+The [static demo gallery](docs/live-demo.md) includes five actual captured spaces, with desktop and touch controls. The workbench is a 28 MB room download; the additional rooms use smaller packed exports. GitHub Pages publication is on hold while the repository stays private.
 
 ## Stages
 

@@ -1,0 +1,83 @@
+{
+  "format": "playworld-run/1",
+  "started_utc": "2026-10-07T11:37:27.294559+00:00",
+  "status": "ok",
+  "source": {
+    "kind": "video",
+    "name": "input.mp4",
+    "sha256": "267f7093850cd0a63c2eed23960b92e1a694da04a7edbc502a2dade0517d28c2",
+    "bytes": 8795027
+  },
+  "platform": "Linux-6.6.122+-x86_64-with-glibc2.39",
+  "python": "3.12.3",
+  "gpu": "NVIDIA L4, 23034 MiB, 580.82.07",
+  "settings": {
+    "cmd": "all",
+    "video": "/content/playworld-gallery-20261007/furnished-room/input.mp4",
+    "scene": "/content/playworld-gallery-20261007/furnished-room/scene",
+    "vggt_dir": "/content/playworld/.gpu/repos/vggt",
+    "gsplat_dir": "/content/playworld/.gpu/repos/gsplat",
+    "num": 16,
+    "max_size": 1024,
+    "ba": true,
+    "pose_confidence": 1.5,
+    "shared_camera": true,
+    "ba_track_budget": 8192,
+    "ba_reprojection_error": 32.0,
+    "steps": 4500,
+    "prompts": "chair,cushion,potted plant",
+    "vggt_python": "/content/playworld-gallery-20261007/vggt-python",
+    "gsplat_python": "/content/playworld-gallery-20261007/gsplat-python",
+    "sam3_python": "/content/playworld-gallery-20261007/sam3-python",
+    "report": "/content/playworld-gallery-20261007/furnished-room/run-resume-poses.json",
+    "start_at": "poses",
+    "out": "/content/playworld-gallery-20261007/furnished-room/world",
+    "masks": null,
+    "eye_height": 1.5,
+    "voxel": 0.1
+  },
+  "stages": {
+    "frames": {
+      "status": "reused",
+      "seconds": null
+    },
+    "poses": {
+      "status": "ok",
+      "started_utc": "2026-10-07T11:37:27.297169+00:00",
+      "seconds": 120.001,
+      "finished_utc": "2026-10-07T11:39:27.298201+00:00"
+    },
+    "train": {
+      "status": "ok",
+      "started_utc": "2026-10-07T11:39:27.298614+00:00",
+      "seconds": 67.721,
+      "finished_utc": "2026-10-07T11:40:35.019293+00:00"
+    },
+    "segment": {
+      "status": "ok",
+      "started_utc": "2026-10-07T11:40:35.019761+00:00",
+      "seconds": 35.912,
+      "finished_utc": "2026-10-07T11:41:10.931739+00:00"
+    },
+    "world": {
+      "status": "ok",
+      "started_utc": "2026-10-07T11:41:10.932458+00:00",
+      "seconds": 1.206,
+      "finished_utc": "2026-10-07T11:41:12.138749+00:00"
+    }
+  },
+  "finished_utc": "2026-10-07T11:41:12.139187+00:00",
+  "total_seconds": 224.899,
+  "stats": {
+    "cameras": 16,
+    "points": 13841,
+    "gaussians": 112529,
+    "input_gaussians": 112714,
+    "discarded_object_gaussians": 185,
+    "objects": 4,
+    "colliders": 1471,
+    "support_patches": 2,
+    "floor_inliers": 4232,
+    "scale_m_per_unit": 11.388525
+  }
+}

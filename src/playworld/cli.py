@@ -144,6 +144,7 @@ def main(argv: list[str] | None = None) -> None:
         p.add_argument("--masks", type=Path, help="per-frame instance masks (<stem>.npy + labels.json)")
         p.add_argument("--eye-height", type=float, default=1.5, help="phone height above floor in meters")
         p.add_argument("--voxel", type=float, default=0.1)
+        p.add_argument("--bounds-margin", type=float, help="crop distant points/splats outside the camera path plus this margin in assumed meters")
 
     p = sub.add_parser("world")
     p.add_argument("scene", type=Path)
@@ -189,7 +190,7 @@ def main(argv: list[str] | None = None) -> None:
         segment_objects(a.scene, a.prompts, a.python)
     elif a.cmd == "world":
         masks = a.masks or ((a.scene / "masks") if (a.scene / "masks" / "labels.json").exists() else None)
-        w = build_world(a.scene / "sparse", a.splats or latest_ply(a.scene), a.out, masks, a.eye_height, a.voxel)
+        w = build_world(a.scene / "sparse", a.splats or latest_ply(a.scene), a.out, masks, a.eye_height, a.voxel, bounds_margin=a.bounds_margin)
         print(json.dumps(w["stats"], indent=1))
     elif a.cmd == "all":
         from .run_report import RunReport
@@ -216,7 +217,7 @@ def main(argv: list[str] | None = None) -> None:
             masks = a.scene / "masks"
         else:
             report.data["stages"]["segment"] = {"status": "provided" if masks else "disabled", "seconds": None}
-        w = stage("world", build_world, a.scene / "sparse", ply, a.out, masks, a.eye_height, a.voxel)
+        w = stage("world", build_world, a.scene / "sparse", ply, a.out, masks, a.eye_height, a.voxel, 400.0, True, a.bounds_margin)
         report.finish(w)
         print(json.dumps(report.data, indent=1))
     elif a.cmd == "demo":

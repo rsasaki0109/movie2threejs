@@ -1,0 +1,18 @@
+{
+  "world_seconds": 2.82,
+  "bounds_margin_m": 6,
+  "stats": {
+    "cameras": 16,
+    "points": 21148,
+    "gaussians": 346789,
+    "input_gaussians": 359750,
+    "discarded_object_gaussians": 522,
+    "discarded_bounds_gaussians": 12439,
+    "bounds_margin_m": 6,
+    "objects": 2,
+    "colliders": 4169,
+    "support_patches": 0,
+    "floor_inliers": 3871,
+    "scale_m_per_unit": 6.996121
+  }
+}

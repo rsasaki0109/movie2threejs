@@ -1,0 +1,15 @@
+{
+  "id": "lounge",
+  "title": "Window office",
+  "dataset": "office_view2",
+  "camera": 19,
+  "start": 0,
+  "duration": 5.5,
+  "prompts": "chair,cushion,cardboard box",
+  "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/office_view2/images-jpeg-2k/19.mp4",
+  "kind": "capture-rig photograph sequence visualization",
+  "license": "MIT",
+  "license_revision": "06a01a4915afc872b893c20a025a0e14598c8478",
+  "source_sha256": "382285636ae78e742c5687d30c1a046f3527e450687cd8b0ecccf93a99b2bffd",
+  "input_sha256": "adfdd5f10a68d016b8629262ad4566cb65e1f4bdfdfaa9c2b096f787e4c5d7f1"
+}

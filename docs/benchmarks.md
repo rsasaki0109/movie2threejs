@@ -46,3 +46,24 @@ The local GTX 1660 Ti browser rendered 390 native 1920×1080 frames at a scripte
 [Hero validation](hero-validation.json) records the pushed box's **0.8593 m vertical drop**, 1.2808 m displacement, and inverted final orientation; character movement **1.1000 m**; one thrown ball. Two replays matched at 12 sampled physics states and their first/last PNGs. Every sampled state also matches the complete capture. This does not claim that the ball knocked a mug or bottle off the table.
 
 The final GIF is 960×540 and below 8,000,000 bytes; the MP4 is 1920×1080. Exact measured durations, sizes and SHA-256 values are in [hero-validation.json](hero-validation.json) and [encoding provenance](hero-provenance.json).
+
+## Additional gallery captures
+
+Four additional public camera-19 sequences ran on the same existing NVIDIA L4, with cached weights, 16 frames at 1024 pixels, 4,500 gsplat steps, bundle adjustment, a shared camera and an 8,192 frame-point tracking budget. These are distinct real spaces, not different views of the apartment workbench.
+
+Initial attempts exhausted memory while another job used the shared GPU. No other process or runtime was stopped. Successful stages were reused after free memory returned. The table lists measured successful stages from the preserved reports; it does **not** describe a single uninterrupted wall-clock conversion. Setup, failed attempts, queueing and browser recording are separate.
+
+| Capture | Frames s | Poses s | Train s | Segment s | First world s | Final objects | Final colliders |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| [Meeting room](runs/gallery/meeting-room/run-resume-segment.json) | 0.652 | 166.235 | 120.855 | 94.073 | 1.660 | 1 | 1,139 |
+| [Kitchen/cafe](runs/gallery/cafe/run-resume-poses.json) | 0.796 | 239.557 | 85.557 | 52.773 | 2.982 | 6 | 2,520 |
+| [Window office](runs/gallery/lounge/run-resume-poses.json) | 0.911 | 147.269 | 80.370 | 35.394 | 2.716 | 2 | 4,169 |
+| [Furnished room](runs/gallery/furnished-room/run-resume-poses.json) | 0.787 | 120.001 | 67.721 | 35.912 | 1.206 | 4 | 1,471 |
+
+Meeting-room poses and training succeeded in [earlier](runs/gallery/meeting-room/run.json) [invocations](runs/gallery/meeting-room/run-resume-train.json). Raw reports retain the wrapper-import failure and out-of-memory failures. The cafe, window-office and furnished-room successful invocations reused the already extracted frames and took 380.923 s, 265.825 s and 224.899 s respectively.
+
+Browser review rejected unstable/fragmentary SAM instances. The meeting room was rebuilt with chair instance 9 only ([1.316 s assembly](runs/gallery/meeting-room/reviewed-assembly.json)); the cafe keeps six reviewed instances ([3.386 s assembly](runs/gallery/cafe/reviewed-assembly.json)). Other captured furniture stays static. This selection is manual, not a claim of automatic perfect segmentation.
+
+The window office initially produced enormous collision boxes: distant sparse points expanded voxel bounds and forced excessive coarsening. Rebuilding with a 6 m margin around the aligned camera path excluded 12,439 distant Gaussians and clipped collision/support inputs ([2.820 s assembly](runs/gallery/lounge/bounded-assembly.json)). The default pipeline does not crop unless `--bounds-margin` is set. The synthetic-room regression checks that distant outliers cannot enlarge the bounded room or remove its chair, crate and mug.
+
+Local native GTX 1660 Ti capture produced 120 frames per additional room, at 1280×720 and scripted 15 fps. Capture times were 86.168 s (meeting room), 53.871 s (cafe), 49.178 s (window office) and 51.267 s (furnished room); this is separate from reconstruction. Each preview lasts 8 s and uses fixed 60 Hz physics. [Gallery checks](gallery-validation.json) confirm a hit on the designated object, visible movement, walking, one thrown ball and identical replay states in every room. These previews show approximate masks, blur and simple colored unseen interiors; they are not a photorealism benchmark.

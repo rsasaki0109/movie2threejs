@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Walk inside a real captured room, knock a box off the workbench, and throw a ball. A three.js world with Gaussian splats and physics.">
+<meta property="og:title" content="playworld — walk inside a real room">
+<meta property="og:description" content="A real room capture becomes a walkable, physical three.js world. Try it in your browser.">
+<meta property="og:image" content="https://rsasaki0109.github.io/movie2threejs/hero.gif">
+<title>playworld · Live room demo</title>
+<link rel="stylesheet" href="./style.css">
+<script type="importmap">
+{"imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/",
+  "@sparkjsdev/spark": "https://cdn.jsdelivr.net/npm/@sparkjsdev/spark@2.3.1/dist/spark.module.js",
+  "@dimforge/rapier3d-compat": "https://cdn.jsdelivr.net/npm/@dimforge/rapier3d-compat@0.21.0/dist/rapier.mjs"
+}}
+</script>
+</head>
+<body>
+<header><a class="brand" href="./">playworld<span>LIVE ROOM</span></a><a href="https://github.com/rsasaki0109/movie2threejs" target="_blank" rel="noopener">View on GitHub ↗</a></header>
+<div id="start"><section class="intro">
+  <p class="eyebrow">REAL CAPTURE. REAL PHYSICS.</p>
+  <h1>Step into the room.<br>Knock things over.</h1>
+  <p class="lede">This apartment was photographed. Now you can walk inside it and move what’s on the workbench.</p>
+  <button id="play" disabled>Enter room <span>→</span></button>
+  <p id="status" role="status" aria-live="polite">Loading room…</p>
+  <p class="help desktop"><kbd>WASD</kbd> walk · mouse look · <kbd>E</kbd> push · click throw<br><kbd>Space</kbd> jump · <kbd>R</kbd> reset · <kbd>Esc</kbd> release mouse</p>
+  <p class="help mobile">Swipe to look · arrows to walk · buttons to push or throw</p>
+  <a class="preview" href="./hero.mp4" target="_blank">Watch the 13-second preview ↗</a>
+</section></div>
+<div id="cross" aria-hidden="true"></div>
+<div id="hud" class="desktop"><kbd>WASD</kbd> walk · <kbd>E</kbd> push · click throw · <kbd>R</kbd> reset · <kbd>Esc</kbd> menu</div>
+<aside id="actions"><button id="featured-push" disabled>Knock the box over</button><button id="reset-world" disabled>Reset room</button></aside>
+<div id="touch" class="hidden">
+  <div class="arrows"><button data-key="KeyW" class="up" aria-label="Walk forward">↑</button><button data-key="KeyA" aria-label="Walk left">←</button><button data-key="KeyS" aria-label="Walk backward">↓</button><button data-key="KeyD" aria-label="Walk right">→</button></div>
+  <div class="touch-actions"><button id="touch-push">Push</button><button id="touch-throw">Throw</button></div>
+</div>
+<footer><a href="./credits.html" target="_blank">Eyeful Tower apartment · MIT data ↗</a><span>Approximate hidden surfaces · best on desktop</span></footer>
+<script type="module" src="./main.js"></script>
+<script type="module" src="./controls.js"></script>
+</body>
+</html>

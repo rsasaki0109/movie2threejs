@@ -1,0 +1,60 @@
+name: Deploy live demo
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - 'demo-assets/**'
+      - 'web/**'
+      - 'src/playworld/viewer/**'
+      - 'scripts/build_demo.py'
+      - 'scripts/build_gallery.py'
+      - 'docs/hero.*'
+      - 'docs/demos/**'
+      - 'docs/data-attribution.md'
+      - 'docs/EYEFULTOWER-LICENSE.txt'
+      - 'shots/hero.json'
+      - 'shots/gallery/**'
+      - '.github/workflows/pages.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    # This account's current plan supports Pages only for public repositories.
+    if: github.event.repository.private == false
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: read
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: Install project
+        run: python -m pip install -e .
+      - name: Assemble static site
+        run: python scripts/build_gallery.py
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: _site
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,0 +1,16 @@
+{
+  "source": "apartment-camera19.mp4",
+  "source_sha256": "adc56a3cf265dd420cc195254a83c69603a2f3fcd37288e52f68dc41da7e0989",
+  "derived": "apartment-workshop.mp4",
+  "sha256": "a0a387a1af7f8483d8c5d13861dc17907054784f090a4c26e8370624b4e4263e",
+  "start_seconds": 5.0,
+  "requested_duration_seconds": 4.2,
+  "measured_duration_seconds": 4.25,
+  "bytes": 9199102,
+  "license": "MIT",
+  "kind": "trimmed capture-rig photograph sequence visualization",
+  "dataset": "apartment",
+  "camera": 19,
+  "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/apartment/images-jpeg-2k/19.mp4",
+  "license_revision": "06a01a4915afc872b893c20a025a0e14598c8478"
+}

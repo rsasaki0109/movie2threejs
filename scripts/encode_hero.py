@@ -21,15 +21,15 @@ def sha256(path):
     return digest.hexdigest()
 
 
-def encode_with_gifski(executable, mp4, gif, fps, quality, motion, lossy):
+def encode_with_gifski(executable, mp4, gif, fps, quality, motion, lossy, width=960):
     producer = subprocess.Popen([
         "ffmpeg", "-hide_banner", "-loglevel", "error", "-i", str(mp4),
-        "-vf", f"fps={fps},scale=960:-2:flags=lanczos:out_color_matrix=bt709:out_range=tv",
+        "-vf", f"fps={fps},scale={width}:-2:flags=lanczos:out_color_matrix=bt709:out_range=tv",
         "-pix_fmt", "yuv420p", "-f", "yuv4mpegpipe", "-",
     ], stdout=subprocess.PIPE)
     try:
         consumer = subprocess.Popen([
-            str(executable), "--quiet", "--fps", str(fps), "--width", "960", "--quality", str(quality),
+            str(executable), "--quiet", "--fps", str(fps), "--width", str(width), "--quality", str(quality),
             "--motion-quality", str(motion), "--lossy-quality", str(lossy), "--repeat", "0",
             "--y4m-color-override", "bt709", "-o", str(gif), "-",
         ], stdin=producer.stdout)

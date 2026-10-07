@@ -1,0 +1,15 @@
+{
+  "id": "meeting-room",
+  "title": "Meeting room",
+  "dataset": "office1b",
+  "camera": 19,
+  "start": 0,
+  "duration": 2.75,
+  "prompts": "office chair,laptop,water bottle",
+  "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/office1b/images-jpeg-2k/19.mp4",
+  "kind": "capture-rig photograph sequence visualization",
+  "license": "MIT",
+  "license_revision": "06a01a4915afc872b893c20a025a0e14598c8478",
+  "source_sha256": "f8dc052fad4ea50f469e6e84edcf28464ce1c7d1a107289dd4995f3fd91f0372",
+  "input_sha256": "f196d41d2298eddcd3ea34cced26080f6abe73af59f4d709eef228def80c5604"
+}

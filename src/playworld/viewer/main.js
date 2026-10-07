@@ -23,7 +23,9 @@ const STEP = 1 / 60;
 
 async function main() {
   setStatus("loading world.json…");
-  const world = await (await fetch(base + "world.json")).json();
+  const response = await fetch(base + "world.json");
+  if (!response.ok) throw new Error(`world HTTP ${response.status}`);
+  const world = await response.json();
   let shot = null;
   if (recording) {
     const response = await fetch(params.get("record"));
@@ -43,7 +45,7 @@ async function main() {
   const scene = new THREE.Scene();
   scene.background = new THREE.Color(0x202024);
   scene.add(new THREE.HemisphereLight(0xffffff, 0x444444, 2.0));
-  const camera = new THREE.PerspectiveCamera(shot?.fov ?? 70, innerWidth / innerHeight, 0.03, 500);
+  const camera = new THREE.PerspectiveCamera(shot?.fov ?? world.player.fov ?? 70, innerWidth / innerHeight, 0.03, 500);
   const spark = new SparkRenderer({ renderer, autoUpdate: !recording, preUpdate: !recording, enableLod: !recording });
   if (recording) spark.minSortIntervalMs = 0;
   scene.add(spark);
@@ -64,8 +66,13 @@ async function main() {
 
   const align = new THREE.Matrix4().fromArray(world.align);
   const loading = [];
+  const downloads = new Map();
   const splat = (url, matrix) => {
-    const mesh = new SplatMesh({ url: base + url });
+    const mesh = new SplatMesh({ url: base + url, onProgress: event => {
+      downloads.set(url, event.loaded);
+      const mb = [...downloads.values()].reduce((sum, bytes) => sum + bytes, 0) / 1e6;
+      setStatus(`Loading room… ${mb.toFixed(1)} MB`);
+    } });
     mesh.matrixAutoUpdate = false;
     mesh.matrix.copy(matrix);
     mesh.matrixWorldNeedsUpdate = true;
@@ -119,13 +126,27 @@ async function main() {
 
   // --- input ---------------------------------------------------------------
   const controls = new PointerLockControls(camera, document.body);
-  startEl.addEventListener("click", () => controls.lock());
+  let touchActive = false;
+  const playButton = document.getElementById("play") ?? startEl;
+  playButton.addEventListener("click", () => {
+    if (!window.playworld?.ready) return;
+    if (matchMedia("(pointer: coarse)").matches && document.getElementById("touch")) {
+      touchActive = true;
+      startEl.classList.add("hidden");
+      document.getElementById("touch").classList.remove("hidden");
+    } else controls.lock();
+  });
   controls.addEventListener("lock", () => startEl.classList.add("hidden"));
   controls.addEventListener("unlock", () => startEl.classList.remove("hidden"));
+  document.addEventListener("pointerlockerror", () => setStatus("Mouse capture failed. Open the demo directly in a new tab and try again."));
   const keys = new Set();
+  controls.addEventListener("unlock", () => keys.clear());
+  addEventListener("blur", () => keys.clear());
+  document.addEventListener("visibilitychange", () => { if (document.hidden) keys.clear(); });
   addEventListener("keydown", (e) => {
     if (recording) return;
     keys.add(e.code);
+    if (e.code === "Escape") controls.unlock();
     if (e.code === "KeyC") toggleDebug();
     if (e.code === "KeyR") reset();
     if (e.code === "KeyE") push();
@@ -230,11 +251,20 @@ async function main() {
     }
   }
   camera.position.set(sx, standY + eyeOffset, sz);
+  if (world.player.look_at) camera.lookAt(new THREE.Vector3().fromArray(world.player.look_at));
 
   setStatus(`loading ${1 + objects.length} splats…`);
   await Promise.all(loading);
   setStatus(`${world.objects.length} physical objects · ${world.colliders.length} static colliders`);
-  window.playworld = { world, phys, objects, camera, controls, renderer, push, throwBall, reset, freeCamera: recording };
+  window.playworld = { world, phys, objects, camera, controls, renderer, push, throwBall, reset, freeCamera: recording,
+    setMoveKey(code, down) { if (down) keys.add(code); else keys.delete(code); },
+    lookBy(dx, dy) {
+      const euler = new THREE.Euler().setFromQuaternion(camera.quaternion, "YXZ");
+      euler.y -= dx * .004;
+      euler.x = Math.max(-Math.PI / 2 + .05, Math.min(Math.PI / 2 - .05, euler.x - dy * .004));
+      camera.quaternion.setFromEuler(euler);
+    }
+  };
   if (recording) {
     let tick = 0, frameIndex = 0, nextEvent = 0, busy = false;
     const events = orderedEvents(shot.events);
@@ -289,11 +319,18 @@ async function main() {
       }
     };
   } else {
+    // Show the fully sorted room before enabling entry, including slow GPUs.
+    syncMeshes();
+    scene.updateMatrixWorld(true);
+    camera.updateMatrixWorld(true);
+    await spark.update({ scene, camera });
+    renderer.render(scene, camera);
+    last = performance.now();
     function frame(now) {
       acc += Math.min((now - last) / 1000, 0.1);
       last = now;
       while (acc >= STEP) {
-        if (controls.isLocked) stepPlayer(STEP);
+        if (controls.isLocked || touchActive) stepPlayer(STEP);
         phys.step();
         acc -= STEP;
       }
@@ -304,6 +341,8 @@ async function main() {
     requestAnimationFrame(frame);
   }
   window.playworld.ready = true;
+  if (playButton instanceof HTMLButtonElement) playButton.disabled = false;
+  dispatchEvent(new Event("playworldready"));
 }
 
 main().catch((e) => { console.error(e); window.playworldError = e.stack ?? e.message; setStatus("error: " + e.message); });

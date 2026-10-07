@@ -1,0 +1,57 @@
+[
+  {
+    "id": "workbench",
+    "title": "Apartment workbench",
+    "description": "Push a box off the workbench. Throw a ball into the room.",
+    "alt": "Actual captured apartment workbench with a box pushed over in the physics viewer",
+    "objects": 8,
+    "download_mb": 28.0,
+    "gif": "docs/hero.gif",
+    "video": "docs/hero.mp4",
+    "shot": "shots/hero.json"
+  },
+  {
+    "id": "meeting-room",
+    "title": "Meeting room",
+    "description": "Push a captured office chair over.",
+    "objects": 1,
+    "download_mb": 4.0,
+    "alt": "Push a captured office chair over.",
+    "gif": "docs/demos/meeting-room.gif",
+    "video": "docs/demos/meeting-room.mp4",
+    "shot": "shots/gallery/meeting-room.json"
+  },
+  {
+    "id": "cafe",
+    "title": "Kitchen & cafe",
+    "description": "Knock a chair over in a real cafe.",
+    "objects": 6,
+    "download_mb": 11.3,
+    "alt": "Knock a chair over in a real cafe.",
+    "gif": "docs/demos/cafe.gif",
+    "video": "docs/demos/cafe.mp4",
+    "shot": "shots/gallery/cafe.json"
+  },
+  {
+    "id": "lounge",
+    "title": "Window office",
+    "description": "Move a cushion across the captured office.",
+    "objects": 2,
+    "download_mb": 11.1,
+    "alt": "Move a cushion across the captured office.",
+    "gif": "docs/demos/lounge.gif",
+    "video": "docs/demos/lounge.mp4",
+    "shot": "shots/gallery/lounge.json"
+  },
+  {
+    "id": "furnished-room",
+    "title": "Furnished room",
+    "description": "Push a cushion off the captured couch.",
+    "objects": 4,
+    "download_mb": 3.6,
+    "alt": "Push a cushion off the captured couch.",
+    "gif": "docs/demos/furnished-room.gif",
+    "video": "docs/demos/furnished-room.mp4",
+    "shot": "shots/gallery/furnished-room.json"
+  }
+]

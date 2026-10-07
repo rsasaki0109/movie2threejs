@@ -1,0 +1,82 @@
+{
+  "scope": "Local Chromium under a GitHub Pages-style path; no public deployment",
+  "demos": [
+    {
+      "id": "workbench",
+      "objects": 8,
+      "colliders": 1928,
+      "deterministic_replay": true,
+      "subject_id": 6,
+      "movement_after_push_m": 1.2807677503131412,
+      "initial_settling_m": 0.059322829252674875,
+      "scripted_character_movement_m": 1.0637316547480995,
+      "interactive_character_movement_m": 1.1363365086392558,
+      "balls": 1,
+      "featured_button": true,
+      "world_sha256": "d7277180993988d474ecd2ad9ec30a8508485d27af10a2fa44cc7d9470006871",
+      "shot_sha256": "4f872eb76881297708acbcc577d17b64fbcb66e0605ce7a287eed20874cdb150"
+    },
+    {
+      "id": "meeting-room",
+      "objects": 1,
+      "colliders": 1139,
+      "deterministic_replay": true,
+      "subject_id": 9,
+      "movement_after_push_m": 1.7696552231706821,
+      "initial_settling_m": 0.005638320057351331,
+      "scripted_character_movement_m": 0.1700980163757724,
+      "interactive_character_movement_m": 0.6182711754594137,
+      "balls": 1,
+      "featured_button": true,
+      "world_sha256": "6aba14cf53ecadff06f61a018ae9907d05010f7fb2d1f562413cc9e97e270b74",
+      "shot_sha256": "981de19eff6a8036b4f16a07c1f019070cbfad35d79d8ef1d28cdda5872f2867"
+    },
+    {
+      "id": "cafe",
+      "objects": 6,
+      "colliders": 2520,
+      "deterministic_replay": true,
+      "subject_id": 1,
+      "movement_after_push_m": 0.9325038969839552,
+      "initial_settling_m": 0.04512414735906166,
+      "scripted_character_movement_m": 0.5155559462864382,
+      "interactive_character_movement_m": 1.1366405019736698,
+      "balls": 1,
+      "featured_button": true,
+      "world_sha256": "0891f903dcf28fd2a830aec691ccc29580cb3511f87d1cc17341d479a38e6c48",
+      "shot_sha256": "1014b3ac8a47f1eb36295af8b319696ef35c39ff8ecec9e5c06e3f3764daae6a"
+    },
+    {
+      "id": "lounge",
+      "objects": 2,
+      "colliders": 4169,
+      "deterministic_replay": true,
+      "subject_id": 5,
+      "movement_after_push_m": 1.4600224569405873,
+      "initial_settling_m": 0.005115250679550589,
+      "scripted_character_movement_m": 0.514269430212408,
+      "interactive_character_movement_m": 1.0655608265852947,
+      "balls": 1,
+      "featured_button": true,
+      "world_sha256": "2d374c48840dc6595267445d1de85893e4f943060289ebbaf35a5041b938e1c3",
+      "shot_sha256": "3a87ae61a9847996cc8a8804ee197ed33d7ffdfa1b54d90527e8accdd5746b7d"
+    },
+    {
+      "id": "furnished-room",
+      "objects": 4,
+      "colliders": 1471,
+      "deterministic_replay": true,
+      "subject_id": 5,
+      "movement_after_push_m": 2.3544889701495393,
+      "initial_settling_m": 0.006355280878349228,
+      "scripted_character_movement_m": 0.5507291031755011,
+      "interactive_character_movement_m": 0.9925504827359505,
+      "balls": 1,
+      "featured_button": true,
+      "world_sha256": "6864c27c74ca0d2e07ce7b44bdd0ea4f8276b3b619417ff42772c113a9e829b3",
+      "shot_sha256": "ac84a83f82b4f6c494305e7751d4560d6414ccfc4a834ba95d5f21f9625eed0a"
+    }
+  ],
+  "gallery_mobile_overflow": false,
+  "browser_errors": []
+}

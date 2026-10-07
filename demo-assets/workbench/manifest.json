@@ -1,0 +1,65 @@
+{
+  "source_world_sha256": "47f6bfd231442f38d7b1c42678130c4431fc096079f270d05a6d300bc59e2834",
+  "format": "antimatter15 .splat (DC color, 8-bit opacity/rotation)",
+  "higher_order_sh": "omitted for download size",
+  "files": [
+    {
+      "path": "background.splat",
+      "gaussians": 858713,
+      "bytes": 27478816,
+      "sha256": "4efa9956b4ac3039b5c61a5a077747319868649e77feb15106d3f953caebb44d"
+    },
+    {
+      "path": "objects/2.splat",
+      "gaussians": 451,
+      "bytes": 14432,
+      "sha256": "4e787817557d0a4121b53990cc62cdb14a44e3db67c9e4e0af3666858d377730"
+    },
+    {
+      "path": "objects/3.splat",
+      "gaussians": 2998,
+      "bytes": 95936,
+      "sha256": "adc2c1a936a13341edae6d2cfe28fef92cdc009db34a046b3d211263a9aedcb2"
+    },
+    {
+      "path": "objects/4.splat",
+      "gaussians": 1178,
+      "bytes": 37696,
+      "sha256": "3926c723e1740afa383465b81beaf4af6b84e18b993db80d3a1d063ea93f99fc"
+    },
+    {
+      "path": "objects/5.splat",
+      "gaussians": 1647,
+      "bytes": 52704,
+      "sha256": "af73c241eca375a2eeb6622b912db8163285c52c13bd2bb5513d8462cf788baa"
+    },
+    {
+      "path": "objects/6.splat",
+      "gaussians": 7634,
+      "bytes": 244288,
+      "sha256": "13e1fc84892e58809abec5ea8782e87be17c4f56da31cedcbc12bfac6b6a37dc"
+    },
+    {
+      "path": "objects/7.splat",
+      "gaussians": 1644,
+      "bytes": 52608,
+      "sha256": "a246adf8ef0388d9ff165f48847460347f07ca5253fa35353bee9ec47e72c771"
+    },
+    {
+      "path": "objects/8.splat",
+      "gaussians": 661,
+      "bytes": 21152,
+      "sha256": "aa0c88589f006d544fa89b75c10011b2c56975600e3f038e9f0ca3094e6721ed"
+    },
+    {
+      "path": "objects/9.splat",
+      "gaussians": 317,
+      "bytes": 10144,
+      "sha256": "08f053a80c30bd85e4b5b03b1923ba53c23e4045b53c46287e082a0b1b79fee0"
+    }
+  ],
+  "gaussians": 875243,
+  "splat_bytes": 28007776,
+  "objects": 8,
+  "colliders": 1928
+}

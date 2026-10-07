@@ -1,0 +1,50 @@
+{
+  "source": "docs/hero.mp4",
+  "source_sha256": "defcac69fc7d8bcbb0fcfe0d5a8e90051ba4794db5efdf32775cc9e8d817c358",
+  "scope": "Three interaction excerpts from the same measured apartment workbench, not three different reconstructions",
+  "width": 480,
+  "clips": [
+    {
+      "name": "explore",
+      "source_start_seconds": 2.0,
+      "requested_duration_seconds": 3.8,
+      "fps": 15,
+      "colors": null,
+      "quality": 65,
+      "encoder": "gifski",
+      "gif_bytes": 1393953,
+      "gif_sha256": "fe50cfd699213db16653ead9fa09516ae82b77a3dab97a9d271821029806c0e9",
+      "measured_duration_seconds": 3.8,
+      "width": 480,
+      "height": 270
+    },
+    {
+      "name": "push",
+      "source_start_seconds": 5.5,
+      "requested_duration_seconds": 2.8,
+      "fps": 15,
+      "colors": null,
+      "quality": 80,
+      "encoder": "gifski",
+      "gif_bytes": 1141395,
+      "gif_sha256": "e1b312c11a318959f7d336e92c7f2694c4d3e1c5b35b6a949aa2e377149d81c9",
+      "measured_duration_seconds": 2.8,
+      "width": 480,
+      "height": 270
+    },
+    {
+      "name": "throw",
+      "source_start_seconds": 8.3,
+      "requested_duration_seconds": 2.7,
+      "fps": 15,
+      "colors": null,
+      "quality": 80,
+      "encoder": "gifski",
+      "gif_bytes": 1195410,
+      "gif_sha256": "1dd7519c83a5b689d091f006a0d336cc58c5cfe028b4b77f0814bdea77d770e0",
+      "measured_duration_seconds": 2.73,
+      "width": 480,
+      "height": 270
+    }
+  ]
+}

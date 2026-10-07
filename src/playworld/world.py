@@ -47,6 +47,7 @@ def build_world(
     voxel: float = 0.1,
     density: float = 400.0,
     copy_viewer: bool = True,
+    bounds_margin: float | None = None,
 ) -> dict:
     out_dir = Path(out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
@@ -74,11 +75,17 @@ def build_world(
 
     g_world = gravity.apply(T, g_means)
     p_world = gravity.apply(T, rec.xyz)
+    within_bounds = np.ones(len(g_world), dtype=bool)
+    if bounds_margin is not None:
+        aligned_cameras = gravity.apply(T, centers)
+        within_bounds = colliders.near_capture(g_world, aligned_cameras, bounds_margin)
+        labels[~within_bounds] = -1
+        point_labels[~colliders.near_capture(p_world, aligned_cameras, bounds_margin)] = -1
     world_scale = np.linalg.norm(T[:3, 0])
     sizes = splat_io.max_scale(splats) * world_scale
     # A rigid body must not carry distant or very broad segmentation spill.
     # Discard those splats rather than leaving a static ghost at its old pose.
-    for label in sorted(set(np.unique(labels)) - {0}):
+    for label in sorted(set(np.unique(labels)) - {0, -1}):
         ids = np.flatnonzero(labels == label)
         clean = objects.movable_splat_mask(g_world[ids], sizes[ids])
         if clean.sum() >= 8:
@@ -159,7 +166,9 @@ def build_world(
             "points": int(len(rec.xyz)),
             "gaussians": int((labels >= 0).sum()),
             "input_gaussians": int(len(g_means)),
-            "discarded_object_gaussians": int((labels < 0).sum()),
+            "discarded_object_gaussians": int(((labels < 0) & within_bounds).sum()),
+            "discarded_bounds_gaussians": int((~within_bounds).sum()),
+            "bounds_margin_m": bounds_margin,
             "objects": len(world_objects),
             "colliders": len(boxes),
             "support_patches": len(patches),

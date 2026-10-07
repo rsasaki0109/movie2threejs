@@ -1,0 +1,38 @@
+{
+  "selection": "Manual browser review of reconstructed instances",
+  "kept_instance_ids": [
+    9
+  ],
+  "original_sam_labels": {
+    "1": "office chair",
+    "2": "office chair 2",
+    "3": "office chair 3",
+    "4": "office chair 4",
+    "5": "office chair 5",
+    "6": "office chair 6",
+    "7": "office chair 7",
+    "8": "office chair 8",
+    "9": "office chair 9",
+    "10": "office chair 10",
+    "11": "office chair 11",
+    "12": "office chair 12",
+    "13": "office chair 13",
+    "14": "office chair 14",
+    "15": "office chair 15",
+    "16": "laptop",
+    "17": "water bottle"
+  },
+  "world_seconds": 1.316,
+  "stats": {
+    "cameras": 16,
+    "points": 16250,
+    "gaussians": 125477,
+    "input_gaussians": 125952,
+    "discarded_object_gaussians": 475,
+    "objects": 1,
+    "colliders": 1139,
+    "support_patches": 0,
+    "floor_inliers": 519,
+    "scale_m_per_unit": 3.292917
+  }
+}

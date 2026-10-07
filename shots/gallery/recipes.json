@@ -1,0 +1,6 @@
+[
+  {"id":"meeting-room","title":"Meeting room","dataset":"office1b","camera":19,"start":0,"duration":2.75,"prompts":"office chair,laptop,water bottle"},
+  {"id":"cafe","title":"Kitchen & cafe","dataset":"kitchen","camera":19,"start":14,"duration":6,"prompts":"chair,potted plant,water bottle"},
+  {"id":"lounge","title":"Window office","dataset":"office_view2","camera":19,"start":0,"duration":5.5,"prompts":"chair,cushion,cardboard box"},
+  {"id":"furnished-room","title":"Furnished room","dataset":"raf_furnishedroom","camera":19,"start":0,"duration":3.5,"prompts":"chair,cushion,potted plant"}
+]
