@@ -1,0 +1,6 @@
+__pycache__/
+*.egg-info/
+.venv/
+demo_world/
+scenes/
+.pytest_cache/

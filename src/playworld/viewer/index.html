@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>playworld</title>
+<style>
+  html, body { margin: 0; height: 100%; overflow: hidden; background: #111; color: #eee; font: 14px/1.4 system-ui, sans-serif; }
+  #hud { position: fixed; left: 12px; bottom: 12px; padding: 8px 12px; background: rgba(0,0,0,.55); border-radius: 8px; pointer-events: none; }
+  #start { position: fixed; inset: 0; display: grid; place-items: center; background: rgba(0,0,0,.5); cursor: pointer; }
+  #start div { max-width: 360px; text-align: center; }
+  #start.hidden { display: none; }
+  #cross { position: fixed; left: 50%; top: 50%; width: 6px; height: 6px; margin: -3px; border-radius: 50%; background: #fff8; pointer-events: none; }
+  kbd { padding: 0 4px; border: 1px solid #888; border-radius: 3px; }
+</style>
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/",
+    "@sparkjsdev/spark": "https://cdn.jsdelivr.net/npm/@sparkjsdev/spark@2.3.1/dist/spark.module.js",
+    "@dimforge/rapier3d-compat": "https://cdn.jsdelivr.net/npm/@dimforge/rapier3d-compat@0.21.0/dist/rapier.mjs"
+  }
+}
+</script>
+</head>
+<body>
+<div id="start"><div><h2>playworld</h2><p id="status">loading…</p><p>Click to play</p></div></div>
+<div id="cross"></div>
+<div id="hud"><kbd>WASD</kbd> move · <kbd>Space</kbd> jump · <kbd>Click</kbd> throw · <kbd>E</kbd> push · <kbd>R</kbd> reset · <kbd>C</kbd> colliders</div>
+<script type="module" src="./main.js"></script>
+</body>
+</html>
