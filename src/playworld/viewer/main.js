@@ -13,6 +13,8 @@ const setStatus = (s) => { statusEl.textContent = s; };
 const params = new URLSearchParams(location.search);
 const base = (params.get("world") ?? ".").replace(/\/?$/, "/");
 const recording = params.has("record");
+// Colab's preview proxy can reject pointer lock even in a separate window.
+const dragMode = params.get("controls") === "drag";
 
 const PLAYER_RADIUS = 0.25;
 const PLAYER_HALF = 0.5; // capsule half-height (without the caps)
@@ -157,10 +159,37 @@ async function main() {
   // --- input ---------------------------------------------------------------
   const controls = new PointerLockControls(camera, document.body);
   let touchActive = false;
+  let dragActive = false;
+  let dragging = false;
+  let lastPointer = null;
+  if (dragMode && !recording) {
+    document.getElementById("hud").textContent = "Drag to look · WASD move · Space jump · F throw · E push · R reset · Esc pause";
+    renderer.domElement.addEventListener("pointerdown", (event) => {
+      if (!dragActive || event.button !== 0) return;
+      dragging = true;
+      lastPointer = [event.clientX, event.clientY];
+      renderer.domElement.setPointerCapture(event.pointerId);
+    });
+    renderer.domElement.addEventListener("pointermove", (event) => {
+      if (!dragging) return;
+      const rotation = new THREE.Euler().setFromQuaternion(camera.quaternion, "YXZ");
+      rotation.y -= (event.clientX - lastPointer[0]) * .002;
+      rotation.x = Math.max(-Math.PI / 2, Math.min(Math.PI / 2,
+        rotation.x - (event.clientY - lastPointer[1]) * .002));
+      camera.quaternion.setFromEuler(rotation);
+      lastPointer = [event.clientX, event.clientY];
+    });
+    for (const event of ["pointerup", "pointercancel", "lostpointercapture"]) {
+      renderer.domElement.addEventListener(event, () => { dragging = false; });
+    }
+  }
   const playButton = document.getElementById("play") ?? startEl;
   playButton.addEventListener("click", () => {
     if (!window.playworld?.ready) return;
-    if (matchMedia("(pointer: coarse)").matches && document.getElementById("touch")) {
+    if (dragMode) {
+      dragActive = true;
+      startEl.classList.add("hidden");
+    } else if (matchMedia("(pointer: coarse)").matches && document.getElementById("touch")) {
       touchActive = true;
       startEl.classList.add("hidden");
       document.getElementById("touch").classList.remove("hidden");
@@ -171,12 +200,16 @@ async function main() {
   document.addEventListener("pointerlockerror", () => setStatus("Mouse capture failed. Open the demo directly in a new tab and try again."));
   const keys = new Set();
   controls.addEventListener("unlock", () => keys.clear());
-  addEventListener("blur", () => keys.clear());
+  addEventListener("blur", () => { keys.clear(); dragging = false; });
   document.addEventListener("visibilitychange", () => { if (document.hidden) keys.clear(); });
   addEventListener("keydown", (e) => {
     if (recording) return;
     keys.add(e.code);
-    if (e.code === "Escape") controls.unlock();
+    if (e.code === "Escape") {
+      controls.unlock();
+      if (dragActive) { dragActive = false; dragging = false; keys.clear(); startEl.classList.remove("hidden"); }
+    }
+    if (e.code === "KeyF" && dragActive && !e.repeat) throwBall();
     if (e.code === "KeyC") toggleDebug();
     if (e.code === "KeyR") reset();
     if (e.code === "KeyE") push();
@@ -360,7 +393,7 @@ async function main() {
       acc += Math.min((now - last) / 1000, 0.1);
       last = now;
       while (acc >= STEP) {
-        if (controls.isLocked || touchActive) stepPlayer(STEP);
+        if (controls.isLocked || touchActive || dragActive) stepPlayer(STEP);
         phys.step();
         acc -= STEP;
       }
