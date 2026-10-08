@@ -2,8 +2,8 @@
 
 Requires an already connected session in the official google-colab-cli. It never
 allocates or stops a runtime. Integrity, resume and path checks are covered by
-local fixtures. Synthetic artifacts were fully recovered from Colab CPU with
-retry and higher concurrency; automatic recovery before deletion is unverified.
+local fixtures. A subsequent L4 run recovered both final GPU artifacts before
+termination with a 32-worker index watcher and a concurrent ZIP transfer.
 """
 import argparse
 import concurrent.futures

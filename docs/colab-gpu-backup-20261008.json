@@ -1,0 +1,316 @@
+{
+  "format": "playworld-colab-verified-backup/1",
+  "source_revision": "41d01a505362a95bfa3144a05e70ca5f646b1eb3",
+  "notebook_code_cells_executed": 6,
+  "execution": "Native Windows jupyter-kernel-client 0.9.0 using an existing official CLI session",
+  "interactive_colab_preview_and_download_cells_exercised": false,
+  "completed_reconstruction": true,
+  "final_checkpoint_and_world_zip_recovered": true,
+  "verification_completed_before_runtime_termination": true,
+  "local_exported_world_browser_checked_after_termination": true,
+  "phone_video_upload_path_verified": false,
+  "auth_provenance": {
+    "environment_token_present": false,
+    "transfer_file_present": true
+  },
+  "preflight": {
+    "gpu": "NVIDIA L4",
+    "gpu_memory_mib": 22563,
+    "native_bf16": true,
+    "sam3_access": "approved",
+    "ready": true
+  },
+  "notebook_stages": {
+    "setup": {
+      "status": "complete",
+      "seconds": 586.4998155470003
+    },
+    "source": {
+      "status": "complete",
+      "seconds": 7.763018011000895
+    },
+    "pipeline": {
+      "status": "complete",
+      "seconds": 786.5037466979993
+    }
+  },
+  "pipeline_report": {
+    "format": "playworld-run/1",
+    "started_utc": "2026-10-08T08:38:01.018681+00:00",
+    "status": "ok",
+    "source": {
+      "kind": "video",
+      "name": "apartment-workshop.mp4",
+      "sha256": "6529e7d13119873a71aeeae2499bd778dc35bfbd57d36b9c838ee2b24f31e79a",
+      "bytes": 9198472
+    },
+    "platform": "Linux-6.6.122+-x86_64-with-glibc2.39",
+    "python": "3.12.3",
+    "gpu": "NVIDIA L4, 23034 MiB, 580.82.07",
+    "settings": {
+      "cmd": "all",
+      "video": "/content/playworld-runs/20261008T082758Z-8mo8x362/public_source/apartment-workshop.mp4",
+      "scene": "/content/playworld-runs/20261008T082758Z-8mo8x362/scene",
+      "vggt_dir": "/content/playworld/.gpu/repos/vggt",
+      "gsplat_dir": "/content/playworld/.gpu/repos/gsplat",
+      "num": 24,
+      "max_size": 1280,
+      "ba": true,
+      "pose_confidence": 1.5,
+      "shared_camera": true,
+      "ba_track_budget": 32768,
+      "ba_reprojection_error": 32.0,
+      "steps": 7000,
+      "strategy": "default",
+      "gaussian_limit": null,
+      "quality": false,
+      "prompts": "cardboard box,plastic bottle,folding chair",
+      "vggt_python": "/content/playworld/.gpu/envs/vggt/bin/python",
+      "gsplat_python": "/content/playworld/.gpu/envs/gsplat/bin/python",
+      "sam3_python": "/content/playworld/.gpu/envs/sam3/bin/python",
+      "segment_seed_frame": 0,
+      "report": "/content/playworld-runs/20261008T082758Z-8mo8x362/scene/run-20261008T083759Z.json",
+      "start_at": "frames",
+      "out": "/content/playworld-runs/20261008T082758Z-8mo8x362/world",
+      "masks": null,
+      "eye_height": 1.5,
+      "voxel": 0.1,
+      "bounds_margin": null,
+      "clean_splats": false
+    },
+    "stages": {
+      "frames": {
+        "status": "ok",
+        "started_utc": "2026-10-08T08:38:01.020703+00:00",
+        "seconds": 0.968,
+        "finished_utc": "2026-10-08T08:38:01.988932+00:00"
+      },
+      "poses": {
+        "status": "ok",
+        "started_utc": "2026-10-08T08:38:01.989327+00:00",
+        "seconds": 257.457,
+        "finished_utc": "2026-10-08T08:42:19.446294+00:00"
+      },
+      "train": {
+        "status": "ok",
+        "started_utc": "2026-10-08T08:42:19.446795+00:00",
+        "seconds": 446.0,
+        "finished_utc": "2026-10-08T08:49:45.446667+00:00"
+      },
+      "segment": {
+        "status": "ok",
+        "started_utc": "2026-10-08T08:49:45.447109+00:00",
+        "seconds": 62.88,
+        "finished_utc": "2026-10-08T08:50:48.327533+00:00"
+      },
+      "world": {
+        "status": "ok",
+        "started_utc": "2026-10-08T08:50:48.328099+00:00",
+        "seconds": 14.91,
+        "finished_utc": "2026-10-08T08:51:03.237772+00:00"
+      }
+    },
+    "finished_utc": "2026-10-08T08:51:03.238375+00:00",
+    "total_seconds": 782.271,
+    "stats": {
+      "cameras": 24,
+      "points": 28427,
+      "gaussians": 2047651,
+      "input_gaussians": 2048520,
+      "discarded_object_gaussians": 869,
+      "discarded_diffuse_gaussians": 0,
+      "clean_splats": false,
+      "discarded_bounds_gaussians": 0,
+      "bounds_margin_m": null,
+      "objects": 8,
+      "colliders": 3060,
+      "support_patches": 6,
+      "floor_inliers": 1994,
+      "scale_m_per_unit": 6.231519
+    }
+  },
+  "artifacts": {
+    "final_checkpoint": {
+      "name": "ckpt_6999_rank0.pt",
+      "local_path": ".cache/gpu-backup-downloads-20261008/final_checkpoint/ckpt_6999_rank0.pt",
+      "bytes": 483453685,
+      "sha256": "0baac78e138069882a531f953126f1b741c66619e87c38ad154544c2566806ec",
+      "whole_file_hash_verified": true,
+      "local_last_write_utc": "2026-10-08T08:58:47.813442+00:00"
+    },
+    "world_zip": {
+      "name": "playworld-result.zip",
+      "local_path": ".cache/gpu-backup-downloads-20261008/world_zip/playworld-result.zip",
+      "bytes": 450756877,
+      "sha256": "0a4c58fb5f99d089625ccc084f37ac1102d6ae4bce9961262122c42f3338e7a9",
+      "whole_file_hash_verified": true,
+      "local_last_write_utc": "2026-10-08T08:59:49.441613+00:00"
+    }
+  },
+  "total_artifact_bytes": 934210562,
+  "checkpoint_validation": {
+    "checkpoint_name": "ckpt_6999_rank0.pt",
+    "stored_step": 6999,
+    "completed_steps": 7000,
+    "gaussians": 2048520,
+    "bytes": 483453685,
+    "sha256": "0baac78e138069882a531f953126f1b741c66619e87c38ad154544c2566806ec",
+    "torch": "2.9.1+cpu",
+    "cpu_load_weights_only": true,
+    "all_tensors_finite": true,
+    "checkpoint_keys": [
+      "step",
+      "splats"
+    ],
+    "tensor_shapes": {
+      "means": [
+        2048520,
+        3
+      ],
+      "opacities": [
+        2048520
+      ],
+      "quats": [
+        2048520,
+        4
+      ],
+      "scales": [
+        2048520,
+        3
+      ],
+      "sh0": [
+        2048520,
+        1,
+        3
+      ],
+      "shN": [
+        2048520,
+        15,
+        3
+      ]
+    },
+    "optimizer_state_present": false
+  },
+  "archive_validation": {
+    "zip_integrity": true,
+    "zip_bytes": 450756877,
+    "zip_sha256": "0a4c58fb5f99d089625ccc084f37ac1102d6ae4bce9961262122c42f3338e7a9",
+    "world_stats": {
+      "cameras": 24,
+      "points": 28427,
+      "gaussians": 2047651,
+      "input_gaussians": 2048520,
+      "discarded_object_gaussians": 869,
+      "discarded_diffuse_gaussians": 0,
+      "clean_splats": false,
+      "discarded_bounds_gaussians": 0,
+      "bounds_margin_m": null,
+      "objects": 8,
+      "colliders": 3060,
+      "support_patches": 6,
+      "floor_inliers": 1994,
+      "scale_m_per_unit": 6.231519
+    },
+    "world_sha256": "a880cb28cb1a40e1ad0f82d8700d39ab08f4f116330faed91d0ab339fce49499",
+    "viewer_matches_source": true
+  },
+  "browser_validation": {
+    "drag_entry_without_pointer_lock": true,
+    "keyboard_walk_m": 3.3367224648292955,
+    "movement_directions": {
+      "KeyS": {
+        "from": [
+          -5.65500020980835,
+          1.5199443101882935,
+          -0.45299991965293884
+        ],
+        "to": [
+          -5.655098915100098,
+          1.2766408324241638,
+          2.8837225437164307
+        ],
+        "xz_m": 3.3367224648292955
+      },
+      "KeyW": {
+        "from": [
+          -5.65500020980835,
+          1.5199442505836487,
+          -0.45299991965293884
+        ],
+        "to": [
+          -5.7341485023498535,
+          1.5200992822647095,
+          -1.0401982069015503
+        ],
+        "xz_m": 0.5925084647158539
+      },
+      "KeyA": {
+        "from": [
+          -5.655000686645508,
+          1.520099401473999,
+          -0.4529999792575836
+        ],
+        "to": [
+          -8.822507858276367,
+          1.5208145380020142,
+          -0.4393177628517151
+        ],
+        "xz_m": 3.1675367220252877
+      },
+      "KeyD": {
+        "from": [
+          -5.65500020980835,
+          1.5200999975204468,
+          -0.4529997408390045
+        ],
+        "to": [
+          -2.3587260246276855,
+          1.5202580094337463,
+          -0.43931448459625244
+        ],
+        "xz_m": 3.2963025938355357
+      }
+    },
+    "drag_look": true,
+    "throw_created_rigid_body": true,
+    "escape_pauses_walk_and_throw": true,
+    "resume_and_reset": true,
+    "default_pointer_lock": true,
+    "page_errors": []
+  },
+  "transfer": {
+    "index_watcher_workers": 32,
+    "index_watcher_completed": true,
+    "index_watcher_exit_code": 0,
+    "concurrent_separate_zip_download_workers": 32,
+    "concurrent_zip_copy_sha256": "0a4c58fb5f99d089625ccc084f37ac1102d6ae4bce9961262122c42f3338e7a9",
+    "manual_chunk_retry_required": false,
+    "downloads_completed_after_runtime_termination": false,
+    "initial_wsl_dispatch_failed_before_code_execution": true,
+    "initial_native_console_closed_on_unicode_encoding_error": true,
+    "remote_reconstruction_continued_after_console_closed": true,
+    "native_unicode_print_and_busy_kernel_refusal_verified": true
+  },
+  "visual_review": {
+    "screenshot": "docs/runs/quality/colab-backup-world-20261008.png",
+    "significant_blur_and_streaks": true,
+    "adopted_for_readme_hero": false,
+    "existing_hero_and_gallery_unchanged": true
+  },
+  "runtime_budget": {
+    "approved_minutes": 50,
+    "approved_units": 1.29,
+    "original_approved_minutes": 45,
+    "original_approved_units": 1.16,
+    "extension_minutes": 5,
+    "extension_units": 0.13,
+    "extension_needed": false,
+    "elapsed_seconds_from_preallocation_timestamp": 2658.0603635311127,
+    "stopped_utc": "2026-10-08T09:01:22.060363+00:00",
+    "inferred_units_per_hour": 1.54,
+    "estimated_task_units": 1.1370591555105316,
+    "individual_billed_units_measured": false,
+    "task_owned_l4_terminated": true,
+    "unrelated_runtimes_stopped_by_this_task": false
+  }
+}

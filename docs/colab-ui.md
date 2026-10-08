@@ -149,7 +149,44 @@ The next notebook revision prepares its checkpoint chunks immediately after
 reconstruction, then prepares the ZIP before opening the preview. A local
 watcher can recover the checkpoint while ZIP preparation is still running.
 This backup order passed local tests and was exercised by the Colab CPU fixture.
-It has not run with a newly reconstructed GPU scene.
+It subsequently ran with a newly reconstructed GPU scene, as recorded below.
+
+## Verified GPU backup and local preview
+
+The 8 October follow-up executed the notebook's first six code cells at revision
+`41d01a505362a95bfa3144a05e70ca5f646b1eb3` on a dedicated **L4** through a native
+Windows kernel client. WSL dispatch failed before execution; the native connection
+completed setup and reconstruction. A console encoding error later closed that
+client, while the remote job continued and finished. UTF-8 output and busy-kernel
+refusal were checked with the [native helper](../scripts/colab_execute.py).
+SAM 3 access used the approved account's one-use token transfer.
+
+The automatic 32-worker index watcher completed both artifacts; a concurrent
+separate 32-worker ZIP transfer also completed with the same hash. The final
+**483,453,685-byte checkpoint** and **450,756,877-byte ZIP** were saved before
+termination. Whole-file SHA-256, ZIP CRC, world references and viewer/source
+identity passed. PyTorch **2.9.1+cpu** loaded the checkpoint with `weights_only=True`:
+stored step **6,999**, all six splat tensors finite, **2,048,520 Gaussians**.
+The checkpoint contains weights and a step, without optimizer state; exact
+optimizer-preserving training resumption was not checked.
+
+The L4 stopped after **44 min 18.1 s**, inside the original 45-minute limit.
+An extra five minutes had been approved but was not needed. At the initially
+inferred **1.54 units/hour**, estimated consumption was **1.137059 units**;
+individual billed units were not measured. Unrelated runtimes were not stopped
+by this task. [Complete execution/backup receipt](colab-gpu-backup-20261008.json).
+
+After termination, the exported world was opened locally in headless Chromium.
+Walking in each of W/A/S/D, drag look, ball creation, Escape pause, resume/reset
+and default pointer lock passed, with no page errors. An initial 500 ms movement
+probe was inconclusive during startup; the follow-up allowed warm-up and measured
+horizontal movement over 1.5 seconds in each direction. This checks browser
+interaction, not every collision or every detected object's behavior.
+
+Visual review found substantial blur and streaks. This result was not adopted
+for the README hero or gallery. [Rendered automatic result](runs/quality/colab-backup-world-20261008.png).
+These checks verify the GPU recipe, recoverable final outputs and a local browser
+preview. They do not exercise the last two interactive Colab browser cells.
 
 ## What remains unverified
 
@@ -159,9 +196,11 @@ reconstructed result.
 The earlier reconstruction used the authenticated account's one-use token
 transfer described in [CLI instructions](colab-cli.md). Colab Secrets access
 was subsequently verified in the separate preflight/setup check above.
-The final GPU checkpoint and newly reconstructed world ZIP still need to be
-downloaded and verified together before claiming a complete updated first run.
-The optional phone-video upload path also remains unverified.
+The follow-up above recovered and verified the final GPU checkpoint and new
+world ZIP together, then checked the exported world locally. The interactive
+Colab preview/download cells were not exercised in that attempt, and the optional
+phone-video upload path remains unverified. This is not a complete interactive
+Colab UI first-run claim.
 
 The rendered training output became large enough to make the browser
 unresponsive. The updated runner now displays progress at most once every

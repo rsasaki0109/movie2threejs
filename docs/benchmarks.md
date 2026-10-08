@@ -303,3 +303,47 @@ within its approved 40-minute window. Neither archive integrity nor final
 checkpoint CPU loading was verified. This is a successful reconstruction
 measurement, not a complete recoverable scene or end-to-end first-run validation.
 [Export failure and remaining checks](colab-ui.md#updated-gpu-reconstruction-and-incomplete-export).
+
+## Verified GPU backups, 8 October 2026
+
+A dedicated **NVIDIA L4** ran the notebook's first six code cells at source
+`41d01a505362a95bfa3144a05e70ca5f646b1eb3` through native Windows networking.
+Input: the MIT-licensed Eyeful Tower apartment-workshop capture-rig photograph
+sequence encoded as video, **24 frames and 7,000 training steps**. This is not a
+phone capture. SAM 3 used a one-use approved-account token transfer; Secrets had
+been checked separately. The input hash and complete raw reports are in the
+[verified backup receipt](colab-gpu-backup-20261008.json).
+
+| Stage | Measured seconds |
+| --- | ---: |
+| Isolated environment setup | 586.500 |
+| Public source download | 7.763 |
+| Frame extraction | 0.968 |
+| VGGT poses and bundle adjustment | 257.457 |
+| gsplat training, 7,000 steps | 446.000 |
+| SAM 3 segmentation | 62.880 |
+| World assembly | 14.910 |
+| Core pipeline total | 782.271 |
+| Enclosing notebook pipeline execution | 786.504 |
+
+Core timing includes initial model downloads and excludes environment setup and
+source download. Export: **8 objects, 3,060 static colliders,
+6 support patches and 2,047,651 Gaussians**. This was the default
+video/VGGT recipe, without diffuse/bounds cleanup or calibrated dataset cameras.
+
+The **483,453,685-byte final checkpoint** and **450,756,877-byte world ZIP**
+were fully recovered, with matching SHA-256, before runtime termination. ZIP CRC,
+world references and viewer/source identity passed. CPU weight loading verified
+step 6,999 and all finite tensors for **2,048,520 training Gaussians**; optimizer
+state is absent. The 32-worker index watcher completed; an independent concurrent
+32-worker ZIP copy also completed with the same hash. No manual chunk retry was
+needed. These transfer observations do not guarantee the same rate on another run.
+
+The runtime stopped after **44 min 18.1 s**, inside the original 45-minute window.
+A five-minute extension was approved but not needed. Estimated task consumption
+was **1.137059 units** at the initially inferred 1.54 units/hour; individual billing
+was not measured. After shutdown, the local exported-world browser passed W/A/S/D
+walking, drag look, ball creation, pause/resume/reset and pointer lock, with no
+page errors. Significant blur and streaks remain; this result was not adopted
+for the hero/gallery. The interactive Colab preview/download cells and phone-video
+upload remain unverified in this attempt. [Preview and verification limits](colab-ui.md#verified-gpu-backup-and-local-preview).

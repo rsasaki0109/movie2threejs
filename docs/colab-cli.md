@@ -135,7 +135,9 @@ pipeline, before its preview cell. It publishes an atomic `backup-index.json`
 as soon as the final checkpoint's chunks are ready, then packages and publishes
 the world ZIP. A failed ZIP preparation retains the ready checkpoint. A retried
 pipeline invalidates its prior index, so it cannot offer an earlier result.
-These changes are locally verified; the revised notebook has not run on Colab yet.
+This order was subsequently exercised with a new L4 reconstruction; its final
+checkpoint and ZIP were fully recovered and checked before termination.
+[GPU backup receipt](colab-gpu-backup-20261008.json).
 
 Start this local command after the notebook prints the attempt directory, while
 reconstruction is still running:
@@ -147,11 +149,40 @@ python scripts/colab_download.py --session SESSION --remote-index /content/RUN/b
 Replace `SESSION`, `/content/RUN` and the expected final step. Use a fresh output
 directory for each attempt. The command polls for the index, downloads each ready
 artifact and records size/SHA-256 in `download-receipt.json`. Exhausted connection
-retries return to polling and reuse verified chunks; this retry loop is locally
-tested but has not run on Colab. If interrupted,
+retries return to polling and reuse verified chunks. The retry branch is locally
+tested; the subsequent real GPU watcher completed without requiring that branch. If interrupted,
 rerunning with the same output directory reuses verified chunks. It does not wait
 for the preview or download iframe. The wait limit does not allocate, extend or
 stop any runtime; GPU time/unit limits must still be enforced separately.
+
+## Native Windows execution fallback
+
+In the 8 October backup attempt, WSL failed to reach the assigned runtime before
+dispatching code. A native Windows `jupyter-kernel-client==0.9.0` connection then
+executed the notebook's first six code cells: settings, source bootstrap,
+preflight, setup, public input and reconstruction/backup preparation. This does
+not exercise the two interactive preview/download cells in the Colab browser.
+
+The initial native console connection closed when its Windows encoding rejected
+a tqdm character; the remote reconstruction continued and completed. The
+[execution helper](../scripts/colab_execute.py) uses UTF-8 output, suppresses SDK
+logs that can contain proxy credentials, and refuses an already busy kernel.
+Busy-kernel refusal and a subsequent idle-kernel Unicode print passed on the
+same L4. Inspect the remote job/log after any connection error before rerunning.
+
+Use an already authenticated, task-owned session. For example, in PowerShell:
+
+```powershell
+py -3.12 -m venv .cache/colab-client
+.cache/colab-client/Scripts/python.exe -m pip install jupyter-kernel-client==0.9.0
+.cache/colab-client/Scripts/python.exe scripts/colab_execute.py --session SESSION --file notebooks/playworld_colab.ipynb --cells 6 --timeout 1800
+```
+
+Use the credential transfer above if Colab Secrets are unavailable. The helper
+does not allocate, extend or stop a runtime. Its timeout closes the local
+connection; it is not a GPU billing limit or a guarantee that remote work stops.
+The existing-session lookup still uses the authenticated official CLI in WSL,
+while kernel HTTP/WebSocket traffic uses native Windows networking.
 
 ## Transfer validation without inference
 
