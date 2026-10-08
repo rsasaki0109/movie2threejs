@@ -75,14 +75,41 @@ Gaussians**, **468,142,005 bytes**, SHA-256
 This is not the final checkpoint or a complete recoverable scene. The final
 world and result ZIP were not downloaded before shutdown.
 
+## Updated L4 Secrets and setup check
+
+On 8 October 2026, the Drive notebook fetched source commit
+`264f62f02b46b7dcf7fab53eed85c89163fb45c6`. Its preflight read `HF_TOKEN`
+through Colab Secrets: neither an environment token nor a transfer file was
+present before preflight. The gated SAM 3 configuration request succeeded on
+an NVIDIA L4 with **22,563 MiB** reported by PyTorch. The isolated environments
+completed setup and API import checks in **619.101 s**. This did not load model
+weights or run inference. [Validation receipt](colab-gpu-preflight-20261008.json).
+
+A trailing newline in the saved secret initially caused an invalid HTTP header;
+the private notebook error output included the credential and was cleared.
+The helper now strips surrounding whitespace and rejects invalid header
+characters before constructing a request. Five regression cases check this
+handling and ensure the fixed preflight's report/output excludes the credential.
+The full local suite passed **61 tests**, with one optional test skipped.
+
+The browser connection stopped responding during setup. Logs were retrieved
+through the CLI, but the input and reconstruction cells were not executed.
+The task-owned L4 was terminated before the approved time/unit limits, using
+the combined account rate as a conservative upper bound because an individual
+L4 rate was unavailable. The unrelated T4 was left running. The downloaded
+evidence ZIP passed integrity checks and contains `job.json` and `setup.log`;
+it contains no reconstructed world or checkpoint.
+
 ## What remains unverified
 
 The updated notebook has not been rerun end to end through GPU reconstruction.
 The CPU browser check above verifies those cells with a prebuilt world, not
 preview/export of a newly reconstructed result from the earlier L4 run.
-The Colab Secrets grant flow was not verified: `HF_TOKEN` was absent, so the
-run used the existing authenticated account's one-use token transfer described
-in [CLI instructions](colab-cli.md). No token was printed or committed.
+The earlier reconstruction used the authenticated account's one-use token
+transfer described in [CLI instructions](colab-cli.md). Colab Secrets access
+was subsequently verified in the separate preflight/setup check above.
+The final GPU checkpoint and newly reconstructed world ZIP still need to be
+downloaded and verified together before claiming a complete updated first run.
 The optional phone-video upload path also remains unverified.
 
 The rendered training output became large enough to make the browser

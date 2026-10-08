@@ -29,8 +29,10 @@ md("""
 The shared reconstruction recipe completed the public video/VGGT input on a Colab L4 in
 12 min 25.7 s, including initial model downloads. Environment setup took another
 10 min 1.6 s. Automatic source fetching, browser preview and result ZIP download
-were checked separately on Colab CPU using an existing public world. That check
-did not run reconstruction or the Hugging Face Secrets flow.
+were checked separately on Colab CPU using an existing public world. A later L4
+check verified HF_TOKEN through Colab Secrets and completed setup in 10 min 19.1 s;
+it stopped before reconstruction after losing the browser connection. The updated
+notebook's complete GPU run and final-checkpoint download remain unverified.
 See `docs/colab-ui.md` and `docs/benchmarks.md` for the measured run and its limits.
 
 1. Select a GPU runtime. For movable objects use an Ampere-or-newer GPU (L4/A100 etc.).
@@ -85,9 +87,16 @@ os.environ["PLAYWORLD_TRAIN_STEPS"] = str(TRAIN_STEPS)
 os.environ["PLAYWORLD_PROMPTS"] = PROMPTS
 os.environ["PLAYWORLD_POSE_CONFIDENCE"] = str(POSE_CONFIDENCE)
 import json
+import importlib
+import colab_job
+importlib.reload(colab_job)
 from colab_job import preflight
 # Shared with CLI: accepts Colab Secrets, an existing environment token, or the
 # one-use transfer documented in docs/colab-cli.md. Never print a token.
+run.report["auth_provenance"] = {
+    "environment_token_present": bool(os.environ.get("HF_TOKEN")),
+    "transfer_file_present": (content / ".playworld-hf-token").is_file(),
+}
 ready = preflight()
 run.report["preflight"] = json.loads((content / "playworld-preflight.json").read_text())
 run.save()

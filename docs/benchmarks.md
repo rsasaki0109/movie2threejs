@@ -254,3 +254,19 @@ GIF: **7,798,040 bytes**, 960×540, looping **13.1 s**. MP4: **9,225,667 bytes**
 [hero validation](hero-validation.json), [before/after video](demos/workbench-box-comparison.mp4).
 These are browser/export measurements, not additional GPU conversion times.
 The hidden tabletop and keyboard remain approximate; blur is not fully resolved.
+
+## Colab Secrets and setup check, 8 October 2026
+
+A separate updated-notebook check fetched source commit
+`264f62f02b46b7dcf7fab53eed85c89163fb45c6`, verified gated SAM 3 access through
+Colab Secrets, and completed isolated environment/API setup in **619.101 s**.
+GPU: **NVIDIA L4, 22,563 MiB reported by PyTorch**, native bf16 support.
+No input, pose estimation, training, segmentation or world assembly ran in this
+attempt, so it has no new object/collider counts or inference timings.
+
+The browser connection was lost during setup. Its log and `job.json` were
+downloaded through the CLI and the dedicated L4 was terminated within the
+approved limits. The unrelated T4 was left running. This verifies Secrets and
+installation, not a complete updated GPU notebook run or final-checkpoint
+backup. [Receipt](colab-gpu-preflight-20261008.json),
+[details and remaining checks](colab-ui.md#updated-l4-secrets-and-setup-check).

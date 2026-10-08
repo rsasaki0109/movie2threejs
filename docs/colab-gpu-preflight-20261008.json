@@ -1,0 +1,78 @@
+{
+  "format": "playworld-colab-preflight/1",
+  "date": "2026-10-08",
+  "completed": false,
+  "source_revision": "264f62f02b46b7dcf7fab53eed85c89163fb45c6",
+  "settings": {
+    "project_repository": "https://github.com/rsasaki0109/movie2threejs.git",
+    "project_revision": "264f62f02b46b7dcf7fab53eed85c89163fb45c6",
+    "num_frames": 24,
+    "data_source": "public",
+    "train_steps": 7000,
+    "prompts": "cardboard box,plastic bottle,folding chair",
+    "eye_height": 1.5,
+    "pose_confidence": 1.5,
+    "use_ba": true,
+    "ba_reprojection_error": 32.0
+  },
+  "auth_provenance": {
+    "environment_token_present": false,
+    "transfer_file_present": false
+  },
+  "preflight": {
+    "gpu": "NVIDIA L4",
+    "gpu_memory_mib": 22563,
+    "native_bf16": true,
+    "sam3_access": "approved",
+    "ready": true
+  },
+  "stages": {
+    "setup": {
+      "status": "complete",
+      "seconds": 619.1008622710001
+    }
+  },
+  "inference_ran": false,
+  "world_exported": false,
+  "final_checkpoint_saved": false,
+  "browser_connection_lost_during_setup": true,
+  "initial_secret_header_failure": {
+    "cause": "trailing newline",
+    "error_output_included_credential": true,
+    "private_notebook_output_cleared": true,
+    "fixed_source_revision": "264f62f02b46b7dcf7fab53eed85c89163fb45c6"
+  },
+  "evidence_archive": {
+    "name": "gpu-first-run-evidence.zip",
+    "bytes": 4236,
+    "sha256": "a45aa08f8a8ef8f9aa135fe78d29697a080705002346e56daeee2512badf5de6",
+    "integrity_verified": true,
+    "files": [
+      "job.json",
+      "setup.log"
+    ],
+    "download_method": "official Colab CLI"
+  },
+  "runtime": {
+    "hardware": "NVIDIA L4",
+    "approval_limit_seconds": 2400,
+    "approval_limit_units": 1.03,
+    "window_started_utc": "2026-10-08T04:38:59+00:00",
+    "termination_log_completed_utc": "2026-10-08T05:02:13.377073+00:00",
+    "elapsed_window_seconds": 1394.3770728111267,
+    "terminated_within_time_limit": true,
+    "account_rate_before_stop": 2.61,
+    "account_rate_after_stop": 1.07,
+    "remaining_assignments_after_stop": 1,
+    "remaining_hardware": "unrelated T4",
+    "inferred_l4_units_per_hour": 1.54,
+    "actual_consumption_units": null,
+    "conservative_upper_bound_units": 1.010923,
+    "upper_bound_below_approved_limit": true
+  },
+  "local_tests": {
+    "passed": 61,
+    "skipped": 1,
+    "secret_header_cases": 5
+  }
+}
