@@ -9,7 +9,44 @@ The historical video/VGGT runs below were measured on 7 October 2026 using an ex
 
 Input: Eyeful Tower apartment camera 19, a public capture-rig photograph sequence, not a smartphone recording. The workbench section starts at 5.0 s and lasts 4.250 s (51 frames at 12 fps). The pipeline sampled 24 frames at a maximum dimension of 1280 pixels. Source SHA-256: `a0a387a1af7f8483d8c5d13861dc17907054784f090a4c26e8370624b4e4263e`. See [attribution](data-attribution.md) and [derived source metadata](hero-source.json).
 
-## Full reconstruction invocation
+## Interactive notebook run: 8 October 2026
+
+The imported Drive notebook completed its public video/VGGT recipe on a dedicated
+Colab **NVIDIA L4 (23,034 MiB, driver 580.82.07)**. The saved notebook output
+contains the [successful final report](colab-ui-run-20261008.json).
+Conversion took **745.670 s (12 min 25.7 s)**, including initial model downloads.
+Environment installation took **601.612 s** and source download **7.728 s**,
+both separate from conversion. This meets the 15-minute conversion target for
+this particular public input; it is not the current curated hero's timing.
+
+| Stage | Measured seconds |
+|---|---:|
+| frames | 0.918 |
+| poses | 226.935 |
+| train | 438.415 |
+| segment | 63.142 |
+| world | 16.204 |
+
+Settings: 24 frames, maximum dimension 1280, VGGT bundle adjustment with a shared
+camera, confidence threshold 1.5, initial reprojection tolerance 32 px and
+7,000 gsplat steps. Export: **8 movable objects, 2,962 static colliders,
+8 support patches and 1,982,706 Gaussians**. Sparse reconstruction contained
+28,440 points. Eye height was assumed to be 1.5 m; inferred scale was
+6.292355 m per reconstruction unit, without ground-truth metric validation.
+
+The public photograph sequence was re-encoded on this runtime. Its input MP4
+was 9,198,472 bytes, SHA-256
+`6529e7d13119873a71aeeae2499bd778dc35bfbd57d36b9c838ee2b24f31e79a`.
+This is different from the historical MP4 above, so the two runs are not a
+controlled speed or quality comparison. No smartphone recording was tested.
+
+The dedicated runtime was stopped within the approved 30-minute limit,
+about 18 seconds after conversion finished. The saved output and an intermediate
+step-4,665 checkpoint were preserved; the final world and result ZIP were not
+downloaded. Browser preview, result download and visual quality of this export
+remain unverified. See [interactive verification details](colab-ui.md).
+
+## Historical full reconstruction invocation
 
 [Raw successful report](runs/run-20261007T083553Z.json): **419.079 s** total, below the 15 minute conversion target for this input with cached weights.
 
@@ -42,7 +79,10 @@ CUDA compiler 13.0. VGGT and gsplat use separate environments with PyTorch 2.9.1
 
 The full apartment sequence at the upstream confidence threshold 5.0 exported zero points ([failed report](runs/run-20261007T081011Z.json)). Lowering it to 1.5 completed a no-BA run in 273.476 s ([report](runs/run-20261007T081727Z.json)), but its blur made it unsuitable for the hero. Full-sequence BA first exhausted GPU memory, then lacked enough inliers. The short overlapping workbench section and bounded tracking batches succeeded. These settings are measured for this input; they are not guarantees for other videos.
 
-The shared shell recipe and model APIs ran through the official Colab CLI. The notebook's interactive upload/preview UI was not automated. Smartphone capture, T4 compatibility and true metric accuracy remain unverified.
+These historical runs used the official Colab CLI. The later interactive
+notebook run is recorded above; its browser preview and result download remain
+unverified. Smartphone capture, T4 compatibility and true metric accuracy remain
+unverified.
 
 ## Historical video/VGGT browser recording
 

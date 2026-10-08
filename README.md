@@ -92,7 +92,7 @@ The [static demo gallery](docs/live-demo.md) includes five actual captured space
 - Masks, convex colliders and masses are estimates. Review them before using a new scene; not every detected label becomes a useful movable object.
 - The default VGGT weights are non-commercial. SAM 3 weights require approved Hugging Face access; model terms apply separately from the dataset's MIT license.
 - SAM 3 was verified on L4. T4 compatibility is unverified; the current object recipe requires native bf16 hardware.
-- Shared GPU scripts were executed through Colab CLI. The notebook's interactive upload/preview UI was not automated.
+- The interactive Colab notebook completed the public video/VGGT recipe on L4 in **12 min 25.7 s**, including initial model downloads; environment setup took another **10 min 1.6 s**. Its browser preview and result ZIP download remain unverified. [Notebook verification status](docs/colab-ui.md).
 
 ## Development
 

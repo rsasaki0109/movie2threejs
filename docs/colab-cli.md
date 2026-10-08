@@ -61,6 +61,17 @@ into chat. The transfer uses a temporary file with mode 0600, removes the local 
 file, and keeps the token out of CLI arguments/history. The remote preflight loads and
 removes the transfer file. SAM 3 model approval and CLI login are separate requirements.
 
+If HF login was performed on Windows rather than inside WSL, use that cached token
+file explicitly. This transfer was used in the 8 October notebook check:
+
+```powershell
+wsl -d Ubuntu-22.04 --exec python3 /mnt/c/Users/rsasa/Workspace/movie2threejs/playworld/scripts/colab_hf_token.py --session SESSION --token-file /mnt/c/Users/rsasa/.cache/huggingface/token
+```
+
+Replace the project and user paths for your PC. The argument is a file path,
+not the token itself. [Interactive notebook verification](colab-ui.md) records
+which UI steps passed and which remain unverified.
+
 The explicit `run` action unpacks the project, runs the shared setup and pipeline scripts,
 and packages the world and measured evidence. On setup/pipeline failure it packages logs
 without exporting a stale world. The wrapper never provisions or stops a runtime. Preserve
