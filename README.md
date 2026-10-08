@@ -96,6 +96,10 @@ The [static demo gallery](docs/live-demo.md) includes five actual captured space
 
 ## Development
 
+Source code is licensed under [MIT](LICENSE). The public capture data retains
+its [attribution and MIT notice](docs/data-attribution.md); model weights have
+their own terms, including the default VGGT weights' non-commercial restriction.
+
 ```bash
 pip install -e '.[dev]'
 pytest
