@@ -6,6 +6,7 @@ allocates a runtime. Upload playworld-colab.zip to /content before ACTION=run.
 import hashlib
 import json
 import os
+import re
 import shutil
 import subprocess
 import urllib.error
@@ -35,7 +36,14 @@ def preflight():
             token = userdata.get("HF_TOKEN")
         except Exception:
             pass
-    access = "not required" if not prompts.strip() else "HF_TOKEN not available"
+    # Clipboard/Secrets values can include a trailing newline. Never let an
+    # invalid header reach urllib, whose exception includes the credential.
+    token = token.strip() if isinstance(token, str) else None
+    invalid_token = bool(token) and not re.fullmatch(r"[\x21-\x7e]+", token)
+    if invalid_token:
+        token = None
+    access = "not required" if not prompts.strip() else (
+        "HF_TOKEN format invalid" if invalid_token else "HF_TOKEN not available")
     if prompts.strip() and token:
         request = urllib.request.Request(
             "https://huggingface.co/facebook/sam3/resolve/main/config.json",
