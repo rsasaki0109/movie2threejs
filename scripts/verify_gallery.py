@@ -55,6 +55,9 @@ def verify(site: Path, out: Path):
                     page.goto(url+f"demos/{demo['id']}/?record=hero-shot.json")
                     page.wait_for_function('window.playworld?.ready || window.playworldError',timeout=180000)
                     assert page.evaluate('window.playworldError') is None
+                    assert page.evaluate("""() => [...document.querySelectorAll(
+                        'header, footer, #actions, #touch, #start, #hud, #cross')]
+                        .every(el => getComputedStyle(el).display === 'none')"""), 'recording UI is visible'
                     states=[page.evaluate('n=>playworld.record.nextFrame(n)',f) for f in frames]
                     if repeat==0:page.locator('canvas').screenshot(path=str(out/(demo['id']+'-physics.png')))
                     runs.append(states);page.close()

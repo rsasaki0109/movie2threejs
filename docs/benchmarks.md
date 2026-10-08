@@ -168,8 +168,8 @@ weights scored PSNR **30.6495**, SSIM **0.903577**, LPIPS **0.157682** on their 
 views. These are not adopted-hero metrics and not a controlled comparison with
 the earlier VGGT data. [Trial and selection](runs/quality/calibrated-workbench-156-selected-5000.json).
 
-Adopted export: **1 reviewed box, 2,834 static colliders, 1 support patch,
-1,110,159 retained Gaussians, 20,089,789 SPZ bytes**. Bounds pruning removed 27,647
+Selected export before local box refinement: **1 reviewed box, 2,834 static
+colliders, 1 support patch, 1,110,159 retained Gaussians, 20,089,789 SPZ bytes**. Bounds pruning removed 27,647
 Gaussians, diffuse pruning 3,823, object-spill pruning five. Floor fit: 21,797 inliers;
 assumed scale **1.323942 m per source unit**, still based on 1.5 m camera height.
 Other detections remain static. The player start was moved to a clear position
@@ -184,9 +184,32 @@ touch-emulated walking/look/throw and all five gallery rooms are checked locally
 GitHub Pages remains unpublished. Blur in unseen floor regions and colored
 unobserved box faces remain visible.
 
-Current workbench browser capture: **559.327 s**, native GTX 1660 Ti,
+Pre-refinement workbench browser capture: **559.327 s**, native GTX 1660 Ti,
 390 frames at 1920×1080, including concurrent sampled replay QA. The pushed box
 dropped **1.0236 m** and finished inverted; character XZ movement was **0.4379 m**.
 One ball was created. GIF size: **7,811,010 bytes**; duration **13.1 s**.
 The 1920×1080 MP4 is **9,207,385 bytes**. These are measured browser/export
 results, separate from training.
+
+## Current CPU box refinement and re-export
+
+The selected weights and local reviewed masks/calibration were reused; no new
+Colab session or GPU training was used. The final CPU script replay took **5.744 s**,
+excluding dependency setup, checkpoint-to-PLY recovery and SPZ packaging. Its world
+JSON and object PLY matched the adopted candidate byte for byte. The original
+background SPZ, collision body, mass, support patch and 2,834 colliders are unchanged.
+The object keeps 8,551 of 9,258 splats (707 removed); the final world has
+**1,109,452 Gaussians and 20,079,956 SPZ bytes**. The box uses a small approximate
+horizontal bottom rather than its whole convex collision hull for interior fill.
+
+The new native GTX 1660 Ti recording took **584.769 s**, including concurrent
+replay/gallery QA: 390 frames, 1920×1080, scripted 30 fps, fixed 60 Hz physics.
+All **390 physical states equal the previous hero**, with two matching 12-state
+replays and matching first/last PNGs. The box still drops **1.0236 m** and finishes
+inverted; player XZ movement is **0.4379 m**, and one ball is thrown.
+
+GIF: **7,798,040 bytes**, 960×540, looping **13.1 s**. MP4: **9,225,667 bytes**,
+1920×1080, **13.066667 s**. [Refinement and rejected trials](runs/quality/workbench-box-polish.json),
+[hero validation](hero-validation.json), [before/after video](demos/workbench-box-comparison.mp4).
+These are browser/export measurements, not additional GPU conversion times.
+The hidden tabletop and keyboard remain approximate; blur is not fully resolved.

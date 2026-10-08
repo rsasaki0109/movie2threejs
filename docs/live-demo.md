@@ -7,7 +7,7 @@ provided camera poses and sparse initialization; neither uses VGGT. The other th
 rooms use estimated VGGT poses. Selected viewpoints avoid some of the worst artifacts;
 walking to other views can still reveal blur and incomplete coverage.
 
-`demo-assets/workbench/` contains 20,089,789 bytes of SPZ v3 data, its `world.json` and a checksum manifest. It keeps the 5,000-step checkpoint from a 30,000-step trial, one manually reviewed box, and 2,834 static colliders. This quantized format retains view-dependent spherical harmonics through SH3. The hero and packaged viewer use the same SPZ export. Conservative background-volume cleanup retains thin surfaces; it does not reconstruct unseen geometry. Dataset attribution and the MIT notice accompany each room. Model restrictions still apply.
+`demo-assets/workbench/` contains 20,079,956 bytes of SPZ v3 data, its `world.json` and a checksum manifest. It keeps the 5,000-step checkpoint from a 30,000-step trial, one manually reviewed box, and 2,834 static colliders. This quantized format retains view-dependent spherical harmonics through SH3. The hero and packaged viewer use the same SPZ export. A local CPU refinement removes 707 box splats with conservative mask/size/support checks and adds an approximate horizontal bottom, while keeping the original collision body and support patch. Conservative background-volume cleanup retains thin surfaces; it does not reconstruct unseen geometry. Dataset attribution and the MIT notice accompany each room. Model restrictions still apply.
 
 ## Local preview
 

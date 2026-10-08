@@ -1,6 +1,7 @@
 import * as THREE from "three";
 
 addEventListener("playworldready", () => {
+  if (new URLSearchParams(location.search).has('record')) return;
   const world = window.playworld;
   const demo = world.world.demo ?? {};
   if (demo.title) document.querySelector('h1').textContent = demo.title;

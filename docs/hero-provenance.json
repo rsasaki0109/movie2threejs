@@ -4,8 +4,8 @@
   "source_video_start_seconds": 0.666667,
   "labels": true,
   "source_video_playback_speed": 0.5,
-  "capture_world_sha256": "4a86249a14f31ea395bb4d07818d1c95a037011caa08f994c842c9307cbdff23",
-  "shot_sha256": "c446d7dba59544c5e914b8e361473f333c2be67429b1358e5aec01a877dc017b",
+  "capture_world_sha256": "bc4561a505907f3284d7290db21bf4f5241ea2ce280f1e1041a2de12fd336066",
+  "shot_sha256": "6a7d5ac028391dcfeb33b5732a460098e6bc23e00253aefbb2f6d41c121c62dc",
   "duration_seconds": 13.0,
   "gif_measured_seconds": 13.1,
   "mp4_measured_seconds": 13.066667,
@@ -15,8 +15,6 @@
   "motion_quality": 58,
   "lossy_quality": 58,
   "gif_encoder": "gifski",
-  "gif_bytes": 7811010,
-  "mp4_bytes": 9207385,
-  "committed_shot_sha256": "6a7d5ac028391dcfeb33b5732a460098e6bc23e00253aefbb2f6d41c121c62dc",
-  "timeline_normalization": "Recorded CRLF bytes and committed LF bytes parse to the same timeline; all 390 physics states and endpoint PNGs match. Original recorded shot_sha256 is preserved."
+  "gif_bytes": 7798040,
+  "mp4_bytes": 9225667
 }

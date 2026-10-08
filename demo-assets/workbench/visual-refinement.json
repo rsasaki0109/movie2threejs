@@ -1,0 +1,65 @@
+{
+  "scope": "CPU rendering refinement of one manually reviewed open box; no training",
+  "seconds": 5.615,
+  "subject_id": 1,
+  "input_object_splats": 9258,
+  "kept_object_splats": 8551,
+  "removed_splats": 707,
+  "restored_support_splats": 0,
+  "background_vote_ratio": 0.8,
+  "max_splat_size_m": 0.08,
+  "collision_geometry_unchanged": true,
+  "bottom_cap": {
+    "kind": "bottom_cap",
+    "vertices": [
+      [
+        -0.12678,
+        -0.1444,
+        -0.20512
+      ],
+      [
+        0.20247,
+        -0.1444,
+        -0.19699
+      ],
+      [
+        0.19123,
+        -0.1444,
+        0.25784
+      ],
+      [
+        -0.13802,
+        -0.1444,
+        0.2497
+      ]
+    ],
+    "approximate": true
+  },
+  "fill_color_srgb": [
+    0.46540001034736633,
+    0.3899100124835968,
+    0.2891499996185303
+  ],
+  "support_patch_replaced": false,
+  "stats": {
+    "cameras": 16,
+    "points": 100000,
+    "gaussians": 1109452,
+    "input_gaussians": 1141634,
+    "discarded_object_gaussians": 712,
+    "discarded_diffuse_gaussians": 3823,
+    "clean_splats": true,
+    "discarded_bounds_gaussians": 27647,
+    "bounds_margin_m": 3,
+    "objects": 1,
+    "colliders": 2834,
+    "support_patches": 1,
+    "floor_inliers": 21797,
+    "scale_m_per_unit": 1.323942,
+    "visual_cleanup": {
+      "subject_id": 1,
+      "removed": 707,
+      "restored_support_splats": 0
+    }
+  }
+}

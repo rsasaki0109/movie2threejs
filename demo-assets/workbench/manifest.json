@@ -1,5 +1,5 @@
 {
-  "source_world_sha256": "5b8aa1aeaddd3dafd9ff73198c16e83b94dd6525b072e96ee2073b5b82855100",
+  "source_world_sha256": "954008c59410f07aab7969835d3dd6c7165ddf99a1ad7c58d761c0677f886133",
   "format": "Niantic SPZ v3",
   "higher_order_sh": "preserved through SH3 (quantized)",
   "files": [
@@ -11,13 +11,14 @@
     },
     {
       "path": "objects/1.spz",
-      "gaussians": 9258,
-      "bytes": 168822,
-      "sha256": "660d0ca4c70cd56c872625550fb883716ca53dc843d48401f952ab377fbf23fb"
+      "gaussians": 8551,
+      "bytes": 158989,
+      "sha256": "df6034ce58d10f2afaff7a34b9159fb5d61af0156660a12d9998397b7c699191"
     }
   ],
-  "gaussians": 1110159,
-  "splat_bytes": 20089789,
+  "gaussians": 1109452,
+  "splat_bytes": 20079956,
   "objects": 1,
-  "colliders": 2834
+  "colliders": 2834,
+  "background_reused_from": "previous committed workbench SPZ; no background points changed"
 }

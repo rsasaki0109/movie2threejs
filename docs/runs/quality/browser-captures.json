@@ -8,11 +8,17 @@
       "renderer": "ANGLE (NVIDIA, NVIDIA GeForce GTX 1660 Ti (0x00002191) Direct3D11 vs_5_0 ps_5_0, D3D11)",
       "width": 1920,
       "height": 1080,
-      "seconds": 559.327,
-      "world_sha256": "4a86249a14f31ea395bb4d07818d1c95a037011caa08f994c842c9307cbdff23",
-      "shot_sha256": "c446d7dba59544c5e914b8e361473f333c2be67429b1358e5aec01a877dc017b",
-      "method": "Calibrated 156-photo capture, reviewed 5,000-step checkpoint from full 30,000-step trial",
-      "committed_shot_sha256": "6a7d5ac028391dcfeb33b5732a460098e6bc23e00253aefbb2f6d41c121c62dc"
+      "seconds": 584.769,
+      "world_sha256": "bc4561a505907f3284d7290db21bf4f5241ea2ce280f1e1041a2de12fd336066",
+      "shot_sha256": "6a7d5ac028391dcfeb33b5732a460098e6bc23e00253aefbb2f6d41c121c62dc",
+      "method": "156 calibrated photographs, selected 5k weights, local CPU box cleanup and approximate bottom; original background and all 390 physics states unchanged",
+      "committed_shot_sha256": "6a7d5ac028391dcfeb33b5732a460098e6bc23e00253aefbb2f6d41c121c62dc",
+      "previous_capture": {
+        "seconds": 559.327,
+        "world_sha256": "4a86249a14f31ea395bb4d07818d1c95a037011caa08f994c842c9307cbdff23",
+        "shot_sha256": "c446d7dba59544c5e914b8e361473f333c2be67429b1358e5aec01a877dc017b",
+        "committed_shot_sha256": "6a7d5ac028391dcfeb33b5732a460098e6bc23e00253aefbb2f6d41c121c62dc"
+      }
     },
     {
       "id": "meeting-room",

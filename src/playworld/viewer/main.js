@@ -34,6 +34,10 @@ async function main() {
     startEl.classList.add("hidden");
     document.getElementById("hud").classList.add("hidden");
     document.getElementById("cross").classList.add("hidden");
+    // Static-hosting chrome must not appear in canvas screenshots.
+    for (const el of document.querySelectorAll("header, footer, #actions, #touch")) {
+      el.classList.add("hidden");
+    }
   }
   await RAPIER.init();
 
@@ -118,11 +122,21 @@ async function main() {
     const offset = new THREE.Matrix4().makeTranslation(-cx, -cy, -cz).multiply(align);
     let interior = null;
     if (o.fill_color) {
-      const geometry = new ConvexGeometry(o.hull.map(p => new THREE.Vector3(...p).multiplyScalar(.985)));
+      let geometry;
+      if (o.visual_fill?.kind === 'bottom_cap') {
+        const vertices = o.visual_fill.vertices;
+        const shape = new THREE.Shape(vertices.map(([x, , z]) => new THREE.Vector2(x, -z)));
+        geometry = new THREE.ShapeGeometry(shape);
+        geometry.rotateX(-Math.PI / 2);
+        geometry.translate(0, vertices[0][1], 0);
+      } else {
+        geometry = new ConvexGeometry(o.hull.map(p => new THREE.Vector3(...p).multiplyScalar(.985)));
+      }
       const color = new THREE.Color().setRGB(...o.fill_color, THREE.SRGBColorSpace);
-      // Only the far, inward-facing surface fills holes; the photographed
-      // front surface remains in front of it instead of becoming a solid blob.
-      interior = new THREE.Mesh(geometry, new THREE.MeshBasicMaterial({ color, side: THREE.BackSide }));
+      // Reviewed open boxes fill only their unseen bottom. Other objects retain
+      // the far, inward-facing hull surface behind their photographed splats.
+      interior = new THREE.Mesh(geometry, new THREE.MeshBasicMaterial({ color,
+        side: o.visual_fill?.kind === 'bottom_cap' ? THREE.DoubleSide : THREE.BackSide }));
       scene.add(interior);
     }
     return { o, body, offset, interior, mesh: splat(o.splat, offset) };

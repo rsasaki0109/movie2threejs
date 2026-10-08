@@ -72,6 +72,9 @@ def capture(world: Path, shot: Path, out: Path, width: int, height: int,
             failure = page.evaluate("window.playworldError")
             if failure:
                 raise RuntimeError(failure)
+            assert page.evaluate("""() => [...document.querySelectorAll(
+                'header, footer, #actions, #touch, #start, #hud, #cross')]
+                .every(el => getComputedStyle(el).display === 'none')"""), "recording UI is visible"
             info = page.evaluate("""() => {
                 const gl = playworld.renderer.getContext();
                 const ext = gl.getExtension('WEBGL_debug_renderer_info');

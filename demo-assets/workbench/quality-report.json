@@ -202,5 +202,30 @@
   "spz_export_seconds": 3.483,
   "selected_export_step": 5000,
   "full_training_trial_steps": 30000,
-  "scope": "Existing shared L4; full 30,000-step trial, selected 5,000-step export, manually reviewed one-box masks. Not a smartphone or VGGT benchmark."
+  "scope": "Existing shared L4; full 30,000-step trial, selected 5,000-step export, manually reviewed one-box masks. Not a smartphone or VGGT benchmark.",
+  "rendering_refinement": {
+    "report": "visual-refinement.json",
+    "scope": "CPU box refinement after GPU checkpoint selection; original stage statistics are historical",
+    "current_stats": {
+      "cameras": 16,
+      "points": 100000,
+      "gaussians": 1109452,
+      "input_gaussians": 1141634,
+      "discarded_object_gaussians": 712,
+      "discarded_diffuse_gaussians": 3823,
+      "clean_splats": true,
+      "discarded_bounds_gaussians": 27647,
+      "bounds_margin_m": 3,
+      "objects": 1,
+      "colliders": 2834,
+      "support_patches": 1,
+      "floor_inliers": 21797,
+      "scale_m_per_unit": 1.323942,
+      "visual_cleanup": {
+        "subject_id": 1,
+        "removed": 707,
+        "restored_support_splats": 0
+      }
+    }
+  }
 }

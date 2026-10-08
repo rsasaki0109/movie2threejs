@@ -1,0 +1,116 @@
+{
+  "scope": "CPU rendering refinement of one manually reviewed open box; no training",
+  "seconds": 5.615,
+  "subject_id": 1,
+  "input_object_splats": 9258,
+  "kept_object_splats": 8551,
+  "removed_splats": 707,
+  "restored_support_splats": 0,
+  "background_vote_ratio": 0.8,
+  "max_splat_size_m": 0.08,
+  "collision_geometry_unchanged": true,
+  "bottom_cap": {
+    "kind": "bottom_cap",
+    "vertices": [
+      [
+        -0.12678,
+        -0.1444,
+        -0.20512
+      ],
+      [
+        0.20247,
+        -0.1444,
+        -0.19699
+      ],
+      [
+        0.19123,
+        -0.1444,
+        0.25784
+      ],
+      [
+        -0.13802,
+        -0.1444,
+        0.2497
+      ]
+    ],
+    "approximate": true
+  },
+  "fill_color_srgb": [
+    0.46540001034736633,
+    0.3899100124835968,
+    0.2891499996185303
+  ],
+  "support_patch_replaced": false,
+  "stats": {
+    "cameras": 16,
+    "points": 100000,
+    "gaussians": 1109452,
+    "input_gaussians": 1141634,
+    "discarded_object_gaussians": 712,
+    "discarded_diffuse_gaussians": 3823,
+    "clean_splats": true,
+    "discarded_bounds_gaussians": 27647,
+    "bounds_margin_m": 3,
+    "objects": 1,
+    "colliders": 2834,
+    "support_patches": 1,
+    "floor_inliers": 21797,
+    "scale_m_per_unit": 1.323942,
+    "visual_cleanup": {
+      "subject_id": 1,
+      "removed": 707,
+      "restored_support_splats": 0
+    }
+  },
+  "method": "Conservative mask rejection with full-room occlusion reference, compact scale and support limits; manually reviewed open-box horizontal bottom only",
+  "checkpoint_sha256": "f5c845ba8a5e72b24af668f94d39796300700c681fc5cde2d7254bc0e3cce3b1",
+  "checkpoint_step": 4999,
+  "background_spz_reused": true,
+  "background_sha256": "c8dd42cfaa202b2d1d9a81843bcf950ab56ec52faf09e4f88187811bc7525019",
+  "physics_scope": "All 390 physical states match the previous hero exactly; two sampled replays and endpoint PNGs repeat",
+  "rejected_candidates": [
+    {
+      "method": "Strict masks and collision rebuild",
+      "reason": "The original impulse no longer knocked the box off the desk; rejected"
+    },
+    {
+      "method": "Object-only visibility with .65 positive mask majority",
+      "kept_object_splats": 4883,
+      "reason": "Removed photographic sides and made the box too transparent; rejected"
+    },
+    {
+      "method": "Support patch refit to bottom rectangle",
+      "reason": "Sampled bright adjacent desk, creating a conspicuous pale patch; existing patch retained"
+    }
+  ],
+  "limits": [
+    "The bottom is an unobserved solid-color approximation, not recovered texture",
+    "Existing support-patch approximation is retained; exposed tabletop and keyboard are still incomplete",
+    "Blur and thin fragments elsewhere in the scene are not corrected"
+  ],
+  "code_reproduction": {
+    "seconds": 5.744,
+    "world_json_and_object_ply_bytes_equal": true,
+    "background_ply_bytes_equal_source": true
+  },
+  "equal_physics_samples": 12,
+  "repeat_first_and_last_pixels_equal": true,
+  "all_original_physics_states_equal": 390,
+  "current_world_sha256": "bc4561a505907f3284d7290db21bf4f5241ea2ce280f1e1041a2de12fd336066",
+  "shot_sha256": "6a7d5ac028391dcfeb33b5732a460098e6bc23e00253aefbb2f6d41c121c62dc",
+  "capture_seconds": 584.769,
+  "capture_time_scope": "Local GTX 1660 Ti browser export including concurrent replay and gallery QA; excludes GPU reconstruction",
+  "gif_bytes": 7798040,
+  "mp4_bytes": 9225667,
+  "comparison": {
+    "path": "docs/demos/workbench-box-comparison.mp4",
+    "start_frame": 165,
+    "duration_seconds": 4.5,
+    "fps": 30,
+    "width": 1280,
+    "height": 360,
+    "bytes": 639825,
+    "sha256": "f67eb0057c991dfada548713c9e16c82afed3160d67608cbaf1764e52c0babc9",
+    "same_camera_and_physics": true
+  }
+}

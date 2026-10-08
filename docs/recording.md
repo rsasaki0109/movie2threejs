@@ -77,7 +77,7 @@ the README hero. See [the validation record](synthetic-encoding-validation.json)
 
 Optional shot `fov` is 20–120 degrees; push `strength` is positive (interactive default 3). An event's `origin` and `target` must be provided together as distinct finite xyz vectors. `record.nextFrame(n)` can advance to a later frame for quick QA; every intervening physics tick and event is still simulated. Full exports call `nextFrame()` sequentially and write every frame.
 
-Use `scripts/verify_hero.py` after encoding to check the actual asset sizes/durations, source hash, physical push, walking, ball creation, and matching physics at repeated sampled frames. [Hero validation](hero-validation.json) stores the results. Keep the [MIT notice](EYEFULTOWER-LICENSE.txt) with the media. The physical interior fill and support patch are deliberately simple color approximations.
+Use `scripts/verify_hero.py` after encoding to check the actual asset sizes/durations, source hash, physical push, walking, ball creation, and matching physics at repeated sampled frames. [Hero validation](hero-validation.json) stores the results. Keep the [MIT notice](EYEFULTOWER-LICENSE.txt) with the media. The bottom cap and support patch are deliberately simple color approximations. Recording mode also hides the hosted viewer's navigation, footer and action controls, so they cannot cover canvas screenshots.
 
 Reproduce the measured asset after building the gallery as described in
 [local preview](live-demo.md#local-preview). The packaged data directory alone has
@@ -90,9 +90,13 @@ python scripts/encode_hero.py --video scenes/public_source/apartment-workshop.mp
 
 The measured Windows capture used the installed Arial font and gifski 1.34.0. Encoding appends a short hold of the opening comparison so the final dissolve closes the loop; measured output durations are saved separately from the 13 s timeline.
 
-The 8 October capture read a CRLF timeline; the repository stores that same JSON
+The earlier 8 October capture, before box refinement, read a CRLF timeline; the repository stores that same JSON
 with LF line endings. The original recording hash is retained as `shot_sha256`,
 and `committed_shot_sha256` identifies the committed bytes. A replay of the LF file
 matched all 390 physics states and both endpoint PNGs
 ([normalization check](runs/quality/workbench-timeline-normalization-validation.json)).
 This was a replay check, not a second complete PNG capture.
+
+The current box-refined capture reads the committed LF timeline directly, so its
+`shot_sha256` identifies those exact bytes. The earlier CRLF normalization receipt
+remains historical evidence; it is not needed to interpret the current capture.

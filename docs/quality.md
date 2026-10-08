@@ -129,13 +129,14 @@ had finer speckling on the workbench and floor. The final held-out PSNR of 30.64
 is a metric for the rejected 30,000-step weights, not for the adopted hero, and the
 held-out views differ from the earlier VGGT experiment.
 
-The adopted export has **1,110,159 Gaussians, one movable box, 2,834 static
-colliders and one support patch**, with 20,089,789 bytes of SPZ. Bounds cleanup
-removed 27,647 Gaussians, diffuse cleanup 3,823, and object-spill cleanup five.
+Before the local box refinement, the selected export had **1,110,159 Gaussians,
+one movable box, 2,834 static colliders and one support patch**, with 20,089,789
+bytes of SPZ. Bounds cleanup removed 27,647 Gaussians, diffuse cleanup 3,823,
+and the initial object-spill cleanup five.
 Only the reviewed box moves; other SAM detections remain static. Vertex colors
 sampled from the observed support surface reduce the dark hole left after the box
-moves. This remains a flat approximation; the unknown underside uses a colored
-convex interior. Floor blur, mask-edge fragments and incomplete views remain.
+moves. This remains a flat approximation. The current workbench uses the bottom-cap
+refinement described below. Floor blur, mask-edge fragments and incomplete views remain.
 
 The first proposed player position overlapped low collision boxes and could not
 walk. The committed profile moves its XZ start by approximately 0.72 m to a clear
@@ -148,3 +149,47 @@ and [hero checks](hero-validation.json) separate reconstruction from browser res
 Only reviewed MIT-licensed Eyeful Tower scenes are accepted. Keep the dataset's
 [MIT notice](EYEFULTOWER-LICENSE.txt) with redistributed outputs. Dataset attribution
 does not change model-weight licenses or demonstrate smartphone capture quality.
+
+## Reviewed workbench box refinement (CPU)
+
+The selected 5k weights and downloaded masks/calibration were reused locally. No
+new Colab session or GPU training was used. The original background SPZ is retained
+byte for byte. Collision hull, mass, centroid, support, all 2,834 static colliders
+and the camera/action timeline are unchanged.
+
+The adopted object keeps 8,551 of its original 9,258 splats. Cleanup uses the full
+room for visibility and removes points with at least two outside-mask votes and
+an 80% majority, scales above 8 cm or centers below the support tolerance. Unseen
+points are retained rather than treating missing object votes as background.
+Discarded ambiguous edges do not become static copies of the box. The world now
+contains **1,109,452 Gaussians and 20,079,956 SPZ bytes**.
+
+The lower photographed sides fit an inset oriented rectangle. Only a horizontal
+bottom is added, with cardboard color sampled from the captured lower surfaces;
+it replaces the large sloping convex interior that appeared when the box inverted.
+This manually reviewed open-box correction is not applied automatically to chairs,
+mugs or every segmented object, and the bottom is not recovered photographic texture.
+
+A strict segmentation/physics rebuild stopped the existing push from dropping
+the box and was rejected. Object-only visibility removed too many real sides
+(only 4,883 splats survived) and was also rejected. Refitting the support patch
+to the rectangular bottom sampled bright neighboring desk colors and looked
+like a pale panel, so the existing observed-color support patch was retained.
+The hidden tabletop and keyboard remain approximate, and floor blur is unresolved.
+
+[Refinement and rejected candidates](runs/quality/workbench-box-polish.json) ·
+[Before/after interaction video](demos/workbench-box-comparison.mp4).
+
+![Same-camera comparison before and after the box refinement](demos/workbench-box-before-after.jpg)
+
+Reproduce with an assembled PLY world and the reviewed masks in the same source
+coordinate frame; choose a fresh output directory:
+
+```bash
+python scripts/polish_box.py --world reviewed_world --sparse scene/segment-scene/sparse --masks scene/masks-reviewed --subject 1 --out polished_world
+```
+
+This is a manual showcase operation for an inspected open box. It is separate
+from the automatic video pipeline. The synthetic regression preserves original
+collision data and source files, and checks occlusion, support tolerance, a rotated
+inset bottom and insufficient/degenerate lower geometry.

@@ -61,7 +61,7 @@ video → frames → VGGT camera poses + points
                  three.js + Spark + Rapier → browser world
 ```
 
-The world builder estimates gravity from upright camera poses, fits the lower supported floor and assumes a camera height for scale. It lifts masks onto visible Gaussians, separates movable objects, and makes each object solid down to its support. Compact background points become merged static collision boxes. Object spill is removed before export; small flat support patches and colored convex interiors cover unobserved surfaces approximately.
+The world builder estimates gravity from upright camera poses, fits the lower supported floor and assumes a camera height for scale. It lifts masks onto visible Gaussians, separates movable objects, and makes each object solid down to its support. Compact background points become merged static collision boxes. Object spill is removed before export; small flat support patches and colored interior fills cover unobserved surfaces approximately. The reviewed workbench box uses only a horizontal bottom cap, keeping its top open.
 
 ## Make a real capture
 
@@ -87,7 +87,7 @@ The [static demo gallery](docs/live-demo.md) includes five actual captured space
 ## Known limitations
 
 - Metric scale assumes a camera height (`--eye-height`, default 1.5 m); true scale accuracy is unmeasured. Gravity assumes an upright camera.
-- Unseen surfaces lack photographic texture. Flat support patches and inward-facing colored convex hulls are simple approximations. Thin or open objects can look solid when turned over.
+- Unseen surfaces lack photographic texture. Flat support patches and colored fills are simple approximations. The reviewed workbench box uses a bottom cap; other objects retain convex interior fills. Thin or open objects can still look incomplete when turned over.
 - The public workbench has blur and incomplete floor/edge coverage outside the observed viewpoints. There is no general room inpainting or automatic boundary completion.
 - Masks, convex colliders and masses are estimates. Review them before using a new scene; not every detected label becomes a useful movable object.
 - The default VGGT weights are non-commercial. SAM 3 weights require approved Hugging Face access; model terms apply separately from the dataset's MIT license.
