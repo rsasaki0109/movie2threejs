@@ -26,7 +26,7 @@ def code(text):
 md("""
 # playworld: experimental phone video → physical browser world
 
-This notebook completed the public video/VGGT recipe on a Colab L4 in
+The shared reconstruction recipe completed the public video/VGGT input on a Colab L4 in
 12 min 25.7 s, including initial model downloads. Environment setup took another
 10 min 1.6 s. Browser preview and result ZIP download remain unverified.
 See `docs/colab-ui.md` and `docs/benchmarks.md` for the measured run and its limits.

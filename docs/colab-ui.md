@@ -1,5 +1,36 @@
 # Interactive Colab verification
 
+## Automatic source loading
+
+The current notebook fetches its source automatically from a pinned public
+GitHub commit, with no project ZIP upload. Only `src/`, `scripts/`, `notebooks/`
+and root files are checked out; the large gallery exports are not fetched.
+The same unchanged revision can be loaded again without replacing environments
+or results. A different revision, a ZIP-based existing project or edited source
+is rejected instead of being overwritten. A failed fetch leaves no partial
+project directory. Each attempt records the repository and revision in `job.json`.
+
+A fresh fetch from public GitHub and repeat loading passed locally at commit
+`9ed3cfc910379a876d4149944bb1f7c788f67a39`: **56 source files, 252,196 bytes**,
+excluding Git metadata and gallery assets. Local tests: **56 passed, 1 optional
+test skipped**. Colab verification of this automatic fetch is still pending.
+
+The reconstruction measurements below came from the earlier ZIP-upload version.
+They do not establish a complete first run of the updated notebook.
+
+Local checks also served the existing public workbench through the notebook's
+HTTP server and exported a **20,148,787-byte ZIP**. Archive integrity, the world
+JSON and both SPZ checksums matched the input. These are local HTTP/ZIP checks,
+not a Colab browser download or a new reconstruction.
+[Local validation receipt](colab-bootstrap-local-validation.json).
+
+A standard CPU Colab connection increased this account's displayed usage rate
+by 0.08 units/hour. That new CPU was stopped before any notebook code ran. Treat
+runtime costs as account-specific; CPU must not be assumed to be free. Colab
+browser preview/download verification is pending approval for that resource.
+
+## Earlier reconstruction check
+
 On 8 October 2026, Chrome imported `notebooks/playworld_colab.ipynb` into
 Google Drive and ran its public video/VGGT recipe through world assembly.
 The saved notebook output contains a [successful final report](colab-ui-run-20261008.json).
@@ -43,8 +74,9 @@ log. This change passed local regression tests but has not been rerun on Colab.
 
 Top-level notebook and project uploads worked after enabling file URL access
 for the ChatGPT extension on the correct PC. Selecting a project inside the
-`files.upload()` output iframe timed out in browser automation; the notebook
-now directs users to upload the project ZIP using the Files sidebar.
+`files.upload()` output iframe timed out in browser automation; the earlier
+ZIP-loading notebook used the Files sidebar. The current notebook replaces
+that project upload with automatic source fetching.
 
 The existing-runtime URL from `colab url` did not attach the imported Drive
 notebook to the intended L4 in this check. Connecting instead allocated a T4;
@@ -56,15 +88,15 @@ GPU and active assignments before installation or model execution.
 ## Attempt isolation and local checks
 
 Each attempt lives under its own `/content/playworld-runs/` directory,
-printed after project loading. Loading the identical project ZIP again is
-allowed; a different ZIP is rejected without replacing the existing project.
+printed after project loading. Automatic source reuse checks the pinned
+revision and rejects source changes without replacing the existing project.
 Weight access is checked before installation. Logs and `job.json` preserve
 completion and failures. The final download cell constructs a fresh ZIP,
 including a world only when the current pipeline completed. Preview requires
 completion and uses a free server port; rerunning it shuts down only its own
 previous server.
 
-Local verification: **53 Python tests passed, 1 optional test skipped**.
+Earlier local verification: **53 Python tests passed, 1 optional test skipped**.
 Regression checks cover a failed retry after a successful world, failure before
 input is available, independent attempts, an exit without a world manifest,
 and throttled progress with a complete disk log. These tests do not substitute

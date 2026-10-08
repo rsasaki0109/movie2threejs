@@ -1,0 +1,25 @@
+{
+  "recorded_utc": "2026-10-08T03:16:33.915277+00:00",
+  "scope": "Local public GitHub fetch, HTTP preview and ZIP integrity; not Colab browser execution",
+  "source_fetch": {
+    "repository": "https://github.com/rsasaki0109/movie2threejs.git",
+    "revision": "9ed3cfc910379a876d4149944bb1f7c788f67a39",
+    "files": 56,
+    "source_bytes": 252196,
+    "large_demo_assets_fetched": false,
+    "second_load_same_project": true
+  },
+  "preview_export": {
+    "scope": "Local HTTP preview and ZIP checks; not Colab UI",
+    "project_revision": "9ed3cfc910379a876d4149944bb1f7c788f67a39",
+    "world_sha256": "bc4561a505907f3284d7290db21bf4f5241ea2ce280f1e1041a2de12fd336066",
+    "http_assets": true,
+    "zip_integrity": true,
+    "zip_world_hashes_match": true,
+    "zip_bytes": 20148787
+  },
+  "tests": {
+    "passed": 56,
+    "skipped": 1
+  }
+}

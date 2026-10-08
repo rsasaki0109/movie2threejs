@@ -33,7 +33,9 @@ The workbench and meeting room use **provided camera calibration and sparse poin
 Explore, push and throw excerpts above are three interactions in the same apartment workbench.
 
 [![Open Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/rsasaki0109/movie2threejs/blob/master/notebooks/playworld_colab.ipynb)
-Open the notebook, then upload a project ZIP prepared with `python scripts/package_colab.py --sources-only` from a clone of this repository. [Measured Colab run and remaining UI checks](docs/colab-ui.md).
+Open the notebook, select L4/A100, grant access to the `HF_TOKEN` secret, then run
+the cells. Code is fetched automatically from a pinned public GitHub revision;
+no project ZIP upload is needed. [Measured Colab run and verification scope](docs/colab-ui.md).
 
 Try the verified synthetic room in three commands:
 
