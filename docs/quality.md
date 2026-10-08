@@ -13,7 +13,11 @@ The CLI now schedules weight checkpoints and PLY exports at six milestones acros
 that scaled schedule. A 30,000-step run saves every 5,000 steps. This replaces the
 final-only setting that lost the interrupted calibrated workbench at step 26,995.
 Regression tests cover interruption during both 7,000- and 30,000-step command
-schedules; the revised saving schedule still needs confirmation on a new GPU run.
+schedules. The 8 October L4 trial actually saved all six checkpoints and PLYs at
+5,000-step intervals. All six weight files were reloaded on CPU with finite tensors
+([validation](runs/quality/workbench-checkpoint-validation.json)). The selected
+5,000-step and final 30,000-step weights, photograph inputs, calibration and masks
+were downloaded and checked locally before finishing the GPU work.
 Upstream checkpoints preserve Gaussian weights and the saved step, but do not
 contain the training optimizers: they are not exact training-resume snapshots.
 
@@ -110,8 +114,36 @@ python scripts/run_calibrated.py apartment --scene scenes/calibrated-workbench-r
 ```
 
 Install `.[showcase]` in the core environment for calibrated-image preparation.
-The wrapper and revised save schedule are prepared for GPU validation; this command
-does not describe a completed reconstruction. Review masks before publishing outputs.
+The underlying preparation, training, segmentation and assembly commands completed
+on an existing L4 on 8 October. The complete portable wrapper has not been invoked
+end to end; the measured run used an equivalent orchestration script. Review masks
+before publishing outputs. An initial SPZ export used the wrong Python environment;
+repeating CPU assembly/export with `.gpu/envs/core/bin/python` resolved it without
+another training run.
+
+The current README workbench keeps **`point_cloud_4999.ply` from that 30,000-step
+trial**, rather than the final PLY. This is not equivalent to a separately scaled
+5,000-step run. The same camera path was rendered with reviewed label-1 box masks
+at 5,000, 10,000 and 30,000 steps. The early export looked smoother; the final export
+had finer speckling on the workbench and floor. The final held-out PSNR of 30.6495
+is a metric for the rejected 30,000-step weights, not for the adopted hero, and the
+held-out views differ from the earlier VGGT experiment.
+
+The adopted export has **1,110,159 Gaussians, one movable box, 2,834 static
+colliders and one support patch**, with 20,089,789 bytes of SPZ. Bounds cleanup
+removed 27,647 Gaussians, diffuse cleanup 3,823, and object-spill cleanup five.
+Only the reviewed box moves; other SAM detections remain static. Vertex colors
+sampled from the observed support surface reduce the dark hole left after the box
+moves. This remains a flat approximation; the unknown underside uses a colored
+convex interior. Floor blur, mask-edge fragments and incomplete views remain.
+
+The first proposed player position overlapped low collision boxes and could not
+walk. The committed profile moves its XZ start by approximately 0.72 m to a clear
+location; camera keyframes still follow the capture viewpoints. Real keyboard and
+touch-emulated walking, a falling/inverting box and repeated fixed-step physics were
+checked. The cinematic camera is independent of the capsule controller. The
+[measured trial and selection](runs/quality/calibrated-workbench-156-selected-5000.json)
+and [hero checks](hero-validation.json) separate reconstruction from browser results.
 
 Only reviewed MIT-licensed Eyeful Tower scenes are accepted. Keep the dataset's
 [MIT notice](EYEFULTOWER-LICENSE.txt) with redistributed outputs. Dataset attribution

@@ -1,6 +1,6 @@
 {
   "source": "docs/hero.mp4",
-  "source_sha256": "7c7eb268e6d74a0f572592c656c80d18f9af283477e22d527b6c540bb99f38dd",
+  "source_sha256": "8b4b61ab06b684387d6265874ada8f054b9c9783be550be2a151a99a9a01f688",
   "scope": "Three interaction excerpts from the same measured apartment workbench, not three different reconstructions",
   "width": 480,
   "clips": [
@@ -15,8 +15,8 @@
       "colors": null,
       "quality": 65,
       "encoder": "gifski",
-      "gif_bytes": 1399675,
-      "gif_sha256": "3b6f08dc2143430dda590d44901407e7ecdb3c1b5d5c8495c45ce6972b8abf9e"
+      "gif_bytes": 1613777,
+      "gif_sha256": "809159488d7f045bef5066de386dad0fca5e6fc1c2a3bd48fdd81ca4ce1d6256"
     },
     {
       "name": "push",
@@ -29,8 +29,8 @@
       "colors": null,
       "quality": 80,
       "encoder": "gifski",
-      "gif_bytes": 1105815,
-      "gif_sha256": "49038a0a6269b25c12dc1425376c1a377164c8742ec2adf31980d50c1ea80f61"
+      "gif_bytes": 888306,
+      "gif_sha256": "3d79ff2431c928948c6fb9d59a02e1241905535f4743ad61e1eef61d8a318a29"
     },
     {
       "name": "throw",
@@ -43,8 +43,8 @@
       "colors": null,
       "quality": 80,
       "encoder": "gifski",
-      "gif_bytes": 1170690,
-      "gif_sha256": "8baaf9b14b7a58bff3ffc1ab9aadb30b347d0ca588d523504e571b2a95dc9147"
+      "gif_bytes": 780596,
+      "gif_sha256": "78d150cfc35cacb4394f283f1d686b900226e38f3730250e44cf71d1c10ea712"
     }
   ]
 }

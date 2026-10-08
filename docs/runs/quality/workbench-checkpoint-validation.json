@@ -1,0 +1,132 @@
+{
+  "torch": "2.9.1+cu130",
+  "scope": "CPU-only weights reload; this does not restore optimizer state or continue training",
+  "checkpoints": [
+    {
+      "filename": "ckpt_4999_rank0.pt",
+      "step": 5000,
+      "gaussians": 1141634,
+      "bytes": 269428597,
+      "sha256": "f5c845ba8a5e72b24af668f94d39796300700c681fc5cde2d7254bc0e3cce3b1",
+      "tensor_keys": [
+        "means",
+        "opacities",
+        "quats",
+        "scales",
+        "sh0",
+        "shN"
+      ],
+      "checkpoint_keys": [
+        "step",
+        "splats"
+      ],
+      "cpu_load_weights_only": true,
+      "all_tensors_finite": true
+    },
+    {
+      "filename": "ckpt_9999_rank0.pt",
+      "step": 10000,
+      "gaussians": 2219079,
+      "bytes": 523705589,
+      "sha256": "e6cae71d64779830e38b79c1c37b4c949a97a9869d2578c4a9d0b656cf888233",
+      "tensor_keys": [
+        "means",
+        "opacities",
+        "quats",
+        "scales",
+        "sh0",
+        "shN"
+      ],
+      "checkpoint_keys": [
+        "step",
+        "splats"
+      ],
+      "cpu_load_weights_only": true,
+      "all_tensors_finite": true
+    },
+    {
+      "filename": "ckpt_14999_rank0.pt",
+      "step": 15000,
+      "gaussians": 2985303,
+      "bytes": 704534465,
+      "sha256": "4ec234783ba950114150921880f2de76fb4989bdf32fb03cfbf5d720fd97eae5",
+      "tensor_keys": [
+        "means",
+        "opacities",
+        "quats",
+        "scales",
+        "sh0",
+        "shN"
+      ],
+      "checkpoint_keys": [
+        "step",
+        "splats"
+      ],
+      "cpu_load_weights_only": true,
+      "all_tensors_finite": true
+    },
+    {
+      "filename": "ckpt_19999_rank0.pt",
+      "step": 20000,
+      "gaussians": 2985303,
+      "bytes": 704534465,
+      "sha256": "51c180b0d01dc6a3cec16076811e11c46dc1d9e8f75fde1e7e38fce82d926854",
+      "tensor_keys": [
+        "means",
+        "opacities",
+        "quats",
+        "scales",
+        "sh0",
+        "shN"
+      ],
+      "checkpoint_keys": [
+        "step",
+        "splats"
+      ],
+      "cpu_load_weights_only": true,
+      "all_tensors_finite": true
+    },
+    {
+      "filename": "ckpt_24999_rank0.pt",
+      "step": 25000,
+      "gaussians": 2985303,
+      "bytes": 704534465,
+      "sha256": "4be5ee7854d4fc3169b7de0b0e73cc75709e5e5ceff14300b57d7a64baad383d",
+      "tensor_keys": [
+        "means",
+        "opacities",
+        "quats",
+        "scales",
+        "sh0",
+        "shN"
+      ],
+      "checkpoint_keys": [
+        "step",
+        "splats"
+      ],
+      "cpu_load_weights_only": true,
+      "all_tensors_finite": true
+    },
+    {
+      "filename": "ckpt_29999_rank0.pt",
+      "step": 30000,
+      "gaussians": 2985303,
+      "bytes": 704534465,
+      "sha256": "5037215cc0f07f1a973d4313a940980db7f9ec503dd053dd561bcc6e2033c804",
+      "tensor_keys": [
+        "means",
+        "opacities",
+        "quats",
+        "scales",
+        "sh0",
+        "shN"
+      ],
+      "checkpoint_keys": [
+        "step",
+        "splats"
+      ],
+      "cpu_load_weights_only": true,
+      "all_tensors_finite": true
+    }
+  ]
+}

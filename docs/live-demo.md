@@ -2,12 +2,12 @@
 
 The static gallery contains five actual Eyeful Tower captures reconstructed on an existing Colab L4: apartment workbench, meeting room, kitchen/cafe, window office and furnished room. No inference runs on the website. Each room includes its recorded timeline, preview, exact source and checksum manifest.
 
-The meeting room is a calibrated 192-photograph showcase using provided camera poses
-and sparse initialization; it does not use VGGT. The other four rooms use estimated
-VGGT poses. The selected meeting-room viewpoint avoids the worst close mesh-chair
-artifacts; walking to other views can still reveal them.
+The workbench and meeting room are calibrated showcases using 156 and 192 photographs,
+provided camera poses and sparse initialization; neither uses VGGT. The other three
+rooms use estimated VGGT poses. Selected viewpoints avoid some of the worst artifacts;
+walking to other views can still reveal blur and incomplete coverage.
 
-`demo-assets/workbench/` contains 17,147,580 bytes of SPZ v3 data, its `world.json` and a checksum manifest. This quantized format retains view-dependent spherical harmonics through SH3. The hero and packaged viewer use the same SPZ export. Conservative background-volume cleanup retains thin surfaces; it does not reconstruct unseen geometry. Dataset attribution and the MIT notice accompany each room. Model restrictions still apply.
+`demo-assets/workbench/` contains 20,089,789 bytes of SPZ v3 data, its `world.json` and a checksum manifest. It keeps the 5,000-step checkpoint from a 30,000-step trial, one manually reviewed box, and 2,834 static colliders. This quantized format retains view-dependent spherical harmonics through SH3. The hero and packaged viewer use the same SPZ export. Conservative background-volume cleanup retains thin surfaces; it does not reconstruct unseen geometry. Dataset attribution and the MIT notice accompany each room. Model restrictions still apply.
 
 ## Local preview
 
@@ -17,7 +17,7 @@ python scripts/build_gallery.py
 python -m http.server -d _site 8000
 ```
 
-Open http://localhost:8000 and choose a room from the gallery. The workbench enters at the hero's viewpoint. Desktop: WASD, mouse look, E push, click throw, Space jump, R reset, Esc menu. When the mouse is released, the **Knock the box over** button applies the same ray impulse as the recorded hero. It moves a real rigid body. Touch devices offer swipe look, directional buttons, push and throw. WebGL2 and a reasonably capable GPU are required; physical mobile hardware has not been benchmarked.
+Open http://localhost:8000 and choose a room from the gallery. The workbench enters near the hero's opening view, at a reviewed clear walking position. Desktop: WASD, mouse look, E push, click throw, Space jump, R reset, Esc menu. When the mouse is released, the **Knock the box over** button applies the same ray impulse as the recorded hero. It moves a real rigid body. Touch devices offer swipe look, directional buttons, push and throw. WebGL2 and a reasonably capable GPU are required; physical mobile hardware has not been benchmarked.
 
 Run `python scripts/verify_site.py` after installing Playwright/Chromium to check the built site beneath `/movie2threejs/`. It verifies identical fixed-step replays, a box falling off the workbench, desktop mouse capture and keyboard walking, and touch entry/throw in mobile browser emulation. Screenshots and the result are written to `.cache/site-verification/`.
 
@@ -25,10 +25,10 @@ Run `python scripts/verify_gallery.py` to verify all five rooms, their asset che
 
 The additional 8 s previews are actual 1280×720 fixed-step browser captures, encoded as MP4 and 480×270 looping GIFs below 2 MB each. Their recordings are [camera/event JSON files](../shots/gallery/), with encoding receipts under `docs/demos/`.
 
-To regenerate an SPZ world, install the optional encoder with `bash scripts/setup_spz.sh` in Linux/Colab and choose fresh asset and site directories:
+To regenerate an SPZ world, install the optional encoder with `bash scripts/setup_spz.sh` in Linux/Colab. Use your freshly assembled PLY world as input and choose fresh asset and site directories:
 
 ```bash
-python scripts/build_demo.py --world scenes/hero-result/world --profile shots/gallery/workbench-profile.json --format spz --assets .cache/spz-assets --out .cache/site-preview
+python scripts/build_demo.py --world reviewed_world --profile shots/gallery/workbench-profile.json --format spz --assets .cache/spz-assets --out .cache/site-preview
 ```
 
 ## GitHub Pages

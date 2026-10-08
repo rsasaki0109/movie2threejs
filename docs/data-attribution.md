@@ -26,7 +26,9 @@ The selected dataset license does not remove VGGT or SAM 3 weight restrictions.
 
 ## Hero derivative
 
-The hero uses the workbench excerpt `apartment-workshop.mp4`: start 5.0 s, requested duration 4.2 s, measured 4.250 s, 51 frames, 9,199,102 bytes. SHA-256: `a0a387a1af7f8483d8c5d13861dc17907054784f090a4c26e8370624b4e4263e`. The original photograph sequence is sampled to 24 images; no dataset ground-truth camera poses were supplied to VGGT or gsplat.
+The hero's source comparison uses the workbench excerpt `apartment-workshop.mp4`: start 5.0 s, requested duration 4.2 s, measured 4.250 s, 51 frames, 9,199,102 bytes. SHA-256: `a0a387a1af7f8483d8c5d13861dc17907054784f090a4c26e8370624b4e4263e`.
+
+The current reconstructed world uses **156 undistorted photographs from cameras 19,16,22**, ordinal interval **60:112** independently per camera, dataset-provided COLMAP calibration and 100,000 sparse initialization points. **VGGT is bypassed.** The photograph manifest preserves exact URLs and hashes in [the packaged source](../demo-assets/workbench/source.json). Training ran for 30,000 steps; rendered comparison selected the checkpoint at 5,000 steps. This is a calibrated public showcase, not evidence of automatic smartphone conversion. The historical 24-image video/VGGT result is retained in the benchmark records.
 
 The first two seconds of the hero show this public source beside the browser world. Text identifies it as **PUBLIC ROOM CAPTURE**. Camera movement, the pushed box, thrown ball and their collisions come from the browser viewer. Hidden faces use simple colored convex interiors; this does not invent photographic texture.
 

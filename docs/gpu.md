@@ -39,7 +39,9 @@ with a static world silently. To deliberately test static reconstruction only, u
 `PLAYWORLD_PROMPTS=''`. SAM 3 also requires approved Hugging Face access to `facebook/sam3`;
 set `HF_TOKEN` in Colab secrets or the host environment, never in committed files.
 
-The workbench used 24 frames and 7,000 training steps. These are not general VRAM
+The historical video/VGGT workbench used 24 frames and 7,000 training steps. The
+current README world uses provided camera calibration and a separately measured
+[156-photograph showcase](quality.md#calibrated-public-showcase). These are not general VRAM
 or speed guarantees. This BA reconstruction completed below the 15 minute target; see
 [actual settings and quality limits](benchmarks.md). Optional settings:
 

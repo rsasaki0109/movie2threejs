@@ -968,23 +968,5 @@
       "bytes": 369314,
       "sha256": "5e969929cc61522d44336d6641221dec95ca9545285f6fe32bc2f6c4f25d3e16"
     }
-  ],
-  "training": {
-    "full_trial_steps": 30000,
-    "selected_checkpoint_step": 5000,
-    "selected_ply": "point_cloud_4999.ply",
-    "selection": "Manual comparison of the same recorded camera path at 5,000, 10,000 and 30,000 steps; chose smoother selected views and smaller download. Not a scaled 5,000-step training run."
-  },
-  "source_comparison_video": {
-    "source": "apartment-camera19.mp4",
-    "source_sha256": "adc56a3cf265dd420cc195254a83c69603a2f3fcd37288e52f68dc41da7e0989",
-    "derived": "apartment-workshop.mp4",
-    "sha256": "a0a387a1af7f8483d8c5d13861dc17907054784f090a4c26e8370624b4e4263e",
-    "start_seconds": 5.0,
-    "requested_duration_seconds": 4.2,
-    "measured_duration_seconds": 4.25,
-    "bytes": 9199102,
-    "license": "MIT",
-    "kind": "trimmed capture-rig photograph sequence visualization"
-  }
+  ]
 }

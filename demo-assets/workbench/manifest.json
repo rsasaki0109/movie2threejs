@@ -1,65 +1,23 @@
 {
-  "source_world_sha256": "e10e38a3cd955fb17214bdd1e781383c8c0da6ad6aa115b26d6f23e18b8812fd",
+  "source_world_sha256": "5b8aa1aeaddd3dafd9ff73198c16e83b94dd6525b072e96ee2073b5b82855100",
   "format": "Niantic SPZ v3",
   "higher_order_sh": "preserved through SH3 (quantized)",
   "files": [
     {
       "path": "background.spz",
-      "gaussians": 857835,
-      "bytes": 16841203,
-      "sha256": "642b19dcd0b49087e65a4358f5a2e87f70c92ff88ff15f7ebbbe83f179165aa6"
+      "gaussians": 1100901,
+      "bytes": 19920967,
+      "sha256": "c8dd42cfaa202b2d1d9a81843bcf950ab56ec52faf09e4f88187811bc7525019"
     },
     {
-      "path": "objects/2.spz",
-      "gaussians": 451,
-      "bytes": 7749,
-      "sha256": "6451073385fa22ab023605ea2074f0164afe9615dca9fad02ee53f7ea8667c5c"
-    },
-    {
-      "path": "objects/3.spz",
-      "gaussians": 2998,
-      "bytes": 47720,
-      "sha256": "a30ae714217a96004a6ad108ee1292b842cc2d8dc5f09fa25c2a5f943dcc16a9"
-    },
-    {
-      "path": "objects/4.spz",
-      "gaussians": 1178,
-      "bytes": 20147,
-      "sha256": "bf46e72f978116d7cd1075a57599fa01cd4c3907e8ad6591debbc563600d29e9"
-    },
-    {
-      "path": "objects/5.spz",
-      "gaussians": 1647,
-      "bytes": 32330,
-      "sha256": "12a891813a26b42932dea8f1fa5ee61dd3da6aa944532eda2e32c47c55b983ba"
-    },
-    {
-      "path": "objects/6.spz",
-      "gaussians": 7634,
-      "bytes": 151685,
-      "sha256": "fec882ccca54adff3193620c69676ae2437b43246d658ea5345a65dba73d86a6"
-    },
-    {
-      "path": "objects/7.spz",
-      "gaussians": 1644,
-      "bytes": 25789,
-      "sha256": "509a67617f512a7bea496b409cb6fbe3cf18b652a63e08170562d9f9e1455a8f"
-    },
-    {
-      "path": "objects/8.spz",
-      "gaussians": 661,
-      "bytes": 13868,
-      "sha256": "657144ad868272f03ca1f4e239c3da4b288a19904e9c959cdea9e0fb497e327d"
-    },
-    {
-      "path": "objects/9.spz",
-      "gaussians": 317,
-      "bytes": 7089,
-      "sha256": "d6c5ed075edac7a5473a8aa7ed0b4ed53cd8d0a162b3547ed275e18f3aee708a"
+      "path": "objects/1.spz",
+      "gaussians": 9258,
+      "bytes": 168822,
+      "sha256": "660d0ca4c70cd56c872625550fb883716ca53dc843d48401f952ab377fbf23fb"
     }
   ],
-  "gaussians": 874365,
-  "splat_bytes": 17147580,
-  "objects": 8,
-  "colliders": 1928
+  "gaussians": 1110159,
+  "splat_bytes": 20089789,
+  "objects": 1,
+  "colliders": 2834
 }

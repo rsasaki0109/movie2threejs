@@ -1,0 +1,22 @@
+{
+  "scope": "Local SHA-256 verification of selected 5,000-step and final 30,000-step weights; optimizer state is not stored. Raw weights and input photographs are ignored by Git.",
+  "weights": [
+    {
+      "path": "scenes/calibrated-workbench-checkpoints-20261008/ckpt_4999_rank0/ckpt_4999_rank0.pt",
+      "bytes": 269428597,
+      "sha256": "f5c845ba8a5e72b24af668f94d39796300700c681fc5cde2d7254bc0e3cce3b1"
+    },
+    {
+      "path": "scenes/calibrated-workbench-checkpoints-20261008/ckpt_29999_rank0/ckpt_29999_rank0.pt",
+      "bytes": 704534465,
+      "sha256": "5037215cc0f07f1a973d4313a940980db7f9ec503dd053dd561bcc6e2033c804"
+    }
+  ],
+  "inputs": {
+    "directory": "scenes/calibrated-workbench-recovery-20261008",
+    "recorded_files": 221,
+    "archive_bytes": 80572862,
+    "archive_sha256": "1882dbae213f85cda5f4687feea3c6806224829d4b4a94c9db00e0e69ed67a7c",
+    "file_sha256_verified": true
+  }
+}

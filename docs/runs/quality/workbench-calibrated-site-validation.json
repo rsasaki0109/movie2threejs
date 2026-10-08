@@ -1,0 +1,14 @@
+{
+  "url": "http://127.0.0.1:56404/movie2threejs/",
+  "replay_equal": true,
+  "subject_id": 1,
+  "box_drop_m": 1.0277746468782425,
+  "keyboard_walk_m": 0.271188449928791,
+  "desktop_pointer_lock": true,
+  "touch_entry_and_throw": true,
+  "touch_walk_m": 1.0788649627889517,
+  "touch_swipe_look": true,
+  "mobile_scope": "Chromium emulation, not physical hardware",
+  "page_errors": [],
+  "failed_requests": []
+}

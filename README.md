@@ -17,7 +17,7 @@
 
 **Five real captures, five playable demos.** [Run the browser gallery locally](docs/live-demo.md) · [Measured runs](docs/benchmarks.md#additional-gallery-captures) · [Data & license](docs/data-attribution.md). These use public capture-rig photographs. Public hosting is on hold.
 
-The meeting room uses **192 photographs, provided camera calibration and sparse points** for a clearer showcase; VGGT was not used for that example. The other four rooms use estimated VGGT poses. [Quality comparison and remaining artifacts](docs/quality.md).
+The workbench and meeting room use **provided camera calibration and sparse points** for clearer showcases (156 and 192 photographs respectively). VGGT was not used for those two examples. The other three rooms use estimated VGGT poses. [Quality comparison and remaining artifacts](docs/quality.md).
 
 <table>
 <tr><th>Explore</th><th>Push</th><th>Throw</th></tr>
@@ -47,7 +47,7 @@ Open http://localhost:8000. **WASD** walk · **Space** jump · **Click** throw �
 
 The hero uses a real public apartment capture from **Eyeful Tower (MIT)**, visualized from capture-rig photographs. It is not a smartphone recording or the author's room. [Source and license](docs/data-attribution.md) · [High-quality MP4](docs/hero.mp4) · [Measured GPU runs](docs/benchmarks.md).
 
-VGGT, gsplat and SAM 3 ran on an existing Colab L4. The complete workbench reconstruction took **419.079 s** with cached weights, excluding setup. Subsequent measured refinements reuse its poses and Gaussians; the final world has **8 movable objects and 1,928 static colliders**. Browser checks confirm walking, a ray push that drops a box from the workbench, a thrown ball, and fixed-step replay. The 13 s hero is actual viewer output with a scripted camera and physics events.
+The current workbench uses **156 calibrated public photographs**, gsplat and SAM 3 on an existing Colab L4. Browser comparison selected the **5,000-step checkpoint from a 30,000-step trial**; longer training made the selected views more speckled. Its world has **1 reviewed movable box and 2,834 static colliders**. The full training trial took **2,363.596 s**, excluding setup and other stages. Browser checks confirm walking, a ray push that drops the box from the workbench, a thrown ball, and fixed-step replay. The 13 s hero is actual viewer output with a scripted camera and physics events. The earlier video/VGGT run remains in the benchmark history.
 
 ## How it works
 
@@ -65,13 +65,13 @@ The world builder estimates gravity from upright camera poses, fits the lower su
 
 ## Make a real capture
 
-The [GPU recipe](docs/gpu.md) and notebook share the same isolated VGGT, gsplat and SAM 3 environments. The public workbench recipe uses 24 frames, 7,000 training steps and bundle adjustment. Stage reports preserve timings, failures, source hashes and actual GPU information. [Colab CLI instructions](docs/colab-cli.md) use an existing runtime.
+The [GPU recipe](docs/gpu.md) and notebook share the same isolated VGGT, gsplat and SAM 3 environments. The original video/VGGT workbench recipe uses 24 frames, 7,000 training steps and bundle adjustment. The current calibrated showcase uses [a separate photograph recipe](docs/quality.md#calibrated-public-showcase). Stage reports preserve timings, failures, source hashes and actual GPU information. [Colab CLI instructions](docs/colab-cli.md) use an existing runtime.
 
 For your own video, keep the phone upright, move slowly in a bright room, and capture the floor and the sides of objects. The pipeline accepts video input; a real smartphone capture has not been validated yet. Review floor height, masks and collisions before recording.
 
 The [recording workflow](docs/recording.md) uses a JSON timeline, fixed 1/60 s physics and Playwright canvas capture. [The hero shot](shots/hero.json) records camera positions, a push and a throw; its action ray is specified independently of the cinematic camera. Interactive walking uses Rapier's capsule character controller.
 
-The [static demo gallery](docs/live-demo.md) includes five actual captured spaces, with desktop and touch controls. The workbench is a 17.1 MB SPZ download with view-dependent color retained. [Quality comparisons](docs/quality.md) record adopted changes and rejected experiments. GitHub Pages publication is on hold while the repository stays private.
+The [static demo gallery](docs/live-demo.md) includes five actual captured spaces, with desktop and touch controls. The workbench is a 20.1 MB SPZ download with view-dependent color retained. [Quality comparisons](docs/quality.md) record adopted changes and rejected experiments. GitHub Pages publication is on hold while the repository stays private.
 
 ## Stages
 

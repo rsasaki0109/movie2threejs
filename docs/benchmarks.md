@@ -1,6 +1,11 @@
 # Real room benchmark
 
-Measured on 7 October 2026 using an existing Colab NVIDIA L4 (23,034 MiB reported by `nvidia-smi`, driver 580.82.07). No GPU runtime was allocated by the project scripts. Setup, CUDA compilation, earlier failed attempts and already cached model downloads are excluded from the times below.
+**Current hero:** the [8 October calibrated workbench](#current-calibrated-workbench-8-october-2026)
+uses 156 provided photographs and the 5,000-step checkpoint from a 30,000-step trial.
+The original video/VGGT timings below are preserved as historical measurements;
+they do not describe the current hero or its conversion time.
+
+The historical video/VGGT runs below were measured on 7 October 2026 using an existing Colab NVIDIA L4 (23,034 MiB reported by `nvidia-smi`, driver 580.82.07). No GPU runtime was allocated by the project scripts. Setup, CUDA compilation, earlier failed attempts and already cached model downloads are excluded from those times.
 
 Input: Eyeful Tower apartment camera 19, a public capture-rig photograph sequence, not a smartphone recording. The workbench section starts at 5.0 s and lasts 4.250 s (51 frames at 12 fps). The pipeline sampled 24 frames at a maximum dimension of 1280 pixels. Source SHA-256: `a0a387a1af7f8483d8c5d13861dc17907054784f090a4c26e8370624b4e4263e`. See [attribution](data-attribution.md) and [derived source metadata](hero-source.json).
 
@@ -18,7 +23,7 @@ Input: Eyeful Tower apartment camera 19, a public capture-rig photograph sequenc
 
 Settings: VGGT with bundle adjustment, one shared camera, initial reprojection tolerance 32 px, tracking batch budget 32,768 frame-point pairs; confidence threshold 1.5; gsplat 7,000 steps. BA converged to 0.567 px final reprojection error ([solver summary](runs/workshop-ba-summary.txt)). Export: 24 cameras, 26,852 points and 875,478 Gaussians. The original object prompts were `chair,box,mug,bottle`; that export contained 14 objects and 2,214 colliders. Its first floor fit selected the workbench and was corrected later.
 
-## Refinements used for the hero
+## Refinements used for the historical video/VGGT hero
 
 These are separate measured invocations reusing the same poses and trained Gaussians. They are **not a new full-run timing**.
 
@@ -39,13 +44,13 @@ The full apartment sequence at the upstream confidence threshold 5.0 exported ze
 
 The shared shell recipe and model APIs ran through the official Colab CLI. The notebook's interactive upload/preview UI was not automated. Smartphone capture, T4 compatibility and true metric accuracy remain unverified.
 
-## Browser recording and exported assets
+## Historical video/VGGT browser recording
 
-The local GTX 1660 Ti browser rendered 390 native 1920×1080 frames at a scripted 30 fps, with fixed 60 Hz Rapier steps. The current SPZ frame capture took **540.943 s**; this is separate from GPU reconstruction time and included concurrent replay QA. The cinematic camera moves independently of the character controller.
+The local GTX 1660 Ti browser rendered 390 native 1920×1080 frames at a scripted 30 fps, with fixed 60 Hz Rapier steps. The previous VGGT SPZ capture took **540.943 s**; this is separate from GPU reconstruction time and included concurrent replay QA. The cinematic camera moves independently of the character controller.
 
-[Hero validation](hero-validation.json) records the pushed box's **0.8593 m vertical drop**, 1.2808 m displacement, and inverted final orientation; character movement **1.0633 m**; one thrown ball. Two replays matched at 12 sampled physics states and their first/last PNGs. Every sampled state also matches the complete capture. This does not claim that the ball knocked a mug or bottle off the table.
+[Historical hero validation](runs/quality/workbench-vggt-hero-validation.json) records the pushed box's **0.8593 m vertical drop**, 1.2808 m displacement, and inverted final orientation; character movement **1.0633 m**; one thrown ball. Two replays matched at 12 sampled physics states and their first/last PNGs. Every sampled state also matched the complete capture. This does not claim that the ball knocked a mug or bottle off the table.
 
-The final GIF is 960×540 and below 8,000,000 bytes; the MP4 is 1920×1080. Exact measured durations, sizes and SHA-256 values are in [hero-validation.json](hero-validation.json) and [encoding provenance](hero-provenance.json).
+That GIF was 960×540 and below 8,000,000 bytes; the MP4 was 1920×1080. Historical sizes and hashes are preserved in the validation linked above. Current export measurements are in [hero-validation.json](hero-validation.json) and [encoding provenance](hero-provenance.json).
 
 ## Additional gallery captures
 
@@ -81,7 +86,7 @@ These refinements reuse the existing L4 and cached inputs; they are separate fro
 
 The adopted cafe has 6 objects and 2,197 colliders. Its 1,063,521 retained Gaussians occupy 20,510,053 bytes of SPZ. Improved held-out error does not establish sharp arbitrary-view rendering; blur remains.
 
-The workbench, window office and furnished room retain their original trained geometry and physics, with conservative background-volume removal and SH3-preserving SPZ export. Export/cleanup CPU times were 6.966 s, 2.334 s and 0.687 s respectively ([reports](runs/quality/)). Background volumes removed: 878, 4,733 and 1,874. Current workbench: 874,365 Gaussians, 8 objects, 1,928 colliders. These counts supersede the original export counts; they are not new complete pipeline runs.
+The earlier workbench, window office and furnished room retained their original trained geometry and physics, with conservative background-volume removal and SH3-preserving SPZ export. Export/cleanup CPU times were 6.966 s, 2.334 s and 0.687 s respectively ([reports](runs/quality/)). Background volumes removed: 878, 4,733 and 1,874. The historical workbench had 874,365 Gaussians, 8 objects and 1,928 colliders; it has since been replaced by the calibrated workbench below. Window office and furnished room still use those exports.
 
 Blanket opacity deletion and filtering against sparse reference planes were rejected after rendered comparison because they opened holes in walls. The optional training preset remains experimental. See [quality notes](quality.md).
 
@@ -104,10 +109,84 @@ Reviewed instance: chair 1 only. Other chairs remain static. Final export: **1 m
 
 Browser comparison found clearer walls, table and floor at the selected photographed viewpoints, with persistent close mesh-chair streaks and incomplete exposed surfaces after the push. Blanket opacity and sparse-plane filtering were rejected. No inpainting or photographic completion was introduced.
 
-Current native GTX 1660 Ti recording times: workbench 540.943 s (390 frames,
+Earlier native GTX 1660 Ti recording times: workbench 540.943 s (390 frames,
 1920×1080), meeting room 91.357 s, cafe 85.834 s, window office 74.693 s,
 furnished room 77.322 s (120 frames each, 1280×720). [Recording receipts](runs/quality/browser-captures.json)
 bind timings to exact world and shot hashes. [Final gallery checks](gallery-validation.json)
 verify all five current exports: identical physics replays, featured pushes, a thrown
 ball, scripted walking and actual keyboard walking. The meeting-room chair moved
 0.9752 m after the push; its initial settling was 0.0592 m in assumed units.
+
+## Current calibrated workbench (8 October 2026)
+
+GPU: **existing shared NVIDIA L4, 23,034 MiB**. The attempt to create a new runtime
+was refused by Colab's assignment limit; the successful run attached to an existing
+runtime. No new paid resource was created. Other jobs were not terminated. gsplat
+used PyTorch 2.9.1+cu130 and SAM 3 used 2.10.0+cu130 in separate environments.
+The trial limited its Torch allocator to 45% of the device.
+
+Input: **156 undistorted Eyeful Tower apartment photographs**, cameras **19,16,22**,
+52 each, ordinal interval **60:112** with exclusive stop. Dataset-provided COLMAP
+calibration and 100,000 sparse initialization points replace VGGT. SAM 3 uses
+16 camera-19 views, seed frame 5 and prompts `cardboard box,plastic bottle`.
+This is a calibrated public showcase, not a smartphone/video-pose benchmark.
+
+| Measured stage | Seconds |
+|---|---:|
+| Isolated GPU environment setup | 626.147 |
+| SPZ dependency setup | 43.531 |
+| Download and prepare photographs/calibration | 110.825 |
+| Full default 30,000-step gsplat trial | 2,363.596 |
+| SAM 3 inference with cached downloaded weights | 39.922 |
+| Initial unreviewed 30,000-step world | 17.508 |
+| Selected 5,000-step world with reviewed masks | 9.524 |
+| Selected SPZ export in core environment | 3.483 |
+
+SAM 3 weight prefetch separately took **16.460 s** (3,450,062,241 bytes).
+Setup, weight transfer, rejected variants, download/backup, queueing and browser
+capture are outside the reconstruction stage times. The complete training trial
+took **39 min 23.6 s** and did not meet the 15-minute target. The trainer's cumulative
+timer reached its 5,000-step save at **118.724 s**; this is an intermediate timer,
+not a measured complete 5,000-step conversion. A scaled 5,000-step run is a different
+densification schedule.
+
+All six actual checkpoint and PLY saves at 5k/10k/15k/20k/25k/30k were produced.
+[CPU reload validation](runs/quality/workbench-checkpoint-validation.json) checked
+finite tensors in all six weight files. Selected 5k and final 30k weights, inputs,
+calibration, masks and configuration were downloaded and SHA-256 checked locally
+([backup verification](runs/quality/workbench-local-backup-verification.json)).
+The checkpoints store weights and step, **not optimizer state**.
+
+The initial export failed because the orchestration script used native `python3`
+without the isolated SPZ dependency. Repeating CPU world/export in the core
+environment fixed it; training and segmentation were reused.
+
+Manual browser comparison of the same camera path selected **5,000-step weights**.
+10k and 30k exports were larger (42,088,483 and 64,157,149 bytes SPZ) and showed more
+floor/tabletop streaks or speckling at these viewpoints. The rejected final 30k
+weights scored PSNR **30.6495**, SSIM **0.903577**, LPIPS **0.157682** on their held-out
+views. These are not adopted-hero metrics and not a controlled comparison with
+the earlier VGGT data. [Trial and selection](runs/quality/calibrated-workbench-156-selected-5000.json).
+
+Adopted export: **1 reviewed box, 2,834 static colliders, 1 support patch,
+1,110,159 retained Gaussians, 20,089,789 SPZ bytes**. Bounds pruning removed 27,647
+Gaussians, diffuse pruning 3,823, object-spill pruning five. Floor fit: 21,797 inliers;
+assumed scale **1.323942 m per source unit**, still based on 1.5 m camera height.
+Other detections remain static. The player start was moved to a clear position
+after a first start overlapped low collision boxes. This does not guarantee every
+part of the room has correct collision geometry.
+
+The current [hero validation](hero-validation.json) records the complete 390-frame,
+1920×1080 capture, actual box fall/tip, character movement, one ball, matching
+12-state replay samples and matching first/last PNGs. [Browser capture receipts](runs/quality/browser-captures.json)
+separate recording time from reconstruction. Keyboard walking, pointer lock,
+touch-emulated walking/look/throw and all five gallery rooms are checked locally;
+GitHub Pages remains unpublished. Blur in unseen floor regions and colored
+unobserved box faces remain visible.
+
+Current workbench browser capture: **559.327 s**, native GTX 1660 Ti,
+390 frames at 1920×1080, including concurrent sampled replay QA. The pushed box
+dropped **1.0236 m** and finished inverted; character XZ movement was **0.4379 m**.
+One ball was created. GIF size: **7,811,010 bytes**; duration **13.1 s**.
+The 1920×1080 MP4 is **9,207,385 bytes**. These are measured browser/export
+results, separate from training.

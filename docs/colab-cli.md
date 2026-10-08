@@ -7,8 +7,9 @@ was attached as `playworld-l4`, and project upload and remote preflight succeede
 Preflight measured NVIDIA L4, 22,563 MiB PyTorch-reported GPU memory and native bf16. SAM 3
 weight access was confirmed from the runtime (`approved`). A complete apartment reconstruction
 ran through VGGT, gsplat, SAM 3 and world export. The short workbench BA reconstruction
-took 419.079 seconds with cached weights, excluding setup. The hero reuses its trained
-Gaussians with measured object/world refinements; see [benchmarks](benchmarks.md).
+took 419.079 seconds with cached weights, excluding setup. This is historical evidence;
+the current hero uses the later calibrated 156-photograph workbench trial and a
+reviewed 5,000-step checkpoint. See [benchmarks](benchmarks.md).
 Setup, trainer help flags and SAM 3 API imports passed on 2026-10-07. No runtime was allocated.
 
 Authenticate in your own PowerShell terminal:

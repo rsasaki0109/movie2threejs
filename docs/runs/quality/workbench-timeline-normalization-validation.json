@@ -1,0 +1,8 @@
+{
+  "scope": "Only CRLF to LF normalization; original recording provenance is preserved. This replay does not claim a new full PNG capture.",
+  "recorded_shot_sha256": "c446d7dba59544c5e914b8e361473f333c2be67429b1358e5aec01a877dc017b",
+  "committed_shot_sha256": "6a7d5ac028391dcfeb33b5732a460098e6bc23e00253aefbb2f6d41c121c62dc",
+  "parsed_json_equal": true,
+  "equal_physics_frames": 390,
+  "first_and_last_pngs_equal": true
+}

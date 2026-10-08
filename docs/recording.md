@@ -79,11 +79,20 @@ Optional shot `fov` is 20–120 degrees; push `strength` is positive (interactiv
 
 Use `scripts/verify_hero.py` after encoding to check the actual asset sizes/durations, source hash, physical push, walking, ball creation, and matching physics at repeated sampled frames. [Hero validation](hero-validation.json) stores the results. Keep the [MIT notice](EYEFULTOWER-LICENSE.txt) with the media. The physical interior fill and support patch are deliberately simple color approximations.
 
-Reproduce the measured asset after importing its world:
+Reproduce the measured asset after building the gallery as described in
+[local preview](live-demo.md#local-preview). The packaged data directory alone has
+no viewer HTML; record the built viewer:
 
 ```bash
-python scripts/record.py --world scenes/hero-result/world --shot shots/hero.json --out recordings/hero
-python scripts/encode_hero.py --video scenes/public_source/apartment-workshop.mp4 --video-start 2 --frames recordings/hero --out docs --gifski /path/to/gifski --labels --font /path/to/font.ttf --gif-settings 15 50 45 45
+python scripts/record.py --world _site/demos/workbench --shot shots/hero.json --out recordings/hero
+python scripts/encode_hero.py --video scenes/public_source/apartment-workshop.mp4 --video-start 0.666667 --video-speed 0.5 --frames recordings/hero --out docs --gifski /path/to/gifski --labels --font /path/to/font.ttf --gif-settings 10 58 58 58
 ```
 
 The measured Windows capture used the installed Arial font and gifski 1.34.0. Encoding appends a short hold of the opening comparison so the final dissolve closes the loop; measured output durations are saved separately from the 13 s timeline.
+
+The 8 October capture read a CRLF timeline; the repository stores that same JSON
+with LF line endings. The original recording hash is retained as `shot_sha256`,
+and `committed_shot_sha256` identifies the committed bytes. A replay of the LF file
+matched all 390 physics states and both endpoint PNGs
+([normalization check](runs/quality/workbench-timeline-normalization-validation.json)).
+This was a replay check, not a second complete PNG capture.

@@ -4,8 +4,8 @@
     "title": "Apartment workbench",
     "description": "Push a box off the workbench. Throw a ball into the room.",
     "alt": "Actual captured apartment workbench with a box pushed over in the physics viewer",
-    "objects": 8,
-    "download_mb": 17.1,
+    "objects": 1,
+    "download_mb": 20.1,
     "gif": "docs/hero.gif",
     "video": "docs/hero.mp4",
     "shot": "shots/hero.json"
