@@ -1,7 +1,17 @@
 """Generate the notebook; GPU setup and execution are shared with Linux scripts."""
 import json
+import argparse
+import re
+import subprocess
 from pathlib import Path
 
+root = Path(__file__).resolve().parents[1]
+parser = argparse.ArgumentParser(description=__doc__)
+parser.add_argument("--revision", help="Immutable source commit (defaults to current HEAD)")
+args = parser.parse_args()
+revision = args.revision or subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=root, text=True).strip()
+if not re.fullmatch(r"[0-9a-f]{40}", revision):
+    raise ValueError("Use a full immutable source commit SHA")
 cells = []
 
 
@@ -25,10 +35,10 @@ See `docs/colab-ui.md` and `docs/benchmarks.md` for the measured run and its lim
    The pinned SAM 3 uses bf16; **T4 is not validated** and the script rejects it for SAM 3.
 2. Request access to [facebook/sam3](https://huggingface.co/facebook/sam3), then store your
    token in Colab secrets as `HF_TOKEN` and grant this notebook access.
-3. Open **Files** in the left sidebar and upload the current `playworld.zip` to
-   session storage. Set `PROJECT_ZIP` below to its path if its filename differs.
-   Prepare that ZIP from a clone of [the repository](https://github.com/rsasaki0109/movie2threejs)
-   with `python scripts/package_colab.py --sources-only`.
+3. Run the cells in order (or **Runtime → Run all** for the public input).
+   The notebook automatically fetches its pinned source revision from
+   [the public repository](https://github.com/rsasaki0109/movie2threejs).
+   No project ZIP upload is needed.
 4. The default input is an MIT-licensed public apartment capture from Eyeful Tower.
    It is a visualization of capture-rig photographs, **not a phone video**.
    To use a phone video instead, set `DATA_SOURCE = "upload"`.
@@ -38,7 +48,6 @@ The VGGT default weights have non-commercial restrictions. Read each model's ter
 
 code("""
 NUM_FRAMES = 24       # verified for the public workbench input on L4
-PROJECT_ZIP = "/content/playworld.zip"  # upload using Files → Upload to session storage
 DATA_SOURCE = "public"  # "public" = Eyeful Tower apartment; "upload" = your video
 TRAIN_STEPS = 7000
 PROMPTS = "cardboard box,plastic bottle,folding chair"
@@ -50,32 +59,16 @@ assert DATA_SOURCE in {"public", "upload"}, "DATA_SOURCE must be public or uploa
 assert NUM_FRAMES >= 2 and TRAIN_STEPS >= 1 and EYE_HEIGHT > 0
 """)
 
-code("""
-# Load the project ZIP uploaded in the Files sidebar (not the room video yet).
+code((root / "scripts/notebook_bootstrap.py").read_text(encoding="utf-8") + f"\nPROJECT_REVISION = {revision!r}\n" + """
+# Fetch only the source directories, not the large gallery media or demo assets.
 from google.colab import files
-from pathlib import Path
-import zipfile
-import hashlib
 content = Path("/content").resolve()
-project = content / "playworld"
-archive_path = Path(PROJECT_ZIP).resolve()
-assert archive_path.is_file(), "Upload the project ZIP in the Files sidebar, then set PROJECT_ZIP to its path"
-digest = hashlib.sha256(archive_path.read_bytes()).hexdigest()
-marker = project / ".playworld-project-sha256"
-if project.exists():
-    assert marker.is_file() and marker.read_text().strip() == digest, "Existing project differs; preserve its results and use a fresh runtime for a different ZIP"
-else:
-    with zipfile.ZipFile(archive_path) as archive:
-        for item in archive.infolist():
-            assert item.filename.startswith("playworld/") and (content / item.filename).resolve().is_relative_to(project), "Unsafe project ZIP path"
-        assert "playworld/scripts/setup_gpu.sh" in archive.namelist(), "Not a playworld project ZIP"
-        archive.extractall(content)
-    marker.write_text(digest + "\\n", encoding="utf-8")
-assert (project / "scripts/setup_gpu.sh").is_file(), "ZIP must contain playworld/scripts/setup_gpu.sh"
+project = load_project(content, PROJECT_REVISION)
 import sys
 sys.path.insert(0, str(project / "scripts"))
 from notebook_support import NotebookRun
 run = NotebookRun(content, project, {
+    "project_repository": PROJECT_REPOSITORY, "project_revision": PROJECT_REVISION,
     "num_frames": NUM_FRAMES, "data_source": DATA_SOURCE, "train_steps": TRAIN_STEPS,
     "prompts": PROMPTS, "eye_height": EYE_HEIGHT, "pose_confidence": POSE_CONFIDENCE,
     "use_ba": USE_BA, "ba_reprojection_error": BA_REPROJECTION_ERROR,
@@ -135,7 +128,7 @@ md("""
 
 Check floor height, object masks, collisions and holes before recording. **WASD** walk,
 **Space** jump, **Click** throw, **E** push, **R** reset, **C** show colliders.
-Each attempt has its own directory, printed after project upload. Stage times and
+Each attempt has its own directory, printed after source loading. Stage times and
 failures are saved in `scene/run-*.json`, logs and `job.json` under that directory.
 One public-input L4 conversion took 12 min 25.7 s, plus 10 min 1.6 s for setup;
 this is not a timing guarantee for other videos.

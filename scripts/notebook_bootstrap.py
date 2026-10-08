@@ -2,6 +2,7 @@
 import re
 import subprocess
 import tempfile
+import time
 from pathlib import Path
 
 
@@ -37,6 +38,14 @@ def load_project(content, revision, repository=PROJECT_REPOSITORY):
             git("checkout", "--detach", revision, cwd=checkout)
             if not (checkout / "scripts/setup_gpu.sh").is_file():
                 raise RuntimeError("Project revision is missing the GPU setup script")
-            checkout.rename(project)
+            for attempt in range(10):
+                try:
+                    checkout.rename(project)
+                    break
+                except PermissionError as error:
+                    # Windows can briefly hold freshly fetched Git files open.
+                    if getattr(error, "winerror", None) != 32 or attempt == 9:
+                        raise
+                    time.sleep(0.2)
     print("Project revision:", git("rev-parse", "HEAD"))
     return project
