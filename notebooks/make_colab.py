@@ -26,20 +26,21 @@ def code(text):
 md("""
 # playworld: experimental phone video → physical browser world
 
-Automatic GitHub source loading, HF_TOKEN through Colab Secrets, setup and public
-video/VGGT reconstruction ran together on a Colab L4. The core pipeline took
-12 min 43.6 s, including initial model downloads; setup took another 9 min 40.2 s.
-The new world ZIP and final checkpoint were not fully downloaded before shutdown,
-and the new room preview did not finish loading. A complete first run remains
-unverified. Browser preview and ZIP download were checked separately on Colab CPU
-using an existing public world.
+The first six code cells ran on a Colab L4 through a native Windows kernel client
+at source revision `41d01a505362a95bfa3144a05e70ca5f646b1eb3`. The core pipeline took
+13 min 2.3 s, including initial model downloads; setup took another 9 min 46.5 s.
+The final checkpoint and world ZIP were fully recovered and verified before
+shutdown; CPU weight loading and local browser interaction passed. That run used
+a one-use approved-account token transfer; Colab Secrets passed separately.
+The last two interactive Colab preview/download cells and phone-video upload
+remain unverified in that attempt. The automatic result still has blur and streaks.
 See `docs/colab-ui.md` and `docs/benchmarks.md` for the measured run and its limits.
 
 This notebook now prepares hashed checkpoint and world-ZIP chunks immediately
 after reconstruction, before preview. Start the local backup watcher after the
-attempt directory appears. Recovery of 847 MB of synthetic bytes from Colab CPU
-passed with retries; the new GPU backup order and automatic recovery before
-deletion remain unverified. See `docs/colab-cli.md#automatic-backup-watcher`.
+attempt directory appears. A 32-worker index watcher recovered both actual GPU
+outputs before termination, while a concurrent separate ZIP transfer also ran.
+See `docs/colab-cli.md#automatic-backup-watcher` and the measured backup receipt.
 
 1. Select a GPU runtime. For movable objects use an Ampere-or-newer GPU (L4/A100 etc.).
    The pinned SAM 3 uses bf16; **T4 is not validated** and the script rejects it for SAM 3.
@@ -152,7 +153,7 @@ preview, **drag** to look, **WASD** walk, **Space** jump, **F** throw, **E** pus
 and **Click** to throw.
 Each attempt has its own directory, printed after source loading. Stage times and
 failures are saved in `scene/run-*.json`, logs and `job.json` under that directory.
-One public-input L4 conversion took 12 min 43.6 s, plus 9 min 40.2 s for setup;
+One public-input L4 conversion took 13 min 2.3 s, plus 9 min 46.5 s for setup;
 this is not a timing guarantee for other videos.
 If a stage fails, run the final download cell anyway to export the logs and available
 measurements. A failed run cannot be used as the README hero.
