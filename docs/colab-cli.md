@@ -1,5 +1,26 @@
 # Colab CLI
 
+## Prepared calibrated showcases
+
+`scripts/run_calibrated_prepared.py` accepts a SHA-256-pinned input ZIP prepared
+with `scripts/prepare_calibrated_public.py`. Include `images/`, `sparse/`,
+`segment-scene/`, `calibrated-source.json` and `EYEFULTOWER-LICENSE.txt`; omit the
+large `_upstream/` download cache. It verifies photograph hashes and the shared
+segmentation photographs before training. Its backups retain the final checkpoint,
+raw final PLY, segmentation masks and camera model for later CPU review.
+
+```bash
+python scripts/run_calibrated_prepared.py --input INPUT.zip --expected-sha256 SHA256 --out FRESH_ATTEMPT --steps 7000 --prompts chair --seed-frame 5
+```
+
+This entry point requires the existing environments from `setup_gpu.sh` and
+approved SAM 3 weight access. It does not allocate or stop a runtime. Input and
+backup integrity checks have local fixture coverage; GPU execution of this new
+entry point has not yet been verified. Seed frames and object prompts need visual
+review for each capture.
+
+## Existing Colab workflow
+
 The official [Google Colab CLI](https://github.com/googlecolab/google-colab-cli)
 supports Linux/macOS. On this PC it is installed as version 0.7.4 in WSL Ubuntu-22.04,
 at `/root/.local/bin/colab`. Google authentication succeeded. An existing L4 assignment

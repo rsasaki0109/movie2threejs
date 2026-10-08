@@ -5,6 +5,7 @@ import argparse
 import concurrent.futures
 import hashlib
 import json
+import os
 import urllib.request
 from pathlib import Path
 
@@ -14,6 +15,22 @@ from playworld.colmap_io import Camera, Reconstruction, read_model, write_model
 
 BASE = 'https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower'
 REVISION = '06a01a4915afc872b893c20a025a0e14598c8478'
+
+
+def standard_windows_path(value: str) -> str:
+    """Compare resolved Windows paths using one spelling of drive/UNC roots."""
+    if value.lower().startswith('\\\\?\\unc\\'):
+        return '\\\\' + value[8:]
+    if value.startswith('\\\\?\\') and len(value) >= 7 and value[5:7] == ':\\':
+        return value[4:]
+    return value
+
+
+def resolved_path(path: Path) -> Path:
+    resolved = path.resolve()
+    # Windows realpath can retain the extended prefix when a concurrent writer
+    # creates the file. That spelling still refers to the same absolute path.
+    return Path(standard_windows_path(str(resolved))) if os.name == 'nt' else resolved
 
 
 def select_views(images, camera: str, frames: int, start_index: int = 0,
@@ -42,11 +59,13 @@ def prepare(dataset: str, out: Path, frames: int = 64, camera: str = '19',
     if out.exists() and any(out.iterdir()):
         raise FileExistsError(f'Choose an empty output directory: {out}')
     out.mkdir(parents=True, exist_ok=True)
+    out = resolved_path(out)
     downloads = []
 
     def download(relative: str, target: Path):
-        if not target.resolve().is_relative_to(out.resolve()):
-            raise ValueError('Dataset path escaped the output directory')
+        resolved_target = resolved_path(target)
+        if not resolved_target.is_relative_to(out):
+            raise ValueError(f'Dataset path escaped the output directory: {resolved_target!s} outside {out!s}')
         target.parent.mkdir(parents=True, exist_ok=True)
         url = f'{BASE}/{dataset}/{relative}'
         with urllib.request.urlopen(url, timeout=120) as response, target.open('wb') as stream:

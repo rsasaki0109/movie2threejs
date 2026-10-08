@@ -29,3 +29,15 @@ def test_invalid_or_insufficient_intervals_fail(start, stop):
     images = [SimpleNamespace(name=f'19_{i:04d}.jpg') for i in range(60)]
     with pytest.raises(ValueError):
         select_views(images, '19', 32, start, stop)
+def test_windows_extended_roots_compare_without_weakening_containment():
+    import importlib.util
+    from pathlib import Path, PureWindowsPath
+    spec = importlib.util.spec_from_file_location('prepared_paths', Path(__file__).parents[1] / 'scripts/prepare_calibrated_public.py')
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    root = PureWindowsPath(r'C:\capture')
+    child = PureWindowsPath(module.standard_windows_path(r'\\?\C:\capture\images\frame.jpg'))
+    escaped = PureWindowsPath(module.standard_windows_path(r'\\?\C:\elsewhere\frame.jpg'))
+    assert child.is_relative_to(root)
+    assert not escaped.is_relative_to(root)
+    assert module.standard_windows_path(r'\\?\UNC\server\share\capture') == r'\\server\share\capture'
