@@ -1,0 +1,55 @@
+{
+  "format": "playworld-colab-restored-ui/1",
+  "source_revision": "41d01a505362a95bfa3144a05e70ca5f646b1eb3",
+  "execution": "Chrome Computer Use; separate dedicated CPU runtime",
+  "validation_only": true,
+  "new_reconstruction": false,
+  "same_session_interactive_gpu_first_run_verified": false,
+  "phone_video_upload_verified": false,
+  "last_two_code_cells_identical_to_gpu_notebook": true,
+  "source_gpu_archive": {
+    "name": "playworld-result.zip",
+    "bytes": 450756877,
+    "sha256": "0a4c58fb5f99d089625ccc084f37ac1102d6ae4bce9961262122c42f3338e7a9"
+  },
+  "restore_seconds": 9.479358385000069,
+  "browser_validation": {
+    "actual_export_rendered_through_colab_proxy": true,
+    "entry": true,
+    "drag_look": true,
+    "visible_thrown_ball": true,
+    "escape_pause": true,
+    "wasd_displacement_measured_in_this_check": false,
+    "reset_behavior_independently_verified_in_this_check": false,
+    "notebook_automation_connection_unavailable_during_download": true,
+    "browser_download_saved_locally": true
+  },
+  "download_validation": {
+    "download_bytes": 450612560,
+    "download_sha256": "be1dd91d2c125cc4bcc05e35ac61a22e3e0aff620036fcd90615562a075c0b86",
+    "zip_crc_verified": true,
+    "all_world_files_identical": true,
+    "world_files_checked": 13,
+    "world_sha256": "a880cb28cb1a40e1ad0f82d8700d39ab08f4f116330faed91d0ab339fce49499",
+    "validation_only": true
+  },
+  "visual_review": {
+    "significant_blur_and_streaks": true,
+    "adopted_for_readme_hero": false,
+    "screenshot": "docs/runs/quality/colab-restored-ui-20261008.jpg",
+    "ball_screenshot": "docs/runs/quality/colab-restored-ball-20261008.jpg"
+  },
+  "runtime_budget": {
+    "approved_minutes": 20,
+    "approved_units": 0.03,
+    "started_utc": "2026-10-08T11:35:14.903833+00:00",
+    "stopped_utc": "2026-10-08T11:49:56.206512+00:00",
+    "elapsed_seconds_from_preallocation_timestamp": 881.3026793003082,
+    "inferred_units_per_hour": 0.08,
+    "estimated_task_units": 0.019584503984451294,
+    "individual_billed_units_measured": false,
+    "task_owned_cpu_terminated": true,
+    "cli_reported_no_active_sessions_after_stop": true,
+    "unrelated_runtimes_stopped_by_this_task": false
+  }
+}

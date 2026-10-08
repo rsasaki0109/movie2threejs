@@ -188,18 +188,51 @@ for the README hero or gallery. [Rendered automatic result](runs/quality/colab-b
 These checks verify the GPU recipe, recoverable final outputs and a local browser
 preview. They do not exercise the last two interactive Colab browser cells.
 
+## Actual GPU world restored in Colab
+
+A separate dedicated **CPU** runtime on 8 October restored the actual
+**450,756,877-byte GPU world ZIP** from the preceding run. It fetched source at
+`41d01a505362a95bfa3144a05e70ca5f646b1eb3` and ran the GPU notebook's last two
+code cells unchanged through Chrome. No reconstruction, model installation or
+Hugging Face credential was used in this check.
+
+Input SHA-256, ZIP CRC, referenced assets and viewer/source identity passed.
+Restoration took **9.479 s**. The Colab proxy preview finished loading and displayed
+**8 physical objects / 3,060 static colliders**. Entry, drag look, visible ball
+throwing and Escape pause were verified in the browser. WASD displacement and
+reset behavior were not independently measured in this Colab check; the preceding
+local browser check covers those controls.
+
+The final cell's browser download completed as a **450,612,560-byte ZIP**. CRC
+passed and all **13 world files** matched the original GPU archive byte for byte.
+The new `job.json` marks `settings.validation_only: true`, records the original
+GPU job, and reports restoration timing rather than another reconstruction.
+The notebook tab's automation connection became unavailable while the download
+completed; the saved ZIP and a fresh proxy preview were checked afterward.
+
+The task-owned CPU was terminated after **14 min 41.3 s**, inside its approved
+20-minute / 0.03-unit cap. The inferred rate was **0.08 units/hour**; estimated
+use was **0.0195845 units**, not individually measured billing. The CLI then
+reported no active sessions. [Receipt](colab-restored-ui-20261008.json).
+
+![Actual GPU export rendered through the Colab CPU proxy](runs/quality/colab-restored-ui-20261008.jpg)
+
+Blur and streaks remain visible. The README hero and gallery were kept unchanged.
+This verifies the real export's Colab preview/download separately from the GPU
+run, rather than a same-session interactive GPU first run.
+
 ## What remains unverified
 
 The updated notebook's GPU reconstruction succeeded. The CPU browser check
-above verifies preview and download with a prebuilt world, not the newly
-reconstructed result.
+above now verifies preview and download with the restored actual GPU result.
 The earlier reconstruction used the authenticated account's one-use token
 transfer described in [CLI instructions](colab-cli.md). Colab Secrets access
 was subsequently verified in the separate preflight/setup check above.
 The follow-up above recovered and verified the final GPU checkpoint and new
 world ZIP together, then checked the exported world locally. The interactive
-Colab preview/download cells were not exercised in that attempt, and the optional
-phone-video upload path remains unverified. This is not a complete interactive
+Colab preview/download cells passed separately on CPU with the same world; they
+were not exercised in that GPU session. The optional phone-video upload path
+remains unverified. This is not a complete interactive
 Colab UI first-run claim.
 
 The rendered training output became large enough to make the browser

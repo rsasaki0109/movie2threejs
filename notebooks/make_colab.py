@@ -32,8 +32,10 @@ at source revision `41d01a505362a95bfa3144a05e70ca5f646b1eb3`. The core pipeline
 The final checkpoint and world ZIP were fully recovered and verified before
 shutdown; CPU weight loading and local browser interaction passed. That run used
 a one-use approved-account token transfer; Colab Secrets passed separately.
-The last two interactive Colab preview/download cells and phone-video upload
-remain unverified in that attempt. The automatic result still has blur and streaks.
+The unchanged preview/download cells passed a separate Colab CPU browser check
+with that actual GPU export: rendering, drag look, ball throwing, pause and a
+verified 450.6 MB ZIP download. A same-session interactive GPU first run and
+phone-video upload remain unverified. The automatic result still has blur and streaks.
 See `docs/colab-ui.md` and `docs/benchmarks.md` for the measured run and its limits.
 
 This notebook now prepares hashed checkpoint and world-ZIP chunks immediately

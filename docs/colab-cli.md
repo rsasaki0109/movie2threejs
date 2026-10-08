@@ -162,6 +162,8 @@ dispatching code. A native Windows `jupyter-kernel-client==0.9.0` connection the
 executed the notebook's first six code cells: settings, source bootstrap,
 preflight, setup, public input and reconstruction/backup preparation. This does
 not exercise the two interactive preview/download cells in the Colab browser.
+Those unchanged cells subsequently passed a separate CPU browser check with the
+actual recovered GPU world; see [the UI record](colab-ui.md#actual-gpu-world-restored-in-colab).
 
 The initial native console connection closed when its Windows encoding rejected
 a tqdm character; the remote reconstruction continued and completed. The

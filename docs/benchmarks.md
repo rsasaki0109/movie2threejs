@@ -346,4 +346,12 @@ was not measured. After shutdown, the local exported-world browser passed W/A/S/
 walking, drag look, ball creation, pause/resume/reset and pointer lock, with no
 page errors. Significant blur and streaks remain; this result was not adopted
 for the hero/gallery. The interactive Colab preview/download cells and phone-video
-upload remain unverified in this attempt. [Preview and verification limits](colab-ui.md#verified-gpu-backup-and-local-preview).
+upload were not verified in this GPU attempt. The unchanged preview/download cells
+subsequently passed separately on Colab CPU using this actual world: **9.479 s**
+to restore, **450,612,560 bytes** downloaded through the browser, ZIP CRC and all
+**13 world files** matching the GPU archive. Browser rendering, drag look, visible
+ball throwing and pause passed. CPU allocation lasted **14 min 41.3 s**, with
+**0.0195845 units** estimated at the inferred 0.08 units/hour; individual billing
+was not measured. No new reconstruction was run. A same-session interactive GPU
+first run and phone-video upload remain unverified.
+[Preview and verification limits](colab-ui.md#actual-gpu-world-restored-in-colab).
