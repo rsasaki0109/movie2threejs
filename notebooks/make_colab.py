@@ -27,7 +27,8 @@ See `docs/colab-ui.md` and `docs/benchmarks.md` for the measured run and its lim
    token in Colab secrets as `HF_TOKEN` and grant this notebook access.
 3. Open **Files** in the left sidebar and upload the current `playworld.zip` to
    session storage. Set `PROJECT_ZIP` below to its path if its filename differs.
-   There is no public repository to clone yet.
+   Prepare that ZIP from a clone of [the repository](https://github.com/rsasaki0109/movie2threejs)
+   with `python scripts/package_colab.py --sources-only`.
 4. The default input is an MIT-licensed public apartment capture from Eyeful Tower.
    It is a visualization of capture-rig photographs, **not a phone video**.
    To use a phone video instead, set `DATA_SOURCE = "upload"`.

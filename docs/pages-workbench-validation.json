@@ -1,0 +1,16 @@
+{
+  "url": "https://rsasaki0109.github.io/movie2threejs/demos/workbench/",
+  "replay_equal": true,
+  "subject_id": 1,
+  "box_drop_m": 1.0277746468782425,
+  "keyboard_walk_m": 0.3029043764165979,
+  "desktop_pointer_lock": true,
+  "touch_entry_and_throw": true,
+  "touch_walk_m": 1.0647077336532296,
+  "touch_swipe_look": true,
+  "mobile_scope": "Chromium emulation, not physical hardware",
+  "page_errors": [],
+  "failed_requests": [],
+  "recorded_utc": "2026-10-08T02:54:25.866838+00:00",
+  "deployed_commit": "fcaf32be1b3aafac60e7572a91af7192762fbed1"
+}

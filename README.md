@@ -1,21 +1,23 @@
-![Real public room capture becoming a walkable browser world, with a box pushed over](docs/hero.gif)
+[![Real public room capture becoming a walkable browser world, with a box pushed over](docs/hero.gif)](https://rsasaki0109.github.io/movie2threejs/demos/workbench/)
 
 **Real room capture → a walkable, physical three.js world.**
+
+**[Play the five live demos →](https://rsasaki0109.github.io/movie2threejs/)**
 
 <table>
 <tr><th>Meeting room · calibrated capture</th><th>Kitchen & cafe · knock a chair over</th></tr>
 <tr>
-<td><a href="docs/live-demo.md"><img src="docs/demos/meeting-room.gif" width="480" alt="Walking into a real meeting room and pushing a captured chair over"></a></td>
-<td><a href="docs/live-demo.md"><img src="docs/demos/cafe.gif" width="480" alt="Walking inside a real cafe and knocking its captured chair over"></a></td>
+<td><a href="https://rsasaki0109.github.io/movie2threejs/demos/meeting-room/"><img src="docs/demos/meeting-room.gif" width="480" alt="Walking into a real meeting room and pushing a captured chair over"></a></td>
+<td><a href="https://rsasaki0109.github.io/movie2threejs/demos/cafe/"><img src="docs/demos/cafe.gif" width="480" alt="Walking inside a real cafe and knocking its captured chair over"></a></td>
 </tr>
 <tr><th>Window office · move a cushion</th><th>Furnished room · send a cushion flying</th></tr>
 <tr>
-<td><a href="docs/live-demo.md"><img src="docs/demos/lounge.gif" width="480" alt="Exploring a captured window office and pushing a cushion across the floor"></a></td>
-<td><a href="docs/live-demo.md"><img src="docs/demos/furnished-room.gif" width="480" alt="A captured room with a couch and lamp, with a cushion pushed off the couch"></a></td>
+<td><a href="https://rsasaki0109.github.io/movie2threejs/demos/lounge/"><img src="docs/demos/lounge.gif" width="480" alt="Exploring a captured window office and pushing a cushion across the floor"></a></td>
+<td><a href="https://rsasaki0109.github.io/movie2threejs/demos/furnished-room/"><img src="docs/demos/furnished-room.gif" width="480" alt="A captured room with a couch and lamp, with a cushion pushed off the couch"></a></td>
 </tr>
 </table>
 
-**Five real captures, five playable demos.** [Run the browser gallery locally](docs/live-demo.md) · [Measured runs](docs/benchmarks.md#additional-gallery-captures) · [Data & license](docs/data-attribution.md). These use public capture-rig photographs. Public hosting is on hold.
+**Five real captures, five playable demos.** [Live gallery](https://rsasaki0109.github.io/movie2threejs/) · [Run locally](docs/live-demo.md) · [Measured runs](docs/benchmarks.md#additional-gallery-captures) · [Data & license](docs/data-attribution.md). These use public capture-rig photographs.
 
 The workbench and meeting room use **provided camera calibration and sparse points** for clearer showcases (156 and 192 photographs respectively). VGGT was not used for those two examples. The other three rooms use estimated VGGT poses. [Quality comparison and remaining artifacts](docs/quality.md).
 
@@ -30,13 +32,13 @@ The workbench and meeting room use **provided camera calibration and sparse poin
 
 Explore, push and throw excerpts above are three interactions in the same apartment workbench.
 
-[![Open Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/)
-Upload [the notebook](notebooks/playworld_colab.ipynb) and the current project ZIP. There is no public repository to clone yet.
+[![Open Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/rsasaki0109/movie2threejs/blob/master/notebooks/playworld_colab.ipynb)
+Open the notebook, then upload a project ZIP prepared with `python scripts/package_colab.py --sources-only` from a clone of this repository. [Measured Colab run and remaining UI checks](docs/colab-ui.md).
 
 Try the verified synthetic room in three commands:
 
 ```bash
-pip install -e .
+pip install "playworld @ git+https://github.com/rsasaki0109/movie2threejs.git"
 playworld demo --out demo_world
 python -m http.server -d demo_world 8000
 ```
@@ -71,7 +73,7 @@ For your own video, keep the phone upright, move slowly in a bright room, and ca
 
 The [recording workflow](docs/recording.md) uses a JSON timeline, fixed 1/60 s physics and Playwright canvas capture. [The hero shot](shots/hero.json) records camera positions, a push and a throw; its action ray is specified independently of the cinematic camera. Interactive walking uses Rapier's capsule character controller.
 
-The [static demo gallery](docs/live-demo.md) includes five actual captured spaces, with desktop and touch controls. The workbench is a 20.1 MB SPZ download with view-dependent color retained. [Quality comparisons](docs/quality.md) record adopted changes and rejected experiments. GitHub Pages publication is on hold while the repository stays private.
+The [live demo gallery](https://rsasaki0109.github.io/movie2threejs/) includes five actual captured spaces, with desktop and touch controls. The workbench is a 20.1 MB SPZ download with view-dependent color retained. [Quality comparisons](docs/quality.md) record adopted changes and rejected experiments. [Hosting and verification details](docs/live-demo.md).
 
 ## Stages
 

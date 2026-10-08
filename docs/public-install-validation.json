@@ -1,0 +1,15 @@
+{
+  "source": "git+https://github.com/rsasaki0109/movie2threejs.git",
+  "commit": "fcaf32be1b3aafac60e7572a91af7192762fbed1",
+  "fresh_venv": true,
+  "install": true,
+  "demo": true,
+  "http_server": true,
+  "viewer_ready": true,
+  "objects": 3,
+  "license": "MIT",
+  "numpy": "2.5.3",
+  "scipy": "1.18.1",
+  "recorded_utc": "2026-10-08T02:54:25.881335+00:00",
+  "deployed_commit": "fcaf32be1b3aafac60e7572a91af7192762fbed1"
+}

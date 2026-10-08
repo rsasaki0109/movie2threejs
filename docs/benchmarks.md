@@ -220,8 +220,9 @@ The current [hero validation](hero-validation.json) records the complete 390-fra
 1920×1080 capture, actual box fall/tip, character movement, one ball, matching
 12-state replay samples and matching first/last PNGs. [Browser capture receipts](runs/quality/browser-captures.json)
 separate recording time from reconstruction. Keyboard walking, pointer lock,
-touch-emulated walking/look/throw and all five gallery rooms are checked locally;
-GitHub Pages remains unpublished. Blur in unseen floor regions and colored
+touch-emulated walking/look/throw and all five gallery rooms were checked locally.
+Later checks also passed on the [public GitHub Pages deployment](live-demo.md#github-pages).
+Blur in unseen floor regions and colored
 unobserved box faces remain visible.
 
 Pre-refinement workbench browser capture: **559.327 s**, native GTX 1660 Ti,

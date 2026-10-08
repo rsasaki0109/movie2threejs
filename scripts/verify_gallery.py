@@ -6,13 +6,14 @@ import json
 import threading
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
+from urllib.request import urlopen
 
 from playwright.sync_api import sync_playwright
 
 ROOT=Path(__file__).resolve().parents[1]
 
 
-def verify(site: Path, out: Path):
+def verify(site: Path, out: Path, deployed_url: str | None = None):
     out.mkdir(parents=True,exist_ok=True)
     class Handler(SimpleHTTPRequestHandler):
         def do_GET(self):
@@ -21,12 +22,21 @@ def verify(site: Path, out: Path):
             self.path=self.path.removeprefix('/movie2threejs')
             super().do_GET()
         def log_message(self,*args):pass
-    server=ThreadingHTTPServer(('127.0.0.1',0),functools.partial(Handler,directory=str(site.resolve())))
-    threading.Thread(target=server.serve_forever,daemon=True).start()
-    url=f'http://127.0.0.1:{server.server_port}/movie2threejs/'
-    demos=json.loads((site/'demos.json').read_text())
+    server=None
+    if deployed_url:
+        url=deployed_url.rstrip('/')+'/'
+    else:
+        server=ThreadingHTTPServer(('127.0.0.1',0),functools.partial(Handler,directory=str(site.resolve())))
+        threading.Thread(target=server.serve_forever,daemon=True).start()
+        url=f'http://127.0.0.1:{server.server_port}/movie2threejs/'
+    def read_asset(name):
+        if deployed_url:
+            with urlopen(url+name,timeout=120) as response:
+                return response.read()
+        return (site/name).read_bytes()
     reports=[];errors=[]
     try:
+        demos=json.loads(read_asset('demos.json'))
         with sync_playwright() as p:
             browser=p.chromium.launch(args=['--enable-gpu','--use-gl=angle','--use-angle=d3d11'])
             gallery=browser.new_page(viewport={'width':1280,'height':900})
@@ -38,13 +48,16 @@ def verify(site: Path, out: Path):
             assert not gallery.evaluate('document.documentElement.scrollWidth > innerWidth')
             gallery.screenshot(path=str(out/'gallery-mobile.png'),full_page=True);gallery.close()
             for demo in demos:
-                assets=site/'demos'/demo['id'];world=json.loads((assets/'world.json').read_text())
-                manifest=json.loads((assets/'manifest.json').read_text())
+                prefix=f"demos/{demo['id']}/"
+                world_bytes=read_asset(prefix+'world.json')
+                world=json.loads(world_bytes)
+                manifest=json.loads(read_asset(prefix+'manifest.json'))
                 assert len(world['objects'])==demo['objects']==manifest['objects']
                 for file in manifest['files']:
-                    data=(assets/file['path']).read_bytes()
+                    data=read_asset(prefix+file['path'])
                     assert len(data)==file['bytes'] and hashlib.sha256(data).hexdigest()==file['sha256']
-                shot=json.loads((assets/'hero-shot.json').read_text())
+                shot_bytes=read_asset(prefix+'hero-shot.json')
+                shot=json.loads(shot_bytes)
                 event=next(e for e in shot['events'] if e['type']=='push')
                 subject=world['demo'].get('subject_id',6)
                 frames=[0,int(event['time']*shot['fps'])-1,round(shot['duration']*shot['fps'])-1]
@@ -92,18 +105,22 @@ def verify(site: Path, out: Path):
                     'deterministic_replay':True,'subject_id':subject,'movement_after_push_m':moved,
                     'initial_settling_m':distance(position(initial),position(before)),
                     'scripted_character_movement_m':walk,'interactive_character_movement_m':interactive_walk,
-                    'balls':1,'featured_button':True,'world_sha256':hashlib.sha256((assets/'world.json').read_bytes()).hexdigest(),
-                    'shot_sha256':hashlib.sha256((assets/'hero-shot.json').read_bytes()).hexdigest()})
+                    'balls':1,'featured_button':True,'world_sha256':hashlib.sha256(world_bytes).hexdigest(),
+                    'shot_sha256':hashlib.sha256(shot_bytes).hexdigest()})
                 print('Verified:',demo['id'],f'{moved:.3f} m physical movement',flush=True)
             browser.close()
         assert not errors,errors
-        result={'scope':'Local Chromium under a GitHub Pages-style path; no public deployment',
+        result={'scope':'Deployed GitHub Pages, desktop Chromium' if deployed_url else 'Local Chromium under a GitHub Pages-style path; no public deployment',
+                'url':url,
                 'demos':reports,'gallery_mobile_overflow':False,'browser_errors':errors}
         (out/'validation.json').write_text(json.dumps(result,indent=2),encoding='utf-8')
-    finally:server.shutdown();server.server_close()
+    finally:
+        if server:
+            server.shutdown();server.server_close()
 
 
 if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--site',type=Path,default=ROOT/'_site');p.add_argument('--out',type=Path,default=ROOT/'.cache/gallery-verification')
-    a=p.parse_args();verify(a.site,a.out)
+    p.add_argument('--url',help='Deployed gallery URL; checks remote assets and all five rooms')
+    a=p.parse_args();verify(a.site,a.out,a.url)

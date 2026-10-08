@@ -35,12 +35,26 @@ python scripts/build_demo.py --world reviewed_world --profile shots/gallery/work
 
 `.github/workflows/pages.yml` builds `_site` from committed assets and uploads that directory only. It includes viewer files, public world data, credits, the hero preview and recording timeline. Local caches, GPU dependencies and training output are excluded. No paid GPU is started.
 
-The intended URL is `https://rsasaki0109.github.io/movie2threejs/`. It is **not live**. The user chose to keep the repository private and hold publication. GitHub returned `Your current plan does not support GitHub Pages for this repository`; the workflow skips private repositories. The gallery can be run locally without changing repository visibility.
+The gallery is live at **https://rsasaki0109.github.io/movie2threejs/**.
+The repository was made public with approval on 8 October 2026. The
+[initial Pages deployment](https://github.com/rsasaki0109/movie2threejs/actions/runs/37719672967)
+built the committed five-room gallery without GPU inference.
 
-Once this repository is public and Pages is configured with `build_type: workflow`, dispatch **Deploy live demo** or push a site change. After deployment, run:
+Pages uses `build_type: workflow`. Dispatch **Deploy live demo** or push a site
+change to deploy again. After deployment, run:
 
 ```bash
 python scripts/verify_site.py --url https://rsasaki0109.github.io/movie2threejs/demos/workbench/ --out .cache/site-live-verification
+python scripts/verify_gallery.py --url https://rsasaki0109.github.io/movie2threejs/ --out .cache/gallery-live-verification
 ```
 
-The deployed URL must pass this check before it is advertised as a working live demo in README or About.
+The deployed gallery passed asset checksums, two identical physics replays per
+room, featured pushes, thrown balls and keyboard walking in all five rooms.
+[Deployed gallery results](pages-gallery-validation.json). The workbench also
+passed pointer lock and touch walking/look/throw in Chromium mobile emulation,
+with no page errors or failed requests. [Workbench results](pages-workbench-validation.json).
+Physical mobile hardware remains untested.
+
+The README's three-command synthetic-room start was checked from a fresh virtual
+environment installed directly from the public GitHub repository, including
+world generation and browser rendering. [Installation receipt](public-install-validation.json).
