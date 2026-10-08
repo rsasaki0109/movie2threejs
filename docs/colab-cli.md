@@ -155,6 +155,14 @@ rerunning with the same output directory reuses verified chunks. It does not wai
 for the preview or download iframe. The wait limit does not allocate, extend or
 stop any runtime; GPU time/unit limits must still be enforced separately.
 
+Successful notebook archives also retain available `scene/sparse/cameras.bin`,
+`images.bin`, `points3D.bin`, `scene/pose-diagnostics.json` and
+`scene/calibrated-source.json`. This allows later training-view comparisons in
+the original camera frame. Image and weight directories are excluded; the final
+checkpoint remains a separate backup. The older verified GPU archive did not
+include these files. The new packaging passed local synthetic export/recovery
+tests and has not yet been exercised in Colab.
+
 ## Native Windows execution fallback
 
 In the 8 October backup attempt, WSL failed to reach the assigned runtime before

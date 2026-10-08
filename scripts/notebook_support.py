@@ -151,6 +151,16 @@ class NotebookRun:
                 shutil.copy(source, staging / source.name)
             if self.report["completed"]:
                 shutil.copytree(self.world, staging / "world")
+                # Preserve the camera frame for later quality comparisons. A
+                # playable world alone cannot reconstruct its training views.
+                # Copy only named metadata, rather than images or model weights.
+                for relative in ("sparse/cameras.bin", "sparse/images.bin", "sparse/points3D.bin",
+                                 "pose-diagnostics.json", "calibrated-source.json"):
+                    source = self.scene / relative
+                    if source.is_file():
+                        target = staging / "scene" / relative
+                        target.parent.mkdir(parents=True, exist_ok=True)
+                        shutil.copy2(source, target)
             result = shutil.make_archive(str(self.path / "playworld-result"), "zip",
                                          root_dir=staging)
         return Path(result)

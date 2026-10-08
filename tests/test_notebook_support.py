@@ -110,3 +110,39 @@ def test_missing_final_checkpoint_does_not_offer_an_intermediate_backup(tmp_path
         run.prepare_backups()
     index = json.loads((run.path / 'backup-index.json').read_text())
     assert not index['complete'] and not index['artifacts']
+
+
+def test_export_preserves_camera_model_for_training_view_comparison(tmp_path):
+    from playworld.colmap_io import read_model
+    from playworld.synthetic import make_scene
+
+    run = completed_run(tmp_path)
+    make_scene(run.scene, seed=3)
+    (run.scene / 'pose-diagnostics.json').write_text('{"finite_depth": true}')
+    source_model = read_model(run.scene / 'sparse')
+    with zipfile.ZipFile(run.bundle()) as archive:
+        assert archive.testzip() is None
+        for name in ('cameras.bin', 'images.bin', 'points3D.bin'):
+            relative = f'scene/sparse/{name}'
+            assert archive.read(relative) == (run.scene / 'sparse' / name).read_bytes()
+            target = tmp_path / 'recovered' / 'sparse' / name
+            target.parent.mkdir(parents=True, exist_ok=True)
+            target.write_bytes(archive.read(relative))
+        assert json.loads(archive.read('scene/pose-diagnostics.json'))['finite_depth']
+        assert not any(n.startswith(('scene/images/', 'scene/gs/')) for n in archive.namelist())
+    recovered = read_model(tmp_path / 'recovered' / 'sparse')
+    assert set(recovered.images) == set(source_model.images)
+    for image_id in source_model.images:
+        assert recovered.images[image_id].name == source_model.images[image_id].name
+        assert (recovered.images[image_id].center == source_model.images[image_id].center).all()
+
+
+def test_failed_retry_does_not_export_previous_camera_model(tmp_path):
+    run = completed_run(tmp_path)
+    (run.scene / 'sparse').mkdir()
+    (run.scene / 'sparse' / 'cameras.bin').write_bytes(b'old cameras')
+    (run.scene / 'pose-diagnostics.json').write_text('{"old": true}')
+    with pytest.raises(Exception):
+        run.execute([sys.executable, '-c', 'raise SystemExit(3)'], 'pipeline')
+    with zipfile.ZipFile(run.bundle()) as archive:
+        assert not any(name.startswith(('world/', 'scene/')) for name in archive.namelist())

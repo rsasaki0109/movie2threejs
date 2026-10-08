@@ -1,0 +1,290 @@
+{
+  "source_revision": "41d01a505362a95bfa3144a05e70ca5f646b1eb3",
+  "source_world_sha256": "a880cb28cb1a40e1ad0f82d8700d39ab08f4f116330faed91d0ab339fce49499",
+  "source_background_sha256": "71dccf24481bb7b85e83f4fc13dd405bbf46e57cdb2d348c29afc4e411c64b71",
+  "input_background_gaussians": 2012863,
+  "removed_background_gaussians": 369,
+  "remaining_background_gaussians": 2012494,
+  "physical_geometry_unchanged": true,
+  "object_splats_unchanged": true,
+  "new_training": false,
+  "filter": "existing playworld.cleanup.surface_splat_mask in estimated metric coordinates",
+  "format": "playworld-export-cleanup-comparison/1",
+  "scope": "actual 8 October 24-frame VGGT GPU export; three identical static views per candidate",
+  "removed_fraction": 0.0001833209711738951,
+  "views": [
+    {
+      "id": "entry",
+      "shot": {
+        "version": 1,
+        "fps": 15,
+        "duration": 1,
+        "camera": [
+          {
+            "time": 0,
+            "position": [
+              -5.655,
+              1.5,
+              -0.453
+            ],
+            "target": [
+              -5.655,
+              1.5,
+              -1.453
+            ]
+          },
+          {
+            "time": 1,
+            "position": [
+              -5.655,
+              1.5,
+              -0.453
+            ],
+            "target": [
+              -5.655,
+              1.5,
+              -1.453
+            ]
+          }
+        ],
+        "events": []
+      }
+    },
+    {
+      "id": "right",
+      "shot": {
+        "version": 1,
+        "fps": 15,
+        "duration": 1,
+        "camera": [
+          {
+            "time": 0,
+            "position": [
+              -5.655,
+              1.5,
+              -0.453
+            ],
+            "target": [
+              -5.055000000000001,
+              1.38,
+              -1.453
+            ]
+          },
+          {
+            "time": 1,
+            "position": [
+              -5.655,
+              1.5,
+              -0.453
+            ],
+            "target": [
+              -5.055000000000001,
+              1.38,
+              -1.453
+            ]
+          }
+        ],
+        "events": []
+      }
+    },
+    {
+      "id": "floor",
+      "shot": {
+        "version": 1,
+        "fps": 15,
+        "duration": 1,
+        "camera": [
+          {
+            "time": 0,
+            "position": [
+              -5.655,
+              1.5,
+              -0.453
+            ],
+            "target": [
+              -5.655,
+              0.95,
+              -1.453
+            ]
+          },
+          {
+            "time": 1,
+            "position": [
+              -5.655,
+              1.5,
+              -0.453
+            ],
+            "target": [
+              -5.655,
+              0.95,
+              -1.453
+            ]
+          }
+        ],
+        "events": []
+      }
+    }
+  ],
+  "scale_caps": {
+    "experiment_only": true,
+    "changed_background_gaussians": {
+      "cap-08cm": 19398,
+      "cap-04cm": 339146
+    },
+    "physical_geometry_unchanged": true,
+    "object_splats_unchanged": true,
+    "positions_and_opacity_unchanged": true,
+    "new_training": false
+  },
+  "capture_records": [
+    {
+      "mode": "original",
+      "view": "entry",
+      "width": 960,
+      "height": 540,
+      "renderer": "ANGLE (NVIDIA, NVIDIA GeForce GTX 1660 Ti (0x00002191) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "shot_sha256": "1ce6152ea52eaf9413d2ef3ba7a202f211a093eaa4b1b18f80bdaeb68399b292",
+      "frame_sha256": "4cadaf0fcd391f77c201e3081d85d3e32da1a5dcf569323d1c136e90325aa7bc",
+      "physics_snapshot_identical": true
+    },
+    {
+      "mode": "original",
+      "view": "right",
+      "width": 960,
+      "height": 540,
+      "renderer": "ANGLE (NVIDIA, NVIDIA GeForce GTX 1660 Ti (0x00002191) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "shot_sha256": "77edde740fe64bff5676f83bd177b78bfee4e4b023795a7a1901eecccc032929",
+      "frame_sha256": "3eebfd10ab4dded2c4a3e47107d3016413e36d82aa84eb4fb99a07b1613a5fb7",
+      "physics_snapshot_identical": true
+    },
+    {
+      "mode": "original",
+      "view": "floor",
+      "width": 960,
+      "height": 540,
+      "renderer": "ANGLE (NVIDIA, NVIDIA GeForce GTX 1660 Ti (0x00002191) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "shot_sha256": "9ffc7a1a5568715034989a6baeb43cacdc58d54ce4ba1a0cc4b61e27cde40f7f",
+      "frame_sha256": "1145463405a43700fdc4fe64ae79209166cb52c47bf8039481e3f2ec2c1431c2",
+      "physics_snapshot_identical": true
+    },
+    {
+      "mode": "cleaned",
+      "view": "entry",
+      "width": 960,
+      "height": 540,
+      "renderer": "ANGLE (NVIDIA, NVIDIA GeForce GTX 1660 Ti (0x00002191) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "shot_sha256": "1ce6152ea52eaf9413d2ef3ba7a202f211a093eaa4b1b18f80bdaeb68399b292",
+      "frame_sha256": "2865f761f4258cb0ee3e3e1bcca4f0fce0c48b1c49af8436938ccd37a7bd52ed",
+      "physics_snapshot_identical": true
+    },
+    {
+      "mode": "cleaned",
+      "view": "right",
+      "width": 960,
+      "height": 540,
+      "renderer": "ANGLE (NVIDIA, NVIDIA GeForce GTX 1660 Ti (0x00002191) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "shot_sha256": "77edde740fe64bff5676f83bd177b78bfee4e4b023795a7a1901eecccc032929",
+      "frame_sha256": "c433b69f0db8962d48142e3de0bb7385d533c7904cf9adbed7cf59baff0ac8f3",
+      "physics_snapshot_identical": true
+    },
+    {
+      "mode": "cleaned",
+      "view": "floor",
+      "width": 960,
+      "height": 540,
+      "renderer": "ANGLE (NVIDIA, NVIDIA GeForce GTX 1660 Ti (0x00002191) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "shot_sha256": "9ffc7a1a5568715034989a6baeb43cacdc58d54ce4ba1a0cc4b61e27cde40f7f",
+      "frame_sha256": "6742d77f8c6044ce17f024a1768db49d06dc4b38bbf40391a4c8097d15714973",
+      "physics_snapshot_identical": true
+    },
+    {
+      "mode": "cap-08cm",
+      "view": "entry",
+      "width": 960,
+      "height": 540,
+      "renderer": "ANGLE (NVIDIA, NVIDIA GeForce GTX 1660 Ti (0x00002191) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "shot_sha256": "1ce6152ea52eaf9413d2ef3ba7a202f211a093eaa4b1b18f80bdaeb68399b292",
+      "frame_sha256": "33fc2a63c8720084dbaa3b7074902db1cd369aa6286f78b12dcab64c7de8786a",
+      "physics_snapshot_identical": true
+    },
+    {
+      "mode": "cap-08cm",
+      "view": "right",
+      "width": 960,
+      "height": 540,
+      "renderer": "ANGLE (NVIDIA, NVIDIA GeForce GTX 1660 Ti (0x00002191) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "shot_sha256": "77edde740fe64bff5676f83bd177b78bfee4e4b023795a7a1901eecccc032929",
+      "frame_sha256": "b43e403c626ca19f6de3b31f8de50eb0698a7dd40782caeb0261596e977da40e",
+      "physics_snapshot_identical": true
+    },
+    {
+      "mode": "cap-08cm",
+      "view": "floor",
+      "width": 960,
+      "height": 540,
+      "renderer": "ANGLE (NVIDIA, NVIDIA GeForce GTX 1660 Ti (0x00002191) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "shot_sha256": "9ffc7a1a5568715034989a6baeb43cacdc58d54ce4ba1a0cc4b61e27cde40f7f",
+      "frame_sha256": "0a35add7f40633d2512065493bd0fb3c14e4d96d348721de46651190c2e5c4fd",
+      "physics_snapshot_identical": true
+    },
+    {
+      "mode": "cap-04cm",
+      "view": "entry",
+      "width": 960,
+      "height": 540,
+      "renderer": "ANGLE (NVIDIA, NVIDIA GeForce GTX 1660 Ti (0x00002191) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "shot_sha256": "1ce6152ea52eaf9413d2ef3ba7a202f211a093eaa4b1b18f80bdaeb68399b292",
+      "frame_sha256": "de8236e5f35b2085a10f7b37fec4d2959101827a2ee2c232932831542996bc7b",
+      "physics_snapshot_identical": true
+    },
+    {
+      "mode": "cap-04cm",
+      "view": "right",
+      "width": 960,
+      "height": 540,
+      "renderer": "ANGLE (NVIDIA, NVIDIA GeForce GTX 1660 Ti (0x00002191) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "shot_sha256": "77edde740fe64bff5676f83bd177b78bfee4e4b023795a7a1901eecccc032929",
+      "frame_sha256": "7a121bea0f636c1c9fe305a27cacccce3a4f57eb34d68b3a32c1d097a67c03be",
+      "physics_snapshot_identical": true
+    },
+    {
+      "mode": "cap-04cm",
+      "view": "floor",
+      "width": 960,
+      "height": 540,
+      "renderer": "ANGLE (NVIDIA, NVIDIA GeForce GTX 1660 Ti (0x00002191) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "shot_sha256": "9ffc7a1a5568715034989a6baeb43cacdc58d54ce4ba1a0cc4b61e27cde40f7f",
+      "frame_sha256": "bc93095d7f619d7dd40b3dd109d27ee2f2162cfd7084de3d6ca4379412cf597a",
+      "physics_snapshot_identical": true
+    }
+  ],
+  "origin_diagnostic": {
+    "hypothesis": "VGGT camera zero approximately at identity before bundle adjustment",
+    "actual_current_run_camera_pose_recovered": false,
+    "not_an_exact_training_view_or_metric_comparison": true,
+    "entry_height_difference_m": 0.1465634899999999,
+    "position": [
+      -5.65471074,
+      1.64656349,
+      -0.45804959
+    ],
+    "direction": [
+      0.00047354747470495476,
+      -0.09329972787519172,
+      -0.9956379545453279
+    ]
+  },
+  "origin_diagnostic_frame_sha256": "96f9749779f5df915fbaf98ef936fefd9db2db7f9e75042edff471859a4f9d32",
+  "qualitative_review": {
+    "conservative_cleanup": "No material improvement in blur or streaks in the three inspected views.",
+    "cap_8cm": "No material overall improvement in the inspected views.",
+    "cap_4cm": "Introduced holes and blotches on wall and bright right-hand surface; blur remains.",
+    "origin_diagnostic": "Blur remains after estimated origin-height/pitch correction; exact camera pose unavailable.",
+    "adopted_candidate": null,
+    "default_filter_and_viewer_unchanged": true,
+    "readme_hero_and_gallery_unchanged": true,
+    "root_cause_established": false
+  },
+  "new_colab_runtime": false,
+  "screenshot": "docs/runs/quality/gpu-cleanup-comparison-20261008.jpg"
+}

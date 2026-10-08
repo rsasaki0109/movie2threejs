@@ -44,6 +44,11 @@ attempt directory appears. A 32-worker index watcher recovered both actual GPU
 outputs before termination, while a concurrent separate ZIP transfer also ran.
 See `docs/colab-cli.md#automatic-backup-watcher` and the measured backup receipt.
 
+Successful ZIPs now also retain available COLMAP camera/image/point models and
+pose diagnostics for quality comparisons. Images and weights are not added to
+that metadata export. This packaging addition passed local synthetic tests;
+the measured GPU and restored-world browser checks above used the earlier source.
+
 1. Select a GPU runtime. For movable objects use an Ampere-or-newer GPU (L4/A100 etc.).
    The pinned SAM 3 uses bf16; **T4 is not validated** and the script rejects it for SAM 3.
 2. Request access to [facebook/sam3](https://huggingface.co/facebook/sam3), then store your

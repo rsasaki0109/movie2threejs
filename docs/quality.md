@@ -3,6 +3,37 @@
 The room previews have visible blur and incomplete coverage. Gaussian pruning and a
 longer training run do not reconstruct surfaces that were never observed.
 
+## Postprocessing the automatic GPU export, 8 October 2026
+
+The recovered 24-frame VGGT / 7,000-step export was compared locally from three
+identical viewpoints. No new Colab runtime or training was used. The existing
+conservative cleanup removed **369 / 2,012,863 background Gaussians (0.0183%)**;
+blur and streaks remained visibly unchanged in the inspected views.
+
+Two experimental background-only covariance caps were also rejected. Capping
+each Gaussian standard deviation at **8 cm** changed **19,398** Gaussians without
+a material overall improvement. A **4 cm** cap changed **339,146** and introduced
+holes and blotches on the wall and bright right-hand surface. These distances
+use the pipeline's assumed scale; this was not a change to the default filter.
+All twelve captures retained identical physics snapshots, collision data, object
+files, camera paths and rendering settings.
+
+![Same-camera comparison: original, conservative cleanup, 8 cm cap, 4 cm cap](runs/quality/gpu-cleanup-comparison-20261008.jpg)
+
+A separate diagnostic moved the camera approximately 14.7 cm upward and adjusted
+pitch using the aligned reconstruction origin. Blur remained. The archive does
+not contain the actual trained camera poses, so this diagnostic is an approximate
+pose hypothesis, not an exact training-view comparison. These checks do not
+establish whether pose estimation, view coverage or training is the main cause.
+[Parameters, hashes and rejected candidates](runs/quality/gpu-cleanup-comparison-20261008.json).
+
+The README hero and gallery remain unchanged. To support future diagnosis,
+successful notebook ZIPs now preserve available COLMAP camera/image/point models
+and pose diagnostics under `scene/`, without adding image or weight directories.
+Synthetic tests recovered the camera centers byte for byte and verified that a
+failed retry excludes the old world and camera model. This packaging addition is
+locally tested; it has not been run in another Colab GPU session.
+
 ## Reproducible corrections
 
 Short training now scales the entire gsplat schedule with `--steps-scaler`, including
