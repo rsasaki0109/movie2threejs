@@ -88,9 +88,10 @@ not be executed through the CLI. The CLI entry point avoids those interactive ce
 ## Chunked artifact downloads
 
 Large exports were not fully recovered in the latest GPU reconstruction.
-These helpers were prepared afterwards. Local binary fixtures verify assembly,
-resume and corruption checks; a complete transfer from a real Colab runtime
-with them remains **unverified**. They never allocate or stop a runtime.
+These helpers were prepared afterwards. Local binary fixtures and an
+approximately 847 MB loopback HTTP transfer verify assembly, retry, resume and
+corruption checks; a complete transfer from a real Colab runtime with them
+remains **unverified**. They never allocate or stop a runtime.
 
 Start final-checkpoint recovery as soon as training finishes, before previewing
 the room. While the existing task-owned runtime is still connected, create
@@ -123,3 +124,54 @@ SHA-256 match the manifest. An existing different output is not overwritten.
 Runtime deletion interrupts these transfers. Before deleting the runtime,
 verify ZIP integrity, load the final checkpoint on CPU and review the exported
 world. Matching file hashes alone does not establish model loading or visual quality.
+
+## Automatic backup watcher
+
+The updated notebook calls `run.prepare_backups()` immediately after a successful
+pipeline, before its preview cell. It publishes an atomic `backup-index.json`
+as soon as the final checkpoint's chunks are ready, then packages and publishes
+the world ZIP. A failed ZIP preparation retains the ready checkpoint. A retried
+pipeline invalidates its prior index, so it cannot offer an earlier result.
+These changes are locally verified; the revised notebook has not run on Colab yet.
+
+Start this local command after the notebook prints the attempt directory, while
+reconstruction is still running:
+
+```bash
+python scripts/colab_download.py --session SESSION --remote-index /content/RUN/backup-index.json --expected-step 6999 --out backup-ATTEMPT --wait-seconds 1800
+```
+
+Replace `SESSION`, `/content/RUN` and the expected final step. Use a fresh output
+directory for each attempt. The command polls for the index, downloads each ready
+artifact and records size/SHA-256 in `download-receipt.json`. If interrupted,
+rerunning with the same output directory reuses verified chunks. It does not wait
+for the preview or download iframe. The wait limit does not allocate, extend or
+stop any runtime; GPU time/unit limits must still be enforced separately.
+
+## Transfer validation without inference
+
+The measured local check used **441,186,741 checkpoint-shaped bytes** and a
+**405,816,777-byte ZIP**, all synthetic. Eight native HTTP workers recovered both
+in **29.078 s** over Windows loopback. ZIP integrity, final-file hashes, reuse
+of a verified chunk, replacement of a corrupt chunk and retry of an intentionally
+truncated HTTP response passed. Preparation took **78.906 s**.
+[Receipt](colab-transfer-local-20261008.json).
+This is not Colab throughput, model loading or a recoverable GPU scene.
+
+To reproduce locally (requires about 4.3 GB free disk and a fresh work directory):
+
+```bash
+python scripts/verify_colab_transfer.py --workdir .cache/transfer-check --out .cache/transfer-check.json
+```
+
+For a subsequent Colab network check, use an approved task-owned **CPU** runtime
+and its source scripts; no GPU, model installation or HF credentials are needed:
+
+```bash
+python scripts/verify_colab_transfer.py --prepare-only --workdir /content/transfer-check --out /content/transfer-preparation.json
+```
+
+Run the local backup watcher against the printed `backup_index`. Verify both
+artifacts locally before stopping that runtime. This real-Colab network check
+has not been performed; preparing its command does not authorize allocating
+paid resources.

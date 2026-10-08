@@ -12,6 +12,7 @@ from pathlib import Path, PurePosixPath
 import re
 import subprocess
 import sys
+import time
 import urllib.parse
 import urllib.request
 
@@ -71,7 +72,14 @@ def collect(manifest, directory, fetch, workers=8, expected_step=None):
         print(f"Verified {part['name']} ({part['bytes']} bytes)", flush=True)
 
     with concurrent.futures.ThreadPoolExecutor(max_workers=workers) as pool:
-        list(pool.map(download, manifest['parts']))
+        futures = [pool.submit(download, part) for part in manifest['parts']]
+        try:
+            for future in concurrent.futures.as_completed(futures):
+                future.result()
+        except BaseException:
+            for future in futures:
+                future.cancel()
+            raise
     temporary = output.with_suffix(output.suffix + '.partial')
     with temporary.open('wb') as destination:
         for part in manifest['parts']:
@@ -100,54 +108,129 @@ def runtime(session, sdk_python, distro):
     return info
 
 
+def read_manifest(open_file, name='manifest.json'):
+    try:
+        with open_file(name) as response:
+            data = response.read(1024 * 1024 + 1)
+        if len(data) > 1024 * 1024:
+            raise ValueError('Manifest is too large')
+        return json.loads(data)
+    except Exception:
+        raise RuntimeError('Cannot read the manifest from the existing runtime') from None
+
+
+def fetch_file(open_file, name, target, expected_bytes, expected_sha256=None):
+    """Retry truncated responses and corrupt bytes; never expose request URLs."""
+    for attempt in range(3):
+        try:
+            with open_file(name) as response, target.open('wb') as destination:
+                total = 0
+                for block in iter(lambda: response.read(256 * 1024), b''):
+                    total += len(block)
+                    if total > expected_bytes:
+                        raise ValueError('Response is larger than the expected chunk')
+                    destination.write(block)
+                if total != expected_bytes:
+                    raise ValueError('Response ended before the expected chunk size')
+            if expected_sha256 is not None and sha256(target) != expected_sha256:
+                raise ValueError('Response digest differs from the expected chunk')
+            return
+        except Exception:
+            # Exception strings can include the credential-bearing URL.
+            if attempt == 2:
+                raise RuntimeError(f'File transfer failed: {name}') from None
+
+
+def download_manifest(open_file, manifest, directory, workers=8, expected_step=None):
+    validate_manifest(manifest, expected_step)
+    hashes = {part['name']: part['sha256'] for part in manifest['parts']}
+    def fetch(name, target, size):
+        fetch_file(open_file, name, target, size, hashes[name])
+    output = collect(manifest, directory, fetch, workers, expected_step)
+    (Path(directory) / 'manifest.json').write_text(json.dumps(manifest, indent=2) + '\n', encoding='utf-8')
+    return output
+
+
+def content_path(value):
+    remote = PurePosixPath(value)
+    if not remote.is_absolute() or len(remote.parts) < 2 or remote.parts[1] != 'content' or '..' in remote.parts:
+        raise ValueError('Expected a path under /content')
+    return remote
+
+
+def download_index(open_file, remote_index, directory, expected_step, workers=8,
+                   wait_seconds=1800, poll_seconds=5):
+    """Recover each ready artifact while the notebook prepares the next one."""
+    remote_index = content_path(remote_index)
+    directory = Path(directory)
+    deadline = time.monotonic() + wait_seconds
+    verified = {}
+    while True:
+        try:
+            index = read_manifest(open_file, str(remote_index))
+        except RuntimeError:
+            index = None  # The notebook may still be reconstructing.
+        if index is not None:
+            if index.get('format') != 'playworld-backup-index/1':
+                raise ValueError('Unexpected backup index format')
+            for artifact in index.get('artifacts', []):
+                kind = artifact.get('kind')
+                if kind not in ('final_checkpoint', 'world_zip') or kind in verified:
+                    continue
+                remote = content_path(artifact['directory'])
+                if not remote.is_relative_to(remote_index.parent):
+                    raise ValueError('Artifact escapes the attempt directory')
+                def artifact_file(name):
+                    return open_file(str(remote / name))
+                manifest = read_manifest(artifact_file)
+                output = download_manifest(artifact_file, manifest, directory / kind, workers,
+                                           expected_step if kind == 'final_checkpoint' else None)
+                verified[kind] = {'file': str(output.resolve()), 'bytes': output.stat().st_size,
+                                  'sha256': sha256(output)}
+                (directory / 'download-receipt.json').write_text(
+                    json.dumps({'format': 'playworld-backup-download/1', 'artifacts': verified,
+                                'complete': len(verified) == 2}, indent=2) + '\n', encoding='utf-8')
+            if index.get('complete') and len(verified) == 2:
+                return verified
+            if index.get('error_type'):
+                raise RuntimeError('Remote backup preparation failed; any verified artifact was preserved')
+        if time.monotonic() >= deadline:
+            raise TimeoutError('Backup index wait expired; any verified artifact was preserved')
+        time.sleep(min(poll_seconds, max(0, deadline - time.monotonic())))
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--session', required=True)
-    parser.add_argument('--remote-directory', required=True)
+    source = parser.add_mutually_exclusive_group(required=True)
+    source.add_argument('--remote-directory')
+    source.add_argument('--remote-index', help='Watch the notebook backup index and recover both artifacts')
     parser.add_argument('--out', required=True, type=Path)
     parser.add_argument('--expected-step', type=int)
     parser.add_argument('--workers', type=int, default=8, choices=range(1, 9))
+    parser.add_argument('--wait-seconds', type=int, default=1800, help='Maximum index wait; does not allocate GPU time')
     parser.add_argument('--sdk-python', default='/root/.local/share/uv/tools/google-colab-cli/bin/python')
     parser.add_argument('--distro', default='Ubuntu-22.04')
     args = parser.parse_args()
-    remote = PurePosixPath(args.remote_directory)
-    if not remote.is_absolute() or len(remote.parts) < 2 or remote.parts[1] != 'content' or '..' in remote.parts:
-        raise ValueError('Expected a directory under /content')
+    remote = content_path(args.remote_directory) if args.remote_directory else None
+    if args.remote_index and args.expected_step is None:
+        parser.error('--remote-index requires --expected-step')
+    if args.remote_index:
+        content_path(args.remote_index)
     info = runtime(args.session, args.sdk_python, args.distro)
     query = urllib.parse.urlencode({'authuser': '0', 'colab-runtime-proxy-token': info['token']})
 
     def open_file(name):
-        url = info['url'].rstrip('/') + '/files/' + urllib.parse.quote(str(remote / name).lstrip('/'), safe='/') + '?' + query
+        path = remote / name if remote is not None else content_path(name)
+        url = info['url'].rstrip('/') + '/files/' + urllib.parse.quote(str(path).lstrip('/'), safe='/') + '?' + query
         return urllib.request.urlopen(url, timeout=30)
 
-    def fetch(name, target, expected_bytes):
-        for attempt in range(3):
-            try:
-                with open_file(name) as response, target.open('wb') as destination:
-                    total = 0
-                    for block in iter(lambda: response.read(256 * 1024), b''):
-                        total += len(block)
-                        if total > expected_bytes:
-                            raise ValueError('Response is larger than the expected chunk')
-                        destination.write(block)
-                    if total != expected_bytes:
-                        raise ValueError('Response ended before the expected chunk size')
-                return
-            except Exception:
-                # Exception strings can include the credential-bearing URL.
-                if attempt == 2:
-                    raise RuntimeError(f'File transfer failed: {name}') from None
-    try:
-        with open_file('manifest.json') as response:
-            data = response.read(1024 * 1024 + 1)
-        if len(data) > 1024 * 1024:
-            raise ValueError('Manifest is too large')
-        manifest = json.loads(data)
-    except Exception:
-        raise RuntimeError('Cannot read the manifest from the existing runtime') from None
-    output = collect(manifest, args.out, fetch, args.workers, args.expected_step)
-    (args.out / 'manifest.json').write_text(json.dumps(manifest, indent=2) + '\n')
-    print(json.dumps({'file': str(output), 'bytes': output.stat().st_size, 'sha256': sha256(output)}))
+    if args.remote_index:
+        print(json.dumps(download_index(open_file, args.remote_index, args.out,
+                                        args.expected_step, args.workers, args.wait_seconds)))
+    else:
+        output = download_manifest(open_file, read_manifest(open_file), args.out, args.workers, args.expected_step)
+        print(json.dumps({'file': str(output), 'bytes': output.stat().st_size, 'sha256': sha256(output)}))
 
 
 if __name__ == '__main__':

@@ -57,3 +57,56 @@ def test_carriage_return_progress_keeps_full_log_without_flooding_notebook(tmp_p
     assert log.count("10%| step") == 50
     assert display.count("10%| step") <= 2
     assert "start" in display and "done" in display and "step 49" in display
+
+
+def completed_run(tmp_path):
+    run = support.NotebookRun(tmp_path, tmp_path / 'project', {'train_steps': 7000})
+    run.world.mkdir()
+    (run.world / 'world.json').write_text('{}')
+    run.execute([sys.executable, '-c', 'pass'], 'pipeline')
+    checkpoint = run.scene / 'gs' / 'ckpts' / 'ckpt_6999_rank0.pt'
+    checkpoint.parent.mkdir(parents=True)
+    checkpoint.write_bytes(b'final synthetic weights')
+    return run
+
+
+def test_checkpoint_is_published_before_zip_is_packaged(tmp_path, monkeypatch):
+    run = completed_run(tmp_path)
+    original_bundle = run.bundle
+    def bundle():
+        index = json.loads((run.path / 'backup-index.json').read_text())
+        assert [a['kind'] for a in index['artifacts']] == ['final_checkpoint']
+        assert not index['complete']
+        return original_bundle()
+    monkeypatch.setattr(run, 'bundle', bundle)
+    index = json.loads(run.prepare_backups().read_text())
+    assert index['complete']
+    assert [a['kind'] for a in index['artifacts']] == ['final_checkpoint', 'world_zip']
+    for artifact in index['artifacts']:
+        manifest = json.loads((Path(artifact['directory']) / 'manifest.json').read_text())
+        assert sum(p['bytes'] for p in manifest['parts']) == manifest['bytes']
+
+
+def test_failed_zip_preserves_ready_checkpoint_and_retry_invalidates_index(tmp_path, monkeypatch):
+    run = completed_run(tmp_path)
+    def fail():
+        raise OSError('fixture archive failure')
+    monkeypatch.setattr(run, 'bundle', fail)
+    with pytest.raises(OSError):
+        run.prepare_backups()
+    index = json.loads((run.path / 'backup-index.json').read_text())
+    assert not index['complete'] and index['error_type'] == 'OSError'
+    assert index['artifacts'][0]['kind'] == 'final_checkpoint'
+    run.execute([sys.executable, '-c', 'pass'], 'setup')
+    assert not (run.path / 'backup-index.json').exists()
+    assert 'backups' not in run.report
+
+
+def test_missing_final_checkpoint_does_not_offer_an_intermediate_backup(tmp_path):
+    run = completed_run(tmp_path)
+    (run.scene / 'gs' / 'ckpts' / 'ckpt_6999_rank0.pt').rename(
+        run.scene / 'gs' / 'ckpts' / 'ckpt_4665_rank0.pt')
+    with pytest.raises(FileNotFoundError):
+        run.prepare_backups()
+    index = json.loads((run.path / 'backup-index.json').read_text())
+    assert not index['complete'] and not index['artifacts']

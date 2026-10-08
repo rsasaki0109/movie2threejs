@@ -1,5 +1,6 @@
 """Per-attempt evidence for the interactive Colab notebook (standard library only)."""
 import json
+import importlib.util
 import os
 import re
 import signal
@@ -32,6 +33,8 @@ class NotebookRun:
         """Stream output and preserve failure evidence, including interrupted retries."""
         self.report["completed"] = False
         self.report["stages"][stage] = {"status": "running"}
+        self.report.pop("backups", None)
+        (self.path / "backup-index.json").unlink(missing_ok=True)
         self.save()
         started = time.monotonic()
         last_progress = started - 30
@@ -92,6 +95,47 @@ class NotebookRun:
                 raise RuntimeError("Pipeline exited without world.json")
             self.report["completed"] = True
         self.save()
+
+    def prepare_backups(self):
+        """Publish checkpoint chunks before making the world ZIP, before preview."""
+        if not self.report["completed"]:
+            raise RuntimeError("Finish reconstruction before preparing backups")
+        final_step = self.report["settings"]["train_steps"] - 1
+        checkpoint = self.scene / "gs" / "ckpts" / f"ckpt_{final_step}_rank0.pt"
+        index = {"format": "playworld-backup-index/1", "complete": False, "artifacts": []}
+        index_path = self.path / "backup-index.json"
+
+        def publish():
+            # Readers must never see half-written JSON while polling.
+            temporary = index_path.with_suffix('.json.partial')
+            temporary.write_text(json.dumps(index, indent=2) + '\n', encoding='utf-8')
+            temporary.replace(index_path)
+            self.report["backups"] = index
+            self.save()
+
+        publish()
+        try:
+            if not checkpoint.is_file():
+                raise FileNotFoundError("Final checkpoint is missing")
+            spec = importlib.util.spec_from_file_location(
+                "playworld_colab_pack", Path(__file__).with_name("colab_pack.py"))
+            packing = importlib.util.module_from_spec(spec)
+            spec.loader.exec_module(packing)
+            root = Path(tempfile.mkdtemp(prefix="backup-", dir=self.path))
+            for kind in ("final_checkpoint", "world_zip"):
+                source = checkpoint if kind == "final_checkpoint" else self.bundle()
+                directory = root / kind
+                packing.pack(source, directory, step=final_step if kind == "final_checkpoint" else None)
+                index["artifacts"].append({"kind": kind, "directory": directory.as_posix()})
+                publish()
+                print(f"Backup ready: {kind}", flush=True)
+            index["complete"] = True
+            publish()
+        except BaseException as error:
+            index["error_type"] = type(error).__name__
+            publish()
+            raise
+        return index_path
 
     def bundle(self):
         """Fresh ZIP; failed attempts export logs, never an earlier world."""

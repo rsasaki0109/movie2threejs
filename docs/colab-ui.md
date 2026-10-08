@@ -136,7 +136,15 @@ unverified. The reviewed README hero and gallery were not replaced.
 The subsequent [chunked download tools](colab-cli.md#chunked-artifact-downloads)
 use up to eight Windows-native HTTP connections and verify chunk and whole-file
 hashes. Local binary fixtures check assembly, resuming and rejection of corrupt
-data. A complete real Colab transfer with these tools has not been verified.
+data. A subsequent 847 MB synthetic Windows loopback HTTP check passed full-file
+and ZIP integrity, retry of a truncated response and reuse/replacement of prior
+chunks. [Local transfer receipt](colab-transfer-local-20261008.json).
+A complete real Colab transfer with these tools has not been verified.
+
+The next notebook revision prepares its checkpoint chunks immediately after
+reconstruction, then prepares the ZIP before opening the preview. A local
+watcher can recover the checkpoint while ZIP preparation is still running.
+This new backup order passed local tests; it has not run on Colab yet.
 
 ## What remains unverified
 

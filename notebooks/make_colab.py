@@ -35,6 +35,11 @@ unverified. Browser preview and ZIP download were checked separately on Colab CP
 using an existing public world.
 See `docs/colab-ui.md` and `docs/benchmarks.md` for the measured run and its limits.
 
+This notebook now prepares hashed checkpoint and world-ZIP chunks immediately
+after reconstruction, before preview. Start the local backup watcher after the
+attempt directory appears. This new recovery flow is locally tested; a complete
+Colab transfer remains unverified. See `docs/colab-cli.md#automatic-backup-watcher`.
+
 1. Select a GPU runtime. For movable objects use an Ampere-or-newer GPU (L4/A100 etc.).
    The pinned SAM 3 uses bf16; **T4 is not validated** and the script rejects it for SAM 3.
 2. Request access to [facebook/sam3](https://huggingface.co/facebook/sam3), then store your
@@ -132,6 +137,9 @@ command = [
 if USE_BA:
     command += ["--ba", "--shared-camera", "--ba-reprojection-error", str(BA_REPROJECTION_ERROR)]
 run.execute(command, "pipeline")
+# Prepare the final checkpoint first, before browser rendering or ZIP download.
+backup_index = run.prepare_backups()
+print("Backup index:", backup_index)
 """)
 
 md("""
@@ -143,7 +151,7 @@ preview, **drag** to look, **WASD** walk, **Space** jump, **F** throw, **E** pus
 and **Click** to throw.
 Each attempt has its own directory, printed after source loading. Stage times and
 failures are saved in `scene/run-*.json`, logs and `job.json` under that directory.
-One public-input L4 conversion took 12 min 25.7 s, plus 10 min 1.6 s for setup;
+One public-input L4 conversion took 12 min 43.6 s, plus 9 min 40.2 s for setup;
 this is not a timing guarantee for other videos.
 If a stage fails, run the final download cell anyway to export the logs and available
 measurements. A failed run cannot be used as the README hero.

@@ -1,0 +1,30 @@
+{
+  "format": "playworld-local-http-transfer/1",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "python": "3.12.10",
+  "transport": "loopback HTTP, native Python",
+  "gpu_used": false,
+  "synthetic_files": true,
+  "real_colab_proxy_verified": false,
+  "actual_checkpoint_cpu_load_verified": false,
+  "preparation_seconds": 78.906,
+  "transfer_seconds": 29.078,
+  "total_seconds": 124.453,
+  "artifacts": {
+    "final_checkpoint": {
+      "bytes": 441186741,
+      "sha256": "3b829a2f82d8db954aa08db2a25dd410210705d2e95de263ecbb18e10538e5c2"
+    },
+    "world_zip": {
+      "bytes": 405816777,
+      "sha256": "f51bad0b4a5fbdc4d0447af18b0ff68687eda304ab6adbb5e4f5f309951dd82e"
+    }
+  },
+  "archive_integrity_verified": true,
+  "whole_file_hashes_verified": true,
+  "valid_chunk_reused": true,
+  "corrupt_chunk_replaced": true,
+  "truncated_http_response_retried": true,
+  "workers": 8,
+  "limits": "Local synthetic HTTP transfer only; not Colab throughput or a recoverable GPU scene."
+}
