@@ -134,17 +134,22 @@ integrity, final-checkpoint CPU loading and visual/physics checks remain
 unverified. The reviewed README hero and gallery were not replaced.
 
 The subsequent [chunked download tools](colab-cli.md#chunked-artifact-downloads)
-use up to eight Windows-native HTTP connections and verify chunk and whole-file
+use eight Windows-native HTTP connections by default (up to 32) and verify chunk and whole-file
 hashes. Local binary fixtures check assembly, resuming and rejection of corrupt
 data. A subsequent 847 MB synthetic Windows loopback HTTP check passed full-file
 and ZIP integrity, retry of a truncated response and reuse/replacement of prior
 chunks. [Local transfer receipt](colab-transfer-local-20261008.json).
-A complete real Colab transfer with these tools has not been verified.
+A subsequent Colab CPU test fully recovered **847,003,471 synthetic bytes**
+through the actual proxy, with matching SHA-256 and ZIP integrity. It needed
+higher concurrency, a restart and separate artifact commands; downloads finished
+after runtime termination. This does not verify automatic recovery before deletion
+or an actual GPU scene. [CPU transfer receipt](colab-transfer-cpu-20261008.json).
 
 The next notebook revision prepares its checkpoint chunks immediately after
 reconstruction, then prepares the ZIP before opening the preview. A local
 watcher can recover the checkpoint while ZIP preparation is still running.
-This new backup order passed local tests; it has not run on Colab yet.
+This backup order passed local tests and was exercised by the Colab CPU fixture.
+It has not run with a newly reconstructed GPU scene.
 
 ## What remains unverified
 

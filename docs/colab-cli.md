@@ -90,8 +90,10 @@ not be executed through the CLI. The CLI entry point avoids those interactive ce
 Large exports were not fully recovered in the latest GPU reconstruction.
 These helpers were prepared afterwards. Local binary fixtures and an
 approximately 847 MB loopback HTTP transfer verify assembly, retry, resume and
-corruption checks; a complete transfer from a real Colab runtime with them
-remains **unverified**. They never allocate or stop a runtime.
+corruption checks. A subsequent Colab CPU test recovered both synthetic artifacts
+with matching whole-file hashes and ZIP integrity, using retries and higher
+concurrency. Automatic recovery before deletion and a full GPU scene backup
+remain **unverified**. They never allocate or stop a runtime.
 
 Start final-checkpoint recovery as soon as training finishes, before previewing
 the room. While the existing task-owned runtime is still connected, create
@@ -107,7 +109,8 @@ use the actual final step/file for a different training length. Packaging
 requires a fresh output directory. The ZIP must already have been created.
 The helpers are local additions; upload them to an older pinned source if needed.
 
-On the local PC, use native Python to download up to eight chunks concurrently:
+On the local PC, use native Python to download eight chunks concurrently by
+default (up to 32 with `--workers 32`):
 
 ```bash
 python scripts/colab_download.py --session SESSION --remote-directory /content/RUN/checkpoint-parts --out checkpoint-backup --expected-step 6999
@@ -121,7 +124,7 @@ are excluded from transfer logs. Verified chunks are reused on a retry; corrupt
 chunks are fetched again. The output becomes complete only after its size and
 SHA-256 match the manifest. An existing different output is not overwritten.
 
-Runtime deletion interrupts these transfers. Before deleting the runtime,
+Runtime deletion can interrupt these transfers. Before deleting the runtime,
 verify ZIP integrity, load the final checkpoint on CPU and review the exported
 world. Matching file hashes alone does not establish model loading or visual quality.
 
@@ -143,7 +146,9 @@ python scripts/colab_download.py --session SESSION --remote-index /content/RUN/b
 
 Replace `SESSION`, `/content/RUN` and the expected final step. Use a fresh output
 directory for each attempt. The command polls for the index, downloads each ready
-artifact and records size/SHA-256 in `download-receipt.json`. If interrupted,
+artifact and records size/SHA-256 in `download-receipt.json`. Exhausted connection
+retries return to polling and reuse verified chunks; this retry loop is locally
+tested but has not run on Colab. If interrupted,
 rerunning with the same output directory reuses verified chunks. It does not wait
 for the preview or download iframe. The wait limit does not allocate, extend or
 stop any runtime; GPU time/unit limits must still be enforced separately.
@@ -173,5 +178,32 @@ python scripts/verify_colab_transfer.py --prepare-only --workdir /content/transf
 
 Run the local backup watcher against the printed `backup_index`. Verify both
 artifacts locally before stopping that runtime. This real-Colab network check
-has not been performed; preparing its command does not authorize allocating
-paid resources.
+was subsequently performed, with the limits recorded below. These commands
+do not authorize allocating paid resources.
+
+## Colab CPU transfer result, 8 October 2026
+
+An approved dedicated standard CPU prepared synthetic artifacts in **19.843 s**.
+The **441,186,741-byte checkpoint-shaped file** and **405,816,730-byte ZIP**
+were fully recovered through Colab's files proxy to native Windows Python.
+Both SHA-256 values matched the remote manifests; ZIP CRC checks and the
+synthetic payload marker passed. No GPU, model setup or HF credentials were used.
+[Execution receipt](colab-transfer-cpu-20261008.json).
+
+Eight workers were slow. The 32-worker index watcher retained verified chunks
+but failed on `part037`; a separate eight-worker checkpoint retry and concurrent
+32-worker ZIP download recovered the remaining data. The CLI now accepts up to
+32 workers. Increasing concurrency can produce connection failures; it is not
+a guarantee of faster or uninterrupted transfer.
+
+The CPU was terminated after **19 min 19.6 s**, within the 20-minute limit.
+At the inferred **0.08 units/hour**, estimated task consumption was **0.025770
+units**, below the 0.03-unit cap; individual billing was not measured. Other GPU
+assignments were left running. Already-started downloads continued after shutdown;
+the checkpoint and ZIP's final local writes were at 07:56:34 and 07:57:30 UTC,
+after the termination log completed at 07:54:16 UTC.
+
+This proves complete recovery of synthetic bytes with manual retry, not actual
+model loading, stable completion of the index watcher or backup before deletion.
+Do not rely on transfer continuation after shutdown. For a GPU run, verify both
+archives/checkpoint loading while the runtime is still available.

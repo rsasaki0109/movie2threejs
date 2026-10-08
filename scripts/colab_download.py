@@ -1,8 +1,9 @@
 """Download hashed Colab chunks in parallel without logging proxy credentials.
 
 Requires an already connected session in the official google-colab-cli. It never
-allocates or stops a runtime. Real Colab transfers still need validation; the
-integrity, resume and path checks are covered by local fixtures.
+allocates or stops a runtime. Integrity, resume and path checks are covered by
+local fixtures. Synthetic artifacts were fully recovered from Colab CPU with
+retry and higher concurrency; automatic recovery before deletion is unverified.
 """
 import argparse
 import concurrent.futures
@@ -182,9 +183,15 @@ def download_index(open_file, remote_index, directory, expected_step, workers=8,
                     raise ValueError('Artifact escapes the attempt directory')
                 def artifact_file(name):
                     return open_file(str(remote / name))
-                manifest = read_manifest(artifact_file)
-                output = download_manifest(artifact_file, manifest, directory / kind, workers,
-                                           expected_step if kind == 'final_checkpoint' else None)
+                try:
+                    manifest = read_manifest(artifact_file)
+                    output = download_manifest(artifact_file, manifest, directory / kind, workers,
+                                               expected_step if kind == 'final_checkpoint' else None)
+                except RuntimeError:
+                    # A flaky connection must not discard the whole watch attempt.
+                    # collect() preserves verified chunks; the next poll reuses them.
+                    print(f'Transfer interrupted: {kind}; retrying verified chunks', flush=True)
+                    break
                 verified[kind] = {'file': str(output.resolve()), 'bytes': output.stat().st_size,
                                   'sha256': sha256(output)}
                 (directory / 'download-receipt.json').write_text(
@@ -207,7 +214,7 @@ def main():
     source.add_argument('--remote-index', help='Watch the notebook backup index and recover both artifacts')
     parser.add_argument('--out', required=True, type=Path)
     parser.add_argument('--expected-step', type=int)
-    parser.add_argument('--workers', type=int, default=8, choices=range(1, 9))
+    parser.add_argument('--workers', type=int, default=8, choices=range(1, 33))
     parser.add_argument('--wait-seconds', type=int, default=1800, help='Maximum index wait; does not allocate GPU time')
     parser.add_argument('--sdk-python', default='/root/.local/share/uv/tools/google-colab-cli/bin/python')
     parser.add_argument('--distro', default='Ubuntu-22.04')

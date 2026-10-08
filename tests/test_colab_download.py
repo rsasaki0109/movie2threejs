@@ -162,3 +162,29 @@ def test_index_rejects_artifact_outside_the_attempt(tmp_path):
     with pytest.raises(ValueError, match='escapes'):
         download.download_index(lambda name: io.BytesIO(json.dumps(index).encode()),
                                 '/content/run/backup-index.json', tmp_path, 6999)
+
+
+def test_index_retries_failed_transfer_without_refetching_verified_chunks(tmp_path):
+    manifest, chunks, data = fixture()
+    checkpoint_dir = tmp_path / 'final_checkpoint'
+    checkpoint_dir.mkdir()
+    (checkpoint_dir / manifest['parts'][1]['name']).write_bytes(chunks[1])
+    world = dict(manifest, artifact_name='playworld-result.zip')
+    world['parts'] = [dict(p, name=f"playworld-result.zip.part{i:03d}") for i, p in enumerate(manifest['parts'])]
+    index = {'format': 'playworld-backup-index/1', 'complete': True, 'artifacts': [
+        {'kind': 'final_checkpoint', 'directory': '/content/run/checkpoint'},
+        {'kind': 'world_zip', 'directory': '/content/run/world'}]}
+    calls = []
+    def open_file(name):
+        calls.append(name)
+        if name == '/content/run/backup-index.json':
+            return io.BytesIO(json.dumps(index).encode())
+        if name.endswith('manifest.json'):
+            return io.BytesIO(json.dumps(world if '/world/' in name else manifest).encode())
+        if name == '/content/run/checkpoint/' + manifest['parts'][0]['name'] and calls.count(name) <= 3:
+            raise OSError('Interrupted network fixture')
+        return io.BytesIO(chunks[int(name[-3:])])
+    download.download_index(open_file, '/content/run/backup-index.json', tmp_path, 6999, poll_seconds=0)
+    assert (checkpoint_dir / manifest['checkpoint_name']).read_bytes() == data
+    assert calls.count('/content/run/checkpoint/' + manifest['parts'][0]['name']) == 4
+    assert '/content/run/checkpoint/' + manifest['parts'][1]['name'] not in calls

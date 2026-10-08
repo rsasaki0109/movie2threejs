@@ -37,8 +37,9 @@ See `docs/colab-ui.md` and `docs/benchmarks.md` for the measured run and its lim
 
 This notebook now prepares hashed checkpoint and world-ZIP chunks immediately
 after reconstruction, before preview. Start the local backup watcher after the
-attempt directory appears. This new recovery flow is locally tested; a complete
-Colab transfer remains unverified. See `docs/colab-cli.md#automatic-backup-watcher`.
+attempt directory appears. Recovery of 847 MB of synthetic bytes from Colab CPU
+passed with retries; the new GPU backup order and automatic recovery before
+deletion remain unverified. See `docs/colab-cli.md#automatic-backup-watcher`.
 
 1. Select a GPU runtime. For movable objects use an Ampere-or-newer GPU (L4/A100 etc.).
    The pinned SAM 3 uses bf16; **T4 is not validated** and the script rejects it for SAM 3.

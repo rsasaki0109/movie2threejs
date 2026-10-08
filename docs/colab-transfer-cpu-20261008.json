@@ -1,0 +1,63 @@
+{
+  "format": "playworld-colab-synthetic-transfer/1",
+  "source_revision": "1c8ac09ea007e6774e25880ba123c48486b7b97a",
+  "local_downloader_sha256": "82830c886c6b716f737e05f7850dfddbde4b2b07c61b23fb3c4313d9f242c261",
+  "transport": "Colab files proxy to native Windows Python",
+  "hardware": "CPU Standard",
+  "remote_python": "3.13.16",
+  "gpu_used": false,
+  "hf_credentials_used": false,
+  "synthetic_files": true,
+  "preparation_seconds": 19.843,
+  "artifact_downloads_complete": true,
+  "archive_integrity_verified": true,
+  "actual_model_checkpoint_cpu_load_verified": false,
+  "new_gpu_world_preview_verified": false,
+  "artifacts": {
+    "synthetic_checkpoint": {
+      "name": "ckpt_6999_rank0.pt",
+      "bytes": 441186741,
+      "sha256": "06971a3921e1ac811c94038bdc807c07702dbe03c1e24b74b9b7638f8dfa2800",
+      "whole_file_hash_verified": true,
+      "download_complete": true,
+      "local_last_write_utc": "2026-10-08T07:56:34.018553+00:00"
+    },
+    "synthetic_world_zip": {
+      "name": "playworld-result.zip",
+      "bytes": 405816730,
+      "sha256": "7f2ca9b5dbf560ababf135cccb2295106496bff099260d2601d1764ba54c0fee",
+      "whole_file_hash_verified": true,
+      "download_complete": true,
+      "local_last_write_utc": "2026-10-08T07:57:30.462675+00:00"
+    }
+  },
+  "total_artifact_bytes": 847003471,
+  "transfer_history": {
+    "initial_workers": 8,
+    "initial_index_watcher_interrupted_to_increase_concurrency": true,
+    "index_watcher_workers_32_failed_chunk": "ckpt_6999_rank0.pt.part037",
+    "verified_chunks_reused_after_restart": true,
+    "final_checkpoint_recovery_workers": 8,
+    "concurrent_zip_recovery_workers": 32,
+    "separate_artifact_commands_used": true,
+    "complete_automatic_index_watcher_verified": false,
+    "downloads_completed_after_runtime_termination": true
+  },
+  "runtime": {
+    "started_utc": "2026-10-08T07:34:57+00:00",
+    "termination_log_completed_utc": "2026-10-08T07:54:16.632436+00:00",
+    "elapsed_window_seconds": 1159.632436,
+    "approval_limit_seconds": 1200,
+    "approval_limit_units": 0.03,
+    "inferred_cpu_units_per_hour": 0.08,
+    "estimated_task_units": 0.02577,
+    "actual_task_units": null,
+    "terminated_within_time_limit": true,
+    "estimated_units_within_limit": true,
+    "task_cpu_absent_after_stop": true,
+    "unrelated_gpu_assignments_left_running": true
+  },
+  "verified_utc": "2026-10-08T08:00:40.878112+00:00",
+  "limits": "Synthetic bytes only. Complete recovery required higher concurrency and retry, and finished after CPU termination. No actual model weights were loaded. Automatic recovery before runtime deletion and the full new GPU notebook remain unverified.",
+  "local_downloader_override": "CLI worker limit expanded from 8 to 32; transfer body unchanged during this run"
+}
