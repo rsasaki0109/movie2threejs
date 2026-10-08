@@ -1,0 +1,946 @@
+{
+  "format": "playworld-pose-comparison-input/1",
+  "new_training": false,
+  "scope": "extrinsics comparison using identical provided undistorted photographs, intrinsics and sparse initialization; not a video first run",
+  "mapping_sha256": "816e7f9bb2046e14712de17cd1ed65939951f4fd57aa5234ebca120aa4a9b8d2",
+  "pairs": [
+    {
+      "estimated_name": "frame_0001.png",
+      "reference_name": "19_DSC0595.jpg",
+      "image_matching_correlation": 0.9920132144326275,
+      "runner_up_gap": 0.19743093344820906,
+      "center_residual_reference_units": 1.2694569966612972,
+      "orientation_residual_degrees": 179.56174808821171
+    },
+    {
+      "estimated_name": "frame_0002.png",
+      "reference_name": "19_DSC0613.jpg",
+      "image_matching_correlation": 0.9906681331906986,
+      "runner_up_gap": 0.15992506465857792,
+      "center_residual_reference_units": 1.6928150732009402,
+      "orientation_residual_degrees": 179.83837570634154
+    },
+    {
+      "estimated_name": "frame_0003.png",
+      "reference_name": "19_DSC0631.jpg",
+      "image_matching_correlation": 0.9481218706829326,
+      "runner_up_gap": 0.45096187743280614,
+      "center_residual_reference_units": 0.8450753837604075,
+      "orientation_residual_degrees": 4.899523785958887
+    },
+    {
+      "estimated_name": "frame_0004.png",
+      "reference_name": "19_DSC0649.jpg",
+      "image_matching_correlation": 0.9879510962820144,
+      "runner_up_gap": 0.18631235474917107,
+      "center_residual_reference_units": 0.7960910608596231,
+      "orientation_residual_degrees": 4.655856866641624
+    },
+    {
+      "estimated_name": "frame_0005.png",
+      "reference_name": "19_DSC0667.jpg",
+      "image_matching_correlation": 0.9887180507988178,
+      "runner_up_gap": 0.15158571248300656,
+      "center_residual_reference_units": 0.6738047997833478,
+      "orientation_residual_degrees": 3.7753096284976744
+    },
+    {
+      "estimated_name": "frame_0006.png",
+      "reference_name": "19_DSC0685.jpg",
+      "image_matching_correlation": 0.9702268554455964,
+      "runner_up_gap": 0.2692888422775642,
+      "center_residual_reference_units": 0.7332012104374647,
+      "orientation_residual_degrees": 4.188356949101873
+    },
+    {
+      "estimated_name": "frame_0007.png",
+      "reference_name": "19_DSC0703.jpg",
+      "image_matching_correlation": 0.9569152336315256,
+      "runner_up_gap": 0.596966984845171,
+      "center_residual_reference_units": 0.6522384789195141,
+      "orientation_residual_degrees": 3.0409691155779663
+    },
+    {
+      "estimated_name": "frame_0008.png",
+      "reference_name": "19_DSC0721.jpg",
+      "image_matching_correlation": 0.9813629286072351,
+      "runner_up_gap": 0.20866532374460156,
+      "center_residual_reference_units": 0.602733056762654,
+      "orientation_residual_degrees": 3.3550412761792168
+    },
+    {
+      "estimated_name": "frame_0009.png",
+      "reference_name": "19_DSC0757.jpg",
+      "image_matching_correlation": 0.9823981800975126,
+      "runner_up_gap": 0.0002662622305161788,
+      "center_residual_reference_units": 0.40636782470757754,
+      "orientation_residual_degrees": 2.551272704816157
+    },
+    {
+      "estimated_name": "frame_0010.png",
+      "reference_name": "19_DSC0766.jpg",
+      "image_matching_correlation": 0.9786737613727539,
+      "runner_up_gap": 0.27142780487791585,
+      "center_residual_reference_units": 0.4142474521279496,
+      "orientation_residual_degrees": 2.510971875931419
+    },
+    {
+      "estimated_name": "frame_0011.png",
+      "reference_name": "19_DSC0784.jpg",
+      "image_matching_correlation": 0.9712251426823899,
+      "runner_up_gap": 0.4429885729263886,
+      "center_residual_reference_units": 0.5051542541652042,
+      "orientation_residual_degrees": 2.2666218952752666
+    },
+    {
+      "estimated_name": "frame_0012.png",
+      "reference_name": "19_DSC0802.jpg",
+      "image_matching_correlation": 0.974070000749718,
+      "runner_up_gap": 0.4436225382602652,
+      "center_residual_reference_units": 0.3530950556120131,
+      "orientation_residual_degrees": 0.8656463075539148
+    },
+    {
+      "estimated_name": "frame_0013.png",
+      "reference_name": "19_DSC0820.jpg",
+      "image_matching_correlation": 0.9777648285557509,
+      "runner_up_gap": 0.3150282905329689,
+      "center_residual_reference_units": 0.1318931078349818,
+      "orientation_residual_degrees": 1.2211418027816736
+    },
+    {
+      "estimated_name": "frame_0014.png",
+      "reference_name": "19_DSC0838.jpg",
+      "image_matching_correlation": 0.9826865082859355,
+      "runner_up_gap": 0.36420433156053744,
+      "center_residual_reference_units": 0.1425191787992821,
+      "orientation_residual_degrees": 0.48334672386126926
+    },
+    {
+      "estimated_name": "frame_0015.png",
+      "reference_name": "19_DSC0856.jpg",
+      "image_matching_correlation": 0.9905466037429148,
+      "runner_up_gap": 0.21377422267175583,
+      "center_residual_reference_units": 0.3339149020698124,
+      "orientation_residual_degrees": 0.5850099086978935
+    },
+    {
+      "estimated_name": "frame_0016.png",
+      "reference_name": "19_DSC0874.jpg",
+      "image_matching_correlation": 0.9903184101044977,
+      "runner_up_gap": 0.2574039102272869,
+      "center_residual_reference_units": 0.4527141505477178,
+      "orientation_residual_degrees": 1.2571096606070975
+    },
+    {
+      "estimated_name": "frame_0017.png",
+      "reference_name": "19_DSC0901.jpg",
+      "image_matching_correlation": 0.9801696965371476,
+      "runner_up_gap": 0.3175544204534386,
+      "center_residual_reference_units": 0.15942184983040733,
+      "orientation_residual_degrees": 0.41021932887067547
+    },
+    {
+      "estimated_name": "frame_0018.png",
+      "reference_name": "19_DSC0919.jpg",
+      "image_matching_correlation": 0.9789680676553921,
+      "runner_up_gap": 0.2786308182380315,
+      "center_residual_reference_units": 0.06810993479699387,
+      "orientation_residual_degrees": 1.1884818149885255
+    },
+    {
+      "estimated_name": "frame_0019.png",
+      "reference_name": "19_DSC0937.jpg",
+      "image_matching_correlation": 0.9809546372580057,
+      "runner_up_gap": 0.21550443556595322,
+      "center_residual_reference_units": 0.26119766055472976,
+      "orientation_residual_degrees": 2.140549329310644
+    },
+    {
+      "estimated_name": "frame_0020.png",
+      "reference_name": "19_DSC0964.jpg",
+      "image_matching_correlation": 0.9839662105607192,
+      "runner_up_gap": 0.1933408418687207,
+      "center_residual_reference_units": 0.25017819156410614,
+      "orientation_residual_degrees": 1.4517457602477686
+    },
+    {
+      "estimated_name": "frame_0021.png",
+      "reference_name": "19_DSC0982.jpg",
+      "image_matching_correlation": 0.984538477659064,
+      "runner_up_gap": 0.25031679189541967,
+      "center_residual_reference_units": 0.2668169626096205,
+      "orientation_residual_degrees": 0.6363033978040163
+    },
+    {
+      "estimated_name": "frame_0022.png",
+      "reference_name": "19_DSC1000.jpg",
+      "image_matching_correlation": 0.9856450727968413,
+      "runner_up_gap": 0.21129677142324788,
+      "center_residual_reference_units": 0.44918104640280204,
+      "orientation_residual_degrees": 0.5729466387023985
+    },
+    {
+      "estimated_name": "frame_0023.png",
+      "reference_name": "19_DSC1018.jpg",
+      "image_matching_correlation": 0.9739605230045107,
+      "runner_up_gap": 0.41957270819141823,
+      "center_residual_reference_units": 0.6044722380333278,
+      "orientation_residual_degrees": 2.3809590967996357
+    },
+    {
+      "estimated_name": "frame_0024.png",
+      "reference_name": "19_DSC1036.jpg",
+      "image_matching_correlation": 0.981329474405958,
+      "runner_up_gap": 0.20933712662345283,
+      "center_residual_reference_units": 1.1813685816604602,
+      "orientation_residual_degrees": 11.619301864245285
+    }
+  ],
+  "image_sha256": {
+    "19_DSC0595.jpg": "3d90843f56e1dee8b3193893ff6f12fa0972b98ac6c20d37c90cd676536be63c",
+    "19_DSC0613.jpg": "a48fcca53aa4ec3b250a626bc3ef52979cf30a1dc631fb4d9893438ccdc281ea",
+    "19_DSC0631.jpg": "f065ca2f8d75373695f4f5496f191ae55d05e646264d57b230d7cae920ada8a0",
+    "19_DSC0649.jpg": "33f8951df07fe15b9fa21521793e357685f6867548513bb49f8963d2a4408cff",
+    "19_DSC0667.jpg": "160e04588660062253d3fe4c73353c5ff9348d58da5b57d00c389ded31493159",
+    "19_DSC0685.jpg": "279401de19de32d1df84a1f7b307da9d624fbbf939fb819fe08a5880ab4408a7",
+    "19_DSC0703.jpg": "768d57242f31ad4bae1ed8605abc13b3d692455ea2990a712501a3a703840ddb",
+    "19_DSC0721.jpg": "17f22fe713ef0ac752d02064f2edd3e519df1855ddd135bb2816c590ce96726d",
+    "19_DSC0757.jpg": "b59a2aeb5831d6219fa89020b0939cb412aea54a0287d0d053b5edc04271d5ca",
+    "19_DSC0766.jpg": "816bf0b6ff2252d82dd4998dc03896818f67b4493f94c4187d45fdb0cb235402",
+    "19_DSC0784.jpg": "876f3c75bf879f0bc61a892fa5c892851a19ad62e9686ecdd35f05d31f3f0fa3",
+    "19_DSC0802.jpg": "3427f729b6adc14984efe28f1cb8d41b319742f3dc8e34a998590357cfb67bf6",
+    "19_DSC0820.jpg": "fef4f89d96f59404260dd9a5442b5dc3ca571546619e8f70f5dd8b6a060c7f3b",
+    "19_DSC0838.jpg": "758fe0fae47b465934e423b97b6cbad9654a29a56a079b83db7904b6d33dfcd7",
+    "19_DSC0856.jpg": "7f17aa908d8492379d65ca33fe25fd3e6e66e8013f4acc68012e52cfbbe64e0f",
+    "19_DSC0874.jpg": "e63c92b013d5115b4de6c425d9af9e2e49afd8da5eabd9c93929b4366a631773",
+    "19_DSC0901.jpg": "0956511dccee8843a9792a9026dc286b53767c8acfbad0cf62d469fcc7c453d0",
+    "19_DSC0919.jpg": "f6e347be683a68488ae109f7871077df385857935e26bf2968cf7801f43a080a",
+    "19_DSC0937.jpg": "e58e0bbdc9e7e36014d02e68524ffb0ac5175e58181a4776d474000fb149a4c2",
+    "19_DSC0964.jpg": "ed74c9a49a76b5a5234fef9f2fde483c67bb1b8d028337b4ed0923c5adc88758",
+    "19_DSC0982.jpg": "e5c1dd41906014e3846228b06d4c1a4a75105fcffc4c7a0d0ad431b25dabdeab",
+    "19_DSC1000.jpg": "0a6c0d09cc9a1803a5da9cec339788af420be39bdc1d7be737faff327e791db5",
+    "19_DSC1018.jpg": "c1d4d173ac7a8369a4d7e29c26906f0e70a413a2005f17d4bbc64679e70fb9d0",
+    "19_DSC1036.jpg": "e9ad1ad439bcdf0240650603f40619049cb8cb161c9fe4d4898080ed7b03bebd"
+  },
+  "shared_points": 100000,
+  "shared_intrinsics": true,
+  "shared_initialization": true,
+  "estimated_poses_transformed_by_one_global_similarity": true,
+  "alignment": {
+    "scale": 3.170538244053354,
+    "rotation": [
+      [
+        0.04231560396046036,
+        0.0012455216682601272,
+        0.9991035173280272
+      ],
+      [
+        0.0019304729429775178,
+        -0.9999974581685531,
+        0.0011648736628968519
+      ],
+      [
+        0.9991024286506751,
+        0.0018794499748522836,
+        -0.04231790084720768
+      ]
+    ],
+    "translation": [
+      0.6829290000609932,
+      1.1303858771935378,
+      -3.3344263525590714
+    ],
+    "fit_pairs": 24
+  },
+  "center_rmse_reference_units": 0.6730201469480149,
+  "median_orientation_degrees": 2.323790496037451,
+  "relative_rotations": [
+    {
+      "from": "frame_0001.png",
+      "to": "frame_0002.png",
+      "estimated_degrees": 1.6438091888494726,
+      "provided_degrees": 1.9174035487532495,
+      "residual_degrees": 0.2840089932074297
+    },
+    {
+      "from": "frame_0002.png",
+      "to": "frame_0003.png",
+      "estimated_degrees": 6.110988746874664,
+      "provided_degrees": 178.65266259941856,
+      "residual_degrees": 175.29521983415634
+    },
+    {
+      "from": "frame_0003.png",
+      "to": "frame_0004.png",
+      "estimated_degrees": 2.8530209706871226,
+      "provided_degrees": 2.618930351246888,
+      "residual_degrees": 0.26563297324041657
+    },
+    {
+      "from": "frame_0004.png",
+      "to": "frame_0005.png",
+      "estimated_degrees": 0.1659443363429823,
+      "provided_degrees": 0.7290805183077708,
+      "residual_degrees": 0.8827165712176827
+    },
+    {
+      "from": "frame_0005.png",
+      "to": "frame_0006.png",
+      "estimated_degrees": 0.930855481819931,
+      "provided_degrees": 1.3431882076537967,
+      "residual_degrees": 0.4193642252780213
+    },
+    {
+      "from": "frame_0006.png",
+      "to": "frame_0007.png",
+      "estimated_degrees": 1.488447626640978,
+      "provided_degrees": 2.654962051892763,
+      "residual_degrees": 1.1706198428876349
+    },
+    {
+      "from": "frame_0007.png",
+      "to": "frame_0008.png",
+      "estimated_degrees": 2.5317491837083157,
+      "provided_degrees": 2.872728629405778,
+      "residual_degrees": 0.38799985014034244
+    },
+    {
+      "from": "frame_0008.png",
+      "to": "frame_0009.png",
+      "estimated_degrees": 2.190224294700047,
+      "provided_degrees": 2.996908572409027,
+      "residual_degrees": 0.812994975674168
+    },
+    {
+      "from": "frame_0009.png",
+      "to": "frame_0010.png",
+      "estimated_degrees": 1.1283045109069716,
+      "provided_degrees": 1.0627026255547924,
+      "residual_degrees": 0.15463722197030083
+    },
+    {
+      "from": "frame_0010.png",
+      "to": "frame_0011.png",
+      "estimated_degrees": 4.933363309314622,
+      "provided_degrees": 5.171667189044323,
+      "residual_degrees": 0.2579990855556175
+    },
+    {
+      "from": "frame_0011.png",
+      "to": "frame_0012.png",
+      "estimated_degrees": 7.991614211729793,
+      "provided_degrees": 6.401593212858841,
+      "residual_degrees": 1.6593490824961694
+    },
+    {
+      "from": "frame_0012.png",
+      "to": "frame_0013.png",
+      "estimated_degrees": 0.9339058131690017,
+      "provided_degrees": 0.3673074763689157,
+      "residual_degrees": 0.6465675130339694
+    },
+    {
+      "from": "frame_0013.png",
+      "to": "frame_0014.png",
+      "estimated_degrees": 0.5466264865380236,
+      "provided_degrees": 0.5834702093029656,
+      "residual_degrees": 0.7905145619752216
+    },
+    {
+      "from": "frame_0014.png",
+      "to": "frame_0015.png",
+      "estimated_degrees": 1.9284401578616837,
+      "provided_degrees": 1.0704446873552438,
+      "residual_degrees": 0.8707476317249768
+    },
+    {
+      "from": "frame_0015.png",
+      "to": "frame_0016.png",
+      "estimated_degrees": 0.4647416800786202,
+      "provided_degrees": 1.0626550090196585,
+      "residual_degrees": 0.7434581552307838
+    },
+    {
+      "from": "frame_0016.png",
+      "to": "frame_0017.png",
+      "estimated_degrees": 2.307508438770392,
+      "provided_degrees": 1.0269998564674663,
+      "residual_degrees": 1.395784309938925
+    },
+    {
+      "from": "frame_0017.png",
+      "to": "frame_0018.png",
+      "estimated_degrees": 1.3466507395997889,
+      "provided_degrees": 0.4478424688311974,
+      "residual_degrees": 0.9246453174345053
+    },
+    {
+      "from": "frame_0018.png",
+      "to": "frame_0019.png",
+      "estimated_degrees": 1.5503289756545302,
+      "provided_degrees": 2.516912392559016,
+      "residual_degrees": 0.994285560144468
+    },
+    {
+      "from": "frame_0019.png",
+      "to": "frame_0020.png",
+      "estimated_degrees": 1.480096529434425,
+      "provided_degrees": 2.1377519606229716,
+      "residual_degrees": 0.7124640570385384
+    },
+    {
+      "from": "frame_0020.png",
+      "to": "frame_0021.png",
+      "estimated_degrees": 1.0664688753485347,
+      "provided_degrees": 0.20706706494058275,
+      "residual_degrees": 0.8826880764533073
+    },
+    {
+      "from": "frame_0021.png",
+      "to": "frame_0022.png",
+      "estimated_degrees": 0.22413100018235202,
+      "provided_degrees": 1.1363088544547797,
+      "residual_degrees": 1.015112883013183
+    },
+    {
+      "from": "frame_0022.png",
+      "to": "frame_0023.png",
+      "estimated_degrees": 10.013530119459642,
+      "provided_degrees": 11.692206871557467,
+      "residual_degrees": 1.8794597315436756
+    },
+    {
+      "from": "frame_0023.png",
+      "to": "frame_0024.png",
+      "estimated_degrees": 25.2684728528636,
+      "provided_degrees": 11.566341881792217,
+      "residual_degrees": 13.785563336737376
+    }
+  ],
+  "source_model_sha256": {
+    "estimated": {
+      "cameras.bin": "fe3f7c7819c6aff426d91df577299c92fbd228badbf91d0383a53a50d97df2c8",
+      "images.bin": "17a4d2dd8b086685af0aa049ffafa52eeac3a97c07409ea72c52fc85c6bcb81e",
+      "points3D.bin": "50234659fe1a20947d0435eb055e69344b1724bc6fcbf8e6e02284107ac09308"
+    },
+    "provided": {
+      "cameras.bin": "08a96d8133ef342a607a24d6225ab6ab8467d393b2dad761f7bfd5ecdae85df6",
+      "images.bin": "cdb02e4bae9fad7254f45ca087e26fbbcae319b18e8daae0c1e54bfff8b1c1dd",
+      "points3D.bin": "9e55711c08792820dabd5d36cc92a7bf822f120e879c075eddb51febd907325b"
+    }
+  },
+  "source_run": "2026-10-07T08:35:53.918063+00:00",
+  "source_video_sha256": "a0a387a1af7f8483d8c5d13861dc17907054784f090a4c26e8370624b4e4263e",
+  "latest_8_october_camera_model_examined": false,
+  "correspondences": {
+    "method": "central 76% RGB crop resized to 64x96; zero-mean normalized correlation against 52 camera-19 photos",
+    "minimum_correlation": 0.9481218706829326,
+    "monotonic_reference_ordinals": true,
+    "matches": [
+      {
+        "frame": "frame_0001.png",
+        "candidate_photo": "19_DSC0595.jpg",
+        "reference_ordinal_in_interval": 0,
+        "correlation": 0.9920132144326275,
+        "top_three": [
+          {
+            "name": "19_DSC0595.jpg",
+            "correlation": 0.9920132144326275
+          },
+          {
+            "name": "19_DSC0604.jpg",
+            "correlation": 0.7945822809844184
+          },
+          {
+            "name": "19_DSC0613.jpg",
+            "correlation": 0.6713870543981042
+          }
+        ]
+      },
+      {
+        "frame": "frame_0002.png",
+        "candidate_photo": "19_DSC0613.jpg",
+        "reference_ordinal_in_interval": 2,
+        "correlation": 0.9906681331906986,
+        "top_three": [
+          {
+            "name": "19_DSC0613.jpg",
+            "correlation": 0.9906681331906986
+          },
+          {
+            "name": "19_DSC0604.jpg",
+            "correlation": 0.8307430685321207
+          },
+          {
+            "name": "19_DSC0595.jpg",
+            "correlation": 0.6917393593234481
+          }
+        ]
+      },
+      {
+        "frame": "frame_0003.png",
+        "candidate_photo": "19_DSC0631.jpg",
+        "reference_ordinal_in_interval": 4,
+        "correlation": 0.9481218706829326,
+        "top_three": [
+          {
+            "name": "19_DSC0631.jpg",
+            "correlation": 0.9481218706829326
+          },
+          {
+            "name": "19_DSC0640.jpg",
+            "correlation": 0.4971599932501265
+          },
+          {
+            "name": "19_DSC0649.jpg",
+            "correlation": 0.463502719092332
+          }
+        ]
+      },
+      {
+        "frame": "frame_0004.png",
+        "candidate_photo": "19_DSC0649.jpg",
+        "reference_ordinal_in_interval": 6,
+        "correlation": 0.9879510962820144,
+        "top_three": [
+          {
+            "name": "19_DSC0649.jpg",
+            "correlation": 0.9879510962820144
+          },
+          {
+            "name": "19_DSC0676.jpg",
+            "correlation": 0.8016387415328433
+          },
+          {
+            "name": "19_DSC0658.jpg",
+            "correlation": 0.8004652986649488
+          }
+        ]
+      },
+      {
+        "frame": "frame_0005.png",
+        "candidate_photo": "19_DSC0667.jpg",
+        "reference_ordinal_in_interval": 8,
+        "correlation": 0.9887180507988178,
+        "top_three": [
+          {
+            "name": "19_DSC0667.jpg",
+            "correlation": 0.9887180507988178
+          },
+          {
+            "name": "19_DSC0730.jpg",
+            "correlation": 0.8371323383158112
+          },
+          {
+            "name": "19_DSC0739.jpg",
+            "correlation": 0.82188985370791
+          }
+        ]
+      },
+      {
+        "frame": "frame_0006.png",
+        "candidate_photo": "19_DSC0685.jpg",
+        "reference_ordinal_in_interval": 10,
+        "correlation": 0.9702268554455964,
+        "top_three": [
+          {
+            "name": "19_DSC0685.jpg",
+            "correlation": 0.9702268554455964
+          },
+          {
+            "name": "19_DSC0640.jpg",
+            "correlation": 0.7009380131680322
+          },
+          {
+            "name": "19_DSC0676.jpg",
+            "correlation": 0.6279049637714677
+          }
+        ]
+      },
+      {
+        "frame": "frame_0007.png",
+        "candidate_photo": "19_DSC0703.jpg",
+        "reference_ordinal_in_interval": 12,
+        "correlation": 0.9569152336315256,
+        "top_three": [
+          {
+            "name": "19_DSC0703.jpg",
+            "correlation": 0.9569152336315256
+          },
+          {
+            "name": "19_DSC0802.jpg",
+            "correlation": 0.3599482487863547
+          },
+          {
+            "name": "19_DSC0658.jpg",
+            "correlation": 0.3511063009416234
+          }
+        ]
+      },
+      {
+        "frame": "frame_0008.png",
+        "candidate_photo": "19_DSC0721.jpg",
+        "reference_ordinal_in_interval": 14,
+        "correlation": 0.9813629286072351,
+        "top_three": [
+          {
+            "name": "19_DSC0721.jpg",
+            "correlation": 0.9813629286072351
+          },
+          {
+            "name": "19_DSC0676.jpg",
+            "correlation": 0.7726976048626335
+          },
+          {
+            "name": "19_DSC0730.jpg",
+            "correlation": 0.7059010103615403
+          }
+        ]
+      },
+      {
+        "frame": "frame_0009.png",
+        "candidate_photo": "19_DSC0757.jpg",
+        "reference_ordinal_in_interval": 18,
+        "correlation": 0.9823981800975126,
+        "top_three": [
+          {
+            "name": "19_DSC0757.jpg",
+            "correlation": 0.9823981800975126
+          },
+          {
+            "name": "19_DSC0748.jpg",
+            "correlation": 0.9821319178669964
+          },
+          {
+            "name": "19_DSC0937.jpg",
+            "correlation": 0.7650098421777317
+          }
+        ]
+      },
+      {
+        "frame": "frame_0010.png",
+        "candidate_photo": "19_DSC0766.jpg",
+        "reference_ordinal_in_interval": 19,
+        "correlation": 0.9786737613727539,
+        "top_three": [
+          {
+            "name": "19_DSC0766.jpg",
+            "correlation": 0.9786737613727539
+          },
+          {
+            "name": "19_DSC0757.jpg",
+            "correlation": 0.707245956494838
+          },
+          {
+            "name": "19_DSC0748.jpg",
+            "correlation": 0.705468253621551
+          }
+        ]
+      },
+      {
+        "frame": "frame_0011.png",
+        "candidate_photo": "19_DSC0784.jpg",
+        "reference_ordinal_in_interval": 21,
+        "correlation": 0.9712251426823899,
+        "top_three": [
+          {
+            "name": "19_DSC0784.jpg",
+            "correlation": 0.9712251426823899
+          },
+          {
+            "name": "19_DSC0775.jpg",
+            "correlation": 0.5282365697560013
+          },
+          {
+            "name": "19_DSC0712.jpg",
+            "correlation": 0.5071802968130428
+          }
+        ]
+      },
+      {
+        "frame": "frame_0012.png",
+        "candidate_photo": "19_DSC0802.jpg",
+        "reference_ordinal_in_interval": 23,
+        "correlation": 0.974070000749718,
+        "top_three": [
+          {
+            "name": "19_DSC0802.jpg",
+            "correlation": 0.974070000749718
+          },
+          {
+            "name": "19_DSC0811.jpg",
+            "correlation": 0.5304474624894527
+          },
+          {
+            "name": "19_DSC0793.jpg",
+            "correlation": 0.5269522672045729
+          }
+        ]
+      },
+      {
+        "frame": "frame_0013.png",
+        "candidate_photo": "19_DSC0820.jpg",
+        "reference_ordinal_in_interval": 25,
+        "correlation": 0.9777648285557509,
+        "top_three": [
+          {
+            "name": "19_DSC0820.jpg",
+            "correlation": 0.9777648285557509
+          },
+          {
+            "name": "19_DSC0919.jpg",
+            "correlation": 0.662736538022782
+          },
+          {
+            "name": "19_DSC0910.jpg",
+            "correlation": 0.6236132249606525
+          }
+        ]
+      },
+      {
+        "frame": "frame_0014.png",
+        "candidate_photo": "19_DSC0838.jpg",
+        "reference_ordinal_in_interval": 27,
+        "correlation": 0.9826865082859355,
+        "top_three": [
+          {
+            "name": "19_DSC0838.jpg",
+            "correlation": 0.9826865082859355
+          },
+          {
+            "name": "19_DSC0901.jpg",
+            "correlation": 0.6184821767253981
+          },
+          {
+            "name": "19_DSC0658.jpg",
+            "correlation": 0.6165682548601352
+          }
+        ]
+      },
+      {
+        "frame": "frame_0015.png",
+        "candidate_photo": "19_DSC0856.jpg",
+        "reference_ordinal_in_interval": 29,
+        "correlation": 0.9905466037429148,
+        "top_three": [
+          {
+            "name": "19_DSC0856.jpg",
+            "correlation": 0.9905466037429148
+          },
+          {
+            "name": "19_DSC0847.jpg",
+            "correlation": 0.776772381071159
+          },
+          {
+            "name": "19_DSC0865.jpg",
+            "correlation": 0.7707510333910528
+          }
+        ]
+      },
+      {
+        "frame": "frame_0016.png",
+        "candidate_photo": "19_DSC0874.jpg",
+        "reference_ordinal_in_interval": 31,
+        "correlation": 0.9903184101044977,
+        "top_three": [
+          {
+            "name": "19_DSC0874.jpg",
+            "correlation": 0.9903184101044977
+          },
+          {
+            "name": "19_DSC0865.jpg",
+            "correlation": 0.7329144998772108
+          },
+          {
+            "name": "19_DSC1000.jpg",
+            "correlation": 0.6625221015762266
+          }
+        ]
+      },
+      {
+        "frame": "frame_0017.png",
+        "candidate_photo": "19_DSC0901.jpg",
+        "reference_ordinal_in_interval": 34,
+        "correlation": 0.9801696965371476,
+        "top_three": [
+          {
+            "name": "19_DSC0901.jpg",
+            "correlation": 0.9801696965371476
+          },
+          {
+            "name": "19_DSC0991.jpg",
+            "correlation": 0.662615276083709
+          },
+          {
+            "name": "19_DSC0892.jpg",
+            "correlation": 0.6617795994273035
+          }
+        ]
+      },
+      {
+        "frame": "frame_0018.png",
+        "candidate_photo": "19_DSC0919.jpg",
+        "reference_ordinal_in_interval": 36,
+        "correlation": 0.9789680676553921,
+        "top_three": [
+          {
+            "name": "19_DSC0919.jpg",
+            "correlation": 0.9789680676553921
+          },
+          {
+            "name": "19_DSC0910.jpg",
+            "correlation": 0.7003372494173606
+          },
+          {
+            "name": "19_DSC0820.jpg",
+            "correlation": 0.6903032186198949
+          }
+        ]
+      },
+      {
+        "frame": "frame_0019.png",
+        "candidate_photo": "19_DSC0937.jpg",
+        "reference_ordinal_in_interval": 38,
+        "correlation": 0.9809546372580057,
+        "top_three": [
+          {
+            "name": "19_DSC0937.jpg",
+            "correlation": 0.9809546372580057
+          },
+          {
+            "name": "19_DSC0757.jpg",
+            "correlation": 0.7654502016920525
+          },
+          {
+            "name": "19_DSC0748.jpg",
+            "correlation": 0.7640475769702079
+          }
+        ]
+      },
+      {
+        "frame": "frame_0020.png",
+        "candidate_photo": "19_DSC0964.jpg",
+        "reference_ordinal_in_interval": 40,
+        "correlation": 0.9839662105607192,
+        "top_three": [
+          {
+            "name": "19_DSC0964.jpg",
+            "correlation": 0.9839662105607192
+          },
+          {
+            "name": "19_DSC0973.jpg",
+            "correlation": 0.7906253686919985
+          },
+          {
+            "name": "19_DSC0928.jpg",
+            "correlation": 0.7288312380811743
+          }
+        ]
+      },
+      {
+        "frame": "frame_0021.png",
+        "candidate_photo": "19_DSC0982.jpg",
+        "reference_ordinal_in_interval": 42,
+        "correlation": 0.984538477659064,
+        "top_three": [
+          {
+            "name": "19_DSC0982.jpg",
+            "correlation": 0.984538477659064
+          },
+          {
+            "name": "19_DSC0973.jpg",
+            "correlation": 0.7342216857636443
+          },
+          {
+            "name": "19_DSC0991.jpg",
+            "correlation": 0.7168383162029767
+          }
+        ]
+      },
+      {
+        "frame": "frame_0022.png",
+        "candidate_photo": "19_DSC1000.jpg",
+        "reference_ordinal_in_interval": 44,
+        "correlation": 0.9856450727968413,
+        "top_three": [
+          {
+            "name": "19_DSC1000.jpg",
+            "correlation": 0.9856450727968413
+          },
+          {
+            "name": "19_DSC1009.jpg",
+            "correlation": 0.7743483013735935
+          },
+          {
+            "name": "19_DSC0883.jpg",
+            "correlation": 0.7260736716845729
+          }
+        ]
+      },
+      {
+        "frame": "frame_0023.png",
+        "candidate_photo": "19_DSC1018.jpg",
+        "reference_ordinal_in_interval": 46,
+        "correlation": 0.9739605230045107,
+        "top_three": [
+          {
+            "name": "19_DSC1018.jpg",
+            "correlation": 0.9739605230045107
+          },
+          {
+            "name": "19_DSC0865.jpg",
+            "correlation": 0.5543878148130925
+          },
+          {
+            "name": "19_DSC1009.jpg",
+            "correlation": 0.5356190176176914
+          }
+        ]
+      },
+      {
+        "frame": "frame_0024.png",
+        "candidate_photo": "19_DSC1036.jpg",
+        "reference_ordinal_in_interval": 48,
+        "correlation": 0.981329474405958,
+        "top_three": [
+          {
+            "name": "19_DSC1036.jpg",
+            "correlation": 0.981329474405958
+          },
+          {
+            "name": "19_DSC1045.jpg",
+            "correlation": 0.7719923477825051
+          },
+          {
+            "name": "19_DSC1054.jpg",
+            "correlation": 0.7065907599863264
+          }
+        ]
+      }
+    ],
+    "ambiguous_match": {
+      "frame": "frame_0009.png",
+      "alternatives": [
+        "19_DSC0748.jpg",
+        "19_DSC0757.jpg"
+      ],
+      "reference_center_difference_units": 0.00032262626171209667,
+      "reference_rotation_difference_degrees": 0.010082537436143832,
+      "does_not_affect_frames_2_to_3_rotation_check": true
+    }
+  },
+  "diagnosis": {
+    "confirmed": "The matched reference views for frames 2 and 3 have almost opposite viewing directions; the prior estimated model gives a small rotation.",
+    "hypothesis": "This disagreement can force incompatible walls into the same reconstruction and contribute to blur.",
+    "root_cause_or_improved_reconstruction_proven": false,
+    "not_a_metric_for_the_latest_8_october_run": true
+  },
+  "prepared_archive": {
+    "bytes": 27558427,
+    "sha256": "8721ecbbb0654b5085613da1bccc4e41adaeaabe16014c48d3e213fed180ceb4",
+    "crc_verified": true
+  },
+  "comparison_training_executed": false,
+  "local_synthetic_tests_passed": 8
+}

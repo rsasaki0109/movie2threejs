@@ -34,6 +34,12 @@ Synthetic tests recovered the camera centers byte for byte and verified that a
 failed retry excludes the old world and camera model. This packaging addition is
 locally tested; it has not been run in another Colab GPU session.
 
+The subsequent CPU investigation recovered an older model's camera data and
+found a large direction disagreement: consecutive opposite-wall photographs
+have **6.111°** estimated versus **178.653°** provided relative rotation. A
+controlled extrinsics comparison with identical images, intrinsics and initial
+points is prepared; training has not yet run. See [the diagnosis and experiment](pose-comparison.md).
+
 ## Reproducible corrections
 
 Short training now scales the entire gsplat schedule with `--steps-scaler`, including
