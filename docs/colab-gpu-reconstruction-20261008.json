@@ -1,0 +1,173 @@
+{
+  "format": "playworld-colab-reconstruction/1",
+  "source_revision": "264f62f02b46b7dcf7fab53eed85c89163fb45c6",
+  "completed_reconstruction": true,
+  "completed_first_run_with_verified_downloads": false,
+  "auth_provenance": {
+    "environment_token_present": false,
+    "transfer_file_present": false
+  },
+  "preflight": {
+    "gpu": "NVIDIA L4",
+    "gpu_memory_mib": 22563,
+    "native_bf16": true,
+    "sam3_access": "approved",
+    "ready": true
+  },
+  "notebook_stages": {
+    "setup": {
+      "status": "complete",
+      "seconds": 580.165296312
+    },
+    "source": {
+      "status": "complete",
+      "seconds": 5.348337736999838
+    },
+    "pipeline": {
+      "status": "complete",
+      "seconds": 767.584340291
+    }
+  },
+  "pipeline_report": {
+    "format": "playworld-run/1",
+    "started_utc": "2026-10-08T06:12:53.690922+00:00",
+    "status": "ok",
+    "source": {
+      "kind": "video",
+      "name": "apartment-workshop.mp4",
+      "sha256": "6529e7d13119873a71aeeae2499bd778dc35bfbd57d36b9c838ee2b24f31e79a",
+      "bytes": 9198472
+    },
+    "platform": "Linux-6.6.122+-x86_64-with-glibc2.39",
+    "python": "3.12.3",
+    "gpu": "NVIDIA L4, 23034 MiB, 580.82.07",
+    "settings": {
+      "cmd": "all",
+      "video": "/content/playworld-runs/20261008T060259Z-xa75fv8z/public_source/apartment-workshop.mp4",
+      "scene": "/content/playworld-runs/20261008T060259Z-xa75fv8z/scene",
+      "vggt_dir": "/content/playworld/.gpu/repos/vggt",
+      "gsplat_dir": "/content/playworld/.gpu/repos/gsplat",
+      "num": 24,
+      "max_size": 1280,
+      "ba": true,
+      "pose_confidence": 1.5,
+      "shared_camera": true,
+      "ba_track_budget": 32768,
+      "ba_reprojection_error": 32.0,
+      "steps": 7000,
+      "strategy": "default",
+      "gaussian_limit": null,
+      "quality": false,
+      "prompts": "cardboard box,plastic bottle,folding chair",
+      "vggt_python": "/content/playworld/.gpu/envs/vggt/bin/python",
+      "gsplat_python": "/content/playworld/.gpu/envs/gsplat/bin/python",
+      "sam3_python": "/content/playworld/.gpu/envs/sam3/bin/python",
+      "segment_seed_frame": 0,
+      "report": "/content/playworld-runs/20261008T060259Z-xa75fv8z/scene/run-20261008T061252Z.json",
+      "start_at": "frames",
+      "out": "/content/playworld-runs/20261008T060259Z-xa75fv8z/world",
+      "masks": null,
+      "eye_height": 1.5,
+      "voxel": 0.1,
+      "bounds_margin": null,
+      "clean_splats": false
+    },
+    "stages": {
+      "frames": {
+        "status": "ok",
+        "started_utc": "2026-10-08T06:12:53.692944+00:00",
+        "seconds": 0.942,
+        "finished_utc": "2026-10-08T06:12:54.635408+00:00"
+      },
+      "poses": {
+        "status": "ok",
+        "started_utc": "2026-10-08T06:12:54.635811+00:00",
+        "seconds": 242.057,
+        "finished_utc": "2026-10-08T06:16:56.693065+00:00"
+      },
+      "train": {
+        "status": "ok",
+        "started_utc": "2026-10-08T06:16:56.693549+00:00",
+        "seconds": 444.655,
+        "finished_utc": "2026-10-08T06:24:21.348261+00:00"
+      },
+      "segment": {
+        "status": "ok",
+        "started_utc": "2026-10-08T06:24:21.348708+00:00",
+        "seconds": 62.13,
+        "finished_utc": "2026-10-08T06:25:23.478393+00:00"
+      },
+      "world": {
+        "status": "ok",
+        "started_utc": "2026-10-08T06:25:23.478923+00:00",
+        "seconds": 13.8,
+        "finished_utc": "2026-10-08T06:25:37.279307+00:00"
+      }
+    },
+    "finished_utc": "2026-10-08T06:25:37.279899+00:00",
+    "total_seconds": 763.642,
+    "stats": {
+      "cameras": 24,
+      "points": 28435,
+      "gaussians": 1868515,
+      "input_gaussians": 1869423,
+      "discarded_object_gaussians": 908,
+      "discarded_diffuse_gaussians": 0,
+      "clean_splats": false,
+      "discarded_bounds_gaussians": 0,
+      "bounds_margin_m": null,
+      "objects": 8,
+      "colliders": 2957,
+      "support_patches": 7,
+      "floor_inliers": 1986,
+      "scale_m_per_unit": 6.257031
+    }
+  },
+  "exports": {
+    "world_zip_remote_bytes": 405692278,
+    "world_zip_download_complete": false,
+    "world_zip_integrity_verified": false,
+    "final_checkpoint_remote_name": "ckpt_6999_rank0.pt",
+    "final_checkpoint_remote_bytes": 441186741,
+    "final_checkpoint_remote_sha256": "5a81c9c7263fdd56b6ace8b12d14facbfc20efad542b7a3e0a77100da3f99998",
+    "final_checkpoint_stored_step": 6999,
+    "completed_training_steps": 7000,
+    "final_checkpoint_download_complete": false,
+    "final_checkpoint_cpu_reload_verified": false,
+    "local_partial_files": [
+      {
+        "name": "gpu-complete-result.zip.downloading",
+        "bytes": 109051904,
+        "complete": false
+      },
+      {
+        "name": "ckpt_6999_rank0.pt.downloading",
+        "bytes": 119537664,
+        "complete": false
+      }
+    ]
+  },
+  "preview": {
+    "server_started": true,
+    "rendered_room_verified": false,
+    "final_visible_status": "error: network error"
+  },
+  "runtime": {
+    "started_utc": "2026-10-08T06:02:00+00:00",
+    "termination_log_completed_utc": "2026-10-08T06:41:34.907626+00:00",
+    "elapsed_window_seconds": 2374.90762591362,
+    "approval_limit_seconds": 2400,
+    "approval_limit_units": 1.03,
+    "terminated_within_time_limit": true,
+    "baseline_account_units_per_hour": 1.07,
+    "account_units_per_hour_after_allocation": 2.61,
+    "inferred_l4_units_per_hour": 1.54,
+    "estimated_l4_units": 1.0159327066408264,
+    "actual_l4_units": null,
+    "remaining_assignments_after_stop": 1,
+    "remaining_hardware": "unrelated T4",
+    "account_units_per_hour_after_stop": 1.07,
+    "extension_applied": false
+  },
+  "limits": "Completed inference is verified. Transfers were incomplete at shutdown; partial files are not usable complete backups. The existing reviewed README hero and gallery were not replaced."
+}

@@ -270,3 +270,36 @@ approved limits. The unrelated T4 was left running. This verifies Secrets and
 installation, not a complete updated GPU notebook run or final-checkpoint
 backup. [Receipt](colab-gpu-preflight-20261008.json),
 [details and remaining checks](colab-ui.md#updated-l4-secrets-and-setup-check).
+
+## Updated Colab GPU reconstruction, 8 October 2026
+
+The automatic-source notebook ran setup and the public video/VGGT pipeline
+together at source revision `264f62f02b46b7dcf7fab53eed85c89163fb45c6`.
+GPU: **NVIDIA L4**, 23,034 MiB reported by nvidia-smi and 22,563 MiB by
+PyTorch; native bf16 support. SAM 3 access used Colab Secrets.
+The MIT-licensed Eyeful Tower capture-rig photograph sequence was encoded as
+`apartment-workshop.mp4`; it is not a phone recording. The input SHA-256,
+24-frame/7,000-step settings and raw reports are in the
+[execution receipt](colab-gpu-reconstruction-20261008.json).
+
+| Stage | Measured seconds |
+| --- | ---: |
+| Isolated environment setup | 580.165 |
+| Public source download | 5.348 |
+| Frame extraction | 0.942 |
+| VGGT poses and bundle adjustment | 242.057 |
+| gsplat training, 7,000 steps | 444.655 |
+| SAM 3 segmentation | 62.130 |
+| World assembly | 13.800 |
+| Core pipeline total | 763.642 |
+| Enclosing notebook pipeline cell | 767.584 |
+
+Core timing includes initial model downloads and excludes setup/source download.
+World report: **8 objects, 2,957 static colliders, 7 support patches and
+1,868,515 exported Gaussians**. This scene has not received visual review.
+
+The new ZIP and final checkpoint downloads were incomplete when the L4 stopped
+within its approved 40-minute window. Neither archive integrity nor final
+checkpoint CPU loading was verified. This is a successful reconstruction
+measurement, not a complete recoverable scene or end-to-end first-run validation.
+[Export failure and remaining checks](colab-ui.md#updated-gpu-reconstruction-and-incomplete-export).

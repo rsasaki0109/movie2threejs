@@ -84,3 +84,42 @@ four environment snapshots before accepting that explicit request.
 
 The existing browser-upload notebook remains available; its `files.upload()` cells should
 not be executed through the CLI. The CLI entry point avoids those interactive cells.
+
+## Chunked artifact downloads
+
+Large exports were not fully recovered in the latest GPU reconstruction.
+These helpers were prepared afterwards. Local binary fixtures verify assembly,
+resume and corruption checks; a complete transfer from a real Colab runtime
+with them remains **unverified**. They never allocate or stop a runtime.
+
+Start final-checkpoint recovery as soon as training finishes, before previewing
+the room. While the existing task-owned runtime is still connected, create
+8 MiB chunks and SHA-256 manifests on that runtime:
+
+```bash
+python scripts/colab_pack.py /content/RUN/scene/gs/ckpts/ckpt_6999_rank0.pt /content/RUN/checkpoint-parts --step 6999
+python scripts/colab_pack.py /content/RUN/playworld-result.zip /content/RUN/result-parts
+```
+
+Replace `/content/RUN` with the attempt directory printed by the notebook, and
+use the actual final step/file for a different training length. Packaging
+requires a fresh output directory. The ZIP must already have been created.
+The helpers are local additions; upload them to an older pinned source if needed.
+
+On the local PC, use native Python to download up to eight chunks concurrently:
+
+```bash
+python scripts/colab_download.py --session SESSION --remote-directory /content/RUN/checkpoint-parts --out checkpoint-backup --expected-step 6999
+python scripts/colab_download.py --session SESSION --remote-directory /content/RUN/result-parts --out world-backup
+```
+
+On Windows, the helper reads an existing official CLI session through WSL,
+then transfers bytes with native HTTP. Adjust `--distro` and `--sdk-python` if
+the CLI is installed elsewhere. Proxy credentials stay in process memory and
+are excluded from transfer logs. Verified chunks are reused on a retry; corrupt
+chunks are fetched again. The output becomes complete only after its size and
+SHA-256 match the manifest. An existing different output is not overwritten.
+
+Runtime deletion interrupts these transfers. Before deleting the runtime,
+verify ZIP integrity, load the final checkpoint on CPU and review the exported
+world. Matching file hashes alone does not establish model loading or visual quality.

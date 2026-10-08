@@ -16,8 +16,9 @@ excluding Git metadata and gallery assets. Local tests: **56 passed, 1 optional
 test skipped**. The subsequent Colab CPU check also loaded source automatically,
 including the preview fix at `4d74f58073c8dc81c0889f738b85de0fcaca9590`.
 
-The reconstruction measurements below came from the earlier ZIP-upload version.
-They do not establish a complete first run of the updated notebook.
+The earlier measurements below came from the ZIP-upload version. A later
+automatic-source GPU reconstruction also succeeded, but its export downloads
+were incomplete. Neither establishes a complete first run with verified backups.
 
 Local checks also served the existing public workbench through the notebook's
 HTTP server and exported a **20,148,787-byte ZIP**. Archive integrity, the world
@@ -100,11 +101,48 @@ L4 rate was unavailable. The unrelated T4 was left running. The downloaded
 evidence ZIP passed integrity checks and contains `job.json` and `setup.log`;
 it contains no reconstructed world or checkpoint.
 
+## Updated GPU reconstruction and incomplete export
+
+On 8 October 2026, the updated Drive notebook fetched source commit
+`264f62f02b46b7dcf7fab53eed85c89163fb45c6` and ran its public-input cells in
+order on a dedicated L4. Automatic source loading, HF_TOKEN through Colab
+Secrets, isolated setup and GPU reconstruction succeeded together.
+Setup took **580.165 s**, source download **5.348 s**, and the core pipeline
+**763.642 s**; the enclosing notebook cell took **767.584 s**.
+The result reported **8 movable objects, 2,957 static colliders and 1,868,515
+exported Gaussians**. [Execution receipt](colab-gpu-reconstruction-20261008.json),
+[stage measurements](benchmarks.md#updated-colab-gpu-reconstruction-8-october-2026).
+
+The preview server started, but the room did not finish loading in the browser.
+The notebook initiated its ZIP download; no complete new ZIP appeared locally.
+A separate backup helper produced a **405,692,278-byte ZIP** and a manifest for
+the **441,186,741-byte** final checkpoint `ckpt_6999_rank0.pt` (7,000 training
+steps). Its remote SHA-256 was
+`5a81c9c7263fdd56b6ace8b12d14facbfc20efad542b7a3e0a77100da3f99998`.
+This is a remote manifest value, not a verified complete local backup.
+
+CLI transfers stalled, and the Windows-native streaming fallback began too
+late. Only partial ZIP and checkpoint files were recovered. The dedicated L4
+was terminated after **39 min 34.9 s**, within the approved 40-minute limit.
+The inferred L4 rate was **1.54 units/hour**, giving an estimated **1.016 units**
+for this window; individual billing was not measured. The unrelated T4 was
+left running. The approved extension arrived after termination and was not
+used to allocate another runtime.
+
+After shutdown the preview displayed `error: network error`. New-world archive
+integrity, final-checkpoint CPU loading and visual/physics checks remain
+unverified. The reviewed README hero and gallery were not replaced.
+
+The subsequent [chunked download tools](colab-cli.md#chunked-artifact-downloads)
+use up to eight Windows-native HTTP connections and verify chunk and whole-file
+hashes. Local binary fixtures check assembly, resuming and rejection of corrupt
+data. A complete real Colab transfer with these tools has not been verified.
+
 ## What remains unverified
 
-The updated notebook has not been rerun end to end through GPU reconstruction.
-The CPU browser check above verifies those cells with a prebuilt world, not
-preview/export of a newly reconstructed result from the earlier L4 run.
+The updated notebook's GPU reconstruction succeeded. The CPU browser check
+above verifies preview and download with a prebuilt world, not the newly
+reconstructed result.
 The earlier reconstruction used the authenticated account's one-use token
 transfer described in [CLI instructions](colab-cli.md). Colab Secrets access
 was subsequently verified in the separate preflight/setup check above.
@@ -115,7 +153,8 @@ The optional phone-video upload path also remains unverified.
 The rendered training output became large enough to make the browser
 unresponsive. The updated runner now displays progress at most once every
 30 seconds, plus completion, while retaining every progress update in its disk
-log. This change passed local regression tests but has not been rerun on Colab.
+log. This change passed local regression tests and was used in the updated GPU
+reconstruction. The browser later became unresponsive during the export transfers.
 
 ## Upload and runtime checks
 
@@ -147,4 +186,4 @@ Earlier local verification: **53 Python tests passed, 1 optional test skipped**.
 Regression checks cover a failed retry after a successful world, failure before
 input is available, independent attempts, an exit without a world manifest,
 and throttled progress with a complete disk log. These tests do not substitute
-for the remaining GPU first-run and Secrets checks.
+for the remaining new-world preview and verified-backup checks.

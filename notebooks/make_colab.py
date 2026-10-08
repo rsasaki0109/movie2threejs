@@ -26,13 +26,13 @@ def code(text):
 md("""
 # playworld: experimental phone video → physical browser world
 
-The shared reconstruction recipe completed the public video/VGGT input on a Colab L4 in
-12 min 25.7 s, including initial model downloads. Environment setup took another
-10 min 1.6 s. Automatic source fetching, browser preview and result ZIP download
-were checked separately on Colab CPU using an existing public world. A later L4
-check verified HF_TOKEN through Colab Secrets and completed setup in 10 min 19.1 s;
-it stopped before reconstruction after losing the browser connection. The updated
-notebook's complete GPU run and final-checkpoint download remain unverified.
+Automatic GitHub source loading, HF_TOKEN through Colab Secrets, setup and public
+video/VGGT reconstruction ran together on a Colab L4. The core pipeline took
+12 min 43.6 s, including initial model downloads; setup took another 9 min 40.2 s.
+The new world ZIP and final checkpoint were not fully downloaded before shutdown,
+and the new room preview did not finish loading. A complete first run remains
+unverified. Browser preview and ZIP download were checked separately on Colab CPU
+using an existing public world.
 See `docs/colab-ui.md` and `docs/benchmarks.md` for the measured run and its limits.
 
 1. Select a GPU runtime. For movable objects use an Ampere-or-newer GPU (L4/A100 etc.).

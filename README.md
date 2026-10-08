@@ -96,7 +96,7 @@ The [live demo gallery](https://rsasaki0109.github.io/movie2threejs/) includes f
 - Masks, convex colliders and masses are estimates. Review them before using a new scene; not every detected label becomes a useful movable object.
 - The default VGGT weights are non-commercial. SAM 3 weights require approved Hugging Face access; model terms apply separately from the dataset's MIT license.
 - SAM 3 was verified on L4. T4 compatibility is unverified; the current object recipe requires native bf16 hardware.
-- The earlier interactive Colab recipe completed the public video/VGGT input on L4 in **12 min 25.7 s**, including initial model downloads; environment setup took another **10 min 1.6 s**. Automatic GitHub source loading, browser preview and ZIP download were checked separately on CPU with an existing public world. A later L4 check verified Colab Secrets and setup; the updated notebook's complete GPU run and final-checkpoint download remain unverified. [Notebook verification status](docs/colab-ui.md).
+- Automatic GitHub source loading, Colab Secrets, setup and public video/VGGT reconstruction ran together on L4. The core pipeline took **12 min 43.6 s**, including initial model downloads; setup took another **9 min 40.2 s**. The new world ZIP and final checkpoint were not fully downloaded, and the room preview did not finish loading before shutdown. Preview and ZIP download passed separately on CPU with an existing public world. A complete updated first run remains unverified. [Notebook verification status](docs/colab-ui.md).
 
 ## Development
 
