@@ -1,0 +1,74 @@
+{
+  "scope": "Colab CPU browser source-fetch, preview and download using a prebuilt public world; no reconstruction or HF access",
+  "source_revision": "4d74f58073c8dc81c0889f738b85de0fcaca9590",
+  "job": {
+    "completed": true,
+    "settings": {
+      "project_repository": "https://github.com/rsasaki0109/movie2threejs.git",
+      "project_revision": "4d74f58073c8dc81c0889f738b85de0fcaca9590",
+      "num_frames": 24,
+      "data_source": "public",
+      "train_steps": 7000,
+      "prompts": "cardboard box,plastic bottle,folding chair",
+      "eye_height": 1.5,
+      "pose_confidence": 1.5,
+      "use_ba": true,
+      "ba_reprojection_error": 32.0,
+      "validation_only": true
+    },
+    "stages": {
+      "load_existing_demo": {
+        "status": "complete",
+        "seconds": 1.287718077999898,
+        "world_sha256": "bc4561a505907f3284d7290db21bf4f5241ea2ce280f1e1041a2de12fd336066"
+      }
+    },
+    "purpose": "UI verification only, using an existing public export; no reconstruction"
+  },
+  "browser_download": true,
+  "archive_bytes": 20149354,
+  "archive_sha256": "ff9a01c6f11157b4ddf1f36dd2a3a9663173aaad9b4d3dcb3f8560036611a1bc",
+  "archive_integrity": true,
+  "world_sha256": "bc4561a505907f3284d7290db21bf4f5241ea2ce280f1e1041a2de12fd336066",
+  "splat_sha256": {
+    "background.spz": "c8dd42cfaa202b2d1d9a81843bcf950ab56ec52faf09e4f88187811bc7525019",
+    "objects/1.spz": "df6034ce58d10f2afaff7a34b9159fb5d61af0156660a12d9998397b7c699191"
+  },
+  "viewer_matches_source_revision": true,
+  "viewer_sha256": "34d7ffef971c5d3d310bee5aa338793e81d47d0fa7a9327b39e06a4b0fd2bf11",
+  "preview": {
+    "colab_proxy_rendered": true,
+    "pointer_lock_failed": "WrongDocumentError",
+    "controls": "drag",
+    "entered_without_pointer_lock": true,
+    "drag_look": true,
+    "throw_visible": true
+  },
+  "runtime": {
+    "hardware": "CPU",
+    "shape": "Standard",
+    "approval_limit_seconds": 900,
+    "approval_window_started_utc": "2026-10-08T03:40:36+00:00",
+    "stopped_utc": "2026-10-08T03:51:08.236587+00:00",
+    "elapsed_window_seconds": 632.2365870475769,
+    "stopped_within_limit": true,
+    "active_sessions_after_stop": 0,
+    "displayed_compute_units_per_hour": 0.08,
+    "actual_consumption_units": null
+  },
+  "local_browser_regression": {
+    "drag_entry_without_pointer_lock": true,
+    "keyboard_walk_m": 0.32749910555150447,
+    "drag_look": true,
+    "throw_created_rigid_body": true,
+    "escape_pauses_walk_and_throw": true,
+    "resume_and_reset": true,
+    "default_pointer_lock": true,
+    "page_errors": []
+  },
+  "unverified": [
+    "updated GPU reconstruction first run",
+    "Hugging Face Colab Secrets grant flow",
+    "optional phone-video upload"
+  ]
+}

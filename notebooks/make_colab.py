@@ -28,7 +28,9 @@ md("""
 
 The shared reconstruction recipe completed the public video/VGGT input on a Colab L4 in
 12 min 25.7 s, including initial model downloads. Environment setup took another
-10 min 1.6 s. Browser preview and result ZIP download remain unverified.
+10 min 1.6 s. Automatic source fetching, browser preview and result ZIP download
+were checked separately on Colab CPU using an existing public world. That check
+did not run reconstruction or the Hugging Face Secrets flow.
 See `docs/colab-ui.md` and `docs/benchmarks.md` for the measured run and its limits.
 
 1. Select a GPU runtime. For movable objects use an Ampere-or-newer GPU (L4/A100 etc.).
@@ -126,8 +128,10 @@ run.execute(command, "pipeline")
 md("""
 ## Inspect the result
 
-Check floor height, object masks, collisions and holes before recording. **WASD** walk,
-**Space** jump, **Click** throw, **E** push, **R** reset, **C** show colliders.
+Check floor height, object masks, collisions and holes before recording. In the Colab
+preview, **drag** to look, **WASD** walk, **Space** jump, **F** throw, **E** push,
+**R** reset and **Esc** pause. A downloaded world served locally uses mouse capture
+and **Click** to throw.
 Each attempt has its own directory, printed after source loading. Stage times and
 failures are saved in `scene/run-*.json`, logs and `job.json` under that directory.
 One public-input L4 conversion took 12 min 25.7 s, plus 10 min 1.6 s for setup;
@@ -147,7 +151,7 @@ if "preview_server" in globals():
 preview_server = ThreadingHTTPServer(("0.0.0.0", 0), partial(SimpleHTTPRequestHandler, directory=str(run.world)))
 Thread(target=preview_server.serve_forever, daemon=True).start()
 from google.colab.output import serve_kernel_port_as_window
-serve_kernel_port_as_window(preview_server.server_port, path="/index.html")
+serve_kernel_port_as_window(preview_server.server_port, path="/index.html?controls=drag")
 """)
 
 code("""

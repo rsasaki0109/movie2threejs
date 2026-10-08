@@ -13,7 +13,8 @@ project directory. Each attempt records the repository and revision in `job.json
 A fresh fetch from public GitHub and repeat loading passed locally at commit
 `9ed3cfc910379a876d4149944bb1f7c788f67a39`: **56 source files, 252,196 bytes**,
 excluding Git metadata and gallery assets. Local tests: **56 passed, 1 optional
-test skipped**. Colab verification of this automatic fetch is still pending.
+test skipped**. The subsequent Colab CPU check also loaded source automatically,
+including the preview fix at `4d74f58073c8dc81c0889f738b85de0fcaca9590`.
 
 The reconstruction measurements below came from the earlier ZIP-upload version.
 They do not establish a complete first run of the updated notebook.
@@ -24,10 +25,27 @@ JSON and both SPZ checksums matched the input. These are local HTTP/ZIP checks,
 not a Colab browser download or a new reconstruction.
 [Local validation receipt](colab-bootstrap-local-validation.json).
 
-A standard CPU Colab connection increased this account's displayed usage rate
-by 0.08 units/hour. That new CPU was stopped before any notebook code ran. Treat
-runtime costs as account-specific; CPU must not be assumed to be free. Colab
-browser preview/download verification is pending approval for that resource.
+## CPU browser preview and download check
+
+On 8 October 2026, an approved dedicated standard CPU runtime ran the main
+notebook's source-fetch, preview and download cells in Chrome. A separate
+preparation cell loaded the **existing public workbench export** and checked
+its world and SPZ hashes. No reconstruction, model installation, GPU or Hugging
+Face credentials were used. [Validation receipt](colab-cpu-ui-run-20261008.json).
+
+The room rendered through Colab's port proxy. Pointer lock failed with
+`WrongDocumentError`, so the Colab preview now uses `?controls=drag`: drag to
+look, WASD to walk, F to throw, E to push, R to reset and Esc to pause.
+Chrome confirmed entry, a changed view after dragging and a visible thrown
+ball. Local Chromium regression checks cover walking, drag look, throwing,
+pause/resume/reset and the default pointer-lock mode of a downloaded world.
+
+The final browser download was **20,149,354 bytes**. ZIP integrity, the world
+and both SPZ hashes passed; its viewer bytes match the pinned source commit.
+The archive and visual evidence were saved locally before terminating the
+runtime. The dedicated CPU was stopped within the approved 15-minute limit;
+the CLI then reported no active sessions. This account displayed **0.08 units
+per hour** for the CPU; actual compute-unit consumption was not measured.
 
 ## Earlier reconstruction check
 
@@ -59,7 +77,9 @@ world and result ZIP were not downloaded before shutdown.
 
 ## What remains unverified
 
-The notebook's browser preview and result ZIP download cells were not run.
+The updated notebook has not been rerun end to end through GPU reconstruction.
+The CPU browser check above verifies those cells with a prebuilt world, not
+preview/export of a newly reconstructed result from the earlier L4 run.
 The Colab Secrets grant flow was not verified: `HF_TOKEN` was absent, so the
 run used the existing authenticated account's one-use token transfer described
 in [CLI instructions](colab-cli.md). No token was printed or committed.
@@ -100,4 +120,4 @@ Earlier local verification: **53 Python tests passed, 1 optional test skipped**.
 Regression checks cover a failed retry after a successful world, failure before
 input is available, independent attempts, an exit without a world manifest,
 and throttled progress with a complete disk log. These tests do not substitute
-for the remaining Colab browser checks.
+for the remaining GPU first-run and Secrets checks.
