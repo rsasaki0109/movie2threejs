@@ -31,14 +31,21 @@ The README hero and gallery remain unchanged. To support future diagnosis,
 successful notebook ZIPs now preserve available COLMAP camera/image/point models
 and pose diagnostics under `scene/`, without adding image or weight directories.
 Synthetic tests recovered the camera centers byte for byte and verified that a
-failed retry excludes the old world and camera model. This packaging addition is
-locally tested; it has not been run in another Colab GPU session.
+failed retry excludes the old world and camera model. The subsequent controlled
+L4 comparison recovered both worlds' camera/image/point files byte for byte
+against their prepared inputs.
 
 The subsequent CPU investigation recovered an older model's camera data and
 found a large direction disagreement: consecutive opposite-wall photographs
 have **6.111°** estimated versus **178.653°** provided relative rotation. A
-controlled extrinsics comparison with identical images, intrinsics and initial
-points is prepared; training has not yet run. See [the diagnosis and experiment](pose-comparison.md).
+controlled camera-input comparison with identical images, intrinsics and initial
+points then completed two 7,000-step L4 runs. At the same three provided held-out
+cameras, mean PSNR improved from **15.18 to 28.49 dB** and SSIM from **0.657 to
+0.874**; shelf and sofa outlines improved in the browser captures. The trainer's
+derived scene extent also differs between conditions, so this does not isolate
+rotation errors alone. It does not compare or replace the current 156-photo
+hero, which already uses provided cameras. See [the diagnosis, comparison images
+and measured results](pose-comparison.md).
 
 ## Reproducible corrections
 

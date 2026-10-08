@@ -9,6 +9,38 @@ The historical video/VGGT runs below were measured on 7 October 2026 using an ex
 
 Input: Eyeful Tower apartment camera 19, a public capture-rig photograph sequence, not a smartphone recording. The workbench section starts at 5.0 s and lasts 4.250 s (51 frames at 12 fps). The pipeline sampled 24 frames at a maximum dimension of 1280 pixels. Source SHA-256: `a0a387a1af7f8483d8c5d13861dc17907054784f090a4c26e8370624b4e4263e`. See [attribution](data-attribution.md) and [derived source metadata](hero-source.json).
 
+## Controlled camera comparison: 8 October 2026
+
+Two static reconstructions used the same **24 undistorted photographs, provided
+intrinsics and 100,000 initial points/colors** on a dedicated NVIDIA L4
+(23,034 MiB, driver 580.82.07). Only the camera extrinsics differed: the saved
+7 October VGGT estimates aligned into the reference frame, or the dataset's
+provided cameras. Both used 7,000 gsplat steps and identical CLI options.
+This is a camera-input quality experiment, not a video pipeline, segmentation
+benchmark or replacement for the current 156-photo hero.
+
+| Measurement | Estimated cameras | Provided cameras |
+|---|---:|---:|
+| Train, seconds | 327.072 | 378.877 |
+| World export, seconds | 5.453 | 6.416 |
+| Gaussians | 1,322,057 | 1,695,831 |
+| Movable objects | 0 | 0 |
+| Static colliders | 3,187 | 4,061 |
+| Mean PSNR from common provided held-out cameras, dB | 15.18 | 28.49 |
+| Mean SSIM from common provided held-out cameras | 0.657 | 0.874 |
+
+Training, export and backup preparation for both conditions took **757.265 s**,
+excluding installation, an initial backend-setting failure and local recovery.
+The trainer's scene extent is derived from camera centers and also differs
+between conditions; this does not isolate rotation from positional errors or
+their effect on training rates and thresholds.
+
+Both final checkpoints and world ZIPs were recovered and checked before the
+task-owned L4 was terminated. Elapsed allocation/validation time was **29 min
+13.2 s**; consumption at the observed 1.54 units/hour is **estimated** at
+**0.749972 units**, rather than individually measured billing. See [all three
+same-camera comparisons, raw metrics and artifact validation](pose-comparison.md).
+
 ## Interactive notebook run: 8 October 2026
 
 The imported Drive notebook completed its public video/VGGT recipe on a dedicated

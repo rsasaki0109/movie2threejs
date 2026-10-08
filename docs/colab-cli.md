@@ -87,13 +87,14 @@ not be executed through the CLI. The CLI entry point avoids those interactive ce
 
 ## Chunked artifact downloads
 
-Large exports were not fully recovered in the latest GPU reconstruction.
+Large exports were not fully recovered in the first interactive GPU reconstruction.
 These helpers were prepared afterwards. Local binary fixtures and an
 approximately 847 MB loopback HTTP transfer verify assembly, retry, resume and
 corruption checks. A subsequent Colab CPU test recovered both synthetic artifacts
 with matching whole-file hashes and ZIP integrity, using retries and higher
-concurrency. Automatic recovery before deletion and a full GPU scene backup
-remain **unverified**. They never allocate or stop a runtime.
+concurrency. A later dedicated L4 run recovered its actual final checkpoint
+and world ZIP before termination; see the [GPU backup receipt](colab-gpu-backup-20261008.json).
+The helpers never allocate or stop a runtime.
 
 Start final-checkpoint recovery as soon as training finishes, before previewing
 the room. While the existing task-owned runtime is still connected, create
@@ -161,7 +162,8 @@ Successful notebook archives also retain available `scene/sparse/cameras.bin`,
 the original camera frame. Image and weight directories are excluded; the final
 checkpoint remains a separate backup. The older verified GPU archive did not
 include these files. The new packaging passed local synthetic export/recovery
-tests and has not yet been exercised in Colab.
+tests and the [controlled L4 comparison](pose-comparison.md) recovered both
+worlds' camera/image/point models byte for byte against the prepared inputs.
 
 ## Native Windows execution fallback
 
@@ -193,6 +195,13 @@ does not allocate, extend or stop a runtime. Its timeout closes the local
 connection; it is not a GPU billing limit or a guarantee that remote work stops.
 The existing-session lookup still uses the authenticated official CLI in WSL,
 while kernel HTTP/WebSocket traffic uses native Windows networking.
+
+If inspection shows multiple kernels, use `--kernel-id OBSERVED_KERNEL_ID` to
+select the intended one explicitly. The helper refuses a missing or busy
+selection and does not choose another kernel. Explicit selection was used for
+the controlled camera experiment after additional CLI connections appeared as
+starting kernels. Synthetic checks cover choosing an idle kernel alongside a
+busy one, missing/busy selections, and refusal of an ambiguous default.
 
 ## Transfer validation without inference
 

@@ -4,6 +4,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import os
 from pathlib import Path
 import shutil
 import subprocess
@@ -28,6 +29,10 @@ def main():
     p.add_argument('--gpu-root',type=Path,default=ROOT/'.gpu')
     p.add_argument('--steps',type=int,default=7000)
     a=p.parse_args()
+    # Colab's inline backend is unavailable in the isolated trainer venv.
+    # Match scripts/run.sh without relying on the caller's shell environment.
+    os.environ['MPLBACKEND']='Agg'
+    os.environ.pop('PYTHONPATH',None)
     if a.steps<1 or (a.out.exists() and any(a.out.iterdir())):
         raise ValueError('Use positive steps and a fresh output directory')
     with a.input.open('rb') as stream:

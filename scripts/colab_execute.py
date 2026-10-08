@@ -18,6 +18,7 @@ def main():
     parser.add_argument('--file', required=True, type=Path)
     parser.add_argument('--cells', type=int, help='Execute only the first N notebook code cells')
     parser.add_argument('--timeout', type=float, default=1800)
+    parser.add_argument('--kernel-id', help='Select an observed kernel ID when this runtime has multiple kernels')
     parser.add_argument('--distro', default='Ubuntu-22.04')
     parser.add_argument('--sdk-python', default='/root/.local/share/uv/tools/google-colab-cli/bin/python')
     args = parser.parse_args()
@@ -49,12 +50,17 @@ def main():
                            'extra_params': {'colab-runtime-proxy-token': token}},
             headers={'X-Colab-Client-Agent': 'colab-cli',
                      'X-Colab-Runtime-Proxy-Token': token})
-        client = KernelClient(**options)
+        client = KernelClient(kernel_id=args.kernel_id, **options) if args.kernel_id else KernelClient(**options)
         # Closing a client must preserve the already provisioned runtime/kernel.
         client._own_kernel = False
         kernels = client.list_kernels()
+        if args.kernel_id:
+            kernels = [kernel for kernel in kernels if kernel['id'] == args.kernel_id]
+            if len(kernels) != 1:
+                print('Requested kernel is unavailable; inspect the runtime before retrying.', file=sys.stderr)
+                return 1
         if len(kernels) > 1:
-            print('Multiple kernels; select the intended one with the official CLI.', file=sys.stderr)
+            print('Multiple kernels; use --kernel-id with an observed kernel ID.', file=sys.stderr)
             return 1
         if kernels:
             if kernels[0].get('execution_state') == 'busy':
