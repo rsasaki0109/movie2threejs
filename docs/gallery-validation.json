@@ -1,5 +1,6 @@
 {
-  "scope": "Local Chromium under a GitHub Pages-style path; no public deployment",
+  "scope": "Deployed GitHub Pages, desktop Chromium",
+  "url": "https://rsasaki0109.github.io/movie2threejs/",
   "demos": [
     {
       "id": "workbench",
@@ -8,9 +9,10 @@
       "deterministic_replay": true,
       "subject_id": 1,
       "movement_after_push_m": 1.2370532669874112,
+      "peak_sampled_tilt_degrees": 169.88303944126935,
       "initial_settling_m": 0.10732948676217002,
       "scripted_character_movement_m": 0.45744152261976373,
-      "interactive_character_movement_m": 0.2708379470439398,
+      "interactive_character_movement_m": 0.2746383878488896,
       "balls": 1,
       "featured_button": true,
       "world_sha256": "bc4561a505907f3284d7290db21bf4f5241ea2ce280f1e1041a2de12fd336066",
@@ -23,28 +25,30 @@
       "deterministic_replay": true,
       "subject_id": 1,
       "movement_after_push_m": 0.9751918977271313,
+      "peak_sampled_tilt_degrees": 154.07393960452296,
       "initial_settling_m": 0.0592082647806967,
       "scripted_character_movement_m": 0.4907253157932896,
-      "interactive_character_movement_m": 1.0817282498963405,
+      "interactive_character_movement_m": 1.04747774931322,
       "balls": 1,
       "featured_button": true,
       "world_sha256": "98c9620cdea732fbb4ee5e62c0c49ff6d1a5501f1a68b91b659d6fab7dcd5052",
-      "shot_sha256": "d362107b2bd6300ed65f5d7a3117b9a68ac09ad753634262a1f87291b6c61132"
+      "shot_sha256": "affae6798ce00220846b0f7b8603a3f92d5b0e9f4c9b9839250059859abadb4f"
     },
     {
       "id": "cafe",
-      "objects": 6,
-      "colliders": 2197,
+      "objects": 1,
+      "colliders": 4916,
       "deterministic_replay": true,
       "subject_id": 1,
-      "movement_after_push_m": 0.45745564433717656,
-      "initial_settling_m": 0.05582329761534501,
-      "scripted_character_movement_m": 0.5297384766059264,
-      "interactive_character_movement_m": 1.1373764851570263,
+      "movement_after_push_m": 0.8172626407992359,
+      "peak_sampled_tilt_degrees": 90.0012073450339,
+      "initial_settling_m": 0.0655236973085656,
+      "scripted_character_movement_m": 0.5508186216693609,
+      "interactive_character_movement_m": 0.8707800868966802,
       "balls": 1,
       "featured_button": true,
-      "world_sha256": "6accc75f03cfb99532571f2582da8385ba87ccc96c85b1e24a7d83288e167ec5",
-      "shot_sha256": "1014b3ac8a47f1eb36295af8b319696ef35c39ff8ecec9e5c06e3f3764daae6a"
+      "world_sha256": "5f4f06bdced3517c58449f6400888bd6d4b3ef92691cb404fc44c3b51f094b91",
+      "shot_sha256": "3e138e585e83f286a57f405eed1004dfd6aee522b1b0bac8d3a84e2cffd7f5de"
     },
     {
       "id": "lounge",
@@ -53,13 +57,14 @@
       "deterministic_replay": true,
       "subject_id": 5,
       "movement_after_push_m": 1.4600224569405873,
+      "peak_sampled_tilt_degrees": 90.0000155664298,
       "initial_settling_m": 0.005115250679550589,
       "scripted_character_movement_m": 0.514269430212408,
-      "interactive_character_movement_m": 1.0655608265852947,
+      "interactive_character_movement_m": 1.0290069437155058,
       "balls": 1,
       "featured_button": true,
       "world_sha256": "74d5f27ac3d2ea49ddc37b4dffd884a7dbbf5f96ac1a222361f287ed4adc53e2",
-      "shot_sha256": "3a87ae61a9847996cc8a8804ee197ed33d7ffdfa1b54d90527e8accdd5746b7d"
+      "shot_sha256": "191838edda7408779875898332e43c8c3a6af03c8fc6eeece2178edbf3fc9c66"
     },
     {
       "id": "furnished-room",
@@ -68,15 +73,19 @@
       "deterministic_replay": true,
       "subject_id": 5,
       "movement_after_push_m": 2.3544889701495393,
+      "peak_sampled_tilt_degrees": 90.00012532134939,
       "initial_settling_m": 0.006355280878349228,
       "scripted_character_movement_m": 0.5507291031755011,
-      "interactive_character_movement_m": 1.029698500767836,
+      "interactive_character_movement_m": 0.9925504597616246,
       "balls": 1,
       "featured_button": true,
       "world_sha256": "5e4d305037a12e0fbca2e0404637f3724b457fdc142f647b8a72f538608eca86",
-      "shot_sha256": "ac84a83f82b4f6c494305e7751d4560d6414ccfc4a834ba95d5f21f9625eed0a"
+      "shot_sha256": "bc6bbb85fe6af40d8f8b452a79a45cebe34ace7d32acda1ef20dffe6189bdcea"
     }
   ],
   "gallery_mobile_overflow": false,
-  "browser_errors": []
+  "browser_errors": [],
+  "verified_utc": "2026-10-09T00:33:34.620363+00:00",
+  "source_revision": "a7a8f3b8d4f29e97f6b2c44890ac4e5e3932372d",
+  "pages_run_url": "https://github.com/rsasaki0109/movie2threejs/actions/runs/37864859297"
 }

@@ -50,7 +50,10 @@ python scripts/verify_gallery.py --url https://rsasaki0109.github.io/movie2three
 
 The deployed gallery passed asset checksums, two identical physics replays per
 room, featured pushes, thrown balls and keyboard walking in all five rooms.
-[Deployed gallery results](pages-gallery-validation.json). The workbench also
+[Deployed gallery results](pages-gallery-validation.json), refreshed after the
+[9 October kitchen deployment](https://github.com/rsasaki0109/movie2threejs/actions/runs/37864859297).
+The calibrated kitchen also passed the explicit 60-degree tipping threshold
+(sampled peak 90 degrees). The workbench also
 passed pointer lock and touch walking/look/throw in Chromium mobile emulation,
 with no page errors or failed requests. [Workbench results](pages-workbench-validation.json).
 Physical mobile hardware remains untested.
