@@ -281,3 +281,33 @@ python scripts/polish_visual_fill.py --world reviewed_world --out polished_world
 
 The height is manually reviewed in the assumed world scale; this correction is
 not automatically applied to every detected chair.
+
+
+## Five-room review and next prepared input, 9 October 2026
+
+![Actual final-frame captures from the five deployed demos](runs/quality/gallery-review-20261009.jpg)
+
+The window office is the next reconstruction priority: the inspected deployed
+view contains a large bright floating volume at right and streaked chair/table
+edges. The furnished room also has wall smears and translucent furniture, and
+is the second priority. Workbench, meeting room and kitchen still have visible
+artifacts. This is a qualitative review of different rooms and camera paths,
+not a controlled comparison of calibration or training quality.
+
+The next window-office input is **prepared, not trained**: 144 undistorted public
+`office_view2` photographs from cameras 19, 16 and 22, provided COLMAP calibration
+and 100,000 sparse initialization points. Sixteen primary-camera photographs
+are retained for segmentation. ZIP SHA-256, CRC, photograph hashes and identical
+training/segmentation photograph copies passed the prepared-run extractor.
+The ZIP is 78,907,354 bytes and remains in the local cache.
+
+Seed photograph 11 (`19_DSC0433.jpg`) shows two full office chairs and the window
+bench. Mask quality and instance selection have not yet been tested. The proposed
+7,000-step run will use `chair,cushion`; adopting its output requires visual and
+physics review. No runtime was allocated for this preparation. Colab reported
+zero assignments and 0.00 units/hour after preparation.
+
+[Review, source hashes and prepared command](runs/quality/gallery-review-20261009.json)
+· [Photograph/calibration manifest](runs/quality/lounge-prepared-source-20261009.json)
+· [Sixteen segmentation photographs](runs/quality/lounge-prepared-contact-20261009.jpg).
+The current README GIFs and live scenes remain unchanged by this review.
