@@ -1,0 +1,4607 @@
+{
+  "format": "playworld-local-refinement-review/1",
+  "date": "2026-10-09",
+  "paid_runtime_started": false,
+  "colab_started": false,
+  "decision": "Diagnostic only: background blur/floating volumes remain; no README/gallery replacement.",
+  "data": {
+    "dataset": "Eyeful Tower office_view2",
+    "license": "MIT",
+    "source_revision": "06a01a4915afc872b893c20a025a0e14598c8478",
+    "input": "144 calibrated photographs, not smartphone video"
+  },
+  "image_audit": {
+    "photographs": 144,
+    "cameras": {
+      "9": {
+        "model": "PINHOLE",
+        "dimensions": [
+          740,
+          1118
+        ],
+        "actual_dimensions": [
+          [
+            740,
+            1118
+          ]
+        ],
+        "K": [
+          [
+            372.18727251640615,
+            0.0,
+            370.0
+          ],
+          [
+            0.0,
+            372.43875040324156,
+            559.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "all_dimensions_match": true
+      },
+      "6": {
+        "model": "PINHOLE",
+        "dimensions": [
+          740,
+          1112
+        ],
+        "actual_dimensions": [
+          [
+            740,
+            1112
+          ]
+        ],
+        "K": [
+          [
+            372.94722139385107,
+            0.0,
+            370.0
+          ],
+          [
+            0.0,
+            372.7374268290168,
+            556.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "all_dimensions_match": true
+      },
+      "12": {
+        "model": "PINHOLE",
+        "dimensions": [
+          740,
+          1117
+        ],
+        "actual_dimensions": [
+          [
+            740,
+            1117
+          ]
+        ],
+        "K": [
+          [
+            373.2837603793615,
+            0.0,
+            370.00000000000006
+          ],
+          [
+            0.0,
+            372.94807070231656,
+            558.5
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "all_dimensions_match": true
+      }
+    },
+    "validation": [
+      {
+        "name": "16_DSC0001.jpg",
+        "original_equals_trainer_target": true,
+        "original_target_max_difference": 0,
+        "quantized_render_psnr": 18.074465524586746
+      },
+      {
+        "name": "16_DSC0100.jpg",
+        "original_equals_trainer_target": true,
+        "original_target_max_difference": 0,
+        "quantized_render_psnr": 26.1987508828302
+      },
+      {
+        "name": "16_DSC0199.jpg",
+        "original_equals_trainer_target": true,
+        "original_target_max_difference": 0,
+        "quantized_render_psnr": 18.818135731311298
+      },
+      {
+        "name": "16_DSC0307.jpg",
+        "original_equals_trainer_target": true,
+        "original_target_max_difference": 0,
+        "quantized_render_psnr": 28.038041234161494
+      },
+      {
+        "name": "16_DSC0406.jpg",
+        "original_equals_trainer_target": true,
+        "original_target_max_difference": 0,
+        "quantized_render_psnr": 25.731566795997093
+      },
+      {
+        "name": "16_DSC0505.jpg",
+        "original_equals_trainer_target": true,
+        "original_target_max_difference": 0,
+        "quantized_render_psnr": 15.992705652586308
+      },
+      {
+        "name": "19_DSC0001.jpg",
+        "original_equals_trainer_target": true,
+        "original_target_max_difference": 0,
+        "quantized_render_psnr": 19.29024549988517
+      },
+      {
+        "name": "19_DSC0100.jpg",
+        "original_equals_trainer_target": true,
+        "original_target_max_difference": 0,
+        "quantized_render_psnr": 23.947084913749173
+      },
+      {
+        "name": "19_DSC0199.jpg",
+        "original_equals_trainer_target": true,
+        "original_target_max_difference": 0,
+        "quantized_render_psnr": 25.734446138048618
+      },
+      {
+        "name": "19_DSC0307.jpg",
+        "original_equals_trainer_target": true,
+        "original_target_max_difference": 0,
+        "quantized_render_psnr": 26.65801089929126
+      },
+      {
+        "name": "19_DSC0406.jpg",
+        "original_equals_trainer_target": true,
+        "original_target_max_difference": 0,
+        "quantized_render_psnr": 6.195636180809865
+      },
+      {
+        "name": "19_DSC0505.jpg",
+        "original_equals_trainer_target": true,
+        "original_target_max_difference": 0,
+        "quantized_render_psnr": 23.106056075439444
+      },
+      {
+        "name": "22_DSC0001.jpg",
+        "original_equals_trainer_target": true,
+        "original_target_max_difference": 0,
+        "quantized_render_psnr": 16.75931052712461
+      },
+      {
+        "name": "22_DSC0100.jpg",
+        "original_equals_trainer_target": true,
+        "original_target_max_difference": 0,
+        "quantized_render_psnr": 25.57268613694064
+      },
+      {
+        "name": "22_DSC0199.jpg",
+        "original_equals_trainer_target": true,
+        "original_target_max_difference": 0,
+        "quantized_render_psnr": 19.12122396986166
+      },
+      {
+        "name": "22_DSC0307.jpg",
+        "original_equals_trainer_target": true,
+        "original_target_max_difference": 0,
+        "quantized_render_psnr": 22.99864114622639
+      },
+      {
+        "name": "22_DSC0406.jpg",
+        "original_equals_trainer_target": true,
+        "original_target_max_difference": 0,
+        "quantized_render_psnr": 26.915584077829457
+      },
+      {
+        "name": "22_DSC0505.jpg",
+        "original_equals_trainer_target": true,
+        "original_target_max_difference": 0,
+        "quantized_render_psnr": 9.157733153215805
+      }
+    ],
+    "models_all_pinhole": true,
+    "all_trainer_targets_match_originals": true,
+    "quantized_average_psnr": 21.017240252216407
+  },
+  "trials": {
+    "full-1000": {
+      "format": "playworld-checkpoint-refinement/1",
+      "status": "complete",
+      "source_checkpoint_sha256": "b87a5467f3b85732162fc0c52a222c9ece489af61b8fcb3a85f6eb5b732e2e29",
+      "source_step": 6999,
+      "warm_start_not_exact_resume": true,
+      "optimizer_state": "fresh Adam",
+      "gaussians": 1108601,
+      "camera_optimization": false,
+      "densification": false,
+      "seed": 13,
+      "train_images": [
+        "16_DSC0010.jpg",
+        "16_DSC0028.jpg",
+        "16_DSC0037.jpg",
+        "16_DSC0055.jpg",
+        "16_DSC0064.jpg",
+        "16_DSC0073.jpg",
+        "16_DSC0091.jpg",
+        "16_DSC0118.jpg",
+        "16_DSC0127.jpg",
+        "16_DSC0136.jpg",
+        "16_DSC0154.jpg",
+        "16_DSC0163.jpg",
+        "16_DSC0181.jpg",
+        "16_DSC0190.jpg",
+        "16_DSC0217.jpg",
+        "16_DSC0226.jpg",
+        "16_DSC0244.jpg",
+        "16_DSC0253.jpg",
+        "16_DSC0262.jpg",
+        "16_DSC0280.jpg",
+        "16_DSC0289.jpg",
+        "16_DSC0316.jpg",
+        "16_DSC0334.jpg",
+        "16_DSC0343.jpg",
+        "16_DSC0352.jpg",
+        "16_DSC0370.jpg",
+        "16_DSC0379.jpg",
+        "16_DSC0397.jpg",
+        "16_DSC0415.jpg",
+        "16_DSC0433.jpg",
+        "16_DSC0442.jpg",
+        "16_DSC0460.jpg",
+        "16_DSC0469.jpg",
+        "16_DSC0478.jpg",
+        "16_DSC0496.jpg",
+        "16_DSC0523.jpg",
+        "16_DSC0532.jpg",
+        "16_DSC0541.jpg",
+        "16_DSC0559.jpg",
+        "16_DSC0568.jpg",
+        "16_DSC0586.jpg",
+        "16_DSC0595.jpg",
+        "19_DSC0010.jpg",
+        "19_DSC0028.jpg",
+        "19_DSC0037.jpg",
+        "19_DSC0055.jpg",
+        "19_DSC0064.jpg",
+        "19_DSC0073.jpg",
+        "19_DSC0091.jpg",
+        "19_DSC0118.jpg",
+        "19_DSC0127.jpg",
+        "19_DSC0136.jpg",
+        "19_DSC0154.jpg",
+        "19_DSC0163.jpg",
+        "19_DSC0181.jpg",
+        "19_DSC0190.jpg",
+        "19_DSC0217.jpg",
+        "19_DSC0226.jpg",
+        "19_DSC0244.jpg",
+        "19_DSC0253.jpg",
+        "19_DSC0262.jpg",
+        "19_DSC0280.jpg",
+        "19_DSC0289.jpg",
+        "19_DSC0316.jpg",
+        "19_DSC0334.jpg",
+        "19_DSC0343.jpg",
+        "19_DSC0352.jpg",
+        "19_DSC0370.jpg",
+        "19_DSC0379.jpg",
+        "19_DSC0397.jpg",
+        "19_DSC0415.jpg",
+        "19_DSC0433.jpg",
+        "19_DSC0442.jpg",
+        "19_DSC0460.jpg",
+        "19_DSC0469.jpg",
+        "19_DSC0478.jpg",
+        "19_DSC0496.jpg",
+        "19_DSC0523.jpg",
+        "19_DSC0532.jpg",
+        "19_DSC0541.jpg",
+        "19_DSC0559.jpg",
+        "19_DSC0568.jpg",
+        "19_DSC0586.jpg",
+        "19_DSC0595.jpg",
+        "22_DSC0010.jpg",
+        "22_DSC0028.jpg",
+        "22_DSC0037.jpg",
+        "22_DSC0055.jpg",
+        "22_DSC0064.jpg",
+        "22_DSC0073.jpg",
+        "22_DSC0091.jpg",
+        "22_DSC0118.jpg",
+        "22_DSC0127.jpg",
+        "22_DSC0136.jpg",
+        "22_DSC0154.jpg",
+        "22_DSC0163.jpg",
+        "22_DSC0181.jpg",
+        "22_DSC0190.jpg",
+        "22_DSC0217.jpg",
+        "22_DSC0226.jpg",
+        "22_DSC0244.jpg",
+        "22_DSC0253.jpg",
+        "22_DSC0262.jpg",
+        "22_DSC0280.jpg",
+        "22_DSC0289.jpg",
+        "22_DSC0316.jpg",
+        "22_DSC0334.jpg",
+        "22_DSC0343.jpg",
+        "22_DSC0352.jpg",
+        "22_DSC0370.jpg",
+        "22_DSC0379.jpg",
+        "22_DSC0397.jpg",
+        "22_DSC0415.jpg",
+        "22_DSC0433.jpg",
+        "22_DSC0442.jpg",
+        "22_DSC0460.jpg",
+        "22_DSC0469.jpg",
+        "22_DSC0478.jpg",
+        "22_DSC0496.jpg",
+        "22_DSC0523.jpg",
+        "22_DSC0532.jpg",
+        "22_DSC0541.jpg",
+        "22_DSC0559.jpg",
+        "22_DSC0568.jpg",
+        "22_DSC0586.jpg",
+        "22_DSC0595.jpg"
+      ],
+      "validation_images": [
+        "16_DSC0001.jpg",
+        "16_DSC0100.jpg",
+        "16_DSC0199.jpg",
+        "16_DSC0307.jpg",
+        "16_DSC0406.jpg",
+        "16_DSC0505.jpg",
+        "19_DSC0001.jpg",
+        "19_DSC0100.jpg",
+        "19_DSC0199.jpg",
+        "19_DSC0307.jpg",
+        "19_DSC0406.jpg",
+        "19_DSC0505.jpg",
+        "22_DSC0001.jpg",
+        "22_DSC0100.jpg",
+        "22_DSC0199.jpg",
+        "22_DSC0307.jpg",
+        "22_DSC0406.jpg",
+        "22_DSC0505.jpg"
+      ],
+      "settings": {
+        "scene": ".cache/calibrated-lounge-20261009/input-final",
+        "checkpoint": ".cache/calibrated-lounge-20261009/downloads/final_checkpoint/ckpt_6999_rank0.pt",
+        "out": ".cache/local-refine-20261009/full-1000",
+        "steps": 1000,
+        "eval_every": 250,
+        "patch_size": 2048,
+        "max_size": 1118,
+        "test_every": 8,
+        "seed": 13,
+        "scale_reg": 0,
+        "opacity_reg": 0
+      },
+      "learning_rates": {
+        "means": 1.6e-05,
+        "scales": 0.001,
+        "quats": 0.0005,
+        "opacities": 0.01,
+        "sh0": 0.001,
+        "shN": 0.0001
+      },
+      "gpu": "NVIDIA GeForce GTX 1660 Ti",
+      "torch": "2.9.1+cu128",
+      "gsplat": "1.5.3",
+      "evaluations": [
+        {
+          "added_steps": 0,
+          "psnr": 20.964156170104832,
+          "ssim": 0.8007882038752238,
+          "per_image": [
+            {
+              "image": "16_DSC0001.jpg",
+              "psnr": 18.05404191782495,
+              "ssim": 0.7391968965530396
+            },
+            {
+              "image": "16_DSC0100.jpg",
+              "psnr": 26.11976218279186,
+              "ssim": 0.8568412065505981
+            },
+            {
+              "image": "16_DSC0199.jpg",
+              "psnr": 18.78852625885373,
+              "ssim": 0.7801004648208618
+            },
+            {
+              "image": "16_DSC0307.jpg",
+              "psnr": 27.895308537978764,
+              "ssim": 0.8329862356185913
+            },
+            {
+              "image": "16_DSC0406.jpg",
+              "psnr": 25.675855420594086,
+              "ssim": 0.804782509803772
+            },
+            {
+              "image": "16_DSC0505.jpg",
+              "psnr": 15.98368780418431,
+              "ssim": 0.7028589844703674
+            },
+            {
+              "image": "19_DSC0001.jpg",
+              "psnr": 19.268960776292804,
+              "ssim": 0.8741523027420044
+            },
+            {
+              "image": "19_DSC0100.jpg",
+              "psnr": 23.787509417429433,
+              "ssim": 0.9056432843208313
+            },
+            {
+              "image": "19_DSC0199.jpg",
+              "psnr": 25.693639404970334,
+              "ssim": 0.8967474102973938
+            },
+            {
+              "image": "19_DSC0307.jpg",
+              "psnr": 26.543831799656484,
+              "ssim": 0.8008056879043579
+            },
+            {
+              "image": "19_DSC0406.jpg",
+              "psnr": 6.1623467298140735,
+              "ssim": 0.5302570462226868
+            },
+            {
+              "image": "19_DSC0505.jpg",
+              "psnr": 22.997987712530048,
+              "ssim": 0.8642329573631287
+            },
+            {
+              "image": "22_DSC0001.jpg",
+              "psnr": 16.73588301576412,
+              "ssim": 0.7530745267868042
+            },
+            {
+              "image": "22_DSC0100.jpg",
+              "psnr": 25.47554104981306,
+              "ssim": 0.9013617038726807
+            },
+            {
+              "image": "22_DSC0199.jpg",
+              "psnr": 19.12329459167077,
+              "ssim": 0.8026937246322632
+            },
+            {
+              "image": "22_DSC0307.jpg",
+              "psnr": 23.01378513683405,
+              "ssim": 0.8705355525016785
+            },
+            {
+              "image": "22_DSC0406.jpg",
+              "psnr": 26.90579268937562,
+              "ssim": 0.8905996680259705
+            },
+            {
+              "image": "22_DSC0505.jpg",
+              "psnr": 9.129056615508468,
+              "ssim": 0.6073175072669983
+            }
+          ]
+        },
+        {
+          "added_steps": 250,
+          "psnr": 21.000746789875492,
+          "ssim": 0.801802976263894,
+          "per_image": [
+            {
+              "image": "16_DSC0001.jpg",
+              "psnr": 18.014064760227722,
+              "ssim": 0.7380499839782715
+            },
+            {
+              "image": "16_DSC0100.jpg",
+              "psnr": 26.303359358766613,
+              "ssim": 0.8585543632507324
+            },
+            {
+              "image": "16_DSC0199.jpg",
+              "psnr": 18.836940130576732,
+              "ssim": 0.7810397148132324
+            },
+            {
+              "image": "16_DSC0307.jpg",
+              "psnr": 28.116812625670743,
+              "ssim": 0.8340858817100525
+            },
+            {
+              "image": "16_DSC0406.jpg",
+              "psnr": 25.838158300469793,
+              "ssim": 0.8094933032989502
+            },
+            {
+              "image": "16_DSC0505.jpg",
+              "psnr": 16.00063337460947,
+              "ssim": 0.7040517926216125
+            },
+            {
+              "image": "19_DSC0001.jpg",
+              "psnr": 19.23688746678382,
+              "ssim": 0.8739188313484192
+            },
+            {
+              "image": "19_DSC0100.jpg",
+              "psnr": 23.792091330444297,
+              "ssim": 0.908003032207489
+            },
+            {
+              "image": "19_DSC0199.jpg",
+              "psnr": 25.58027843461447,
+              "ssim": 0.8970959782600403
+            },
+            {
+              "image": "19_DSC0307.jpg",
+              "psnr": 26.287013572163836,
+              "ssim": 0.8001857995986938
+            },
+            {
+              "image": "19_DSC0406.jpg",
+              "psnr": 6.215267356158965,
+              "ssim": 0.5312190055847168
+            },
+            {
+              "image": "19_DSC0505.jpg",
+              "psnr": 23.05410451311954,
+              "ssim": 0.8652700185775757
+            },
+            {
+              "image": "22_DSC0001.jpg",
+              "psnr": 16.759830890492445,
+              "ssim": 0.7525007724761963
+            },
+            {
+              "image": "22_DSC0100.jpg",
+              "psnr": 25.409698524733688,
+              "ssim": 0.9029309153556824
+            },
+            {
+              "image": "22_DSC0199.jpg",
+              "psnr": 19.154960051130598,
+              "ssim": 0.8035668134689331
+            },
+            {
+              "image": "22_DSC0307.jpg",
+              "psnr": 23.224442956017135,
+              "ssim": 0.8718885183334351
+            },
+            {
+              "image": "22_DSC0406.jpg",
+              "psnr": 27.168117636849168,
+              "ssim": 0.8955748677253723
+            },
+            {
+              "image": "22_DSC0505.jpg",
+              "psnr": 9.020780934929885,
+              "ssim": 0.605023980140686
+            }
+          ]
+        },
+        {
+          "added_steps": 500,
+          "psnr": 20.992506932053484,
+          "ssim": 0.801054040590922,
+          "per_image": [
+            {
+              "image": "16_DSC0001.jpg",
+              "psnr": 18.038446195711288,
+              "ssim": 0.7401195764541626
+            },
+            {
+              "image": "16_DSC0100.jpg",
+              "psnr": 26.420609147463967,
+              "ssim": 0.8592445254325867
+            },
+            {
+              "image": "16_DSC0199.jpg",
+              "psnr": 18.796533375806845,
+              "ssim": 0.780038595199585
+            },
+            {
+              "image": "16_DSC0307.jpg",
+              "psnr": 27.962611856736203,
+              "ssim": 0.8335606455802917
+            },
+            {
+              "image": "16_DSC0406.jpg",
+              "psnr": 25.83854032883663,
+              "ssim": 0.8100649118423462
+            },
+            {
+              "image": "16_DSC0505.jpg",
+              "psnr": 15.996374529638596,
+              "ssim": 0.7035101056098938
+            },
+            {
+              "image": "19_DSC0001.jpg",
+              "psnr": 19.290541975806864,
+              "ssim": 0.8746480941772461
+            },
+            {
+              "image": "19_DSC0100.jpg",
+              "psnr": 24.043415373134017,
+              "ssim": 0.9079629778862
+            },
+            {
+              "image": "19_DSC0199.jpg",
+              "psnr": 25.555492191279384,
+              "ssim": 0.8982627391815186
+            },
+            {
+              "image": "19_DSC0307.jpg",
+              "psnr": 26.232150450164884,
+              "ssim": 0.7996435761451721
+            },
+            {
+              "image": "19_DSC0406.jpg",
+              "psnr": 6.235595267286717,
+              "ssim": 0.5317485332489014
+            },
+            {
+              "image": "19_DSC0505.jpg",
+              "psnr": 23.11496317042357,
+              "ssim": 0.8658547401428223
+            },
+            {
+              "image": "22_DSC0001.jpg",
+              "psnr": 16.779965196582577,
+              "ssim": 0.7539615631103516
+            },
+            {
+              "image": "22_DSC0100.jpg",
+              "psnr": 25.80316622027557,
+              "ssim": 0.904451310634613
+            },
+            {
+              "image": "22_DSC0199.jpg",
+              "psnr": 19.116664549724074,
+              "ssim": 0.802047848701477
+            },
+            {
+              "image": "22_DSC0307.jpg",
+              "psnr": 23.191689653527998,
+              "ssim": 0.8715742230415344
+            },
+            {
+              "image": "22_DSC0406.jpg",
+              "psnr": 27.066879160121424,
+              "ssim": 0.8939959406852722
+            },
+            {
+              "image": "22_DSC0505.jpg",
+              "psnr": 8.381486134442142,
+              "ssim": 0.5882828235626221
+            }
+          ]
+        },
+        {
+          "added_steps": 750,
+          "psnr": 20.96567490579057,
+          "ssim": 0.8011855052577125,
+          "per_image": [
+            {
+              "image": "16_DSC0001.jpg",
+              "psnr": 18.054638340654034,
+              "ssim": 0.7403261661529541
+            },
+            {
+              "image": "16_DSC0100.jpg",
+              "psnr": 26.427729028694195,
+              "ssim": 0.8599509000778198
+            },
+            {
+              "image": "16_DSC0199.jpg",
+              "psnr": 18.816653878235016,
+              "ssim": 0.7808358073234558
+            },
+            {
+              "image": "16_DSC0307.jpg",
+              "psnr": 27.98352921414353,
+              "ssim": 0.8320207595825195
+            },
+            {
+              "image": "16_DSC0406.jpg",
+              "psnr": 25.793107532618563,
+              "ssim": 0.8097797632217407
+            },
+            {
+              "image": "16_DSC0505.jpg",
+              "psnr": 16.001687382273595,
+              "ssim": 0.7040488123893738
+            },
+            {
+              "image": "19_DSC0001.jpg",
+              "psnr": 19.293035883025084,
+              "ssim": 0.8752128481864929
+            },
+            {
+              "image": "19_DSC0100.jpg",
+              "psnr": 23.772746347737645,
+              "ssim": 0.9079047441482544
+            },
+            {
+              "image": "19_DSC0199.jpg",
+              "psnr": 25.35253388056087,
+              "ssim": 0.8972566723823547
+            },
+            {
+              "image": "19_DSC0307.jpg",
+              "psnr": 26.335999181525665,
+              "ssim": 0.7996029257774353
+            },
+            {
+              "image": "19_DSC0406.jpg",
+              "psnr": 6.348174666879608,
+              "ssim": 0.534173846244812
+            },
+            {
+              "image": "19_DSC0505.jpg",
+              "psnr": 22.998865835932413,
+              "ssim": 0.8650650978088379
+            },
+            {
+              "image": "22_DSC0001.jpg",
+              "psnr": 16.796211608882547,
+              "ssim": 0.7530859112739563
+            },
+            {
+              "image": "22_DSC0100.jpg",
+              "psnr": 25.628324837595397,
+              "ssim": 0.9036362767219543
+            },
+            {
+              "image": "22_DSC0199.jpg",
+              "psnr": 19.1097009325308,
+              "ssim": 0.8025183081626892
+            },
+            {
+              "image": "22_DSC0307.jpg",
+              "psnr": 23.07666738454039,
+              "ssim": 0.8710882663726807
+            },
+            {
+              "image": "22_DSC0406.jpg",
+              "psnr": 27.17637472448274,
+              "ssim": 0.8965778946876526
+            },
+            {
+              "image": "22_DSC0505.jpg",
+              "psnr": 8.416167643918152,
+              "ssim": 0.5882540941238403
+            }
+          ]
+        },
+        {
+          "added_steps": 1000,
+          "psnr": 20.910828791169234,
+          "ssim": 0.8008427653047774,
+          "per_image": [
+            {
+              "image": "16_DSC0001.jpg",
+              "psnr": 18.04012626430737,
+              "ssim": 0.7397026419639587
+            },
+            {
+              "image": "16_DSC0100.jpg",
+              "psnr": 26.38141820822803,
+              "ssim": 0.858881950378418
+            },
+            {
+              "image": "16_DSC0199.jpg",
+              "psnr": 18.817980017977092,
+              "ssim": 0.7806721925735474
+            },
+            {
+              "image": "16_DSC0307.jpg",
+              "psnr": 28.04598660971382,
+              "ssim": 0.8332481384277344
+            },
+            {
+              "image": "16_DSC0406.jpg",
+              "psnr": 25.83767586799045,
+              "ssim": 0.809119462966919
+            },
+            {
+              "image": "16_DSC0505.jpg",
+              "psnr": 16.020601466438002,
+              "ssim": 0.7052952647209167
+            },
+            {
+              "image": "19_DSC0001.jpg",
+              "psnr": 19.257358962021645,
+              "ssim": 0.8747710585594177
+            },
+            {
+              "image": "19_DSC0100.jpg",
+              "psnr": 23.49192875355883,
+              "ssim": 0.9069132208824158
+            },
+            {
+              "image": "19_DSC0199.jpg",
+              "psnr": 25.072728830311814,
+              "ssim": 0.8973620533943176
+            },
+            {
+              "image": "19_DSC0307.jpg",
+              "psnr": 26.278714529718286,
+              "ssim": 0.7994206547737122
+            },
+            {
+              "image": "19_DSC0406.jpg",
+              "psnr": 6.2430276827953275,
+              "ssim": 0.5320992469787598
+            },
+            {
+              "image": "19_DSC0505.jpg",
+              "psnr": 22.899068056628128,
+              "ssim": 0.8648917078971863
+            },
+            {
+              "image": "22_DSC0001.jpg",
+              "psnr": 16.758785660723746,
+              "ssim": 0.7530279755592346
+            },
+            {
+              "image": "22_DSC0100.jpg",
+              "psnr": 25.467275610031713,
+              "ssim": 0.9027970433235168
+            },
+            {
+              "image": "22_DSC0199.jpg",
+              "psnr": 19.099278205653324,
+              "ssim": 0.8020568490028381
+            },
+            {
+              "image": "22_DSC0307.jpg",
+              "psnr": 23.06441266344663,
+              "ssim": 0.8698575496673584
+            },
+            {
+              "image": "22_DSC0406.jpg",
+              "psnr": 27.19624472924624,
+              "ssim": 0.896050214767456
+            },
+            {
+              "image": "22_DSC0505.jpg",
+              "psnr": 8.422306122255671,
+              "ssim": 0.5890025496482849
+            }
+          ]
+        }
+      ],
+      "completed_added_steps": 1000,
+      "best_added_steps": 250,
+      "best_psnr": 21.000746789875492,
+      "seconds": 157.12454705799996,
+      "peak_memory_mib": 1526.99072265625
+    },
+    "depth-005-1000": {
+      "format": "playworld-checkpoint-refinement/1",
+      "status": "complete",
+      "source_checkpoint_sha256": "b87a5467f3b85732162fc0c52a222c9ece489af61b8fcb3a85f6eb5b732e2e29",
+      "source_step": 6999,
+      "warm_start_not_exact_resume": true,
+      "optimizer_state": "fresh Adam",
+      "gaussians": 1108601,
+      "camera_optimization": false,
+      "densification": false,
+      "seed": 13,
+      "train_images": [
+        "16_DSC0010.jpg",
+        "16_DSC0028.jpg",
+        "16_DSC0037.jpg",
+        "16_DSC0055.jpg",
+        "16_DSC0064.jpg",
+        "16_DSC0073.jpg",
+        "16_DSC0091.jpg",
+        "16_DSC0118.jpg",
+        "16_DSC0127.jpg",
+        "16_DSC0136.jpg",
+        "16_DSC0154.jpg",
+        "16_DSC0163.jpg",
+        "16_DSC0181.jpg",
+        "16_DSC0190.jpg",
+        "16_DSC0217.jpg",
+        "16_DSC0226.jpg",
+        "16_DSC0244.jpg",
+        "16_DSC0253.jpg",
+        "16_DSC0262.jpg",
+        "16_DSC0280.jpg",
+        "16_DSC0289.jpg",
+        "16_DSC0316.jpg",
+        "16_DSC0334.jpg",
+        "16_DSC0343.jpg",
+        "16_DSC0352.jpg",
+        "16_DSC0370.jpg",
+        "16_DSC0379.jpg",
+        "16_DSC0397.jpg",
+        "16_DSC0415.jpg",
+        "16_DSC0433.jpg",
+        "16_DSC0442.jpg",
+        "16_DSC0460.jpg",
+        "16_DSC0469.jpg",
+        "16_DSC0478.jpg",
+        "16_DSC0496.jpg",
+        "16_DSC0523.jpg",
+        "16_DSC0532.jpg",
+        "16_DSC0541.jpg",
+        "16_DSC0559.jpg",
+        "16_DSC0568.jpg",
+        "16_DSC0586.jpg",
+        "16_DSC0595.jpg",
+        "19_DSC0010.jpg",
+        "19_DSC0028.jpg",
+        "19_DSC0037.jpg",
+        "19_DSC0055.jpg",
+        "19_DSC0064.jpg",
+        "19_DSC0073.jpg",
+        "19_DSC0091.jpg",
+        "19_DSC0118.jpg",
+        "19_DSC0127.jpg",
+        "19_DSC0136.jpg",
+        "19_DSC0154.jpg",
+        "19_DSC0163.jpg",
+        "19_DSC0181.jpg",
+        "19_DSC0190.jpg",
+        "19_DSC0217.jpg",
+        "19_DSC0226.jpg",
+        "19_DSC0244.jpg",
+        "19_DSC0253.jpg",
+        "19_DSC0262.jpg",
+        "19_DSC0280.jpg",
+        "19_DSC0289.jpg",
+        "19_DSC0316.jpg",
+        "19_DSC0334.jpg",
+        "19_DSC0343.jpg",
+        "19_DSC0352.jpg",
+        "19_DSC0370.jpg",
+        "19_DSC0379.jpg",
+        "19_DSC0397.jpg",
+        "19_DSC0415.jpg",
+        "19_DSC0433.jpg",
+        "19_DSC0442.jpg",
+        "19_DSC0460.jpg",
+        "19_DSC0469.jpg",
+        "19_DSC0478.jpg",
+        "19_DSC0496.jpg",
+        "19_DSC0523.jpg",
+        "19_DSC0532.jpg",
+        "19_DSC0541.jpg",
+        "19_DSC0559.jpg",
+        "19_DSC0568.jpg",
+        "19_DSC0586.jpg",
+        "19_DSC0595.jpg",
+        "22_DSC0010.jpg",
+        "22_DSC0028.jpg",
+        "22_DSC0037.jpg",
+        "22_DSC0055.jpg",
+        "22_DSC0064.jpg",
+        "22_DSC0073.jpg",
+        "22_DSC0091.jpg",
+        "22_DSC0118.jpg",
+        "22_DSC0127.jpg",
+        "22_DSC0136.jpg",
+        "22_DSC0154.jpg",
+        "22_DSC0163.jpg",
+        "22_DSC0181.jpg",
+        "22_DSC0190.jpg",
+        "22_DSC0217.jpg",
+        "22_DSC0226.jpg",
+        "22_DSC0244.jpg",
+        "22_DSC0253.jpg",
+        "22_DSC0262.jpg",
+        "22_DSC0280.jpg",
+        "22_DSC0289.jpg",
+        "22_DSC0316.jpg",
+        "22_DSC0334.jpg",
+        "22_DSC0343.jpg",
+        "22_DSC0352.jpg",
+        "22_DSC0370.jpg",
+        "22_DSC0379.jpg",
+        "22_DSC0397.jpg",
+        "22_DSC0415.jpg",
+        "22_DSC0433.jpg",
+        "22_DSC0442.jpg",
+        "22_DSC0460.jpg",
+        "22_DSC0469.jpg",
+        "22_DSC0478.jpg",
+        "22_DSC0496.jpg",
+        "22_DSC0523.jpg",
+        "22_DSC0532.jpg",
+        "22_DSC0541.jpg",
+        "22_DSC0559.jpg",
+        "22_DSC0568.jpg",
+        "22_DSC0586.jpg",
+        "22_DSC0595.jpg"
+      ],
+      "validation_images": [
+        "16_DSC0001.jpg",
+        "16_DSC0100.jpg",
+        "16_DSC0199.jpg",
+        "16_DSC0307.jpg",
+        "16_DSC0406.jpg",
+        "16_DSC0505.jpg",
+        "19_DSC0001.jpg",
+        "19_DSC0100.jpg",
+        "19_DSC0199.jpg",
+        "19_DSC0307.jpg",
+        "19_DSC0406.jpg",
+        "19_DSC0505.jpg",
+        "22_DSC0001.jpg",
+        "22_DSC0100.jpg",
+        "22_DSC0199.jpg",
+        "22_DSC0307.jpg",
+        "22_DSC0406.jpg",
+        "22_DSC0505.jpg"
+      ],
+      "settings": {
+        "scene": ".cache/calibrated-lounge-20261009/input-final",
+        "checkpoint": ".cache/calibrated-lounge-20261009/downloads/final_checkpoint/ckpt_6999_rank0.pt",
+        "out": ".cache/local-refine-20261009/depth-005-1000",
+        "steps": 1000,
+        "eval_every": 250,
+        "patch_size": 2048,
+        "max_size": 1118,
+        "test_every": 8,
+        "seed": 13,
+        "scale_reg": 0,
+        "opacity_reg": 0,
+        "depth_weight": 0.05
+      },
+      "learning_rates": {
+        "means": 1.6e-05,
+        "scales": 0.001,
+        "quats": 0.0005,
+        "opacities": 0.01,
+        "sh0": 0.001,
+        "shN": 0.0001
+      },
+      "gpu": "NVIDIA GeForce GTX 1660 Ti",
+      "torch": "2.9.1+cu128",
+      "gsplat": "1.5.3",
+      "evaluations": [
+        {
+          "added_steps": 0,
+          "psnr": 20.964156170104832,
+          "ssim": 0.8007882038752238,
+          "per_image": [
+            {
+              "image": "16_DSC0001.jpg",
+              "psnr": 18.05404191782495,
+              "ssim": 0.7391968965530396
+            },
+            {
+              "image": "16_DSC0100.jpg",
+              "psnr": 26.11976218279186,
+              "ssim": 0.8568412065505981
+            },
+            {
+              "image": "16_DSC0199.jpg",
+              "psnr": 18.78852625885373,
+              "ssim": 0.7801004648208618
+            },
+            {
+              "image": "16_DSC0307.jpg",
+              "psnr": 27.895308537978764,
+              "ssim": 0.8329862356185913
+            },
+            {
+              "image": "16_DSC0406.jpg",
+              "psnr": 25.675855420594086,
+              "ssim": 0.804782509803772
+            },
+            {
+              "image": "16_DSC0505.jpg",
+              "psnr": 15.98368780418431,
+              "ssim": 0.7028589844703674
+            },
+            {
+              "image": "19_DSC0001.jpg",
+              "psnr": 19.268960776292804,
+              "ssim": 0.8741523027420044
+            },
+            {
+              "image": "19_DSC0100.jpg",
+              "psnr": 23.787509417429433,
+              "ssim": 0.9056432843208313
+            },
+            {
+              "image": "19_DSC0199.jpg",
+              "psnr": 25.693639404970334,
+              "ssim": 0.8967474102973938
+            },
+            {
+              "image": "19_DSC0307.jpg",
+              "psnr": 26.543831799656484,
+              "ssim": 0.8008056879043579
+            },
+            {
+              "image": "19_DSC0406.jpg",
+              "psnr": 6.1623467298140735,
+              "ssim": 0.5302570462226868
+            },
+            {
+              "image": "19_DSC0505.jpg",
+              "psnr": 22.997987712530048,
+              "ssim": 0.8642329573631287
+            },
+            {
+              "image": "22_DSC0001.jpg",
+              "psnr": 16.73588301576412,
+              "ssim": 0.7530745267868042
+            },
+            {
+              "image": "22_DSC0100.jpg",
+              "psnr": 25.47554104981306,
+              "ssim": 0.9013617038726807
+            },
+            {
+              "image": "22_DSC0199.jpg",
+              "psnr": 19.12329459167077,
+              "ssim": 0.8026937246322632
+            },
+            {
+              "image": "22_DSC0307.jpg",
+              "psnr": 23.01378513683405,
+              "ssim": 0.8705355525016785
+            },
+            {
+              "image": "22_DSC0406.jpg",
+              "psnr": 26.90579268937562,
+              "ssim": 0.8905996680259705
+            },
+            {
+              "image": "22_DSC0505.jpg",
+              "psnr": 9.129056615508468,
+              "ssim": 0.6073175072669983
+            }
+          ]
+        },
+        {
+          "added_steps": 250,
+          "psnr": 21.065413410428235,
+          "ssim": 0.802139808734258,
+          "per_image": [
+            {
+              "image": "16_DSC0001.jpg",
+              "psnr": 18.016592512162873,
+              "ssim": 0.7379763126373291
+            },
+            {
+              "image": "16_DSC0100.jpg",
+              "psnr": 26.469601107432005,
+              "ssim": 0.8590173721313477
+            },
+            {
+              "image": "16_DSC0199.jpg",
+              "psnr": 18.8748766900303,
+              "ssim": 0.7813284993171692
+            },
+            {
+              "image": "16_DSC0307.jpg",
+              "psnr": 28.125183249642646,
+              "ssim": 0.8342828154563904
+            },
+            {
+              "image": "16_DSC0406.jpg",
+              "psnr": 25.901192462964428,
+              "ssim": 0.809659481048584
+            },
+            {
+              "image": "16_DSC0505.jpg",
+              "psnr": 16.014789425206693,
+              "ssim": 0.7042459845542908
+            },
+            {
+              "image": "19_DSC0001.jpg",
+              "psnr": 19.24031804220114,
+              "ssim": 0.8738999962806702
+            },
+            {
+              "image": "19_DSC0100.jpg",
+              "psnr": 23.746408265814182,
+              "ssim": 0.9077850580215454
+            },
+            {
+              "image": "19_DSC0199.jpg",
+              "psnr": 26.026974252098704,
+              "ssim": 0.8994342088699341
+            },
+            {
+              "image": "19_DSC0307.jpg",
+              "psnr": 26.317993280585572,
+              "ssim": 0.8002313375473022
+            },
+            {
+              "image": "19_DSC0406.jpg",
+              "psnr": 6.238233622447429,
+              "ssim": 0.5317014455795288
+            },
+            {
+              "image": "19_DSC0505.jpg",
+              "psnr": 23.201115600572905,
+              "ssim": 0.8657734990119934
+            },
+            {
+              "image": "22_DSC0001.jpg",
+              "psnr": 16.764088820976482,
+              "ssim": 0.752509355545044
+            },
+            {
+              "image": "22_DSC0100.jpg",
+              "psnr": 25.641589619765064,
+              "ssim": 0.9035475850105286
+            },
+            {
+              "image": "22_DSC0199.jpg",
+              "psnr": 19.145243429740464,
+              "ssim": 0.8042336106300354
+            },
+            {
+              "image": "22_DSC0307.jpg",
+              "psnr": 23.205699810956702,
+              "ssim": 0.8721591234207153
+            },
+            {
+              "image": "22_DSC0406.jpg",
+              "psnr": 27.219282961274818,
+              "ssim": 0.8958085179328918
+            },
+            {
+              "image": "22_DSC0505.jpg",
+              "psnr": 9.028258233835775,
+              "ssim": 0.604922354221344
+            }
+          ]
+        },
+        {
+          "added_steps": 500,
+          "psnr": 21.079095443751342,
+          "ssim": 0.8016208310921987,
+          "per_image": [
+            {
+              "image": "16_DSC0001.jpg",
+              "psnr": 18.041447804902294,
+              "ssim": 0.7400555610656738
+            },
+            {
+              "image": "16_DSC0100.jpg",
+              "psnr": 26.655635869965533,
+              "ssim": 0.8599894642829895
+            },
+            {
+              "image": "16_DSC0199.jpg",
+              "psnr": 18.84852248206684,
+              "ssim": 0.780759334564209
+            },
+            {
+              "image": "16_DSC0307.jpg",
+              "psnr": 27.952834999047774,
+              "ssim": 0.8340492248535156
+            },
+            {
+              "image": "16_DSC0406.jpg",
+              "psnr": 26.007717407589844,
+              "ssim": 0.8103311061859131
+            },
+            {
+              "image": "16_DSC0505.jpg",
+              "psnr": 16.028810544840194,
+              "ssim": 0.7037977576255798
+            },
+            {
+              "image": "19_DSC0001.jpg",
+              "psnr": 19.29519455394878,
+              "ssim": 0.8746402263641357
+            },
+            {
+              "image": "19_DSC0100.jpg",
+              "psnr": 23.99738331799004,
+              "ssim": 0.9077656865119934
+            },
+            {
+              "image": "19_DSC0199.jpg",
+              "psnr": 26.180931589368996,
+              "ssim": 0.9009167551994324
+            },
+            {
+              "image": "19_DSC0307.jpg",
+              "psnr": 26.13954631397352,
+              "ssim": 0.7996846437454224
+            },
+            {
+              "image": "19_DSC0406.jpg",
+              "psnr": 6.307985564459544,
+              "ssim": 0.5332116484642029
+            },
+            {
+              "image": "19_DSC0505.jpg",
+              "psnr": 23.409602766216814,
+              "ssim": 0.8676130771636963
+            },
+            {
+              "image": "22_DSC0001.jpg",
+              "psnr": 16.78187719808746,
+              "ssim": 0.7538558840751648
+            },
+            {
+              "image": "22_DSC0100.jpg",
+              "psnr": 25.991499564554175,
+              "ssim": 0.9049509167671204
+            },
+            {
+              "image": "22_DSC0199.jpg",
+              "psnr": 19.089746564841697,
+              "ssim": 0.8032482862472534
+            },
+            {
+              "image": "22_DSC0307.jpg",
+              "psnr": 23.16250375882671,
+              "ssim": 0.8718615770339966
+            },
+            {
+              "image": "22_DSC0406.jpg",
+              "psnr": 27.142430637527227,
+              "ssim": 0.8942012786865234
+            },
+            {
+              "image": "22_DSC0505.jpg",
+              "psnr": 8.390047049316694,
+              "ssim": 0.5882425308227539
+            }
+          ]
+        },
+        {
+          "added_steps": 750,
+          "psnr": 21.127156879677656,
+          "ssim": 0.8023335436979929,
+          "per_image": [
+            {
+              "image": "16_DSC0001.jpg",
+              "psnr": 18.061145909498613,
+              "ssim": 0.7403485178947449
+            },
+            {
+              "image": "16_DSC0100.jpg",
+              "psnr": 26.741673289097836,
+              "ssim": 0.86090087890625
+            },
+            {
+              "image": "16_DSC0199.jpg",
+              "psnr": 18.871929997941386,
+              "ssim": 0.7817058563232422
+            },
+            {
+              "image": "16_DSC0307.jpg",
+              "psnr": 28.450638229433913,
+              "ssim": 0.8340125679969788
+            },
+            {
+              "image": "16_DSC0406.jpg",
+              "psnr": 25.957140115961508,
+              "ssim": 0.8099570870399475
+            },
+            {
+              "image": "16_DSC0505.jpg",
+              "psnr": 16.02829998045006,
+              "ssim": 0.7045119404792786
+            },
+            {
+              "image": "19_DSC0001.jpg",
+              "psnr": 19.298952698511854,
+              "ssim": 0.8753003478050232
+            },
+            {
+              "image": "19_DSC0100.jpg",
+              "psnr": 23.73807189686481,
+              "ssim": 0.9075841307640076
+            },
+            {
+              "image": "19_DSC0199.jpg",
+              "psnr": 26.107410578029317,
+              "ssim": 0.9008414149284363
+            },
+            {
+              "image": "19_DSC0307.jpg",
+              "psnr": 26.409568279452103,
+              "ssim": 0.80035799741745
+            },
+            {
+              "image": "19_DSC0406.jpg",
+              "psnr": 6.540990352038221,
+              "ssim": 0.5378585457801819
+            },
+            {
+              "image": "19_DSC0505.jpg",
+              "psnr": 23.34280755709098,
+              "ssim": 0.867031991481781
+            },
+            {
+              "image": "22_DSC0001.jpg",
+              "psnr": 16.803716669391335,
+              "ssim": 0.7530514001846313
+            },
+            {
+              "image": "22_DSC0100.jpg",
+              "psnr": 25.90191105168919,
+              "ssim": 0.9045264720916748
+            },
+            {
+              "image": "22_DSC0199.jpg",
+              "psnr": 19.082058754541073,
+              "ssim": 0.8038816452026367
+            },
+            {
+              "image": "22_DSC0307.jpg",
+              "psnr": 23.182173870293113,
+              "ssim": 0.8728533387184143
+            },
+            {
+              "image": "22_DSC0406.jpg",
+              "psnr": 27.27412274067622,
+              "ssim": 0.8967832326889038
+            },
+            {
+              "image": "22_DSC0505.jpg",
+              "psnr": 8.496211863236201,
+              "ssim": 0.5904964208602905
+            }
+          ]
+        },
+        {
+          "added_steps": 1000,
+          "psnr": 21.039634744669886,
+          "ssim": 0.8017867008845011,
+          "per_image": [
+            {
+              "image": "16_DSC0001.jpg",
+              "psnr": 18.046702393536115,
+              "ssim": 0.739630401134491
+            },
+            {
+              "image": "16_DSC0100.jpg",
+              "psnr": 26.773955873928728,
+              "ssim": 0.8601556420326233
+            },
+            {
+              "image": "16_DSC0199.jpg",
+              "psnr": 18.87778477511853,
+              "ssim": 0.7816474437713623
+            },
+            {
+              "image": "16_DSC0307.jpg",
+              "psnr": 28.13643957262315,
+              "ssim": 0.8345699310302734
+            },
+            {
+              "image": "16_DSC0406.jpg",
+              "psnr": 25.981732347458113,
+              "ssim": 0.8093625903129578
+            },
+            {
+              "image": "16_DSC0505.jpg",
+              "psnr": 16.08127618741814,
+              "ssim": 0.7061266899108887
+            },
+            {
+              "image": "19_DSC0001.jpg",
+              "psnr": 19.259799090368766,
+              "ssim": 0.8747832179069519
+            },
+            {
+              "image": "19_DSC0100.jpg",
+              "psnr": 23.408122884316818,
+              "ssim": 0.9063676595687866
+            },
+            {
+              "image": "19_DSC0199.jpg",
+              "psnr": 26.001861840060574,
+              "ssim": 0.9019699096679688
+            },
+            {
+              "image": "19_DSC0307.jpg",
+              "psnr": 26.214063753411896,
+              "ssim": 0.799935519695282
+            },
+            {
+              "image": "19_DSC0406.jpg",
+              "psnr": 6.339407085845855,
+              "ssim": 0.5341199636459351
+            },
+            {
+              "image": "19_DSC0505.jpg",
+              "psnr": 23.250306007534842,
+              "ssim": 0.8670229315757751
+            },
+            {
+              "image": "22_DSC0001.jpg",
+              "psnr": 16.764591880954562,
+              "ssim": 0.7529332041740417
+            },
+            {
+              "image": "22_DSC0100.jpg",
+              "psnr": 25.836665803135258,
+              "ssim": 0.9041542410850525
+            },
+            {
+              "image": "22_DSC0199.jpg",
+              "psnr": 19.06421012275458,
+              "ssim": 0.8036814332008362
+            },
+            {
+              "image": "22_DSC0307.jpg",
+              "psnr": 23.06283581343444,
+              "ssim": 0.8710678815841675
+            },
+            {
+              "image": "22_DSC0406.jpg",
+              "psnr": 27.29182658658943,
+              "ssim": 0.8962432742118835
+            },
+            {
+              "image": "22_DSC0505.jpg",
+              "psnr": 8.321843385568094,
+              "ssim": 0.5883886814117432
+            }
+          ]
+        }
+      ],
+      "depth_prior_training_samples": {
+        "16_DSC0010.jpg": 4096,
+        "16_DSC0028.jpg": 4096,
+        "16_DSC0037.jpg": 4096,
+        "16_DSC0055.jpg": 4096,
+        "16_DSC0064.jpg": 4096,
+        "16_DSC0073.jpg": 4096,
+        "16_DSC0091.jpg": 4096,
+        "16_DSC0118.jpg": 4096,
+        "16_DSC0127.jpg": 4096,
+        "16_DSC0136.jpg": 4096,
+        "16_DSC0154.jpg": 4096,
+        "16_DSC0163.jpg": 4096,
+        "16_DSC0181.jpg": 4096,
+        "16_DSC0190.jpg": 4096,
+        "16_DSC0217.jpg": 4096,
+        "16_DSC0226.jpg": 4096,
+        "16_DSC0244.jpg": 4096,
+        "16_DSC0253.jpg": 4096,
+        "16_DSC0262.jpg": 4096,
+        "16_DSC0280.jpg": 4096,
+        "16_DSC0289.jpg": 4096,
+        "16_DSC0316.jpg": 4096,
+        "16_DSC0334.jpg": 4096,
+        "16_DSC0343.jpg": 4096,
+        "16_DSC0352.jpg": 4096,
+        "16_DSC0370.jpg": 4096,
+        "16_DSC0379.jpg": 4096,
+        "16_DSC0397.jpg": 4096,
+        "16_DSC0415.jpg": 4096,
+        "16_DSC0433.jpg": 4096,
+        "16_DSC0442.jpg": 4096,
+        "16_DSC0460.jpg": 4014,
+        "16_DSC0469.jpg": 3230,
+        "16_DSC0478.jpg": 2492,
+        "16_DSC0496.jpg": 4096,
+        "16_DSC0523.jpg": 4096,
+        "16_DSC0532.jpg": 4096,
+        "16_DSC0541.jpg": 4096,
+        "16_DSC0559.jpg": 4096,
+        "16_DSC0568.jpg": 4096,
+        "16_DSC0586.jpg": 4096,
+        "16_DSC0595.jpg": 4096,
+        "19_DSC0010.jpg": 2788,
+        "19_DSC0028.jpg": 4096,
+        "19_DSC0037.jpg": 4096,
+        "19_DSC0055.jpg": 4096,
+        "19_DSC0064.jpg": 4096,
+        "19_DSC0073.jpg": 4096,
+        "19_DSC0091.jpg": 204,
+        "19_DSC0118.jpg": 3803,
+        "19_DSC0127.jpg": 4096,
+        "19_DSC0136.jpg": 4096,
+        "19_DSC0154.jpg": 4096,
+        "19_DSC0163.jpg": 4096,
+        "19_DSC0181.jpg": 4096,
+        "19_DSC0190.jpg": 4096,
+        "19_DSC0217.jpg": 2961,
+        "19_DSC0226.jpg": 843,
+        "19_DSC0244.jpg": 4096,
+        "19_DSC0253.jpg": 4096,
+        "19_DSC0262.jpg": 4096,
+        "19_DSC0280.jpg": 4096,
+        "19_DSC0289.jpg": 4096,
+        "19_DSC0316.jpg": 4096,
+        "19_DSC0334.jpg": 4096,
+        "19_DSC0343.jpg": 4096,
+        "19_DSC0352.jpg": 4096,
+        "19_DSC0370.jpg": 4096,
+        "19_DSC0379.jpg": 4096,
+        "19_DSC0397.jpg": 4096,
+        "19_DSC0415.jpg": 4096,
+        "19_DSC0433.jpg": 4096,
+        "19_DSC0442.jpg": 4096,
+        "19_DSC0460.jpg": 1502,
+        "19_DSC0469.jpg": 938,
+        "19_DSC0478.jpg": 1185,
+        "19_DSC0496.jpg": 4096,
+        "19_DSC0523.jpg": 4096,
+        "19_DSC0532.jpg": 4096,
+        "19_DSC0541.jpg": 4096,
+        "19_DSC0559.jpg": 4096,
+        "19_DSC0568.jpg": 4096,
+        "19_DSC0586.jpg": 4096,
+        "19_DSC0595.jpg": 4096,
+        "22_DSC0010.jpg": 4096,
+        "22_DSC0028.jpg": 4096,
+        "22_DSC0037.jpg": 4096,
+        "22_DSC0055.jpg": 4096,
+        "22_DSC0064.jpg": 4096,
+        "22_DSC0073.jpg": 4096,
+        "22_DSC0091.jpg": 3994,
+        "22_DSC0118.jpg": 4096,
+        "22_DSC0127.jpg": 4096,
+        "22_DSC0136.jpg": 4096,
+        "22_DSC0154.jpg": 4096,
+        "22_DSC0163.jpg": 4096,
+        "22_DSC0181.jpg": 4096,
+        "22_DSC0190.jpg": 4096,
+        "22_DSC0217.jpg": 4096,
+        "22_DSC0226.jpg": 4096,
+        "22_DSC0244.jpg": 4096,
+        "22_DSC0253.jpg": 4096,
+        "22_DSC0262.jpg": 4096,
+        "22_DSC0280.jpg": 4096,
+        "22_DSC0289.jpg": 4096,
+        "22_DSC0316.jpg": 4096,
+        "22_DSC0334.jpg": 4096,
+        "22_DSC0343.jpg": 4096,
+        "22_DSC0352.jpg": 4096,
+        "22_DSC0370.jpg": 4096,
+        "22_DSC0379.jpg": 4096,
+        "22_DSC0397.jpg": 4096,
+        "22_DSC0415.jpg": 4096,
+        "22_DSC0433.jpg": 4096,
+        "22_DSC0442.jpg": 4096,
+        "22_DSC0460.jpg": 2181,
+        "22_DSC0469.jpg": 1583,
+        "22_DSC0478.jpg": 1278,
+        "22_DSC0496.jpg": 3874,
+        "22_DSC0523.jpg": 4096,
+        "22_DSC0532.jpg": 4096,
+        "22_DSC0541.jpg": 4096,
+        "22_DSC0559.jpg": 4096,
+        "22_DSC0568.jpg": 4096,
+        "22_DSC0586.jpg": 4096,
+        "22_DSC0595.jpg": 4096
+      },
+      "source_script_sha256": "7f9ca4ea681bfaf9a6251faf3446db3d0420cc38e285c614ff48639e96d0c533",
+      "completed_added_steps": 1000,
+      "best_added_steps": 750,
+      "best_psnr": 21.127156879677656,
+      "seconds": 177.35819667500004,
+      "peak_memory_mib": 1531.0556640625
+    },
+    "depth-05-2000": {
+      "format": "playworld-checkpoint-refinement/1",
+      "status": "complete",
+      "source_checkpoint_sha256": "b87a5467f3b85732162fc0c52a222c9ece489af61b8fcb3a85f6eb5b732e2e29",
+      "source_step": 6999,
+      "warm_start_not_exact_resume": true,
+      "optimizer_state": "fresh Adam",
+      "gaussians": 1108601,
+      "camera_optimization": false,
+      "densification": false,
+      "seed": 13,
+      "train_images": [
+        "16_DSC0010.jpg",
+        "16_DSC0028.jpg",
+        "16_DSC0037.jpg",
+        "16_DSC0055.jpg",
+        "16_DSC0064.jpg",
+        "16_DSC0073.jpg",
+        "16_DSC0091.jpg",
+        "16_DSC0118.jpg",
+        "16_DSC0127.jpg",
+        "16_DSC0136.jpg",
+        "16_DSC0154.jpg",
+        "16_DSC0163.jpg",
+        "16_DSC0181.jpg",
+        "16_DSC0190.jpg",
+        "16_DSC0217.jpg",
+        "16_DSC0226.jpg",
+        "16_DSC0244.jpg",
+        "16_DSC0253.jpg",
+        "16_DSC0262.jpg",
+        "16_DSC0280.jpg",
+        "16_DSC0289.jpg",
+        "16_DSC0316.jpg",
+        "16_DSC0334.jpg",
+        "16_DSC0343.jpg",
+        "16_DSC0352.jpg",
+        "16_DSC0370.jpg",
+        "16_DSC0379.jpg",
+        "16_DSC0397.jpg",
+        "16_DSC0415.jpg",
+        "16_DSC0433.jpg",
+        "16_DSC0442.jpg",
+        "16_DSC0460.jpg",
+        "16_DSC0469.jpg",
+        "16_DSC0478.jpg",
+        "16_DSC0496.jpg",
+        "16_DSC0523.jpg",
+        "16_DSC0532.jpg",
+        "16_DSC0541.jpg",
+        "16_DSC0559.jpg",
+        "16_DSC0568.jpg",
+        "16_DSC0586.jpg",
+        "16_DSC0595.jpg",
+        "19_DSC0010.jpg",
+        "19_DSC0028.jpg",
+        "19_DSC0037.jpg",
+        "19_DSC0055.jpg",
+        "19_DSC0064.jpg",
+        "19_DSC0073.jpg",
+        "19_DSC0091.jpg",
+        "19_DSC0118.jpg",
+        "19_DSC0127.jpg",
+        "19_DSC0136.jpg",
+        "19_DSC0154.jpg",
+        "19_DSC0163.jpg",
+        "19_DSC0181.jpg",
+        "19_DSC0190.jpg",
+        "19_DSC0217.jpg",
+        "19_DSC0226.jpg",
+        "19_DSC0244.jpg",
+        "19_DSC0253.jpg",
+        "19_DSC0262.jpg",
+        "19_DSC0280.jpg",
+        "19_DSC0289.jpg",
+        "19_DSC0316.jpg",
+        "19_DSC0334.jpg",
+        "19_DSC0343.jpg",
+        "19_DSC0352.jpg",
+        "19_DSC0370.jpg",
+        "19_DSC0379.jpg",
+        "19_DSC0397.jpg",
+        "19_DSC0415.jpg",
+        "19_DSC0433.jpg",
+        "19_DSC0442.jpg",
+        "19_DSC0460.jpg",
+        "19_DSC0469.jpg",
+        "19_DSC0478.jpg",
+        "19_DSC0496.jpg",
+        "19_DSC0523.jpg",
+        "19_DSC0532.jpg",
+        "19_DSC0541.jpg",
+        "19_DSC0559.jpg",
+        "19_DSC0568.jpg",
+        "19_DSC0586.jpg",
+        "19_DSC0595.jpg",
+        "22_DSC0010.jpg",
+        "22_DSC0028.jpg",
+        "22_DSC0037.jpg",
+        "22_DSC0055.jpg",
+        "22_DSC0064.jpg",
+        "22_DSC0073.jpg",
+        "22_DSC0091.jpg",
+        "22_DSC0118.jpg",
+        "22_DSC0127.jpg",
+        "22_DSC0136.jpg",
+        "22_DSC0154.jpg",
+        "22_DSC0163.jpg",
+        "22_DSC0181.jpg",
+        "22_DSC0190.jpg",
+        "22_DSC0217.jpg",
+        "22_DSC0226.jpg",
+        "22_DSC0244.jpg",
+        "22_DSC0253.jpg",
+        "22_DSC0262.jpg",
+        "22_DSC0280.jpg",
+        "22_DSC0289.jpg",
+        "22_DSC0316.jpg",
+        "22_DSC0334.jpg",
+        "22_DSC0343.jpg",
+        "22_DSC0352.jpg",
+        "22_DSC0370.jpg",
+        "22_DSC0379.jpg",
+        "22_DSC0397.jpg",
+        "22_DSC0415.jpg",
+        "22_DSC0433.jpg",
+        "22_DSC0442.jpg",
+        "22_DSC0460.jpg",
+        "22_DSC0469.jpg",
+        "22_DSC0478.jpg",
+        "22_DSC0496.jpg",
+        "22_DSC0523.jpg",
+        "22_DSC0532.jpg",
+        "22_DSC0541.jpg",
+        "22_DSC0559.jpg",
+        "22_DSC0568.jpg",
+        "22_DSC0586.jpg",
+        "22_DSC0595.jpg"
+      ],
+      "validation_images": [
+        "16_DSC0001.jpg",
+        "16_DSC0100.jpg",
+        "16_DSC0199.jpg",
+        "16_DSC0307.jpg",
+        "16_DSC0406.jpg",
+        "16_DSC0505.jpg",
+        "19_DSC0001.jpg",
+        "19_DSC0100.jpg",
+        "19_DSC0199.jpg",
+        "19_DSC0307.jpg",
+        "19_DSC0406.jpg",
+        "19_DSC0505.jpg",
+        "22_DSC0001.jpg",
+        "22_DSC0100.jpg",
+        "22_DSC0199.jpg",
+        "22_DSC0307.jpg",
+        "22_DSC0406.jpg",
+        "22_DSC0505.jpg"
+      ],
+      "settings": {
+        "scene": ".cache/calibrated-lounge-20261009/input-final",
+        "checkpoint": ".cache/calibrated-lounge-20261009/downloads/final_checkpoint/ckpt_6999_rank0.pt",
+        "out": ".cache/local-refine-20261009/depth-05-2000",
+        "steps": 2000,
+        "eval_every": 500,
+        "patch_size": 2048,
+        "max_size": 1118,
+        "test_every": 8,
+        "seed": 13,
+        "scale_reg": 0,
+        "opacity_reg": 0,
+        "depth_weight": 0.5,
+        "evaluate_only": false
+      },
+      "learning_rates": {
+        "means": 1.6e-05,
+        "scales": 0.001,
+        "quats": 0.0005,
+        "opacities": 0.01,
+        "sh0": 0.001,
+        "shN": 0.0001
+      },
+      "gpu": "NVIDIA GeForce GTX 1660 Ti",
+      "torch": "2.9.1+cu128",
+      "gsplat": "1.5.3",
+      "evaluations": [
+        {
+          "added_steps": 0,
+          "psnr": 20.964156170104832,
+          "ssim": 0.8007882038752238,
+          "per_image": [
+            {
+              "image": "16_DSC0001.jpg",
+              "psnr": 18.05404191782495,
+              "ssim": 0.7391968965530396
+            },
+            {
+              "image": "16_DSC0100.jpg",
+              "psnr": 26.11976218279186,
+              "ssim": 0.8568412065505981
+            },
+            {
+              "image": "16_DSC0199.jpg",
+              "psnr": 18.78852625885373,
+              "ssim": 0.7801004648208618
+            },
+            {
+              "image": "16_DSC0307.jpg",
+              "psnr": 27.895308537978764,
+              "ssim": 0.8329862356185913
+            },
+            {
+              "image": "16_DSC0406.jpg",
+              "psnr": 25.675855420594086,
+              "ssim": 0.804782509803772
+            },
+            {
+              "image": "16_DSC0505.jpg",
+              "psnr": 15.98368780418431,
+              "ssim": 0.7028589844703674
+            },
+            {
+              "image": "19_DSC0001.jpg",
+              "psnr": 19.268960776292804,
+              "ssim": 0.8741523027420044
+            },
+            {
+              "image": "19_DSC0100.jpg",
+              "psnr": 23.787509417429433,
+              "ssim": 0.9056432843208313
+            },
+            {
+              "image": "19_DSC0199.jpg",
+              "psnr": 25.693639404970334,
+              "ssim": 0.8967474102973938
+            },
+            {
+              "image": "19_DSC0307.jpg",
+              "psnr": 26.543831799656484,
+              "ssim": 0.8008056879043579
+            },
+            {
+              "image": "19_DSC0406.jpg",
+              "psnr": 6.1623467298140735,
+              "ssim": 0.5302570462226868
+            },
+            {
+              "image": "19_DSC0505.jpg",
+              "psnr": 22.997987712530048,
+              "ssim": 0.8642329573631287
+            },
+            {
+              "image": "22_DSC0001.jpg",
+              "psnr": 16.73588301576412,
+              "ssim": 0.7530745267868042
+            },
+            {
+              "image": "22_DSC0100.jpg",
+              "psnr": 25.47554104981306,
+              "ssim": 0.9013617038726807
+            },
+            {
+              "image": "22_DSC0199.jpg",
+              "psnr": 19.12329459167077,
+              "ssim": 0.8026937246322632
+            },
+            {
+              "image": "22_DSC0307.jpg",
+              "psnr": 23.01378513683405,
+              "ssim": 0.8705355525016785
+            },
+            {
+              "image": "22_DSC0406.jpg",
+              "psnr": 26.90579268937562,
+              "ssim": 0.8905996680259705
+            },
+            {
+              "image": "22_DSC0505.jpg",
+              "psnr": 9.129056615508468,
+              "ssim": 0.6073175072669983
+            }
+          ]
+        },
+        {
+          "added_steps": 500,
+          "psnr": 21.208394408746386,
+          "ssim": 0.8019587132665846,
+          "per_image": [
+            {
+              "image": "16_DSC0001.jpg",
+              "psnr": 18.047293165261134,
+              "ssim": 0.7396113872528076
+            },
+            {
+              "image": "16_DSC0100.jpg",
+              "psnr": 26.757394457038373,
+              "ssim": 0.8594747185707092
+            },
+            {
+              "image": "16_DSC0199.jpg",
+              "psnr": 18.95866751789206,
+              "ssim": 0.780311107635498
+            },
+            {
+              "image": "16_DSC0307.jpg",
+              "psnr": 27.849586095462982,
+              "ssim": 0.8332773447036743
+            },
+            {
+              "image": "16_DSC0406.jpg",
+              "psnr": 26.12318822288572,
+              "ssim": 0.8098512291908264
+            },
+            {
+              "image": "16_DSC0505.jpg",
+              "psnr": 16.120455203809325,
+              "ssim": 0.7040978670120239
+            },
+            {
+              "image": "19_DSC0001.jpg",
+              "psnr": 19.325320346650138,
+              "ssim": 0.8743323683738708
+            },
+            {
+              "image": "19_DSC0100.jpg",
+              "psnr": 24.00629417031059,
+              "ssim": 0.9071577787399292
+            },
+            {
+              "image": "19_DSC0199.jpg",
+              "psnr": 26.824852299331127,
+              "ssim": 0.9018951058387756
+            },
+            {
+              "image": "19_DSC0307.jpg",
+              "psnr": 26.1763695535992,
+              "ssim": 0.7994717359542847
+            },
+            {
+              "image": "19_DSC0406.jpg",
+              "psnr": 6.366828835929508,
+              "ssim": 0.5346744656562805
+            },
+            {
+              "image": "19_DSC0505.jpg",
+              "psnr": 23.63242239783097,
+              "ssim": 0.867000162601471
+            },
+            {
+              "image": "22_DSC0001.jpg",
+              "psnr": 16.80286693685383,
+              "ssim": 0.7536227703094482
+            },
+            {
+              "image": "22_DSC0100.jpg",
+              "psnr": 26.6368418527679,
+              "ssim": 0.9057016372680664
+            },
+            {
+              "image": "22_DSC0199.jpg",
+              "psnr": 19.167215276622468,
+              "ssim": 0.8038143515586853
+            },
+            {
+              "image": "22_DSC0307.jpg",
+              "psnr": 23.126450849418625,
+              "ssim": 0.8725923895835876
+            },
+            {
+              "image": "22_DSC0406.jpg",
+              "psnr": 27.201379412831965,
+              "ssim": 0.89393150806427
+            },
+            {
+              "image": "22_DSC0505.jpg",
+              "psnr": 8.627672762939033,
+              "ssim": 0.594438910484314
+            }
+          ]
+        },
+        {
+          "added_steps": 1000,
+          "psnr": 21.231486030267174,
+          "ssim": 0.80244423283471,
+          "per_image": [
+            {
+              "image": "16_DSC0001.jpg",
+              "psnr": 18.0883290741249,
+              "ssim": 0.7389439344406128
+            },
+            {
+              "image": "16_DSC0100.jpg",
+              "psnr": 27.011732411980276,
+              "ssim": 0.8604626655578613
+            },
+            {
+              "image": "16_DSC0199.jpg",
+              "psnr": 19.05350196026623,
+              "ssim": 0.7816265821456909
+            },
+            {
+              "image": "16_DSC0307.jpg",
+              "psnr": 27.91672518451781,
+              "ssim": 0.8336710929870605
+            },
+            {
+              "image": "16_DSC0406.jpg",
+              "psnr": 26.130074968603655,
+              "ssim": 0.808958113193512
+            },
+            {
+              "image": "16_DSC0505.jpg",
+              "psnr": 16.246075976130022,
+              "ssim": 0.7071431279182434
+            },
+            {
+              "image": "19_DSC0001.jpg",
+              "psnr": 19.31440264300071,
+              "ssim": 0.8747000098228455
+            },
+            {
+              "image": "19_DSC0100.jpg",
+              "psnr": 23.354973543150145,
+              "ssim": 0.9053839445114136
+            },
+            {
+              "image": "19_DSC0199.jpg",
+              "psnr": 26.80067304772396,
+              "ssim": 0.9032596349716187
+            },
+            {
+              "image": "19_DSC0307.jpg",
+              "psnr": 26.234156574023547,
+              "ssim": 0.8000078201293945
+            },
+            {
+              "image": "19_DSC0406.jpg",
+              "psnr": 6.272041951608994,
+              "ssim": 0.5336337685585022
+            },
+            {
+              "image": "19_DSC0505.jpg",
+              "psnr": 23.824690112807826,
+              "ssim": 0.8678504824638367
+            },
+            {
+              "image": "22_DSC0001.jpg",
+              "psnr": 16.812006112485534,
+              "ssim": 0.7525796890258789
+            },
+            {
+              "image": "22_DSC0100.jpg",
+              "psnr": 26.758424971000668,
+              "ssim": 0.9061838388442993
+            },
+            {
+              "image": "22_DSC0199.jpg",
+              "psnr": 19.187888576027095,
+              "ssim": 0.8045701384544373
+            },
+            {
+              "image": "22_DSC0307.jpg",
+              "psnr": 22.99590222568529,
+              "ssim": 0.872332751750946
+            },
+            {
+              "image": "22_DSC0406.jpg",
+              "psnr": 27.41113211252899,
+              "ssim": 0.8959254622459412
+            },
+            {
+              "image": "22_DSC0505.jpg",
+              "psnr": 8.75401709914348,
+              "ssim": 0.5967631340026855
+            }
+          ]
+        },
+        {
+          "added_steps": 1500,
+          "psnr": 21.34273241449886,
+          "ssim": 0.8032356169488695,
+          "per_image": [
+            {
+              "image": "16_DSC0001.jpg",
+              "psnr": 18.124063257736164,
+              "ssim": 0.7408921718597412
+            },
+            {
+              "image": "16_DSC0100.jpg",
+              "psnr": 27.249792653000394,
+              "ssim": 0.8620573282241821
+            },
+            {
+              "image": "16_DSC0199.jpg",
+              "psnr": 19.065186147819674,
+              "ssim": 0.781650960445404
+            },
+            {
+              "image": "16_DSC0307.jpg",
+              "psnr": 27.90314837495398,
+              "ssim": 0.8343517184257507
+            },
+            {
+              "image": "16_DSC0406.jpg",
+              "psnr": 26.246053482225598,
+              "ssim": 0.8112125396728516
+            },
+            {
+              "image": "16_DSC0505.jpg",
+              "psnr": 16.29613087828393,
+              "ssim": 0.7071899175643921
+            },
+            {
+              "image": "19_DSC0001.jpg",
+              "psnr": 19.360683879665572,
+              "ssim": 0.8761324882507324
+            },
+            {
+              "image": "19_DSC0100.jpg",
+              "psnr": 23.269361999750075,
+              "ssim": 0.9052248001098633
+            },
+            {
+              "image": "19_DSC0199.jpg",
+              "psnr": 27.029141135879996,
+              "ssim": 0.9023737907409668
+            },
+            {
+              "image": "19_DSC0307.jpg",
+              "psnr": 26.5002638191214,
+              "ssim": 0.8009073734283447
+            },
+            {
+              "image": "19_DSC0406.jpg",
+              "psnr": 6.171179880715235,
+              "ssim": 0.5315305590629578
+            },
+            {
+              "image": "19_DSC0505.jpg",
+              "psnr": 23.933739673845693,
+              "ssim": 0.868609607219696
+            },
+            {
+              "image": "22_DSC0001.jpg",
+              "psnr": 16.85755169987302,
+              "ssim": 0.7536320090293884
+            },
+            {
+              "image": "22_DSC0100.jpg",
+              "psnr": 27.139392774541285,
+              "ssim": 0.9078797101974487
+            },
+            {
+              "image": "22_DSC0199.jpg",
+              "psnr": 19.180993458459394,
+              "ssim": 0.8045468330383301
+            },
+            {
+              "image": "22_DSC0307.jpg",
+              "psnr": 23.32367333526131,
+              "ssim": 0.8758449554443359
+            },
+            {
+              "image": "22_DSC0406.jpg",
+              "psnr": 27.617238096710818,
+              "ssim": 0.8959560990333557
+            },
+            {
+              "image": "22_DSC0505.jpg",
+              "psnr": 8.901588913135948,
+              "ssim": 0.5982482433319092
+            }
+          ]
+        },
+        {
+          "added_steps": 2000,
+          "psnr": 21.390593706288538,
+          "ssim": 0.8037702706125047,
+          "per_image": [
+            {
+              "image": "16_DSC0001.jpg",
+              "psnr": 18.188866577694178,
+              "ssim": 0.7405739426612854
+            },
+            {
+              "image": "16_DSC0100.jpg",
+              "psnr": 27.35688514840648,
+              "ssim": 0.8616554737091064
+            },
+            {
+              "image": "16_DSC0199.jpg",
+              "psnr": 19.089654072967125,
+              "ssim": 0.7824122905731201
+            },
+            {
+              "image": "16_DSC0307.jpg",
+              "psnr": 27.81734636391753,
+              "ssim": 0.8346168398857117
+            },
+            {
+              "image": "16_DSC0406.jpg",
+              "psnr": 26.363669415969404,
+              "ssim": 0.8107760548591614
+            },
+            {
+              "image": "16_DSC0505.jpg",
+              "psnr": 16.428687226422248,
+              "ssim": 0.7105661034584045
+            },
+            {
+              "image": "19_DSC0001.jpg",
+              "psnr": 19.37830771826013,
+              "ssim": 0.8762388229370117
+            },
+            {
+              "image": "19_DSC0100.jpg",
+              "psnr": 23.11879828310216,
+              "ssim": 0.9036887288093567
+            },
+            {
+              "image": "19_DSC0199.jpg",
+              "psnr": 26.85013180844053,
+              "ssim": 0.9019484519958496
+            },
+            {
+              "image": "19_DSC0307.jpg",
+              "psnr": 26.45536726296102,
+              "ssim": 0.8014610409736633
+            },
+            {
+              "image": "19_DSC0406.jpg",
+              "psnr": 6.293326196319791,
+              "ssim": 0.5348674058914185
+            },
+            {
+              "image": "19_DSC0505.jpg",
+              "psnr": 24.707843432568982,
+              "ssim": 0.8716821074485779
+            },
+            {
+              "image": "22_DSC0001.jpg",
+              "psnr": 16.890643967064353,
+              "ssim": 0.7525581121444702
+            },
+            {
+              "image": "22_DSC0100.jpg",
+              "psnr": 27.13750950822536,
+              "ssim": 0.9075334072113037
+            },
+            {
+              "image": "22_DSC0199.jpg",
+              "psnr": 19.172656782621633,
+              "ssim": 0.8057569265365601
+            },
+            {
+              "image": "22_DSC0307.jpg",
+              "psnr": 23.248008645534306,
+              "ssim": 0.8742696642875671
+            },
+            {
+              "image": "22_DSC0406.jpg",
+              "psnr": 27.51636757668951,
+              "ssim": 0.8935474753379822
+            },
+            {
+              "image": "22_DSC0505.jpg",
+              "psnr": 9.01661672602897,
+              "ssim": 0.6037120223045349
+            }
+          ]
+        }
+      ],
+      "depth_prior_training_samples": {
+        "16_DSC0010.jpg": 4096,
+        "16_DSC0028.jpg": 4096,
+        "16_DSC0037.jpg": 4096,
+        "16_DSC0055.jpg": 4096,
+        "16_DSC0064.jpg": 4096,
+        "16_DSC0073.jpg": 4096,
+        "16_DSC0091.jpg": 4096,
+        "16_DSC0118.jpg": 4096,
+        "16_DSC0127.jpg": 4096,
+        "16_DSC0136.jpg": 4096,
+        "16_DSC0154.jpg": 4096,
+        "16_DSC0163.jpg": 4096,
+        "16_DSC0181.jpg": 4096,
+        "16_DSC0190.jpg": 4096,
+        "16_DSC0217.jpg": 4096,
+        "16_DSC0226.jpg": 4096,
+        "16_DSC0244.jpg": 4096,
+        "16_DSC0253.jpg": 4096,
+        "16_DSC0262.jpg": 4096,
+        "16_DSC0280.jpg": 4096,
+        "16_DSC0289.jpg": 4096,
+        "16_DSC0316.jpg": 4096,
+        "16_DSC0334.jpg": 4096,
+        "16_DSC0343.jpg": 4096,
+        "16_DSC0352.jpg": 4096,
+        "16_DSC0370.jpg": 4096,
+        "16_DSC0379.jpg": 4096,
+        "16_DSC0397.jpg": 4096,
+        "16_DSC0415.jpg": 4096,
+        "16_DSC0433.jpg": 4096,
+        "16_DSC0442.jpg": 4096,
+        "16_DSC0460.jpg": 4014,
+        "16_DSC0469.jpg": 3230,
+        "16_DSC0478.jpg": 2492,
+        "16_DSC0496.jpg": 4096,
+        "16_DSC0523.jpg": 4096,
+        "16_DSC0532.jpg": 4096,
+        "16_DSC0541.jpg": 4096,
+        "16_DSC0559.jpg": 4096,
+        "16_DSC0568.jpg": 4096,
+        "16_DSC0586.jpg": 4096,
+        "16_DSC0595.jpg": 4096,
+        "19_DSC0010.jpg": 2788,
+        "19_DSC0028.jpg": 4096,
+        "19_DSC0037.jpg": 4096,
+        "19_DSC0055.jpg": 4096,
+        "19_DSC0064.jpg": 4096,
+        "19_DSC0073.jpg": 4096,
+        "19_DSC0091.jpg": 204,
+        "19_DSC0118.jpg": 3803,
+        "19_DSC0127.jpg": 4096,
+        "19_DSC0136.jpg": 4096,
+        "19_DSC0154.jpg": 4096,
+        "19_DSC0163.jpg": 4096,
+        "19_DSC0181.jpg": 4096,
+        "19_DSC0190.jpg": 4096,
+        "19_DSC0217.jpg": 2961,
+        "19_DSC0226.jpg": 843,
+        "19_DSC0244.jpg": 4096,
+        "19_DSC0253.jpg": 4096,
+        "19_DSC0262.jpg": 4096,
+        "19_DSC0280.jpg": 4096,
+        "19_DSC0289.jpg": 4096,
+        "19_DSC0316.jpg": 4096,
+        "19_DSC0334.jpg": 4096,
+        "19_DSC0343.jpg": 4096,
+        "19_DSC0352.jpg": 4096,
+        "19_DSC0370.jpg": 4096,
+        "19_DSC0379.jpg": 4096,
+        "19_DSC0397.jpg": 4096,
+        "19_DSC0415.jpg": 4096,
+        "19_DSC0433.jpg": 4096,
+        "19_DSC0442.jpg": 4096,
+        "19_DSC0460.jpg": 1502,
+        "19_DSC0469.jpg": 938,
+        "19_DSC0478.jpg": 1185,
+        "19_DSC0496.jpg": 4096,
+        "19_DSC0523.jpg": 4096,
+        "19_DSC0532.jpg": 4096,
+        "19_DSC0541.jpg": 4096,
+        "19_DSC0559.jpg": 4096,
+        "19_DSC0568.jpg": 4096,
+        "19_DSC0586.jpg": 4096,
+        "19_DSC0595.jpg": 4096,
+        "22_DSC0010.jpg": 4096,
+        "22_DSC0028.jpg": 4096,
+        "22_DSC0037.jpg": 4096,
+        "22_DSC0055.jpg": 4096,
+        "22_DSC0064.jpg": 4096,
+        "22_DSC0073.jpg": 4096,
+        "22_DSC0091.jpg": 3994,
+        "22_DSC0118.jpg": 4096,
+        "22_DSC0127.jpg": 4096,
+        "22_DSC0136.jpg": 4096,
+        "22_DSC0154.jpg": 4096,
+        "22_DSC0163.jpg": 4096,
+        "22_DSC0181.jpg": 4096,
+        "22_DSC0190.jpg": 4096,
+        "22_DSC0217.jpg": 4096,
+        "22_DSC0226.jpg": 4096,
+        "22_DSC0244.jpg": 4096,
+        "22_DSC0253.jpg": 4096,
+        "22_DSC0262.jpg": 4096,
+        "22_DSC0280.jpg": 4096,
+        "22_DSC0289.jpg": 4096,
+        "22_DSC0316.jpg": 4096,
+        "22_DSC0334.jpg": 4096,
+        "22_DSC0343.jpg": 4096,
+        "22_DSC0352.jpg": 4096,
+        "22_DSC0370.jpg": 4096,
+        "22_DSC0379.jpg": 4096,
+        "22_DSC0397.jpg": 4096,
+        "22_DSC0415.jpg": 4096,
+        "22_DSC0433.jpg": 4096,
+        "22_DSC0442.jpg": 4096,
+        "22_DSC0460.jpg": 2181,
+        "22_DSC0469.jpg": 1583,
+        "22_DSC0478.jpg": 1278,
+        "22_DSC0496.jpg": 3874,
+        "22_DSC0523.jpg": 4096,
+        "22_DSC0532.jpg": 4096,
+        "22_DSC0541.jpg": 4096,
+        "22_DSC0559.jpg": 4096,
+        "22_DSC0568.jpg": 4096,
+        "22_DSC0586.jpg": 4096,
+        "22_DSC0595.jpg": 4096
+      },
+      "source_script_sha256": "3af5c8ba1fcf30c7008297919a55a13f3523435ef47944098364c6aff7b7cf47",
+      "completed_added_steps": 2000,
+      "best_added_steps": 2000,
+      "best_psnr": 21.390593706288538,
+      "seconds": 341.1024284299999,
+      "peak_memory_mib": 1531.11865234375
+    },
+    "depth-05-move-2000": {
+      "format": "playworld-checkpoint-refinement/1",
+      "status": "complete",
+      "source_checkpoint_sha256": "b87a5467f3b85732162fc0c52a222c9ece489af61b8fcb3a85f6eb5b732e2e29",
+      "source_step": 6999,
+      "warm_start_not_exact_resume": true,
+      "optimizer_state": "fresh Adam",
+      "gaussians": 1108601,
+      "camera_optimization": false,
+      "densification": false,
+      "seed": 13,
+      "train_images": [
+        "16_DSC0010.jpg",
+        "16_DSC0028.jpg",
+        "16_DSC0037.jpg",
+        "16_DSC0055.jpg",
+        "16_DSC0064.jpg",
+        "16_DSC0073.jpg",
+        "16_DSC0091.jpg",
+        "16_DSC0118.jpg",
+        "16_DSC0127.jpg",
+        "16_DSC0136.jpg",
+        "16_DSC0154.jpg",
+        "16_DSC0163.jpg",
+        "16_DSC0181.jpg",
+        "16_DSC0190.jpg",
+        "16_DSC0217.jpg",
+        "16_DSC0226.jpg",
+        "16_DSC0244.jpg",
+        "16_DSC0253.jpg",
+        "16_DSC0262.jpg",
+        "16_DSC0280.jpg",
+        "16_DSC0289.jpg",
+        "16_DSC0316.jpg",
+        "16_DSC0334.jpg",
+        "16_DSC0343.jpg",
+        "16_DSC0352.jpg",
+        "16_DSC0370.jpg",
+        "16_DSC0379.jpg",
+        "16_DSC0397.jpg",
+        "16_DSC0415.jpg",
+        "16_DSC0433.jpg",
+        "16_DSC0442.jpg",
+        "16_DSC0460.jpg",
+        "16_DSC0469.jpg",
+        "16_DSC0478.jpg",
+        "16_DSC0496.jpg",
+        "16_DSC0523.jpg",
+        "16_DSC0532.jpg",
+        "16_DSC0541.jpg",
+        "16_DSC0559.jpg",
+        "16_DSC0568.jpg",
+        "16_DSC0586.jpg",
+        "16_DSC0595.jpg",
+        "19_DSC0010.jpg",
+        "19_DSC0028.jpg",
+        "19_DSC0037.jpg",
+        "19_DSC0055.jpg",
+        "19_DSC0064.jpg",
+        "19_DSC0073.jpg",
+        "19_DSC0091.jpg",
+        "19_DSC0118.jpg",
+        "19_DSC0127.jpg",
+        "19_DSC0136.jpg",
+        "19_DSC0154.jpg",
+        "19_DSC0163.jpg",
+        "19_DSC0181.jpg",
+        "19_DSC0190.jpg",
+        "19_DSC0217.jpg",
+        "19_DSC0226.jpg",
+        "19_DSC0244.jpg",
+        "19_DSC0253.jpg",
+        "19_DSC0262.jpg",
+        "19_DSC0280.jpg",
+        "19_DSC0289.jpg",
+        "19_DSC0316.jpg",
+        "19_DSC0334.jpg",
+        "19_DSC0343.jpg",
+        "19_DSC0352.jpg",
+        "19_DSC0370.jpg",
+        "19_DSC0379.jpg",
+        "19_DSC0397.jpg",
+        "19_DSC0415.jpg",
+        "19_DSC0433.jpg",
+        "19_DSC0442.jpg",
+        "19_DSC0460.jpg",
+        "19_DSC0469.jpg",
+        "19_DSC0478.jpg",
+        "19_DSC0496.jpg",
+        "19_DSC0523.jpg",
+        "19_DSC0532.jpg",
+        "19_DSC0541.jpg",
+        "19_DSC0559.jpg",
+        "19_DSC0568.jpg",
+        "19_DSC0586.jpg",
+        "19_DSC0595.jpg",
+        "22_DSC0010.jpg",
+        "22_DSC0028.jpg",
+        "22_DSC0037.jpg",
+        "22_DSC0055.jpg",
+        "22_DSC0064.jpg",
+        "22_DSC0073.jpg",
+        "22_DSC0091.jpg",
+        "22_DSC0118.jpg",
+        "22_DSC0127.jpg",
+        "22_DSC0136.jpg",
+        "22_DSC0154.jpg",
+        "22_DSC0163.jpg",
+        "22_DSC0181.jpg",
+        "22_DSC0190.jpg",
+        "22_DSC0217.jpg",
+        "22_DSC0226.jpg",
+        "22_DSC0244.jpg",
+        "22_DSC0253.jpg",
+        "22_DSC0262.jpg",
+        "22_DSC0280.jpg",
+        "22_DSC0289.jpg",
+        "22_DSC0316.jpg",
+        "22_DSC0334.jpg",
+        "22_DSC0343.jpg",
+        "22_DSC0352.jpg",
+        "22_DSC0370.jpg",
+        "22_DSC0379.jpg",
+        "22_DSC0397.jpg",
+        "22_DSC0415.jpg",
+        "22_DSC0433.jpg",
+        "22_DSC0442.jpg",
+        "22_DSC0460.jpg",
+        "22_DSC0469.jpg",
+        "22_DSC0478.jpg",
+        "22_DSC0496.jpg",
+        "22_DSC0523.jpg",
+        "22_DSC0532.jpg",
+        "22_DSC0541.jpg",
+        "22_DSC0559.jpg",
+        "22_DSC0568.jpg",
+        "22_DSC0586.jpg",
+        "22_DSC0595.jpg"
+      ],
+      "validation_images": [
+        "16_DSC0001.jpg",
+        "16_DSC0100.jpg",
+        "16_DSC0199.jpg",
+        "16_DSC0307.jpg",
+        "16_DSC0406.jpg",
+        "16_DSC0505.jpg",
+        "19_DSC0001.jpg",
+        "19_DSC0100.jpg",
+        "19_DSC0199.jpg",
+        "19_DSC0307.jpg",
+        "19_DSC0406.jpg",
+        "19_DSC0505.jpg",
+        "22_DSC0001.jpg",
+        "22_DSC0100.jpg",
+        "22_DSC0199.jpg",
+        "22_DSC0307.jpg",
+        "22_DSC0406.jpg",
+        "22_DSC0505.jpg"
+      ],
+      "settings": {
+        "scene": ".cache/calibrated-lounge-20261009/input-final",
+        "checkpoint": ".cache/calibrated-lounge-20261009/downloads/final_checkpoint/ckpt_6999_rank0.pt",
+        "out": ".cache/local-refine-20261009/depth-05-move-2000",
+        "steps": 2000,
+        "eval_every": 500,
+        "patch_size": 2048,
+        "max_size": 1118,
+        "test_every": 8,
+        "seed": 13,
+        "scale_reg": 0,
+        "opacity_reg": 0,
+        "means_lr": 0.00016,
+        "depth_weight": 0.5,
+        "evaluate_only": false
+      },
+      "learning_rates": {
+        "means": 0.00016,
+        "scales": 0.001,
+        "quats": 0.0005,
+        "opacities": 0.01,
+        "sh0": 0.001,
+        "shN": 0.0001
+      },
+      "gpu": "NVIDIA GeForce GTX 1660 Ti",
+      "torch": "2.9.1+cu128",
+      "gsplat": "1.5.3",
+      "evaluations": [
+        {
+          "added_steps": 0,
+          "psnr": 20.964156170104832,
+          "ssim": 0.8007882038752238,
+          "per_image": [
+            {
+              "image": "16_DSC0001.jpg",
+              "psnr": 18.05404191782495,
+              "ssim": 0.7391968965530396
+            },
+            {
+              "image": "16_DSC0100.jpg",
+              "psnr": 26.11976218279186,
+              "ssim": 0.8568412065505981
+            },
+            {
+              "image": "16_DSC0199.jpg",
+              "psnr": 18.78852625885373,
+              "ssim": 0.7801004648208618
+            },
+            {
+              "image": "16_DSC0307.jpg",
+              "psnr": 27.895308537978764,
+              "ssim": 0.8329862356185913
+            },
+            {
+              "image": "16_DSC0406.jpg",
+              "psnr": 25.675855420594086,
+              "ssim": 0.804782509803772
+            },
+            {
+              "image": "16_DSC0505.jpg",
+              "psnr": 15.98368780418431,
+              "ssim": 0.7028589844703674
+            },
+            {
+              "image": "19_DSC0001.jpg",
+              "psnr": 19.268960776292804,
+              "ssim": 0.8741523027420044
+            },
+            {
+              "image": "19_DSC0100.jpg",
+              "psnr": 23.787509417429433,
+              "ssim": 0.9056432843208313
+            },
+            {
+              "image": "19_DSC0199.jpg",
+              "psnr": 25.693639404970334,
+              "ssim": 0.8967474102973938
+            },
+            {
+              "image": "19_DSC0307.jpg",
+              "psnr": 26.543831799656484,
+              "ssim": 0.8008056879043579
+            },
+            {
+              "image": "19_DSC0406.jpg",
+              "psnr": 6.1623467298140735,
+              "ssim": 0.5302570462226868
+            },
+            {
+              "image": "19_DSC0505.jpg",
+              "psnr": 22.997987712530048,
+              "ssim": 0.8642329573631287
+            },
+            {
+              "image": "22_DSC0001.jpg",
+              "psnr": 16.73588301576412,
+              "ssim": 0.7530745267868042
+            },
+            {
+              "image": "22_DSC0100.jpg",
+              "psnr": 25.47554104981306,
+              "ssim": 0.9013617038726807
+            },
+            {
+              "image": "22_DSC0199.jpg",
+              "psnr": 19.12329459167077,
+              "ssim": 0.8026937246322632
+            },
+            {
+              "image": "22_DSC0307.jpg",
+              "psnr": 23.01378513683405,
+              "ssim": 0.8705355525016785
+            },
+            {
+              "image": "22_DSC0406.jpg",
+              "psnr": 26.90579268937562,
+              "ssim": 0.8905996680259705
+            },
+            {
+              "image": "22_DSC0505.jpg",
+              "psnr": 9.129056615508468,
+              "ssim": 0.6073175072669983
+            }
+          ]
+        },
+        {
+          "added_steps": 500,
+          "psnr": 21.198551563160745,
+          "ssim": 0.7980101141664717,
+          "per_image": [
+            {
+              "image": "16_DSC0001.jpg",
+              "psnr": 18.068931222383796,
+              "ssim": 0.7315179705619812
+            },
+            {
+              "image": "16_DSC0100.jpg",
+              "psnr": 26.72222737867772,
+              "ssim": 0.8562824130058289
+            },
+            {
+              "image": "16_DSC0199.jpg",
+              "psnr": 19.034401322821473,
+              "ssim": 0.7789179682731628
+            },
+            {
+              "image": "16_DSC0307.jpg",
+              "psnr": 27.753942052468418,
+              "ssim": 0.8312089443206787
+            },
+            {
+              "image": "16_DSC0406.jpg",
+              "psnr": 25.855149317380118,
+              "ssim": 0.7959980964660645
+            },
+            {
+              "image": "16_DSC0505.jpg",
+              "psnr": 16.277728257924807,
+              "ssim": 0.699996292591095
+            },
+            {
+              "image": "19_DSC0001.jpg",
+              "psnr": 19.277708893822684,
+              "ssim": 0.8702861666679382
+            },
+            {
+              "image": "19_DSC0100.jpg",
+              "psnr": 23.936273920117483,
+              "ssim": 0.9041310548782349
+            },
+            {
+              "image": "19_DSC0199.jpg",
+              "psnr": 26.767850413095132,
+              "ssim": 0.9012894034385681
+            },
+            {
+              "image": "19_DSC0307.jpg",
+              "psnr": 26.289697525641177,
+              "ssim": 0.7987782955169678
+            },
+            {
+              "image": "19_DSC0406.jpg",
+              "psnr": 6.649373257518078,
+              "ssim": 0.5401167869567871
+            },
+            {
+              "image": "19_DSC0505.jpg",
+              "psnr": 24.201460721765187,
+              "ssim": 0.8688538670539856
+            },
+            {
+              "image": "22_DSC0001.jpg",
+              "psnr": 16.851750419791603,
+              "ssim": 0.7520764470100403
+            },
+            {
+              "image": "22_DSC0100.jpg",
+              "psnr": 26.66561853015619,
+              "ssim": 0.905464768409729
+            },
+            {
+              "image": "22_DSC0199.jpg",
+              "psnr": 19.217730283825894,
+              "ssim": 0.8023455142974854
+            },
+            {
+              "image": "22_DSC0307.jpg",
+              "psnr": 23.24748490089246,
+              "ssim": 0.8730422258377075
+            },
+            {
+              "image": "22_DSC0406.jpg",
+              "psnr": 27.012415428346664,
+              "ssim": 0.8830263018608093
+            },
+            {
+              "image": "22_DSC0505.jpg",
+              "psnr": 7.74418429026448,
+              "ssim": 0.5708495378494263
+            }
+          ]
+        },
+        {
+          "added_steps": 1000,
+          "psnr": 21.360171382843774,
+          "ssim": 0.8018635743194156,
+          "per_image": [
+            {
+              "image": "16_DSC0001.jpg",
+              "psnr": 18.087224143189754,
+              "ssim": 0.7294111251831055
+            },
+            {
+              "image": "16_DSC0100.jpg",
+              "psnr": 27.07001811808352,
+              "ssim": 0.8573511242866516
+            },
+            {
+              "image": "16_DSC0199.jpg",
+              "psnr": 19.240418892627225,
+              "ssim": 0.7814658880233765
+            },
+            {
+              "image": "16_DSC0307.jpg",
+              "psnr": 27.789655907654314,
+              "ssim": 0.831024706363678
+            },
+            {
+              "image": "16_DSC0406.jpg",
+              "psnr": 25.859053129932793,
+              "ssim": 0.7956656217575073
+            },
+            {
+              "image": "16_DSC0505.jpg",
+              "psnr": 16.431313046372892,
+              "ssim": 0.7043454051017761
+            },
+            {
+              "image": "19_DSC0001.jpg",
+              "psnr": 19.299932331920925,
+              "ssim": 0.8718658685684204
+            },
+            {
+              "image": "19_DSC0100.jpg",
+              "psnr": 22.578723116533812,
+              "ssim": 0.9018069505691528
+            },
+            {
+              "image": "19_DSC0199.jpg",
+              "psnr": 26.62886993151001,
+              "ssim": 0.9025365710258484
+            },
+            {
+              "image": "19_DSC0307.jpg",
+              "psnr": 26.22415979356699,
+              "ssim": 0.7987250089645386
+            },
+            {
+              "image": "19_DSC0406.jpg",
+              "psnr": 7.83767779936995,
+              "ssim": 0.5659160614013672
+            },
+            {
+              "image": "19_DSC0505.jpg",
+              "psnr": 24.412171793399395,
+              "ssim": 0.8697022795677185
+            },
+            {
+              "image": "22_DSC0001.jpg",
+              "psnr": 16.823717239598867,
+              "ssim": 0.7482439875602722
+            },
+            {
+              "image": "22_DSC0100.jpg",
+              "psnr": 26.799230813141012,
+              "ssim": 0.9049455523490906
+            },
+            {
+              "image": "22_DSC0199.jpg",
+              "psnr": 19.253009959446416,
+              "ssim": 0.8043110966682434
+            },
+            {
+              "image": "22_DSC0307.jpg",
+              "psnr": 23.272639878546933,
+              "ssim": 0.8723387122154236
+            },
+            {
+              "image": "22_DSC0406.jpg",
+              "psnr": 27.408722741398286,
+              "ssim": 0.8863419890403748
+            },
+            {
+              "image": "22_DSC0505.jpg",
+              "psnr": 9.466546254894846,
+              "ssim": 0.6075463891029358
+            }
+          ]
+        },
+        {
+          "added_steps": 1500,
+          "psnr": 21.470593831215783,
+          "ssim": 0.8050652941068014,
+          "per_image": [
+            {
+              "image": "16_DSC0001.jpg",
+              "psnr": 18.232538443167932,
+              "ssim": 0.7368810772895813
+            },
+            {
+              "image": "16_DSC0100.jpg",
+              "psnr": 27.302433652035482,
+              "ssim": 0.8608705401420593
+            },
+            {
+              "image": "16_DSC0199.jpg",
+              "psnr": 19.27537096146727,
+              "ssim": 0.7817879915237427
+            },
+            {
+              "image": "16_DSC0307.jpg",
+              "psnr": 27.87023914354181,
+              "ssim": 0.8319393992424011
+            },
+            {
+              "image": "16_DSC0406.jpg",
+              "psnr": 26.156007145325802,
+              "ssim": 0.8037087917327881
+            },
+            {
+              "image": "16_DSC0505.jpg",
+              "psnr": 16.57440890080889,
+              "ssim": 0.7066731452941895
+            },
+            {
+              "image": "19_DSC0001.jpg",
+              "psnr": 19.344062843267434,
+              "ssim": 0.873212456703186
+            },
+            {
+              "image": "19_DSC0100.jpg",
+              "psnr": 22.4615319962394,
+              "ssim": 0.9032796025276184
+            },
+            {
+              "image": "19_DSC0199.jpg",
+              "psnr": 26.665063935028847,
+              "ssim": 0.9007579684257507
+            },
+            {
+              "image": "19_DSC0307.jpg",
+              "psnr": 26.641024601536223,
+              "ssim": 0.8011376857757568
+            },
+            {
+              "image": "19_DSC0406.jpg",
+              "psnr": 6.757124627398527,
+              "ssim": 0.5527807474136353
+            },
+            {
+              "image": "19_DSC0505.jpg",
+              "psnr": 24.714432958100296,
+              "ssim": 0.8735761642456055
+            },
+            {
+              "image": "22_DSC0001.jpg",
+              "psnr": 16.94085440346733,
+              "ssim": 0.754159152507782
+            },
+            {
+              "image": "22_DSC0100.jpg",
+              "psnr": 27.153719380893723,
+              "ssim": 0.9066435694694519
+            },
+            {
+              "image": "22_DSC0199.jpg",
+              "psnr": 19.209114844239945,
+              "ssim": 0.8044338822364807
+            },
+            {
+              "image": "22_DSC0307.jpg",
+              "psnr": 23.537267896657674,
+              "ssim": 0.8764510154724121
+            },
+            {
+              "image": "22_DSC0406.jpg",
+              "psnr": 27.513733130372117,
+              "ssim": 0.8883891701698303
+            },
+            {
+              "image": "22_DSC0505.jpg",
+              "psnr": 10.121760098335365,
+              "ssim": 0.6344929337501526
+            }
+          ]
+        },
+        {
+          "added_steps": 2000,
+          "psnr": 21.484158546553243,
+          "ssim": 0.8055189682377709,
+          "per_image": [
+            {
+              "image": "16_DSC0001.jpg",
+              "psnr": 18.444368149655276,
+              "ssim": 0.7378233671188354
+            },
+            {
+              "image": "16_DSC0100.jpg",
+              "psnr": 27.34005035890454,
+              "ssim": 0.8587303757667542
+            },
+            {
+              "image": "16_DSC0199.jpg",
+              "psnr": 19.405515453325055,
+              "ssim": 0.7834224104881287
+            },
+            {
+              "image": "16_DSC0307.jpg",
+              "psnr": 27.752451428025864,
+              "ssim": 0.8319444060325623
+            },
+            {
+              "image": "16_DSC0406.jpg",
+              "psnr": 26.27482396296144,
+              "ssim": 0.8023011684417725
+            },
+            {
+              "image": "16_DSC0505.jpg",
+              "psnr": 16.647113642306767,
+              "ssim": 0.7093787789344788
+            },
+            {
+              "image": "19_DSC0001.jpg",
+              "psnr": 19.352856033401167,
+              "ssim": 0.8737061023712158
+            },
+            {
+              "image": "19_DSC0100.jpg",
+              "psnr": 22.426597824516435,
+              "ssim": 0.8992464542388916
+            },
+            {
+              "image": "19_DSC0199.jpg",
+              "psnr": 26.08389805768745,
+              "ssim": 0.8988695740699768
+            },
+            {
+              "image": "19_DSC0307.jpg",
+              "psnr": 26.535410658405784,
+              "ssim": 0.8014499545097351
+            },
+            {
+              "image": "19_DSC0406.jpg",
+              "psnr": 6.981035210962116,
+              "ssim": 0.5586038827896118
+            },
+            {
+              "image": "19_DSC0505.jpg",
+              "psnr": 24.71137166162538,
+              "ssim": 0.8721340894699097
+            },
+            {
+              "image": "22_DSC0001.jpg",
+              "psnr": 17.07238755913993,
+              "ssim": 0.7551077604293823
+            },
+            {
+              "image": "22_DSC0100.jpg",
+              "psnr": 27.13812627368457,
+              "ssim": 0.9064357876777649
+            },
+            {
+              "image": "22_DSC0199.jpg",
+              "psnr": 19.194935788400418,
+              "ssim": 0.8054797053337097
+            },
+            {
+              "image": "22_DSC0307.jpg",
+              "psnr": 23.670259677422337,
+              "ssim": 0.8739051222801208
+            },
+            {
+              "image": "22_DSC0406.jpg",
+              "psnr": 27.024534453227602,
+              "ssim": 0.8817790746688843
+            },
+            {
+              "image": "22_DSC0505.jpg",
+              "psnr": 10.659117644306196,
+              "ssim": 0.6490234136581421
+            }
+          ]
+        }
+      ],
+      "depth_prior_training_samples": {
+        "16_DSC0010.jpg": 4096,
+        "16_DSC0028.jpg": 4096,
+        "16_DSC0037.jpg": 4096,
+        "16_DSC0055.jpg": 4096,
+        "16_DSC0064.jpg": 4096,
+        "16_DSC0073.jpg": 4096,
+        "16_DSC0091.jpg": 4096,
+        "16_DSC0118.jpg": 4096,
+        "16_DSC0127.jpg": 4096,
+        "16_DSC0136.jpg": 4096,
+        "16_DSC0154.jpg": 4096,
+        "16_DSC0163.jpg": 4096,
+        "16_DSC0181.jpg": 4096,
+        "16_DSC0190.jpg": 4096,
+        "16_DSC0217.jpg": 4096,
+        "16_DSC0226.jpg": 4096,
+        "16_DSC0244.jpg": 4096,
+        "16_DSC0253.jpg": 4096,
+        "16_DSC0262.jpg": 4096,
+        "16_DSC0280.jpg": 4096,
+        "16_DSC0289.jpg": 4096,
+        "16_DSC0316.jpg": 4096,
+        "16_DSC0334.jpg": 4096,
+        "16_DSC0343.jpg": 4096,
+        "16_DSC0352.jpg": 4096,
+        "16_DSC0370.jpg": 4096,
+        "16_DSC0379.jpg": 4096,
+        "16_DSC0397.jpg": 4096,
+        "16_DSC0415.jpg": 4096,
+        "16_DSC0433.jpg": 4096,
+        "16_DSC0442.jpg": 4096,
+        "16_DSC0460.jpg": 4014,
+        "16_DSC0469.jpg": 3230,
+        "16_DSC0478.jpg": 2492,
+        "16_DSC0496.jpg": 4096,
+        "16_DSC0523.jpg": 4096,
+        "16_DSC0532.jpg": 4096,
+        "16_DSC0541.jpg": 4096,
+        "16_DSC0559.jpg": 4096,
+        "16_DSC0568.jpg": 4096,
+        "16_DSC0586.jpg": 4096,
+        "16_DSC0595.jpg": 4096,
+        "19_DSC0010.jpg": 2788,
+        "19_DSC0028.jpg": 4096,
+        "19_DSC0037.jpg": 4096,
+        "19_DSC0055.jpg": 4096,
+        "19_DSC0064.jpg": 4096,
+        "19_DSC0073.jpg": 4096,
+        "19_DSC0091.jpg": 204,
+        "19_DSC0118.jpg": 3803,
+        "19_DSC0127.jpg": 4096,
+        "19_DSC0136.jpg": 4096,
+        "19_DSC0154.jpg": 4096,
+        "19_DSC0163.jpg": 4096,
+        "19_DSC0181.jpg": 4096,
+        "19_DSC0190.jpg": 4096,
+        "19_DSC0217.jpg": 2961,
+        "19_DSC0226.jpg": 843,
+        "19_DSC0244.jpg": 4096,
+        "19_DSC0253.jpg": 4096,
+        "19_DSC0262.jpg": 4096,
+        "19_DSC0280.jpg": 4096,
+        "19_DSC0289.jpg": 4096,
+        "19_DSC0316.jpg": 4096,
+        "19_DSC0334.jpg": 4096,
+        "19_DSC0343.jpg": 4096,
+        "19_DSC0352.jpg": 4096,
+        "19_DSC0370.jpg": 4096,
+        "19_DSC0379.jpg": 4096,
+        "19_DSC0397.jpg": 4096,
+        "19_DSC0415.jpg": 4096,
+        "19_DSC0433.jpg": 4096,
+        "19_DSC0442.jpg": 4096,
+        "19_DSC0460.jpg": 1502,
+        "19_DSC0469.jpg": 938,
+        "19_DSC0478.jpg": 1185,
+        "19_DSC0496.jpg": 4096,
+        "19_DSC0523.jpg": 4096,
+        "19_DSC0532.jpg": 4096,
+        "19_DSC0541.jpg": 4096,
+        "19_DSC0559.jpg": 4096,
+        "19_DSC0568.jpg": 4096,
+        "19_DSC0586.jpg": 4096,
+        "19_DSC0595.jpg": 4096,
+        "22_DSC0010.jpg": 4096,
+        "22_DSC0028.jpg": 4096,
+        "22_DSC0037.jpg": 4096,
+        "22_DSC0055.jpg": 4096,
+        "22_DSC0064.jpg": 4096,
+        "22_DSC0073.jpg": 4096,
+        "22_DSC0091.jpg": 3994,
+        "22_DSC0118.jpg": 4096,
+        "22_DSC0127.jpg": 4096,
+        "22_DSC0136.jpg": 4096,
+        "22_DSC0154.jpg": 4096,
+        "22_DSC0163.jpg": 4096,
+        "22_DSC0181.jpg": 4096,
+        "22_DSC0190.jpg": 4096,
+        "22_DSC0217.jpg": 4096,
+        "22_DSC0226.jpg": 4096,
+        "22_DSC0244.jpg": 4096,
+        "22_DSC0253.jpg": 4096,
+        "22_DSC0262.jpg": 4096,
+        "22_DSC0280.jpg": 4096,
+        "22_DSC0289.jpg": 4096,
+        "22_DSC0316.jpg": 4096,
+        "22_DSC0334.jpg": 4096,
+        "22_DSC0343.jpg": 4096,
+        "22_DSC0352.jpg": 4096,
+        "22_DSC0370.jpg": 4096,
+        "22_DSC0379.jpg": 4096,
+        "22_DSC0397.jpg": 4096,
+        "22_DSC0415.jpg": 4096,
+        "22_DSC0433.jpg": 4096,
+        "22_DSC0442.jpg": 4096,
+        "22_DSC0460.jpg": 2181,
+        "22_DSC0469.jpg": 1583,
+        "22_DSC0478.jpg": 1278,
+        "22_DSC0496.jpg": 3874,
+        "22_DSC0523.jpg": 4096,
+        "22_DSC0532.jpg": 4096,
+        "22_DSC0541.jpg": 4096,
+        "22_DSC0559.jpg": 4096,
+        "22_DSC0568.jpg": 4096,
+        "22_DSC0586.jpg": 4096,
+        "22_DSC0595.jpg": 4096
+      },
+      "source_script_sha256": "a7d9accaca384e45ef890bb87c611477a9820817f447f88151ece6ac1ee5d849",
+      "completed_added_steps": 2000,
+      "best_added_steps": 2000,
+      "best_psnr": 21.484158546553243,
+      "seconds": 361.5747637279999,
+      "peak_memory_mib": 1531.11865234375
+    }
+  },
+  "independent_checkpoint_reload_evaluation": {
+    "format": "playworld-checkpoint-refinement/1",
+    "status": "evaluated",
+    "source_checkpoint_sha256": "96cc241c3ab6dcee7c801a23ab810ed242c4f7b6110c051d80d9f70f62ad9ed8",
+    "source_step": 8999,
+    "warm_start_not_exact_resume": true,
+    "optimizer_state": "fresh Adam",
+    "gaussians": 1108601,
+    "camera_optimization": false,
+    "densification": false,
+    "seed": 13,
+    "train_images": [
+      "16_DSC0010.jpg",
+      "16_DSC0028.jpg",
+      "16_DSC0037.jpg",
+      "16_DSC0055.jpg",
+      "16_DSC0064.jpg",
+      "16_DSC0073.jpg",
+      "16_DSC0091.jpg",
+      "16_DSC0118.jpg",
+      "16_DSC0127.jpg",
+      "16_DSC0136.jpg",
+      "16_DSC0154.jpg",
+      "16_DSC0163.jpg",
+      "16_DSC0181.jpg",
+      "16_DSC0190.jpg",
+      "16_DSC0217.jpg",
+      "16_DSC0226.jpg",
+      "16_DSC0244.jpg",
+      "16_DSC0253.jpg",
+      "16_DSC0262.jpg",
+      "16_DSC0280.jpg",
+      "16_DSC0289.jpg",
+      "16_DSC0316.jpg",
+      "16_DSC0334.jpg",
+      "16_DSC0343.jpg",
+      "16_DSC0352.jpg",
+      "16_DSC0370.jpg",
+      "16_DSC0379.jpg",
+      "16_DSC0397.jpg",
+      "16_DSC0415.jpg",
+      "16_DSC0433.jpg",
+      "16_DSC0442.jpg",
+      "16_DSC0460.jpg",
+      "16_DSC0469.jpg",
+      "16_DSC0478.jpg",
+      "16_DSC0496.jpg",
+      "16_DSC0523.jpg",
+      "16_DSC0532.jpg",
+      "16_DSC0541.jpg",
+      "16_DSC0559.jpg",
+      "16_DSC0568.jpg",
+      "16_DSC0586.jpg",
+      "16_DSC0595.jpg",
+      "19_DSC0010.jpg",
+      "19_DSC0028.jpg",
+      "19_DSC0037.jpg",
+      "19_DSC0055.jpg",
+      "19_DSC0064.jpg",
+      "19_DSC0073.jpg",
+      "19_DSC0091.jpg",
+      "19_DSC0118.jpg",
+      "19_DSC0127.jpg",
+      "19_DSC0136.jpg",
+      "19_DSC0154.jpg",
+      "19_DSC0163.jpg",
+      "19_DSC0181.jpg",
+      "19_DSC0190.jpg",
+      "19_DSC0217.jpg",
+      "19_DSC0226.jpg",
+      "19_DSC0244.jpg",
+      "19_DSC0253.jpg",
+      "19_DSC0262.jpg",
+      "19_DSC0280.jpg",
+      "19_DSC0289.jpg",
+      "19_DSC0316.jpg",
+      "19_DSC0334.jpg",
+      "19_DSC0343.jpg",
+      "19_DSC0352.jpg",
+      "19_DSC0370.jpg",
+      "19_DSC0379.jpg",
+      "19_DSC0397.jpg",
+      "19_DSC0415.jpg",
+      "19_DSC0433.jpg",
+      "19_DSC0442.jpg",
+      "19_DSC0460.jpg",
+      "19_DSC0469.jpg",
+      "19_DSC0478.jpg",
+      "19_DSC0496.jpg",
+      "19_DSC0523.jpg",
+      "19_DSC0532.jpg",
+      "19_DSC0541.jpg",
+      "19_DSC0559.jpg",
+      "19_DSC0568.jpg",
+      "19_DSC0586.jpg",
+      "19_DSC0595.jpg",
+      "22_DSC0010.jpg",
+      "22_DSC0028.jpg",
+      "22_DSC0037.jpg",
+      "22_DSC0055.jpg",
+      "22_DSC0064.jpg",
+      "22_DSC0073.jpg",
+      "22_DSC0091.jpg",
+      "22_DSC0118.jpg",
+      "22_DSC0127.jpg",
+      "22_DSC0136.jpg",
+      "22_DSC0154.jpg",
+      "22_DSC0163.jpg",
+      "22_DSC0181.jpg",
+      "22_DSC0190.jpg",
+      "22_DSC0217.jpg",
+      "22_DSC0226.jpg",
+      "22_DSC0244.jpg",
+      "22_DSC0253.jpg",
+      "22_DSC0262.jpg",
+      "22_DSC0280.jpg",
+      "22_DSC0289.jpg",
+      "22_DSC0316.jpg",
+      "22_DSC0334.jpg",
+      "22_DSC0343.jpg",
+      "22_DSC0352.jpg",
+      "22_DSC0370.jpg",
+      "22_DSC0379.jpg",
+      "22_DSC0397.jpg",
+      "22_DSC0415.jpg",
+      "22_DSC0433.jpg",
+      "22_DSC0442.jpg",
+      "22_DSC0460.jpg",
+      "22_DSC0469.jpg",
+      "22_DSC0478.jpg",
+      "22_DSC0496.jpg",
+      "22_DSC0523.jpg",
+      "22_DSC0532.jpg",
+      "22_DSC0541.jpg",
+      "22_DSC0559.jpg",
+      "22_DSC0568.jpg",
+      "22_DSC0586.jpg",
+      "22_DSC0595.jpg"
+    ],
+    "validation_images": [
+      "16_DSC0001.jpg",
+      "16_DSC0100.jpg",
+      "16_DSC0199.jpg",
+      "16_DSC0307.jpg",
+      "16_DSC0406.jpg",
+      "16_DSC0505.jpg",
+      "19_DSC0001.jpg",
+      "19_DSC0100.jpg",
+      "19_DSC0199.jpg",
+      "19_DSC0307.jpg",
+      "19_DSC0406.jpg",
+      "19_DSC0505.jpg",
+      "22_DSC0001.jpg",
+      "22_DSC0100.jpg",
+      "22_DSC0199.jpg",
+      "22_DSC0307.jpg",
+      "22_DSC0406.jpg",
+      "22_DSC0505.jpg"
+    ],
+    "settings": {
+      "scene": ".cache/calibrated-lounge-20261009/input-final",
+      "checkpoint": ".cache/local-refine-20261009/depth-05-move-2000/best.pt",
+      "out": ".cache/local-refine-20261009/best-evaluation",
+      "steps": 1000,
+      "eval_every": 250,
+      "patch_size": 2048,
+      "max_size": 1118,
+      "test_every": 8,
+      "seed": 13,
+      "scale_reg": 0,
+      "opacity_reg": 0,
+      "means_lr": 1.6e-05,
+      "depth_weight": 0,
+      "evaluate_only": true
+    },
+    "learning_rates": {
+      "means": 1.6e-05,
+      "scales": 0.001,
+      "quats": 0.0005,
+      "opacities": 0.01,
+      "sh0": 0.001,
+      "shN": 0.0001
+    },
+    "gpu": "NVIDIA GeForce GTX 1660 Ti",
+    "torch": "2.9.1+cu128",
+    "gsplat": "1.5.3",
+    "evaluations": [
+      {
+        "added_steps": 0,
+        "psnr": 21.484158546553243,
+        "ssim": 0.8055189682377709,
+        "per_image": [
+          {
+            "image": "16_DSC0001.jpg",
+            "psnr": 18.444368149655276,
+            "ssim": 0.7378233671188354
+          },
+          {
+            "image": "16_DSC0100.jpg",
+            "psnr": 27.34005035890454,
+            "ssim": 0.8587303757667542
+          },
+          {
+            "image": "16_DSC0199.jpg",
+            "psnr": 19.405515453325055,
+            "ssim": 0.7834224104881287
+          },
+          {
+            "image": "16_DSC0307.jpg",
+            "psnr": 27.752451428025864,
+            "ssim": 0.8319444060325623
+          },
+          {
+            "image": "16_DSC0406.jpg",
+            "psnr": 26.27482396296144,
+            "ssim": 0.8023011684417725
+          },
+          {
+            "image": "16_DSC0505.jpg",
+            "psnr": 16.647113642306767,
+            "ssim": 0.7093787789344788
+          },
+          {
+            "image": "19_DSC0001.jpg",
+            "psnr": 19.352856033401167,
+            "ssim": 0.8737061023712158
+          },
+          {
+            "image": "19_DSC0100.jpg",
+            "psnr": 22.426597824516435,
+            "ssim": 0.8992464542388916
+          },
+          {
+            "image": "19_DSC0199.jpg",
+            "psnr": 26.08389805768745,
+            "ssim": 0.8988695740699768
+          },
+          {
+            "image": "19_DSC0307.jpg",
+            "psnr": 26.535410658405784,
+            "ssim": 0.8014499545097351
+          },
+          {
+            "image": "19_DSC0406.jpg",
+            "psnr": 6.981035210962116,
+            "ssim": 0.5586038827896118
+          },
+          {
+            "image": "19_DSC0505.jpg",
+            "psnr": 24.71137166162538,
+            "ssim": 0.8721340894699097
+          },
+          {
+            "image": "22_DSC0001.jpg",
+            "psnr": 17.07238755913993,
+            "ssim": 0.7551077604293823
+          },
+          {
+            "image": "22_DSC0100.jpg",
+            "psnr": 27.13812627368457,
+            "ssim": 0.9064357876777649
+          },
+          {
+            "image": "22_DSC0199.jpg",
+            "psnr": 19.194935788400418,
+            "ssim": 0.8054797053337097
+          },
+          {
+            "image": "22_DSC0307.jpg",
+            "psnr": 23.670259677422337,
+            "ssim": 0.8739051222801208
+          },
+          {
+            "image": "22_DSC0406.jpg",
+            "psnr": 27.024534453227602,
+            "ssim": 0.8817790746688843
+          },
+          {
+            "image": "22_DSC0505.jpg",
+            "psnr": 10.659117644306196,
+            "ssim": 0.6490234136581421
+          }
+        ]
+      }
+    ],
+    "depth_prior_training_samples": {},
+    "source_script_sha256": "a7d9accaca384e45ef890bb87c611477a9820817f447f88151ece6ac1ee5d849",
+    "completed_added_steps": 0,
+    "best_added_steps": 0,
+    "best_psnr": 21.484158546553243,
+    "seconds": 4.22273584200002,
+    "peak_memory_mib": 693.2578125
+  },
+  "trial_selection": "Hyperparameters and best step selected on existing 18-image validation split; no independent test set.",
+  "world": {
+    "source_world_sha256": "c354053d68eba3295b8dd2975460b17ea080d870d1c6f9dacd8d0af039950145",
+    "format": "Niantic SPZ v3",
+    "higher_order_sh": "preserved through SH3 (quantized)",
+    "files": [
+      {
+        "path": "background.spz",
+        "gaussians": 1091404,
+        "bytes": 21741246,
+        "sha256": "e5ab630d6bba1e3f193e243ce113a2b18ad36fe633502ff9b364931eb7688db6"
+      },
+      {
+        "path": "objects/1.spz",
+        "gaussians": 14778,
+        "bytes": 274590,
+        "sha256": "bd78af9c8794abf623096e98c88c895daf6240017e1c6eb0a936741569ebb2d9"
+      }
+    ],
+    "gaussians": 1106182,
+    "splat_bytes": 22015836,
+    "objects": 1,
+    "colliders": 4481
+  },
+  "physics": {
+    "initial_settle_m": 0.0057130241892000356,
+    "displacement_m": 1.0084003606312628,
+    "max_tilt_all_recorded_frames_degrees": 155.26414248380203
+  },
+  "replay_validation": {
+    "format": "playworld-chair-repair-validation/1",
+    "world_sha256": "7580b03658720ba50171100a9cec9d7298c98f15169bb7120869367ce6c8a4a4",
+    "shot_sha256": "3acba105a9bf0d2582d3684c63ba718a4b089fd82653fe3eaba65bb2075ff3fc",
+    "replays": 2,
+    "exact_replay_match": true,
+    "fixed_physics_step": 0.016666666666666666,
+    "gpu_training_started": true,
+    "paid_runtime_started": false,
+    "scope": "Local diagnostic scene and reviewed ray push; gallery/featured controls were not changed or revalidated.",
+    "push": {
+      "time": 3,
+      "type": "push",
+      "origin": [
+        1.7733,
+        1.1,
+        -0.5797
+      ],
+      "target": [
+        0.9733,
+        1.1,
+        -0.5797
+      ],
+      "strength": 3
+    },
+    "runs": [
+      {
+        "states": [
+          {
+            "frame": 0,
+            "time": 0,
+            "tick": 0,
+            "objects": [
+              {
+                "id": 1,
+                "position": {
+                  "x": 0.9606000185012817,
+                  "y": 0.8057000041007996,
+                  "z": -0.6259999871253967
+                },
+                "rotation": {
+                  "x": 0,
+                  "y": 0,
+                  "z": 0,
+                  "w": 1
+                }
+              }
+            ],
+            "player": {
+              "x": -0.406360000371933,
+              "y": 0.800000011920929,
+              "z": 2.043839931488037
+            },
+            "balls": [],
+            "actions": []
+          },
+          {
+            "frame": 44,
+            "time": 2.933333333333333,
+            "tick": 176,
+            "objects": [
+              {
+                "id": 1,
+                "position": {
+                  "x": 0.9597033858299255,
+                  "y": 0.8006545305252075,
+                  "z": -0.6234745383262634
+                },
+                "rotation": {
+                  "x": 3.9665661461185664e-05,
+                  "y": 0.00034612903255037963,
+                  "z": -3.182432919857092e-05,
+                  "w": 1
+                }
+              }
+            ],
+            "player": {
+              "x": 0.0691508874297142,
+              "y": 0.7699381113052368,
+              "z": 2.3084239959716797
+            },
+            "balls": [],
+            "actions": []
+          },
+          {
+            "frame": 48,
+            "time": 3.2,
+            "tick": 192,
+            "objects": [
+              {
+                "id": 1,
+                "position": {
+                  "x": 0.010051190853118896,
+                  "y": 0.41519713401794434,
+                  "z": -0.578508198261261
+                },
+                "rotation": {
+                  "x": -0.18879792094230652,
+                  "y": 0.2533220052719116,
+                  "z": 0.7927694916725159,
+                  "w": 0.5212482810020447
+                }
+              }
+            ],
+            "player": {
+              "x": 0.0691508874297142,
+              "y": 0.7699381113052368,
+              "z": 2.3084239959716797
+            },
+            "balls": [],
+            "actions": [
+              {
+                "time": 3,
+                "type": "push",
+                "object": 1
+              }
+            ]
+          },
+          {
+            "frame": 55,
+            "time": 3.6666666666666665,
+            "tick": 220,
+            "objects": [
+              {
+                "id": 1,
+                "position": {
+                  "x": 0.06280517578125,
+                  "y": 0.5428861379623413,
+                  "z": -0.912848174571991
+                },
+                "rotation": {
+                  "x": 0.12438732385635376,
+                  "y": 0.3810524046421051,
+                  "z": 0.8988916873931885,
+                  "w": -0.17697611451148987
+                }
+              }
+            ],
+            "player": {
+              "x": 0.0691508874297142,
+              "y": 0.7699381113052368,
+              "z": 2.3084239959716797
+            },
+            "balls": [],
+            "actions": [
+              {
+                "time": 3,
+                "type": "push",
+                "object": 1
+              }
+            ]
+          },
+          {
+            "frame": 65,
+            "time": 4.333333333333333,
+            "tick": 260,
+            "objects": [
+              {
+                "id": 1,
+                "position": {
+                  "x": 0.20581087470054626,
+                  "y": 0.43253660202026367,
+                  "z": -1.1026901006698608
+                },
+                "rotation": {
+                  "x": 0.26677384972572327,
+                  "y": 0.27668246626853943,
+                  "z": 0.8934441804885864,
+                  "w": -0.23245659470558167
+                }
+              }
+            ],
+            "player": {
+              "x": 0.0691508874297142,
+              "y": 0.7699381113052368,
+              "z": 2.3084239959716797
+            },
+            "balls": [],
+            "actions": [
+              {
+                "time": 3,
+                "type": "push",
+                "object": 1
+              }
+            ]
+          },
+          {
+            "frame": 75,
+            "time": 5,
+            "tick": 300,
+            "objects": [
+              {
+                "id": 1,
+                "position": {
+                  "x": 0.13602694869041443,
+                  "y": 0.3673960864543915,
+                  "z": -0.9282671809196472
+                },
+                "rotation": {
+                  "x": -0.13134440779685974,
+                  "y": -0.017417866736650467,
+                  "z": 0.9643580913543701,
+                  "w": -0.229038804769516
+                }
+              }
+            ],
+            "player": {
+              "x": 0.0691508874297142,
+              "y": 0.7699381113052368,
+              "z": 2.3084239959716797
+            },
+            "balls": [],
+            "actions": [
+              {
+                "time": 3,
+                "type": "push",
+                "object": 1
+              }
+            ]
+          },
+          {
+            "frame": 90,
+            "time": 6,
+            "tick": 360,
+            "objects": [
+              {
+                "id": 1,
+                "position": {
+                  "x": 0.12229049950838089,
+                  "y": 0.3405967354774475,
+                  "z": -0.9458993673324585
+                },
+                "rotation": {
+                  "x": -0.08069485425949097,
+                  "y": 0.022851521149277687,
+                  "z": 0.9725472331047058,
+                  "w": -0.21706697344779968
+                }
+              }
+            ],
+            "player": {
+              "x": 0.0691508874297142,
+              "y": 0.7699381113052368,
+              "z": 2.3084239959716797
+            },
+            "balls": [],
+            "actions": [
+              {
+                "time": 3,
+                "type": "push",
+                "object": 1
+              }
+            ]
+          },
+          {
+            "frame": 119,
+            "time": 7.933333333333334,
+            "tick": 476,
+            "objects": [
+              {
+                "id": 1,
+                "position": {
+                  "x": 0.12229049950838089,
+                  "y": 0.3405967354774475,
+                  "z": -0.9458993673324585
+                },
+                "rotation": {
+                  "x": -0.08069485425949097,
+                  "y": 0.022851521149277687,
+                  "z": 0.9725472331047058,
+                  "w": -0.21706697344779968
+                }
+              }
+            ],
+            "player": {
+              "x": 0.0691508874297142,
+              "y": 0.7699381113052368,
+              "z": 2.3084239959716797
+            },
+            "balls": [],
+            "actions": [
+              {
+                "time": 3,
+                "type": "push",
+                "object": 1
+              }
+            ]
+          }
+        ],
+        "settle_m": 0.0057130241892000356,
+        "displacement_m": 1.0084003606312628,
+        "max_sampled_tilt_degrees": 154.7855389883487
+      },
+      {
+        "states": [
+          {
+            "frame": 0,
+            "time": 0,
+            "tick": 0,
+            "objects": [
+              {
+                "id": 1,
+                "position": {
+                  "x": 0.9606000185012817,
+                  "y": 0.8057000041007996,
+                  "z": -0.6259999871253967
+                },
+                "rotation": {
+                  "x": 0,
+                  "y": 0,
+                  "z": 0,
+                  "w": 1
+                }
+              }
+            ],
+            "player": {
+              "x": -0.406360000371933,
+              "y": 0.800000011920929,
+              "z": 2.043839931488037
+            },
+            "balls": [],
+            "actions": []
+          },
+          {
+            "frame": 44,
+            "time": 2.933333333333333,
+            "tick": 176,
+            "objects": [
+              {
+                "id": 1,
+                "position": {
+                  "x": 0.9597033858299255,
+                  "y": 0.8006545305252075,
+                  "z": -0.6234745383262634
+                },
+                "rotation": {
+                  "x": 3.9665661461185664e-05,
+                  "y": 0.00034612903255037963,
+                  "z": -3.182432919857092e-05,
+                  "w": 1
+                }
+              }
+            ],
+            "player": {
+              "x": 0.0691508874297142,
+              "y": 0.7699381113052368,
+              "z": 2.3084239959716797
+            },
+            "balls": [],
+            "actions": []
+          },
+          {
+            "frame": 48,
+            "time": 3.2,
+            "tick": 192,
+            "objects": [
+              {
+                "id": 1,
+                "position": {
+                  "x": 0.010051190853118896,
+                  "y": 0.41519713401794434,
+                  "z": -0.578508198261261
+                },
+                "rotation": {
+                  "x": -0.18879792094230652,
+                  "y": 0.2533220052719116,
+                  "z": 0.7927694916725159,
+                  "w": 0.5212482810020447
+                }
+              }
+            ],
+            "player": {
+              "x": 0.0691508874297142,
+              "y": 0.7699381113052368,
+              "z": 2.3084239959716797
+            },
+            "balls": [],
+            "actions": [
+              {
+                "time": 3,
+                "type": "push",
+                "object": 1
+              }
+            ]
+          },
+          {
+            "frame": 55,
+            "time": 3.6666666666666665,
+            "tick": 220,
+            "objects": [
+              {
+                "id": 1,
+                "position": {
+                  "x": 0.06280517578125,
+                  "y": 0.5428861379623413,
+                  "z": -0.912848174571991
+                },
+                "rotation": {
+                  "x": 0.12438732385635376,
+                  "y": 0.3810524046421051,
+                  "z": 0.8988916873931885,
+                  "w": -0.17697611451148987
+                }
+              }
+            ],
+            "player": {
+              "x": 0.0691508874297142,
+              "y": 0.7699381113052368,
+              "z": 2.3084239959716797
+            },
+            "balls": [],
+            "actions": [
+              {
+                "time": 3,
+                "type": "push",
+                "object": 1
+              }
+            ]
+          },
+          {
+            "frame": 65,
+            "time": 4.333333333333333,
+            "tick": 260,
+            "objects": [
+              {
+                "id": 1,
+                "position": {
+                  "x": 0.20581087470054626,
+                  "y": 0.43253660202026367,
+                  "z": -1.1026901006698608
+                },
+                "rotation": {
+                  "x": 0.26677384972572327,
+                  "y": 0.27668246626853943,
+                  "z": 0.8934441804885864,
+                  "w": -0.23245659470558167
+                }
+              }
+            ],
+            "player": {
+              "x": 0.0691508874297142,
+              "y": 0.7699381113052368,
+              "z": 2.3084239959716797
+            },
+            "balls": [],
+            "actions": [
+              {
+                "time": 3,
+                "type": "push",
+                "object": 1
+              }
+            ]
+          },
+          {
+            "frame": 75,
+            "time": 5,
+            "tick": 300,
+            "objects": [
+              {
+                "id": 1,
+                "position": {
+                  "x": 0.13602694869041443,
+                  "y": 0.3673960864543915,
+                  "z": -0.9282671809196472
+                },
+                "rotation": {
+                  "x": -0.13134440779685974,
+                  "y": -0.017417866736650467,
+                  "z": 0.9643580913543701,
+                  "w": -0.229038804769516
+                }
+              }
+            ],
+            "player": {
+              "x": 0.0691508874297142,
+              "y": 0.7699381113052368,
+              "z": 2.3084239959716797
+            },
+            "balls": [],
+            "actions": [
+              {
+                "time": 3,
+                "type": "push",
+                "object": 1
+              }
+            ]
+          },
+          {
+            "frame": 90,
+            "time": 6,
+            "tick": 360,
+            "objects": [
+              {
+                "id": 1,
+                "position": {
+                  "x": 0.12229049950838089,
+                  "y": 0.3405967354774475,
+                  "z": -0.9458993673324585
+                },
+                "rotation": {
+                  "x": -0.08069485425949097,
+                  "y": 0.022851521149277687,
+                  "z": 0.9725472331047058,
+                  "w": -0.21706697344779968
+                }
+              }
+            ],
+            "player": {
+              "x": 0.0691508874297142,
+              "y": 0.7699381113052368,
+              "z": 2.3084239959716797
+            },
+            "balls": [],
+            "actions": [
+              {
+                "time": 3,
+                "type": "push",
+                "object": 1
+              }
+            ]
+          },
+          {
+            "frame": 119,
+            "time": 7.933333333333334,
+            "tick": 476,
+            "objects": [
+              {
+                "id": 1,
+                "position": {
+                  "x": 0.12229049950838089,
+                  "y": 0.3405967354774475,
+                  "z": -0.9458993673324585
+                },
+                "rotation": {
+                  "x": -0.08069485425949097,
+                  "y": 0.022851521149277687,
+                  "z": 0.9725472331047058,
+                  "w": -0.21706697344779968
+                }
+              }
+            ],
+            "player": {
+              "x": 0.0691508874297142,
+              "y": 0.7699381113052368,
+              "z": 2.3084239959716797
+            },
+            "balls": [],
+            "actions": [
+              {
+                "time": 3,
+                "type": "push",
+                "object": 1
+              }
+            ]
+          }
+        ],
+        "settle_m": 0.0057130241892000356,
+        "displacement_m": 1.0084003606312628,
+        "max_sampled_tilt_degrees": 154.7855389883487
+      }
+    ],
+    "page_errors": []
+  },
+  "capture": {
+    "fps": 15,
+    "frames": 120,
+    "renderer": "ANGLE (NVIDIA, NVIDIA GeForce GTX 1660 Ti (0x00002191) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "captured_frames": 120,
+    "width": 960,
+    "height": 540,
+    "seconds": 60.543,
+    "world_sha256": "7580b03658720ba50171100a9cec9d7298c98f15169bb7120869367ce6c8a4a4",
+    "shot_sha256": "3acba105a9bf0d2582d3684c63ba718a4b089fd82653fe3eaba65bb2075ff3fc"
+  },
+  "encoding": {
+    "id": "lounge-refinement-20261009",
+    "title": "Window office refinement",
+    "capture_world_sha256": "7580b03658720ba50171100a9cec9d7298c98f15169bb7120869367ce6c8a4a4",
+    "shot_sha256": "3acba105a9bf0d2582d3684c63ba718a4b089fd82653fe3eaba65bb2075ff3fc",
+    "captured_frames": 120,
+    "source": "Actual fixed-step browser viewer output; no generated imagery",
+    "gif_duration_seconds": 8.0,
+    "gif_fps": 15,
+    "quality": 65,
+    "gif_width": 480,
+    "gif_height": 270,
+    "gif_bytes": 1186622,
+    "mp4_bytes": 1355827,
+    "gif_sha256": "14d15d282395e9d1b9b4330bb678096e80c43b9a0b85dc2cd335d69c32924375",
+    "mp4_sha256": "be82f1bbfc124da87a27652d6e805a7c8ffc13fb981e47ba1b6f0622513d11a5"
+  },
+  "rejected_camera_overlap_probe": {
+    "eligible_gaussians": 4847,
+    "removed_gaussians": 3,
+    "retained_gaussians": 1108598,
+    "sigma": 3,
+    "min_largest_axis_capture_units": 0.1,
+    "reference_cameras": "126 training cameras; heldout cameras excluded"
+  },
+  "rejected_camera_distance_probe": {
+    "removed_gaussians": 17936,
+    "retained_gaussians": 1090665,
+    "camera_distance_capture_units": 0.2,
+    "camera_distance_assumed_m": 0.264242,
+    "reference_cameras": "126 training cameras; heldout cameras excluded",
+    "limitation": "heuristic empty radius is not a measured free-space volume",
+    "evaluation": {
+      "format": "playworld-checkpoint-refinement/1",
+      "status": "evaluated",
+      "source_checkpoint_sha256": "ef51aa2b5b505910746a58e9b86e73b38d59dd6d5dcb1e562a3f309248bd74b4",
+      "source_step": 8999,
+      "warm_start_not_exact_resume": true,
+      "optimizer_state": "fresh Adam",
+      "gaussians": 1090665,
+      "camera_optimization": false,
+      "densification": false,
+      "seed": 13,
+      "train_images": [
+        "16_DSC0010.jpg",
+        "16_DSC0028.jpg",
+        "16_DSC0037.jpg",
+        "16_DSC0055.jpg",
+        "16_DSC0064.jpg",
+        "16_DSC0073.jpg",
+        "16_DSC0091.jpg",
+        "16_DSC0118.jpg",
+        "16_DSC0127.jpg",
+        "16_DSC0136.jpg",
+        "16_DSC0154.jpg",
+        "16_DSC0163.jpg",
+        "16_DSC0181.jpg",
+        "16_DSC0190.jpg",
+        "16_DSC0217.jpg",
+        "16_DSC0226.jpg",
+        "16_DSC0244.jpg",
+        "16_DSC0253.jpg",
+        "16_DSC0262.jpg",
+        "16_DSC0280.jpg",
+        "16_DSC0289.jpg",
+        "16_DSC0316.jpg",
+        "16_DSC0334.jpg",
+        "16_DSC0343.jpg",
+        "16_DSC0352.jpg",
+        "16_DSC0370.jpg",
+        "16_DSC0379.jpg",
+        "16_DSC0397.jpg",
+        "16_DSC0415.jpg",
+        "16_DSC0433.jpg",
+        "16_DSC0442.jpg",
+        "16_DSC0460.jpg",
+        "16_DSC0469.jpg",
+        "16_DSC0478.jpg",
+        "16_DSC0496.jpg",
+        "16_DSC0523.jpg",
+        "16_DSC0532.jpg",
+        "16_DSC0541.jpg",
+        "16_DSC0559.jpg",
+        "16_DSC0568.jpg",
+        "16_DSC0586.jpg",
+        "16_DSC0595.jpg",
+        "19_DSC0010.jpg",
+        "19_DSC0028.jpg",
+        "19_DSC0037.jpg",
+        "19_DSC0055.jpg",
+        "19_DSC0064.jpg",
+        "19_DSC0073.jpg",
+        "19_DSC0091.jpg",
+        "19_DSC0118.jpg",
+        "19_DSC0127.jpg",
+        "19_DSC0136.jpg",
+        "19_DSC0154.jpg",
+        "19_DSC0163.jpg",
+        "19_DSC0181.jpg",
+        "19_DSC0190.jpg",
+        "19_DSC0217.jpg",
+        "19_DSC0226.jpg",
+        "19_DSC0244.jpg",
+        "19_DSC0253.jpg",
+        "19_DSC0262.jpg",
+        "19_DSC0280.jpg",
+        "19_DSC0289.jpg",
+        "19_DSC0316.jpg",
+        "19_DSC0334.jpg",
+        "19_DSC0343.jpg",
+        "19_DSC0352.jpg",
+        "19_DSC0370.jpg",
+        "19_DSC0379.jpg",
+        "19_DSC0397.jpg",
+        "19_DSC0415.jpg",
+        "19_DSC0433.jpg",
+        "19_DSC0442.jpg",
+        "19_DSC0460.jpg",
+        "19_DSC0469.jpg",
+        "19_DSC0478.jpg",
+        "19_DSC0496.jpg",
+        "19_DSC0523.jpg",
+        "19_DSC0532.jpg",
+        "19_DSC0541.jpg",
+        "19_DSC0559.jpg",
+        "19_DSC0568.jpg",
+        "19_DSC0586.jpg",
+        "19_DSC0595.jpg",
+        "22_DSC0010.jpg",
+        "22_DSC0028.jpg",
+        "22_DSC0037.jpg",
+        "22_DSC0055.jpg",
+        "22_DSC0064.jpg",
+        "22_DSC0073.jpg",
+        "22_DSC0091.jpg",
+        "22_DSC0118.jpg",
+        "22_DSC0127.jpg",
+        "22_DSC0136.jpg",
+        "22_DSC0154.jpg",
+        "22_DSC0163.jpg",
+        "22_DSC0181.jpg",
+        "22_DSC0190.jpg",
+        "22_DSC0217.jpg",
+        "22_DSC0226.jpg",
+        "22_DSC0244.jpg",
+        "22_DSC0253.jpg",
+        "22_DSC0262.jpg",
+        "22_DSC0280.jpg",
+        "22_DSC0289.jpg",
+        "22_DSC0316.jpg",
+        "22_DSC0334.jpg",
+        "22_DSC0343.jpg",
+        "22_DSC0352.jpg",
+        "22_DSC0370.jpg",
+        "22_DSC0379.jpg",
+        "22_DSC0397.jpg",
+        "22_DSC0415.jpg",
+        "22_DSC0433.jpg",
+        "22_DSC0442.jpg",
+        "22_DSC0460.jpg",
+        "22_DSC0469.jpg",
+        "22_DSC0478.jpg",
+        "22_DSC0496.jpg",
+        "22_DSC0523.jpg",
+        "22_DSC0532.jpg",
+        "22_DSC0541.jpg",
+        "22_DSC0559.jpg",
+        "22_DSC0568.jpg",
+        "22_DSC0586.jpg",
+        "22_DSC0595.jpg"
+      ],
+      "validation_images": [
+        "16_DSC0001.jpg",
+        "16_DSC0100.jpg",
+        "16_DSC0199.jpg",
+        "16_DSC0307.jpg",
+        "16_DSC0406.jpg",
+        "16_DSC0505.jpg",
+        "19_DSC0001.jpg",
+        "19_DSC0100.jpg",
+        "19_DSC0199.jpg",
+        "19_DSC0307.jpg",
+        "19_DSC0406.jpg",
+        "19_DSC0505.jpg",
+        "22_DSC0001.jpg",
+        "22_DSC0100.jpg",
+        "22_DSC0199.jpg",
+        "22_DSC0307.jpg",
+        "22_DSC0406.jpg",
+        "22_DSC0505.jpg"
+      ],
+      "settings": {
+        "scene": ".cache/calibrated-lounge-20261009/input-final",
+        "checkpoint": ".cache/local-refine-20261009/camera-distance-02/pruned.pt",
+        "out": ".cache/local-refine-20261009/pruned-evaluation",
+        "steps": 1000,
+        "eval_every": 250,
+        "patch_size": 512,
+        "max_size": 1118,
+        "test_every": 8,
+        "seed": 13,
+        "scale_reg": 0,
+        "opacity_reg": 0,
+        "means_lr": 1.6e-05,
+        "depth_weight": 0,
+        "evaluate_only": true
+      },
+      "learning_rates": {
+        "means": 1.6e-05,
+        "scales": 0.001,
+        "quats": 0.0005,
+        "opacities": 0.01,
+        "sh0": 0.001,
+        "shN": 0.0001
+      },
+      "gpu": "NVIDIA GeForce GTX 1660 Ti",
+      "torch": "2.9.1+cu128",
+      "gsplat": "1.5.3",
+      "evaluations": [
+        {
+          "added_steps": 0,
+          "psnr": 22.07790052782012,
+          "ssim": 0.8130944636132982,
+          "per_image": [
+            {
+              "image": "16_DSC0001.jpg",
+              "psnr": 18.444525332052145,
+              "ssim": 0.7378281950950623
+            },
+            {
+              "image": "16_DSC0100.jpg",
+              "psnr": 28.34568730766843,
+              "ssim": 0.861501157283783
+            },
+            {
+              "image": "16_DSC0199.jpg",
+              "psnr": 19.417459604518818,
+              "ssim": 0.783037006855011
+            },
+            {
+              "image": "16_DSC0307.jpg",
+              "psnr": 27.75210883151791,
+              "ssim": 0.8319424390792847
+            },
+            {
+              "image": "16_DSC0406.jpg",
+              "psnr": 26.410129235169777,
+              "ssim": 0.8028082847595215
+            },
+            {
+              "image": "16_DSC0505.jpg",
+              "psnr": 16.662239883048127,
+              "ssim": 0.7099470496177673
+            },
+            {
+              "image": "19_DSC0001.jpg",
+              "psnr": 19.352856033401167,
+              "ssim": 0.8737061023712158
+            },
+            {
+              "image": "19_DSC0100.jpg",
+              "psnr": 25.113611522330686,
+              "ssim": 0.9085420966148376
+            },
+            {
+              "image": "19_DSC0199.jpg",
+              "psnr": 26.212907294168236,
+              "ssim": 0.8992515206336975
+            },
+            {
+              "image": "19_DSC0307.jpg",
+              "psnr": 26.535410658405784,
+              "ssim": 0.8014499545097351
+            },
+            {
+              "image": "19_DSC0406.jpg",
+              "psnr": 7.022976711531996,
+              "ssim": 0.5602743029594421
+            },
+            {
+              "image": "19_DSC0505.jpg",
+              "psnr": 24.932316711842567,
+              "ssim": 0.8744955658912659
+            },
+            {
+              "image": "22_DSC0001.jpg",
+              "psnr": 17.07201037325898,
+              "ssim": 0.755105197429657
+            },
+            {
+              "image": "22_DSC0100.jpg",
+              "psnr": 28.254588948369207,
+              "ssim": 0.9098411798477173
+            },
+            {
+              "image": "22_DSC0199.jpg",
+              "psnr": 19.19873694232386,
+              "ssim": 0.8050131797790527
+            },
+            {
+              "image": "22_DSC0307.jpg",
+              "psnr": 23.67062695412423,
+              "ssim": 0.873903214931488
+            },
+            {
+              "image": "22_DSC0406.jpg",
+              "psnr": 27.073632505021127,
+              "ssim": 0.8819748163223267
+            },
+            {
+              "image": "22_DSC0505.jpg",
+              "psnr": 15.930384652009163,
+              "ssim": 0.7650790810585022
+            }
+          ]
+        }
+      ],
+      "depth_prior_training_samples": {},
+      "source_script_sha256": "a7d9accaca384e45ef890bb87c611477a9820817f447f88151ece6ac1ee5d849",
+      "completed_added_steps": 0,
+      "best_added_steps": 0,
+      "best_psnr": 22.07790052782012,
+      "seconds": 2.981060816000081,
+      "peak_memory_mib": 683.28271484375
+    },
+    "source_sha256": "c7ae3e1b06793816f6d972cc215ddaa00019eb1c37012eec45fc739bd1c27516",
+    "checkpoint_sha256": "ef51aa2b5b505910746a58e9b86e73b38d59dd6d5dcb1e562a3f309248bd74b4",
+    "decision": "Not adopted; bright occlusion remains in 19_DSC0406.jpg. No browser/physics validation of this additional pruning."
+  },
+  "artifacts": {
+    ".cache/local-refine-20261009/depth-05-move-2000/best.pt": {
+      "bytes": 261632561,
+      "sha256": "96cc241c3ab6dcee7c801a23ab810ed242c4f7b6110c051d80d9f70f62ad9ed8"
+    },
+    ".cache/local-refine-20261009/depth-05-move-2000/best.ply": {
+      "bytes": 261631314,
+      "sha256": "fd8827e4bf6ecfd5562b606e3913be27e3e87ed2385242daf921b36a161d62e9"
+    },
+    ".cache/local-refine-20261009/world-depth-move/world.json": {
+      "bytes": 883509,
+      "sha256": "c354053d68eba3295b8dd2975460b17ea080d870d1c6f9dacd8d0af039950145"
+    },
+    ".cache/local-refine-20261009/site-depth-move/world.json": {
+      "bytes": 363282,
+      "sha256": "7580b03658720ba50171100a9cec9d7298c98f15169bb7120869367ce6c8a4a4"
+    },
+    ".cache/local-refine-20261009/site-depth-move/manifest.json": {
+      "bytes": 645,
+      "sha256": "e0b0223a59511d4081e1fe936197507ac195ef08cf07ecc6cb26b4189fa70a8f"
+    },
+    "scripts/refine_checkpoint.py": {
+      "bytes": 13694,
+      "sha256": "a7d9accaca384e45ef890bb87c611477a9820817f447f88151ece6ac1ee5d849"
+    },
+    "scripts/setup_refine.sh": {
+      "bytes": 2664,
+      "sha256": "bb76a50e8bc06a72b5e0ad56348d1ba3a0775dd6a1f4eda4f05a4e74c8985197"
+    },
+    "tests/test_checkpoint_refinement.py": {
+      "bytes": 3779,
+      "sha256": "3ac504ec5b7a72020f0546ba1911980115a935373afc87ac4a37cee482b2ba9a"
+    }
+  },
+  "preserved_public_hashes": {
+    "assets/background.spz": "a8d11456887befd63758575dcf043a983671253f66ce3a9de03872a5854952e2",
+    "assets/data-attribution.md": "7a7cd7836dd961dac25f5fc959e7278717e7ae8b44cf7b1a916e9d6097196e4d",
+    "assets/EYEFULTOWER-LICENSE.txt": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93",
+    "assets/manifest.json": "dc4a9371f9ecba2c5986ba37d3707cdc280f1fb35b47cd48340e155bbf00b438",
+    "assets/quality-report.json": "f785413f19cda180c680ba836efe8ed655a11a8ffcc3a4cf484b2c13c56b4331",
+    "assets/source.json": "c381a901282ea663c08aec3d54174ad5a1a726ba9b815802bf3474766665b602",
+    "assets/world.json": "74d5f27ac3d2ea49ddc37b4dffd884a7dbbf5f96ac1a222361f287ed4adc53e2",
+    "assets/objects/1.spz": "689b45644d6c57401deed34bbccbc56713a76e66e1a250dbdca4cbdcc45975cd",
+    "assets/objects/5.spz": "d262f17cd04c35e6ed53c9fb39b7f72383c00819934bd7f7e1a14024c5122b2a",
+    "docs/demos/lounge-provenance.json": "18f9989acf3e28ba0cd4324c39f107229763a755a2f5e9fc1d96db64ab3833c3",
+    "docs/demos/lounge.gif": "f0cfa1850f9453d9177bbfe5b5811bb8348f758c92aee5bd06bd3dbaaf050735",
+    "docs/demos/lounge.mp4": "1977319321c9e12788e5542e13603a1e4bf3f4b6c732803712ab2b50544c653e",
+    "shots/gallery/lounge-profile.json": "699e2c8e10b3e49a5284ce18fb5df53d2e96c3ebc8b7687c3b6d677689d3d0c9",
+    "shots/gallery/lounge.json": "3a87ae61a9847996cc8a8804ee197ed33d7ffdfa1b54d90527e8accdd5746b7d"
+  },
+  "tests": {
+    "native_suite": {
+      "passed": 115,
+      "skipped": 2
+    },
+    "refinement_suite_torch_environment": {
+      "passed": 7
+    }
+  }
+}

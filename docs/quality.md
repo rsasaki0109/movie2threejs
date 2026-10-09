@@ -412,3 +412,68 @@ The full suite passed **109 tests**, with one existing skip.
 · [Diagnostic MP4](runs/quality/lounge-chair-repair-20261009.mp4)
 · [Encoding receipt](runs/quality/lounge-chair-repair-20261009-provenance.json)
 · [Recorded shot](../shots/lounge-chair-diagnostic.json).
+
+## Local window-office refinement, 9 October 2026
+
+Input remains the MIT-licensed Eyeful Tower `office_view2` photograph sequence,
+not smartphone video; [attribution](data-attribution.md) and the
+[dataset license](EYEFULTOWER-LICENSE.txt) apply to these derived comparisons.
+
+![Same heldout photographs: photograph, original checkpoint, refined checkpoint](runs/quality/lounge-refinement-heldout-20261009.jpg)
+
+The 144-image input was audited before further training. All 18 saved trainer
+targets matched the decoded source JPEGs pixel for pixel. Photographs matched
+their own camera's dimensions: 740×1112, 740×1118 or 740×1117, with separate PINHOLE
+intrinsics. This rules out the checked target/resolution mismatch, but does not
+prove that every provided camera pose is accurate.
+
+The recovered step-6,999 checkpoint was warm-started locally on a **GTX 1660 Ti
+(6GB)** with fresh Adam optimizers. Cameras and the count of **1,108,601 Gaussians**
+stayed fixed. The source rendered at **20.9642 dB PSNR** on the same 18 sorted
+heldout images, reproducing the original L4 value of 20.9621 to about 0.002 dB.
+Evaluation uses float RGB, not the JPEG comparison images.
+
+RGB-only refinement barely helped. An experimental color-gated sparse-SfM depth
+penalty and adjusted position learning rate raised mean heldout PSNR to
+**21.4842 dB**, with local SSIM **0.800788 → 0.805519**. The selected 2,000-step
+run took **361.575 s**, excluding setup, checkpoint/image loading and later world
+assembly. Peak allocated CUDA memory was **1,531.119 MiB**, not total driver-visible
+memory or evidence that SAM/VGGT fits this GPU. Depth anchors use training images
+only, but hyperparameters and best step were selected on the existing validation
+split: this is not an independent final test. Some photographs regressed.
+Sparse visibility can miss occluders; the anchors are not ground-truth depth maps.
+
+![Refined checkpoint in the actual browser: blur and floating volumes remain](runs/quality/lounge-refinement-20261009.gif)
+
+Reassembly used the previous three reviewed chair masks and connected filtering.
+It retained **1,106,182 Gaussians**, **1 chair**, **4,481 static colliders** and
+**1 support patch**. The same diagnostic camera path and ray push moved the chair
+**1.008 m**, with **0.006 m** initial settling. Two independent replays matched
+exactly at eight sampled states with no page errors. Distances use the assumed
+camera-height scale; the convex chair body remains approximate. Maximum tilt
+across all 120 recorded frames was **155.26°**.
+
+A further cleanup probe removed **17,936 Gaussians** whose centers lay within
+0.2 capture units (about **0.264 m** at the assumed scale) of any of the 126
+training cameras. Mean validation PSNR rose to **22.0779 dB**, SSIM to **0.813094**,
+but the bright occlusion in `19_DSC0406.jpg` remained. The radius is a heuristic,
+not measured free space, and can erase real nearby surfaces. This additional
+pruning was not browser/physics-validated, adopted or added to the pipeline.
+Another probe removed just three large Gaussians whose 3-sigma ellipsoids
+contained a training-camera center; that condition did not explain the main blur.
+
+**The higher average metric did not fix the room.** TV/window floating volumes
+remain prominent in the browser, wall texture is streaky, and some heldout views
+are covered by bright floating surfaces. This is a diagnostic, not a README/gallery
+replacement. Existing window-office media/assets retain their baseline hashes.
+No Colab allocation, SAM inference or paid runtime was started for this refinement.
+
+The [local setup and refinement recipe](gpu.md#local-checkpoint-refinement-tested-on-gtx-1660-ti)
+is reproducible from the saved training scene and checkpoint. It writes fresh
+outputs and preserves inputs; exports remain weights-only, not exact-resume
+snapshots. The experimental depth prior is disabled by default.
+
+[Measurements and artifact hashes](runs/quality/lounge-refinement-20261009.json)
+· [Diagnostic MP4](runs/quality/lounge-refinement-20261009.mp4)
+· [Encoding receipt](runs/quality/lounge-refinement-20261009-provenance.json)
+· [Same-camera browser comparison](runs/quality/lounge-refinement-browser-20261009.jpg).

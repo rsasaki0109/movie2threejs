@@ -69,3 +69,56 @@ For the final benchmark, keep a full successful run and export its actual measur
 ```bash
 python scripts/benchmark.py scenes/room/run-<UTC>.json --description 'Eyeful Tower public apartment capture; photograph sequence, not smartphone video'
 ```
+
+
+## Local checkpoint refinement (tested on GTX 1660 Ti)
+
+`scripts/setup_refine.sh` creates a separate Python 3.12 environment for refining
+an existing SH3 gsplat checkpoint on Linux/WSL. It allocates no remote runtime.
+It requires `uv`, an NVIDIA GPU exposed to Linux, a C++ compiler, and the CUDA
+**12.8** toolkit (`nvcc`). This narrower recipe uses PyTorch 2.9.1+cu128 and the
+same pinned gsplat 1.5.3 sources as the main setup. Follow the
+[NVIDIA WSL installation guidance](https://docs.nvidia.com/cuda/archive/12.8.2/cuda-installation-guide-linux/index.html):
+WSL uses the Windows GPU driver; install toolkit components rather than a Linux
+display driver. The local verification installed `cuda-nvcc-12-8`,
+`cuda-cudart-dev-12-8` and `cuda-cccl-12-8`. Native gsplat compilation took 10 min
+17 s on this host, separate from refinement timing. That is not a setup-speed
+guarantee.
+
+```bash
+bash scripts/setup_refine.sh
+bash scripts/setup_refine.sh --check
+CUDA_HOME=/usr/local/cuda-12.8 OMP_NUM_THREADS=4 "$HOME/.local/share/playworld/refine-gpu/bin/python" scripts/refine_checkpoint.py --scene scenes/room --checkpoint saved/ckpt_6999_rank0.pt --out refinement --steps 2000 --eval-every 500 --patch-size 2048 --depth-weight 0.5 --means-lr 0.00016
+```
+
+Choose a fresh output directory. `PLAYWORLD_REFINE_ENV` and
+`PLAYWORLD_REFINE_REPO` relocate the environment and pinned source checkout.
+`--scene` needs the original `images/` and `sparse/` camera/point model, not the
+smaller segmentation scene. Images must already be undistorted PINHOLE images.
+`--patch-size 2048` used full images in this experiment; the default 512 uses
+random crops with correctly offset principal points. `--max-size 1118` limits
+the longest image edge, adjusting each camera's intrinsics independently.
+
+This is a **warm start with fresh Adam optimizers**, not an exact training
+resume. Gaussian count and cameras stay fixed; no densification is performed.
+The checkpoint must contain finite `means`, log `scales`, wxyz `quats`, logit
+`opacities`, `sh0` and SH3 `shN` tensors. The experimental depth prior is disabled
+by default. When enabled, it uses color-gated sparse SfM points from training
+views only; sparse visibility can miss occluders, and these are not measured
+depth maps. The weight and learning rate above were selected on this room's
+existing validation split and are not universal defaults.
+
+`refinement.json` records input/script hashes, versions, settings, per-image
+PSNR/SSIM, elapsed time and peak allocated CUDA memory. `best.pt`/`best.ply`
+contain the best refinement according to mean validation PSNR; if no step beats
+the source, there is no `best` export. `latest` contains the final evaluated
+step. Exports remain weights-only. Paired review images have the original
+photograph on the left and rendered reconstruction on the right. To check a
+saved checkpoint without optimizer steps, use `--evaluate-only` and another
+fresh output directory.
+
+The window-office trial refined 1,108,601 Gaussians with 126 training and 18
+heldout photographs on a **GTX 1660 Ti, 6GB**. The selected 2,000-step run took
+**361.575 s**, with **1,531.119 MiB peak allocated CUDA memory**. This does not
+establish that the complete VGGT/SAM pipeline fits this GPU. Background blur
+still failed visual review; see the [quality assessment](quality.md#local-window-office-refinement-9-october-2026).

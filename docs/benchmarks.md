@@ -517,3 +517,39 @@ Background blur remains unacceptable for adopting the reconstructed room. The
 repair is available as an optional object filter and an explicit mask-review tool.
 [Evidence and limitations](quality.md#window-office-chair-extraction-repair-9-october-2026)
 · [Measured receipt](runs/quality/lounge-chair-repair-20261009.json).
+
+## Local window-office checkpoint refinement, 9 October 2026
+
+All runs used the recovered calibrated 144-photograph scene, the original
+step-6,999 checkpoint and sorted split (126 train / 18 validation).
+Hardware: **GTX 1660 Ti, 6GB**, WSL Ubuntu 22.04, PyTorch **2.9.1+cu128**, pinned
+gsplat **1.5.3**, CUDA toolkit **12.8**. This is refinement with fresh Adam and
+fixed Gaussian count/cameras, not a new end-to-end video run.
+
+| Trial | Added steps | Best step | Best mean PSNR (dB) | Run time (s) |
+| --- | ---: | ---: | ---: | ---: |
+| Original checkpoint, local evaluation | 0 | 0 | 20.9642 | — |
+| RGB-only, position LR 0.000016 | 1,000 | 250 | 21.0007 | 157.125 |
+| Sparse-depth weight 0.05, LR 0.000016 | 1,000 | 750 | 21.1272 | 177.358 |
+| Sparse-depth weight 0.5, LR 0.000016 | 2,000 | 2,000 | 21.3906 | 341.102 |
+| Sparse-depth weight 0.5, LR 0.00016 | 2,000 | 2,000 | 21.4842 | 361.575 |
+
+Run time includes source evaluation, training, periodic evaluation and checkpoint/
+PLY exports; it excludes input loading and setup. Images retained their prepared
+dimensions, with `--patch-size 2048 --max-size 1118`. The selected run's peak
+**allocated Torch CUDA memory** was **1,531.119 MiB**. Native gsplat compilation
+took **617 s** separately. Neither establishes full VGGT/SAM feasibility here.
+
+The selected diagnostic has **1,106,182 Gaussians, 1 reviewed chair, 4,481 static
+colliders and 1 support patch**. Browser recording captured 120 frames (8 s,
+15 fps, 960×540) in **60.543 s**, including loading, using native Chromium/D3D11
+on the same GPU. No paid resource was allocated.
+
+Results were validation-selected; they are not independent test metrics or speed
+guarantees. Visual review rejected README/gallery adoption.
+An additional camera-neighborhood pruning probe removed 17,936 Gaussians and
+scored 22.0779 dB / 0.813094 SSIM, but left severe bright occlusion in one view.
+It was not adopted or browser/physics-validated; the recording above uses the
+unpruned refined checkpoint. Its radius is a free-space heuristic, not a measurement.
+[Evidence and unresolved blur](quality.md#local-window-office-refinement-9-october-2026)
+· [Full receipt](runs/quality/lounge-refinement-20261009.json).
