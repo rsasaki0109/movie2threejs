@@ -1,0 +1,15 @@
+{
+  "id": "cafe",
+  "title": "Kitchen & cafe",
+  "dataset": "kitchen",
+  "camera": 19,
+  "start": 14,
+  "duration": 6,
+  "prompts": "chair,potted plant,water bottle",
+  "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/images-jpeg-2k/19.mp4",
+  "kind": "capture-rig photograph sequence visualization",
+  "license": "MIT",
+  "license_revision": "06a01a4915afc872b893c20a025a0e14598c8478",
+  "source_sha256": "bfdc18b86955e9943a74834a0ec58e05059fb13c69fa89541fa490501108432a",
+  "input_sha256": "c27a1bdf029fba88365278ee1f22d68f6fa6c0f7c1de9d2bc494e97bf93e0b38"
+}

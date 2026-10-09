@@ -1,0 +1,542 @@
+{
+  "format": "playworld-calibrated-kitchen-review/1",
+  "status": "adopted",
+  "date": "2026-10-09",
+  "source_revision": "634a5e249f95a9a7b8d40a6426b9324095bb5eed",
+  "dataset": "Eyeful Tower kitchen",
+  "license": "MIT",
+  "license_revision": "06a01a4915afc872b893c20a025a0e14598c8478",
+  "scope": "Public capture-rig photographs with provided Metashape camera calibration and sparse points. No VGGT or smartphone input.",
+  "input": {
+    "frames": 144,
+    "camera": "19,16,22",
+    "primary_camera": "19",
+    "start_index": 168,
+    "stop_index_exclusive": 240,
+    "segmentation_frames": 16,
+    "initial_points": 100000
+  },
+  "input_zip_sha256": "645a927f2bf3c713171de9c8c8780b849c31655d22131137ab31fddcab1d05a0",
+  "gpu": "NVIDIA L4, 23034 MiB, 580.82.07",
+  "setup_seconds": 602.0289652347565,
+  "stages": {
+    "train": {
+      "status": "complete",
+      "seconds": 290.61799885899995
+    },
+    "segment": {
+      "status": "complete",
+      "seconds": 48.651398724000046
+    },
+    "pipeline": {
+      "status": "complete",
+      "seconds": 9.039808955000126
+    }
+  },
+  "core_stages_seconds": 348.3092065380001,
+  "enclosing_training_segmentation_world_and_backup_preparation_seconds": 380.015120434,
+  "raw_gpu_stats": {
+    "cameras": 16,
+    "points": 100000,
+    "gaussians": 1200077,
+    "input_gaussians": 1210857,
+    "discarded_object_gaussians": 1590,
+    "discarded_diffuse_gaussians": 9018,
+    "clean_splats": true,
+    "discarded_bounds_gaussians": 172,
+    "bounds_margin_m": 6.0,
+    "objects": 4,
+    "colliders": 4910,
+    "support_patches": 4,
+    "floor_inliers": 64493,
+    "scale_m_per_unit": 1.152636
+  },
+  "reviewed_stats": {
+    "cameras": 16,
+    "points": 100000,
+    "gaussians": 1200800,
+    "input_gaussians": 1210857,
+    "discarded_object_gaussians": 867,
+    "discarded_diffuse_gaussians": 9018,
+    "clean_splats": true,
+    "discarded_bounds_gaussians": 172,
+    "bounds_margin_m": 6,
+    "objects": 1,
+    "colliders": 4916,
+    "support_patches": 1,
+    "floor_inliers": 64493,
+    "scale_m_per_unit": 1.152636
+  },
+  "cpu_reviewed_world_seconds": 8.469970200007083,
+  "kept_instance_ids": [
+    1
+  ],
+  "original_sam_labels": {
+    "1": "chair",
+    "2": "chair 2",
+    "3": "chair 3",
+    "4": "chair 4",
+    "5": "chair 5",
+    "6": "chair 6",
+    "7": "chair 7"
+  },
+  "held_out_metrics": {
+    "psnr": 26.873708724975586,
+    "ssim": 0.9096745252609253,
+    "lpips": 0.23985548317432404,
+    "ellipse_time": 0.008533053927951388,
+    "num_GS": 1210857
+  },
+  "metric_comparison_limit": "Input photographs, camera poses, image count and training schedule differ from the older published cafe. These numbers are not a controlled before/after comparison.",
+  "artifact_receipts": {
+    "final_checkpoint": {
+      "file": "ckpt_6999_rank0.pt",
+      "bytes": 285765173,
+      "sha256": "bfb737a3cff1fcdab75a1e325de5f8146175a4b4bf6e3b7d771f1e6065928fde"
+    },
+    "world_zip": {
+      "file": "playworld-result.zip",
+      "bytes": 551362879,
+      "sha256": "6af7e4e1c94fae1ca61ca4403395100a2d059caae9662b7bc829767a69953863"
+    }
+  },
+  "zip_crc_passed": true,
+  "camera_models_byte_identical_to_input": true,
+  "raw_ply_and_sixteen_masks_recovered": true,
+  "checkpoint_validation": {
+    "stored_step": 6999,
+    "completed_steps": 7000,
+    "bytes": 285765173,
+    "sha256": "bfb737a3cff1fcdab75a1e325de5f8146175a4b4bf6e3b7d771f1e6065928fde",
+    "torch": "2.9.1+cpu",
+    "cpu_load_weights_only": true,
+    "all_tensors_finite": true,
+    "gaussians": 1210857,
+    "tensor_shapes": {
+      "means": [
+        1210857,
+        3
+      ],
+      "opacities": [
+        1210857
+      ],
+      "quats": [
+        1210857,
+        4
+      ],
+      "scales": [
+        1210857,
+        3
+      ],
+      "sh0": [
+        1210857,
+        1,
+        3
+      ],
+      "shN": [
+        1210857,
+        15,
+        3
+      ]
+    },
+    "optimizer_state_present": false
+  },
+  "stop": {
+    "session": "playworld-calibrated-kitchen-20261009",
+    "terminated_utc": "2026-10-08T23:53:20.457059+00:00",
+    "elapsed_seconds": 1393.2684705257416,
+    "estimated_units_at_observed_rate": 0.596009290169345,
+    "individual_billing_measured": false,
+    "both_artifacts_validated_before_stop": true
+  },
+  "browser_validation": {
+    "id": "cafe",
+    "objects": 1,
+    "colliders": 4916,
+    "deterministic_replay": true,
+    "subject_id": 1,
+    "movement_after_push_m": 0.8172626407992359,
+    "peak_sampled_tilt_degrees": 90.0012073450339,
+    "initial_settling_m": 0.0655236973085656,
+    "scripted_character_movement_m": 0.5508186216693609,
+    "interactive_character_movement_m": 0.9742031458747973,
+    "balls": 1,
+    "featured_button": true,
+    "world_sha256": "5f4f06bdced3517c58449f6400888bd6d4b3ef92691cb404fc44c3b51f094b91",
+    "shot_sha256": "ed3b125b011d1023e0a3b5de7be404a61c7c5eecd83c0f4868ca36a32096920e"
+  },
+  "capture": {
+    "fps": 15,
+    "frames": 120,
+    "width": 1920,
+    "height": 1080,
+    "seconds": 140.984,
+    "renderer": "ANGLE (NVIDIA, NVIDIA GeForce GTX 1660 Ti (0x00002191) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "world_sha256": "5f4f06bdced3517c58449f6400888bd6d4b3ef92691cb404fc44c3b51f094b91",
+    "shot_sha256": "ed3b125b011d1023e0a3b5de7be404a61c7c5eecd83c0f4868ca36a32096920e"
+  },
+  "peak_tilt_degrees_all_recorded_frames": 90.02991638232014,
+  "peak_tilt_frame": 51,
+  "sampled_physics_states": {
+    "0": {
+      "frame": 0,
+      "time": 0,
+      "tick": 0,
+      "objects": [
+        {
+          "id": 1,
+          "position": {
+            "x": -3.3949999809265137,
+            "y": 0.5336999893188477,
+            "z": -2.97979998588562
+          },
+          "rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0,
+            "w": 1
+          }
+        }
+      ],
+      "player": {
+        "x": -3.501270055770874,
+        "y": 0.800000011920929,
+        "z": -0.6767399907112122
+      },
+      "balls": [],
+      "actions": []
+    },
+    "44": {
+      "frame": 44,
+      "time": 2.933333333333333,
+      "tick": 176,
+      "objects": [
+        {
+          "id": 1,
+          "position": {
+            "x": -3.459761142730713,
+            "y": 0.5285142064094543,
+            "z": -2.971287965774536
+          },
+          "rotation": {
+            "x": -0.0010838443413376808,
+            "y": -0.012477295473217964,
+            "z": 0.0014810533029958606,
+            "w": 0.9999204874038696
+          }
+        }
+      ],
+      "player": {
+        "x": -2.9515011310577393,
+        "y": 0.7699577212333679,
+        "z": -0.6608420610427856
+      },
+      "balls": [],
+      "actions": []
+    },
+    "60": {
+      "frame": 60,
+      "time": 4,
+      "tick": 240,
+      "objects": [
+        {
+          "id": 1,
+          "position": {
+            "x": -3.363762855529785,
+            "y": 0.3193584382534027,
+            "z": -2.186980962753296
+          },
+          "rotation": {
+            "x": 0.6978687047958374,
+            "y": -0.022098420187830925,
+            "z": -0.11388465017080307,
+            "w": 0.7067682147026062
+          }
+        }
+      ],
+      "player": {
+        "x": -2.9515011310577393,
+        "y": 0.7699577212333679,
+        "z": -0.6608420610427856
+      },
+      "balls": [],
+      "actions": [
+        {
+          "time": 3,
+          "type": "push",
+          "object": 1
+        }
+      ]
+    },
+    "75": {
+      "frame": 75,
+      "time": 5,
+      "tick": 300,
+      "objects": [
+        {
+          "id": 1,
+          "position": {
+            "x": -3.356102228164673,
+            "y": 0.3167423903942108,
+            "z": -2.1883370876312256
+          },
+          "rotation": {
+            "x": 0.6964708566665649,
+            "y": -0.030826732516288757,
+            "z": -0.12212712317705154,
+            "w": 0.7064440250396729
+          }
+        }
+      ],
+      "player": {
+        "x": -2.9515011310577393,
+        "y": 0.7699577212333679,
+        "z": -0.6608420610427856
+      },
+      "balls": [],
+      "actions": [
+        {
+          "time": 3,
+          "type": "push",
+          "object": 1
+        }
+      ]
+    },
+    "90": {
+      "frame": 90,
+      "time": 6,
+      "tick": 360,
+      "objects": [
+        {
+          "id": 1,
+          "position": {
+            "x": -3.3564717769622803,
+            "y": 0.31670597195625305,
+            "z": -2.1887354850769043
+          },
+          "rotation": {
+            "x": 0.6964690685272217,
+            "y": -0.030944792553782463,
+            "z": -0.12218727916479111,
+            "w": 0.7064301371574402
+          }
+        }
+      ],
+      "player": {
+        "x": -2.9515011310577393,
+        "y": 0.7699577212333679,
+        "z": -0.6608420610427856
+      },
+      "balls": [
+        {
+          "x": -2.7549445629119873,
+          "y": 0.44703492522239685,
+          "z": -1.4081628322601318
+        }
+      ],
+      "actions": [
+        {
+          "time": 3,
+          "type": "push",
+          "object": 1
+        },
+        {
+          "time": 5.5,
+          "type": "throw"
+        }
+      ]
+    },
+    "119": {
+      "frame": 119,
+      "time": 7.933333333333334,
+      "tick": 476,
+      "objects": [
+        {
+          "id": 1,
+          "position": {
+            "x": -3.356478214263916,
+            "y": 0.3167065680027008,
+            "z": -2.1887354850769043
+          },
+          "rotation": {
+            "x": 0.6964718699455261,
+            "y": -0.030935266986489296,
+            "z": -0.12217769026756287,
+            "w": 0.7064294815063477
+          }
+        }
+      ],
+      "player": {
+        "x": -2.9515011310577393,
+        "y": 0.7699577212333679,
+        "z": -0.6608420610427856
+      },
+      "balls": [
+        {
+          "x": -2.459244728088379,
+          "y": 0.07992812246084213,
+          "z": -1.2028758525848389
+        }
+      ],
+      "actions": [
+        {
+          "time": 3,
+          "type": "push",
+          "object": 1
+        },
+        {
+          "time": 5.5,
+          "type": "throw"
+        }
+      ]
+    }
+  },
+  "encoding": {
+    "id": "cafe",
+    "title": "Kitchen and cafe",
+    "capture_world_sha256": "5f4f06bdced3517c58449f6400888bd6d4b3ef92691cb404fc44c3b51f094b91",
+    "shot_sha256": "ed3b125b011d1023e0a3b5de7be404a61c7c5eecd83c0f4868ca36a32096920e",
+    "captured_frames": 120,
+    "source": "Actual fixed-step browser viewer output; no generated imagery",
+    "gif_duration_seconds": 8.0,
+    "gif_fps": 15,
+    "quality": 65,
+    "gif_width": 480,
+    "gif_height": 270,
+    "gif_bytes": 1131733,
+    "mp4_bytes": 3909411,
+    "gif_sha256": "4e0b6cd5948f7ea11f9301117be3d467537bc1705d3a4cf6f558f275e84845dd",
+    "mp4_sha256": "17fab14c936708630e35f754561b323cb9e7dca11e655a06d30a2ce0c71bf6fb"
+  },
+  "spz_manifest": {
+    "source_world_sha256": "5633bc6aa205165ef8814a156892571f9354e923c749aa7fb71514718d634d4e",
+    "format": "Niantic SPZ v3",
+    "higher_order_sh": "preserved through SH3 (quantized)",
+    "files": [
+      {
+        "path": "background.spz",
+        "gaussians": 1191042,
+        "bytes": 23008670,
+        "sha256": "27ed4b095a23e484ed12099ece071966653a670cedec7dc099513dbd5245fe85"
+      },
+      {
+        "path": "objects/1.spz",
+        "gaussians": 9758,
+        "bytes": 174593,
+        "sha256": "347e0fd6c9aa17726b22b6a09d45b37c148430adaf516779e78240c2b7f7ff00"
+      }
+    ],
+    "gaussians": 1200800,
+    "splat_bytes": 23183263,
+    "objects": 1,
+    "colliders": 4916
+  },
+  "visual_fill": {
+    "kind": "convex_hull",
+    "min_world_y": 0.38,
+    "approximate": true,
+    "collision_geometry_unchanged": true
+  },
+  "remaining_limitations": [
+    "Floor and vegetation blur remain",
+    "Coverage outside the capture path is incomplete",
+    "Interior fill and stationary floor patch are approximate colors, not recovered photographic textures",
+    "Scale assumes a 1.5 m camera height",
+    "This does not validate a smartphone video"
+  ],
+  "rejected_trials": [
+    "Camera too close to the floor emphasized blur",
+    "Initial forward push did not move the chair sufficiently",
+    "Side push displaced and yawed the chair but did not tip it at the final timeline timing",
+    "Removing all interior fill made unobserved chair surfaces too transparent"
+  ],
+  "verification": "97 tests passed, 1 skipped; actual native Chromium replay, interactive walking, featured button, ball and minimum 60 degree tipping checks passed",
+  "all_five_demos_local_verification": {
+    "scope": "Local Chromium under a GitHub Pages-style path; no public deployment",
+    "url": "http://127.0.0.1:63969/movie2threejs/",
+    "demos": [
+      {
+        "id": "workbench",
+        "objects": 1,
+        "colliders": 2834,
+        "deterministic_replay": true,
+        "subject_id": 1,
+        "movement_after_push_m": 1.2370532669874112,
+        "peak_sampled_tilt_degrees": 169.88303944126935,
+        "initial_settling_m": 0.10732948676217002,
+        "scripted_character_movement_m": 0.45744152261976373,
+        "interactive_character_movement_m": 0.27082113828982773,
+        "balls": 1,
+        "featured_button": true,
+        "world_sha256": "bc4561a505907f3284d7290db21bf4f5241ea2ce280f1e1041a2de12fd336066",
+        "shot_sha256": "6a7d5ac028391dcfeb33b5732a460098e6bc23e00253aefbb2f6d41c121c62dc"
+      },
+      {
+        "id": "meeting-room",
+        "objects": 1,
+        "colliders": 1936,
+        "deterministic_replay": true,
+        "subject_id": 1,
+        "movement_after_push_m": 0.9751918977271313,
+        "peak_sampled_tilt_degrees": 154.07393960452296,
+        "initial_settling_m": 0.0592082647806967,
+        "scripted_character_movement_m": 0.4907253157932896,
+        "interactive_character_movement_m": 1.0110736407237555,
+        "balls": 1,
+        "featured_button": true,
+        "world_sha256": "98c9620cdea732fbb4ee5e62c0c49ff6d1a5501f1a68b91b659d6fab7dcd5052",
+        "shot_sha256": "d362107b2bd6300ed65f5d7a3117b9a68ac09ad753634262a1f87291b6c61132"
+      },
+      {
+        "id": "cafe",
+        "objects": 1,
+        "colliders": 4916,
+        "deterministic_replay": true,
+        "subject_id": 1,
+        "movement_after_push_m": 0.8172626407992359,
+        "peak_sampled_tilt_degrees": 90.0012073450339,
+        "initial_settling_m": 0.0655236973085656,
+        "scripted_character_movement_m": 0.5508186216693609,
+        "interactive_character_movement_m": 0.9069501667588528,
+        "balls": 1,
+        "featured_button": true,
+        "world_sha256": "5f4f06bdced3517c58449f6400888bd6d4b3ef92691cb404fc44c3b51f094b91",
+        "shot_sha256": "ed3b125b011d1023e0a3b5de7be404a61c7c5eecd83c0f4868ca36a32096920e"
+      },
+      {
+        "id": "lounge",
+        "objects": 2,
+        "colliders": 4169,
+        "deterministic_replay": true,
+        "subject_id": 5,
+        "movement_after_push_m": 1.4600224569405873,
+        "peak_sampled_tilt_degrees": 90.0000155664298,
+        "initial_settling_m": 0.005115250679550589,
+        "scripted_character_movement_m": 0.514269430212408,
+        "interactive_character_movement_m": 1.0290069437155058,
+        "balls": 1,
+        "featured_button": true,
+        "world_sha256": "74d5f27ac3d2ea49ddc37b4dffd884a7dbbf5f96ac1a222361f287ed4adc53e2",
+        "shot_sha256": "3a87ae61a9847996cc8a8804ee197ed33d7ffdfa1b54d90527e8accdd5746b7d"
+      },
+      {
+        "id": "furnished-room",
+        "objects": 4,
+        "colliders": 1471,
+        "deterministic_replay": true,
+        "subject_id": 5,
+        "movement_after_push_m": 2.3544889701495393,
+        "peak_sampled_tilt_degrees": 90.00012532134939,
+        "initial_settling_m": 0.006355280878349228,
+        "scripted_character_movement_m": 0.5507291031755011,
+        "interactive_character_movement_m": 1.0292247677993311,
+        "balls": 1,
+        "featured_button": true,
+        "world_sha256": "5e4d305037a12e0fbca2e0404637f3724b457fdc142f647b8a72f538608eca86",
+        "shot_sha256": "ac84a83f82b4f6c494305e7751d4560d6414ccfc4a834ba95d5f21f9625eed0a"
+      }
+    ],
+    "gallery_mobile_overflow": false,
+    "browser_errors": []
+  }
+}

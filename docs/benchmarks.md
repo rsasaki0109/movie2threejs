@@ -139,7 +139,7 @@ Initial attempts exhausted memory while another job used the shared GPU. No othe
 
 Meeting-room poses and training succeeded in [earlier](runs/gallery/meeting-room/run.json) [invocations](runs/gallery/meeting-room/run-resume-train.json). Raw reports retain the wrapper-import failure and out-of-memory failures. The cafe, window-office and furnished-room successful invocations reused the already extracted frames and took 380.923 s, 265.825 s and 224.899 s respectively.
 
-Browser review rejected unstable/fragmentary SAM instances. The meeting room was rebuilt with chair instance 9 only ([1.316 s assembly](runs/gallery/meeting-room/reviewed-assembly.json)); the cafe keeps six reviewed instances ([3.386 s assembly](runs/gallery/cafe/reviewed-assembly.json)). Other captured furniture stays static. This selection is manual, not a claim of automatic perfect segmentation.
+Browser review rejected unstable/fragmentary SAM instances. The original meeting room was rebuilt with chair instance 9 only ([1.316 s assembly](runs/gallery/meeting-room/reviewed-assembly.json)); the original cafe kept six reviewed instances ([3.386 s assembly](runs/gallery/cafe/reviewed-assembly.json)). Both were subsequently replaced by calibrated showcases. Other captured furniture stays static. This selection is manual, not a claim of automatic perfect segmentation.
 
 The window office initially produced enormous collision boxes: distant sparse points expanded voxel bounds and forced excessive coarsening. Rebuilding with a 6 m margin around the aligned camera path excluded 12,439 distant Gaussians and clipped collision/support inputs ([2.820 s assembly](runs/gallery/lounge/bounded-assembly.json)). The default pipeline does not crop unless `--bounds-margin` is set. The synthetic-room regression checks that distant outliers cannot enlarge the bounded room or remove its chair, crate and mug.
 
@@ -387,3 +387,59 @@ ball throwing and pause passed. CPU allocation lasted **14 min 41.3 s**, with
 was not measured. No new reconstruction was run. A same-session interactive GPU
 first run and phone-video upload remain unverified.
 [Preview and verification limits](colab-ui.md#actual-gpu-world-restored-in-colab).
+
+## Calibrated kitchen: 9 October 2026
+
+The adopted kitchen/cafe uses **144 undistorted Eyeful Tower photographs** from
+cameras **19,16,22**, ordinal interval **168:240** independently per camera,
+provided Metashape COLMAP calibration and **100,000 sparse initialization points**.
+SAM 3 used sixteen of camera 19's photographs in the same coordinate frame,
+with prompt `chair` and seed frame 4. No VGGT or smartphone video was used.
+The final 7,000-step model contains **1,210,857 Gaussians**.
+
+Source revision: `634a5e249f95a9a7b8d40a6426b9324095bb5eed`.
+Dedicated **NVIDIA L4, 23,034 MiB**, driver **580.82.07**.
+Dates here use JST; the UTC run and termination timestamps are in the
+[complete receipt](runs/quality/cafe-calibrated-20261009.json).
+
+| Stage | Measured seconds |
+| --- | ---: |
+| Isolated environment setup, including CUDA compilation | 602.029 |
+| gsplat training, 7,000 steps | 290.618 |
+| SAM 3 segmentation | 48.651 |
+| Raw world assembly | 9.040 |
+| Train + segment + raw world | 348.309 |
+| Enclosing run, including input extraction and backup preparation | 380.015 |
+| Local CPU rebuild after selecting chair 1 | 8.470 |
+| Native 1920×1080 browser recording, 120 frames | 140.984 |
+
+The core stages exclude setup, locally prepared input downloads, result transfer,
+CPU review and browser recording. The raw export has **4 movable objects and
+4,910 colliders**. Manual mask/shape review retains **one foreground chair**;
+thin or incomplete detections remain static. The adopted world has **1,200,800
+Gaussians, 4,916 colliders and one approximate floor patch**, packed as
+**23,183,263 SPZ bytes** with SH3 retained. Its upper interior is an approximate
+colored hull clipped at assumed height **0.38 m**; physics geometry is unchanged.
+
+Trainer held-out metrics were **26.874 dB PSNR, 0.9097 SSIM and 0.2399 LPIPS**.
+The photographs, input count, poses and training schedule differ from the older
+published cafe, so these are not a controlled before/after comparison.
+Floor and vegetation blur remain visible.
+
+The **285,765,173-byte checkpoint** and **551,362,879-byte ZIP** were recovered
+before shutdown with matching SHA-256. ZIP CRC, both camera models, raw final PLY,
+all sixteen masks and CPU `weights_only` loading at step 6,999 passed; every tensor
+was finite. Optimizer state is absent. Transfers stalled intermittently; verified
+chunks were reused. An independent CLI ZIP attempt was cancelled after the
+chunk watcher completed, rather than relied on after GPU deletion.
+
+The L4 stopped after **23 min 13.3 s**, below the approved **40 min / 1.03-unit**
+cap. Estimated task consumption was **0.596009 units** at the observed
+1.54 units/hour; individual billing was not measured. Usage subsequently showed
+zero assignments and zero consumption rate.
+
+Native Chromium confirms walking, the featured ray push, a thrown ball and exact
+replay at sampled states. The chair moves **0.817 m** and reaches **90.03°** tilt
+over all recorded frames. The 8 s GIF is **1,131,733 bytes**, 480×270; the
+1920×1080 MP4 is **3,909,411 bytes**. [Encoding receipt](demos/cafe-provenance.json).
+This validates this reviewed public showcase, not automatic phone-video quality.

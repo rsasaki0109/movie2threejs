@@ -73,3 +73,42 @@ def bottom_cap(points: np.ndarray, support_y: float, centroid: np.ndarray,
     vertices = np.column_stack([corners[:, 0], np.full(4, support_y + .007), corners[:, 1]])
     return {"kind": "bottom_cap", "vertices": np.round(vertices - centroid, 5).tolist(),
             "approximate": True}
+
+
+def clipped_hull_fill(points: np.ndarray, min_y: float, centroid: np.ndarray) -> dict | None:
+    """Approximate only the upper interior of a reviewed object's convex body.
+
+    The explicit world-height cut leaves chair leg gaps open. Intersect hull
+    edges with the cut plane, rather than dropping vertices and changing the
+    upper outline. This is visual geometry; never use it for physics.
+    """
+    points = np.asarray(points, dtype=float)
+    centroid = np.asarray(centroid, dtype=float)
+    if points.ndim != 2 or points.shape[1] != 3 or centroid.shape != (3,):
+        raise ValueError('Expected points (N, 3) and a three-coordinate centroid')
+    if not np.isfinite(points).all() or not np.isfinite(centroid).all() or not np.isfinite(min_y):
+        raise ValueError('Visual hull coordinates and cut height must be finite')
+    if len(points) < 4:
+        return None
+    try:
+        hull = ConvexHull(points)
+    except QhullError:
+        return None
+    kept = list(points[hull.vertices][points[hull.vertices, 1] >= min_y])
+    edges = {tuple(sorted((int(a), int(b)))) for face in hull.simplices
+             for a, b in zip(face, np.roll(face, -1))}
+    for a, b in sorted(edges):
+        start, end = points[a], points[b]
+        if (start[1] < min_y < end[1]) or (end[1] < min_y < start[1]):
+            kept.append(start + (end-start) * ((min_y-start[1]) / (end[1]-start[1])))
+    if len(kept) < 4:
+        return None
+    kept = np.unique(np.round(kept, 10), axis=0)
+    try:
+        clipped = ConvexHull(kept)
+    except QhullError:
+        return None
+    if clipped.volume <= 1e-10:
+        return None
+    return {'kind': 'convex_hull', 'vertices': np.round(kept[clipped.vertices]-centroid, 5).tolist(),
+            'min_world_y': float(min_y), 'approximate': True}

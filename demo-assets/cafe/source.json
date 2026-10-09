@@ -1,15 +1,910 @@
 {
-  "id": "cafe",
-  "title": "Kitchen & cafe",
   "dataset": "kitchen",
-  "camera": 19,
-  "start": 14,
-  "duration": 6,
-  "prompts": "chair,potted plant,water bottle",
-  "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/images-jpeg-2k/19.mp4",
-  "kind": "capture-rig photograph sequence visualization",
+  "camera": "19,16,22",
+  "primary_camera": "19",
+  "frames_per_camera_requested": 48,
+  "frames": 144,
+  "segmentation_frames": 16,
+  "start_index": 168,
+  "stop_index_exclusive": 240,
+  "initial_points": 100000,
+  "camera_source": "dataset-provided Metashape COLMAP calibration",
+  "images": "dataset-provided undistorted colmap/images_8 JPEGs",
+  "vggt_used": false,
   "license": "MIT",
   "license_revision": "06a01a4915afc872b893c20a025a0e14598c8478",
-  "source_sha256": "bfdc18b86955e9943a74834a0ec58e05059fb13c69fa89541fa490501108432a",
-  "input_sha256": "c27a1bdf029fba88365278ee1f22d68f6fa6c0f7c1de9d2bc494e97bf93e0b38"
+  "downloads": [
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/sparse/0/cameras.bin",
+      "path": "_upstream/sparse/cameras.bin",
+      "bytes": 1072,
+      "sha256": "0c4f51ea3f422ef924e466166f49c974f7b2026cad2e84db45b12a29e1187590"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/sparse/0/images.bin",
+      "path": "_upstream/sparse/images.bin",
+      "bytes": 239196374,
+      "sha256": "85232caad16acf343e7875b9ed7ceffedae2000b117bb2e002444abb62b4c8db"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/sparse/0/points3D.bin",
+      "path": "_upstream/sparse/points3D.bin",
+      "bytes": 282871217,
+      "sha256": "f67a2a1ad1a0b5ee4eab1ebd5c7489b77425405edf7a8d5bf33ea067320a7c9e"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/19_DSC1522.jpg",
+      "path": "images/19_DSC1522.jpg",
+      "bytes": 305984,
+      "sha256": "0667d38a4560a02231aa59c9d3881c276e980658402fafc7056bbce47896b422"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/19_DSC1540.jpg",
+      "path": "images/19_DSC1540.jpg",
+      "bytes": 302512,
+      "sha256": "0d65d1399a33ddc9483d294b6f25106ae228a80cd179a64a9cf7bb56ab77544b"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/19_DSC1549.jpg",
+      "path": "images/19_DSC1549.jpg",
+      "bytes": 295991,
+      "sha256": "683768a5d90eb223d4b1e166f6cac712b33844ebee791062be7a48fe0eadef45"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/19_DSC1567.jpg",
+      "path": "images/19_DSC1567.jpg",
+      "bytes": 297615,
+      "sha256": "17e7e60c279d3d06b4da0cc0c2143f32b1120caf3c8a15734423322191be03ac"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/19_DSC1576.jpg",
+      "path": "images/19_DSC1576.jpg",
+      "bytes": 298010,
+      "sha256": "bbc7ff4d528529b890bf97fee437a9c5b4bdcbe1f656f0b859a7be97c8789f31"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/19_DSC1594.jpg",
+      "path": "images/19_DSC1594.jpg",
+      "bytes": 298111,
+      "sha256": "d2bdf8fb89675cecdc0a0825730d9851b88aacde23a05c6beca9864c07802614"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/19_DSC1603.jpg",
+      "path": "images/19_DSC1603.jpg",
+      "bytes": 302228,
+      "sha256": "53228b383a852162c686eab6523be449ef81d7afbd61262d6aa786d015c0bbd5"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/19_DSC1621.jpg",
+      "path": "images/19_DSC1621.jpg",
+      "bytes": 313591,
+      "sha256": "b872d478c7b72973dee3812312810d3552ee5602335ca961e9e0ca058decb7be"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/19_DSC1630.jpg",
+      "path": "images/19_DSC1630.jpg",
+      "bytes": 316748,
+      "sha256": "7f195f2afaae4bbc28149b3019f41feff8baa389a7dac43d870ad26f7143324e"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/19_DSC1648.jpg",
+      "path": "images/19_DSC1648.jpg",
+      "bytes": 299749,
+      "sha256": "3fe87d59e9c05bc296e3a2e2fd3b03642b5cea5fae9387a108058da383d3baf1"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/19_DSC1657.jpg",
+      "path": "images/19_DSC1657.jpg",
+      "bytes": 293287,
+      "sha256": "b6e586069f8aed1aba28492aba2a03acfb4d7677668b67162d6cbc4fec796b93"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/19_DSC1675.jpg",
+      "path": "images/19_DSC1675.jpg",
+      "bytes": 331611,
+      "sha256": "3dd18f9ccf0d9eedcfda9474d55d241e27c576b4f84ac7552f30487ff48187d8"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/19_DSC1684.jpg",
+      "path": "images/19_DSC1684.jpg",
+      "bytes": 369068,
+      "sha256": "7d35b0d9f4208a9d7db8631f05cd00fe11a4d66746d8ec88d7e260cbeface377"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/19_DSC1702.jpg",
+      "path": "images/19_DSC1702.jpg",
+      "bytes": 380114,
+      "sha256": "a08ba3e34ab749a5caa2ca0db122c4d3089289eaab595fe0a8887dbc0da9516b"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/19_DSC1711.jpg",
+      "path": "images/19_DSC1711.jpg",
+      "bytes": 370650,
+      "sha256": "392b1e999e80f6ddff8e1e4cf94e3f5ecb92fc3597fefcbd69ea03c2ecd6eca1"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/19_DSC1729.jpg",
+      "path": "images/19_DSC1729.jpg",
+      "bytes": 355637,
+      "sha256": "31e2c54eac5595f888040d9dbb792a1c370bc00261eb8597293d1d205eab7362"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/19_DSC1738.jpg",
+      "path": "images/19_DSC1738.jpg",
+      "bytes": 360017,
+      "sha256": "d50625f41156204610a616f86b2c5c2cc15beb0c01a40e6d65bd6ae0d597d59c"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/19_DSC1756.jpg",
+      "path": "images/19_DSC1756.jpg",
+      "bytes": 391398,
+      "sha256": "96111687f513f9c2b6088449a1e0135c6d4d1a09bc23aa89e44dbb0efd66ba4e"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/19_DSC1765.jpg",
+      "path": "images/19_DSC1765.jpg",
+      "bytes": 390327,
+      "sha256": "18287f611a88fd44a4307ce5115dd8e99c88322348822f1a29f4d02225267a26"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/19_DSC1783.jpg",
+      "path": "images/19_DSC1783.jpg",
+      "bytes": 370814,
+      "sha256": "e90d31da4ec4d9e41395c5fa4802e544d3b7ef1675ec947c14c98efb5ec3c98e"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/19_DSC1792.jpg",
+      "path": "images/19_DSC1792.jpg",
+      "bytes": 367534,
+      "sha256": "15fa91c7ea4d0ac08dffed8228d7e6458129bda6e9c09171cfad223a408e302c"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/19_DSC1810.jpg",
+      "path": "images/19_DSC1810.jpg",
+      "bytes": 352806,
+      "sha256": "6a5bc62e14fac8b1693a9ea1efbbd17687a7fb892703003660dc58b06ac27dec"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/19_DSC1819.jpg",
+      "path": "images/19_DSC1819.jpg",
+      "bytes": 359341,
+      "sha256": "f572a72844e9069b0dd841f3b8eca7535de92dbd93a956ea9318285c861dc3d0"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/19_DSC1837.jpg",
+      "path": "images/19_DSC1837.jpg",
+      "bytes": 367811,
+      "sha256": "f6ae6d79bd95e304d1aaf624e3ffbc1e35aef8d4a3b6486026dfbc7170e9fca6"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/19_DSC1846.jpg",
+      "path": "images/19_DSC1846.jpg",
+      "bytes": 371227,
+      "sha256": "68a9b9e2442f9ae4f6a9aece4b0ad141673950ed47fe4c0b175dcb675f5ad454"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/19_DSC1864.jpg",
+      "path": "images/19_DSC1864.jpg",
+      "bytes": 419703,
+      "sha256": "0125e20f99cc234055b541939d2f009ae3646c90ba3aa8d2a5ee7f6fc0ebc028"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/19_DSC1873.jpg",
+      "path": "images/19_DSC1873.jpg",
+      "bytes": 454181,
+      "sha256": "84fd1b058deb74f8b8d03da37c9d475243e6188c7b350fc1e4d3deaf05cad10c"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/19_DSC1891.jpg",
+      "path": "images/19_DSC1891.jpg",
+      "bytes": 462244,
+      "sha256": "d249e240dba2135b506cbc2c0ea5e66fd5035e5a79c0b82e381fc98096512183"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/19_DSC1900.jpg",
+      "path": "images/19_DSC1900.jpg",
+      "bytes": 440812,
+      "sha256": "48c8a487a9d55b9073d117d7f64ea6e6cf068dcd17f42d8897679a270f5c97a6"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/19_DSC1918.jpg",
+      "path": "images/19_DSC1918.jpg",
+      "bytes": 381413,
+      "sha256": "2e714114ea0b1febe28af361eb827bacc2e22e83f492e3cb2e209fe7ddb2d15a"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/19_DSC1927.jpg",
+      "path": "images/19_DSC1927.jpg",
+      "bytes": 371543,
+      "sha256": "716242179e3dc8cd4361d5830ddd8d2ee5bb5dfaa3dd4af56064c1fa0345db6d"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/19_DSC1945.jpg",
+      "path": "images/19_DSC1945.jpg",
+      "bytes": 366470,
+      "sha256": "46f699d20e3f02d0d95af29e2a2ca19612fe013ca79ad94be327da44b59703e2"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/19_DSC1954.jpg",
+      "path": "images/19_DSC1954.jpg",
+      "bytes": 367830,
+      "sha256": "0cc76437da186cc90f031e64d86568896155bb61b2853789a4ab375a2cb54bf2"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/19_DSC1972.jpg",
+      "path": "images/19_DSC1972.jpg",
+      "bytes": 354564,
+      "sha256": "44c26d8a32241fed499f04e2b7021baf9066bc2f51b3f1c88dd3b49654f0eed2"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/19_DSC1981.jpg",
+      "path": "images/19_DSC1981.jpg",
+      "bytes": 349815,
+      "sha256": "573aa6c6395240aa6b9333dff2b4c0e4c5d0c1e054a82b243d7ef588fd53f01d"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/19_DSC1999.jpg",
+      "path": "images/19_DSC1999.jpg",
+      "bytes": 352915,
+      "sha256": "e98a35ed252ccf27ecb52413fc5f6ba6202fb139fa93cb8c739698321efe6e2b"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/19_DSC2008.jpg",
+      "path": "images/19_DSC2008.jpg",
+      "bytes": 348231,
+      "sha256": "866268965f8eff50f16e09ea625dafcd726a98dd471fb14bf88d07408227ce01"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/19_DSC2026.jpg",
+      "path": "images/19_DSC2026.jpg",
+      "bytes": 339189,
+      "sha256": "c494c38325f541d7abefa251cf179b91ed0007a2fc1ccf4ad7caad5415f52159"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/19_DSC2035.jpg",
+      "path": "images/19_DSC2035.jpg",
+      "bytes": 336821,
+      "sha256": "2f6c31b51dbc6c91dac139cd975eb929905d779d1935c486e52ba20c6b3ffe68"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/19_DSC2053.jpg",
+      "path": "images/19_DSC2053.jpg",
+      "bytes": 349089,
+      "sha256": "7739103a49335fa51509724770c62c56c86796bd08db0cba3f255c75dcd8f960"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/19_DSC2062.jpg",
+      "path": "images/19_DSC2062.jpg",
+      "bytes": 359218,
+      "sha256": "4807e253c244d42c9378cb02f9a6c083e5511325a1da9b138c24cd6c508a6d37"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/19_DSC2080.jpg",
+      "path": "images/19_DSC2080.jpg",
+      "bytes": 365608,
+      "sha256": "fe6790b3b7bc972dda8d1c6a64cf364344c43de5a54b38a4a52cf5d7b63566a2"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/19_DSC2089.jpg",
+      "path": "images/19_DSC2089.jpg",
+      "bytes": 366961,
+      "sha256": "697b7bc8a4a2f561d0171656e5212c47926a56043a2efad46975ed0da0b3b557"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/19_DSC2107.jpg",
+      "path": "images/19_DSC2107.jpg",
+      "bytes": 396507,
+      "sha256": "8619e84b543ad5357b29633a992cf148733a59266e2fb7e4e452bbb33cc3a5f2"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/19_DSC2116.jpg",
+      "path": "images/19_DSC2116.jpg",
+      "bytes": 407091,
+      "sha256": "c610ce309c6d03ed771085e9f80011a4a739245b00029535a910631d497211f4"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/19_DSC2134.jpg",
+      "path": "images/19_DSC2134.jpg",
+      "bytes": 396439,
+      "sha256": "2c49739df80c0a9f854699e8f6c1464c83ab51abe6fdc762151f63f07b220be0"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/19_DSC2143.jpg",
+      "path": "images/19_DSC2143.jpg",
+      "bytes": 394421,
+      "sha256": "c3df3151ec12ff21e067a177a2d710aae19b5b57d65caeed7cbf1486d1784595"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/19_DSC2161.jpg",
+      "path": "images/19_DSC2161.jpg",
+      "bytes": 401889,
+      "sha256": "aa85b449313b9fd1ca2d7abe320610d66f41193b2506980a92add3cd8bb4e3e1"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/16_DSC1522.jpg",
+      "path": "images/16_DSC1522.jpg",
+      "bytes": 362035,
+      "sha256": "c412ba55f62af186a8a0eaf9120a28ee399d1294d2ea2b7a127a397babf44fb8"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/16_DSC1540.jpg",
+      "path": "images/16_DSC1540.jpg",
+      "bytes": 366611,
+      "sha256": "ce4477a8682e005e66a46e5e6e44c802b5c4ff10d1d4c52b026dab85da6775b1"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/16_DSC1549.jpg",
+      "path": "images/16_DSC1549.jpg",
+      "bytes": 354102,
+      "sha256": "1b7df4b255b4c96da7d7cac75d40d996c0881bc9143d1e8eeb2b4b93668ca4fc"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/16_DSC1567.jpg",
+      "path": "images/16_DSC1567.jpg",
+      "bytes": 369854,
+      "sha256": "17e999665baebe2ea7e7ad768316a68a3fa49c2121221194c4b3a1d843efa050"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/16_DSC1576.jpg",
+      "path": "images/16_DSC1576.jpg",
+      "bytes": 370097,
+      "sha256": "cb04523fda107615249c87cbe831387694d7c0a3a2129bc8af7655d6fb940dee"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/16_DSC1594.jpg",
+      "path": "images/16_DSC1594.jpg",
+      "bytes": 369157,
+      "sha256": "2f5013f7395ee0f380a48992ce70261cc410cc06b275301ca9292f7f3345241c"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/16_DSC1603.jpg",
+      "path": "images/16_DSC1603.jpg",
+      "bytes": 368152,
+      "sha256": "245a0b6525f017c831ef36df48b8427ae3d7827c915f066868ce627ea717b270"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/16_DSC1621.jpg",
+      "path": "images/16_DSC1621.jpg",
+      "bytes": 364959,
+      "sha256": "a92f53a27cf9f2deae1148a0152e215919f617aa5768ed28e068d3839fc22945"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/16_DSC1630.jpg",
+      "path": "images/16_DSC1630.jpg",
+      "bytes": 370222,
+      "sha256": "893fb6652b335ddefa460da4a71af7162db14ea166c0d176db0ae85cfee4738a"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/16_DSC1648.jpg",
+      "path": "images/16_DSC1648.jpg",
+      "bytes": 347351,
+      "sha256": "aad60c588b05903eb2981108fa77b90c279f1719aff6a1668df257acdaabde10"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/16_DSC1657.jpg",
+      "path": "images/16_DSC1657.jpg",
+      "bytes": 339542,
+      "sha256": "607ffbff0a235e3a5919b10fb78c3603200466aea20e974b2325f7b1d90d7f52"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/16_DSC1675.jpg",
+      "path": "images/16_DSC1675.jpg",
+      "bytes": 376344,
+      "sha256": "47e023738cb2912e0b004051ec4b07325e4bec0929f11921fd5729a86a3a621f"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/16_DSC1684.jpg",
+      "path": "images/16_DSC1684.jpg",
+      "bytes": 380292,
+      "sha256": "6568b256b9463cb933bd5b67c2c385ed4d0a3c54b338bb7a04ba1a8e4e666173"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/16_DSC1702.jpg",
+      "path": "images/16_DSC1702.jpg",
+      "bytes": 391933,
+      "sha256": "9ef3e2bb92411fc3aaa2ae2be588c6d71f1e293c6b887a8e59ecfa9bfa3c4bd5"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/16_DSC1711.jpg",
+      "path": "images/16_DSC1711.jpg",
+      "bytes": 391479,
+      "sha256": "6c98d2bd1639b0ba8fb42fbf59b38c30d5b52cbb727ca28bbf0ea8140ae2c930"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/16_DSC1729.jpg",
+      "path": "images/16_DSC1729.jpg",
+      "bytes": 393121,
+      "sha256": "b5a38af26ce8bf7a491eb017fc38c39bfa0b93f5a2f8f10adff5b4894c8d3ba6"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/16_DSC1738.jpg",
+      "path": "images/16_DSC1738.jpg",
+      "bytes": 390556,
+      "sha256": "f1b70ab518d3256f6498a782459a8caf5448edfedd88b15be94b8b16ab5b4c47"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/16_DSC1756.jpg",
+      "path": "images/16_DSC1756.jpg",
+      "bytes": 394083,
+      "sha256": "5a081e9855299086dbf2c9d30990243ab6d31ea3ec664334ff893b1f7418f49c"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/16_DSC1765.jpg",
+      "path": "images/16_DSC1765.jpg",
+      "bytes": 398455,
+      "sha256": "6851651bac52304251c1e463c318566f7a82205b61f655d3e2fd5a0fc272e425"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/16_DSC1783.jpg",
+      "path": "images/16_DSC1783.jpg",
+      "bytes": 418988,
+      "sha256": "5bc944b86c8b4e7955812870e30c8f432e18e0303b1ceb627bd65bdbfeea6ff7"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/16_DSC1792.jpg",
+      "path": "images/16_DSC1792.jpg",
+      "bytes": 421723,
+      "sha256": "64b8b16c70f5a61f40b944e9303cb135694ac1113438b3c90c8623ef971b5636"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/16_DSC1810.jpg",
+      "path": "images/16_DSC1810.jpg",
+      "bytes": 457392,
+      "sha256": "456eac95447503766e96a93e716fd7764fcfb7ea80112eefa7e299ea7e8c6f8e"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/16_DSC1819.jpg",
+      "path": "images/16_DSC1819.jpg",
+      "bytes": 468450,
+      "sha256": "effdb76f2fcb007b6e816cf9b154cadaad09213c54918ccc995576be2a9e2b1e"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/16_DSC1837.jpg",
+      "path": "images/16_DSC1837.jpg",
+      "bytes": 433264,
+      "sha256": "9229c1588ecddf5510b2b1b1bfd2dd6224cd472d699741d738f37c794b5a895d"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/16_DSC1846.jpg",
+      "path": "images/16_DSC1846.jpg",
+      "bytes": 452706,
+      "sha256": "73fa206caeec7896fefbe5fa3dba30c16289f721eb5afdccecf764ff198f9dfe"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/16_DSC1864.jpg",
+      "path": "images/16_DSC1864.jpg",
+      "bytes": 486585,
+      "sha256": "a43f00b5a5e420f8d25ceb5ac5f74b2618490bea3891f406426f560cdb833cf9"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/16_DSC1873.jpg",
+      "path": "images/16_DSC1873.jpg",
+      "bytes": 514916,
+      "sha256": "1f65d7d4a45dfeba4f4eebef11454cb1c34259dc7d9697765d1758d9cbaff3f0"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/16_DSC1891.jpg",
+      "path": "images/16_DSC1891.jpg",
+      "bytes": 412014,
+      "sha256": "ad1486072d4ca72a2849546bc8d51c71bd7d048cb09118779b13c2b9d0271515"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/16_DSC1900.jpg",
+      "path": "images/16_DSC1900.jpg",
+      "bytes": 417950,
+      "sha256": "894f9fdd2cc655371df25f2f22d55f78330f68281937af49f8535d22b108c67c"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/16_DSC1918.jpg",
+      "path": "images/16_DSC1918.jpg",
+      "bytes": 415957,
+      "sha256": "acd876d1960da1160e3cb4d989b33b6c007b04b241128ddf31db6d8a8ba1a8d1"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/16_DSC1927.jpg",
+      "path": "images/16_DSC1927.jpg",
+      "bytes": 424291,
+      "sha256": "6d929dc3bcfed0cdda7c5527e2cd05e93b0ee189464b54f0b9d1d079ae29e025"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/16_DSC1945.jpg",
+      "path": "images/16_DSC1945.jpg",
+      "bytes": 420438,
+      "sha256": "3ba873be97a11eae7bca04753ccfbbad15af38baa8ecccd4b29fa90fe95679aa"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/16_DSC1954.jpg",
+      "path": "images/16_DSC1954.jpg",
+      "bytes": 416066,
+      "sha256": "367e25abe7705c2235bf79f891d6746517aaf49294ff664544b730b0d9fc9bc2"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/16_DSC1972.jpg",
+      "path": "images/16_DSC1972.jpg",
+      "bytes": 411253,
+      "sha256": "2a4fa133a628c73f585f5e21cf3a218adb5914a93c3a7c1d01b7333d97d14aaa"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/16_DSC1981.jpg",
+      "path": "images/16_DSC1981.jpg",
+      "bytes": 407769,
+      "sha256": "617eb84362434cf8b255ad7ec723ff2960e7e6e69636af50cdb1107b48dc8ac3"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/16_DSC1999.jpg",
+      "path": "images/16_DSC1999.jpg",
+      "bytes": 410793,
+      "sha256": "df2400aefce6bac61f48c205cf625a7954622238f52252f5bda9fe025588e257"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/16_DSC2008.jpg",
+      "path": "images/16_DSC2008.jpg",
+      "bytes": 408463,
+      "sha256": "4726833d9c12566a0109b28a6421ba1cc760899d7cbcd8337d9ec2490139befe"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/16_DSC2026.jpg",
+      "path": "images/16_DSC2026.jpg",
+      "bytes": 414236,
+      "sha256": "2fe4f8ae7c3d7b3cc068614e69c01f4c369e8881b88be52c89694ffeae842e7a"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/16_DSC2035.jpg",
+      "path": "images/16_DSC2035.jpg",
+      "bytes": 415048,
+      "sha256": "95379dcf891076b9944aea299f3b0878a0886729a9ddcce181d97ae64da69eda"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/16_DSC2053.jpg",
+      "path": "images/16_DSC2053.jpg",
+      "bytes": 432544,
+      "sha256": "bfa6f4d2f91c70180ce725ae5f9017ce523d213186ed53305ae5911fc740cb23"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/16_DSC2062.jpg",
+      "path": "images/16_DSC2062.jpg",
+      "bytes": 435683,
+      "sha256": "4dc671ab4a8a7f780fdca444b94e4901439287319d36f09cd82ac8b501fa1481"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/16_DSC2080.jpg",
+      "path": "images/16_DSC2080.jpg",
+      "bytes": 461005,
+      "sha256": "8991d15529babd12ac5119c646c61f36f085a1fefd58d3d854c9a677ab0f58c6"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/16_DSC2089.jpg",
+      "path": "images/16_DSC2089.jpg",
+      "bytes": 475967,
+      "sha256": "6a6989de55f14907d6b18fa5a5020e0e916988ad82f8d7191edbbc4e8c40a3d7"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/16_DSC2107.jpg",
+      "path": "images/16_DSC2107.jpg",
+      "bytes": 517953,
+      "sha256": "42eec56972003125da415a7249a2ce53a4fcfd377eafd3c9d518ad2a02ef16ca"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/16_DSC2116.jpg",
+      "path": "images/16_DSC2116.jpg",
+      "bytes": 536958,
+      "sha256": "ee34634788cb1b78fec8672f1c1d7213eca85a2a6f6341cdd1136b228603cd3e"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/16_DSC2134.jpg",
+      "path": "images/16_DSC2134.jpg",
+      "bytes": 532300,
+      "sha256": "295688d85d581f86997b24fba950e3372eecc47d5d442e284aa0b482a5fe544b"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/16_DSC2143.jpg",
+      "path": "images/16_DSC2143.jpg",
+      "bytes": 527232,
+      "sha256": "763e1e8be3231cc99a8572d10297c8620953a34c2c9f4f6d661b9ebe891628ef"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/16_DSC2161.jpg",
+      "path": "images/16_DSC2161.jpg",
+      "bytes": 511185,
+      "sha256": "3c08b1e4dd25832eb39c956fc04a16899b396a336df57c56219ba9e36e963342"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/22_DSC1522.jpg",
+      "path": "images/22_DSC1522.jpg",
+      "bytes": 329832,
+      "sha256": "0bfd0f63569e84d385f3eb05856a061ba73869f38f57d80a0a29d030de408b0c"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/22_DSC1540.jpg",
+      "path": "images/22_DSC1540.jpg",
+      "bytes": 319618,
+      "sha256": "d4b80c411cf723c900a905798d1945de8588632d128f64d585d57b5089c49591"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/22_DSC1549.jpg",
+      "path": "images/22_DSC1549.jpg",
+      "bytes": 307768,
+      "sha256": "b490a677adc571195ba4119f7a0f8b99534d2d7ffe266135c2757061dca22b3b"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/22_DSC1567.jpg",
+      "path": "images/22_DSC1567.jpg",
+      "bytes": 330956,
+      "sha256": "8be2884798ba43cf83ea6f6925f436e71de5cad2ca1b1e036b706397bf9322ab"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/22_DSC1576.jpg",
+      "path": "images/22_DSC1576.jpg",
+      "bytes": 326779,
+      "sha256": "82532e3278d84ebc998dba4d8e7aff9891f57c3ff988fc38620f4aa0e64e8f71"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/22_DSC1594.jpg",
+      "path": "images/22_DSC1594.jpg",
+      "bytes": 328612,
+      "sha256": "8db4e17cde4d944015aee3469202b4c5b2345613903652d298d90659fd817cc4"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/22_DSC1603.jpg",
+      "path": "images/22_DSC1603.jpg",
+      "bytes": 326533,
+      "sha256": "5f3434046abc8f6bf20d3bdba2f818acf14c804d1f4abe08f669f1fa0819fe36"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/22_DSC1621.jpg",
+      "path": "images/22_DSC1621.jpg",
+      "bytes": 333065,
+      "sha256": "c423cf4466f975039a6171b8ee2c7768071f28035b7b38eee662f8d4cb60b211"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/22_DSC1630.jpg",
+      "path": "images/22_DSC1630.jpg",
+      "bytes": 328366,
+      "sha256": "3d8934e0085b33573f65bf19010f016b875e34c05d5765451d930d787169e7c5"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/22_DSC1648.jpg",
+      "path": "images/22_DSC1648.jpg",
+      "bytes": 308618,
+      "sha256": "580e36e6b4dad74ce494a84703e74da95139a79e97fdcf83352f2df3fdfd0a10"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/22_DSC1657.jpg",
+      "path": "images/22_DSC1657.jpg",
+      "bytes": 314333,
+      "sha256": "00e8152098c289cd2eb0d3da77acdaf8f4eca8aa1e473966572e41fb4c0cea6f"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/22_DSC1675.jpg",
+      "path": "images/22_DSC1675.jpg",
+      "bytes": 318587,
+      "sha256": "c3c1e69ec313d8e8adcb53c7253b4a7313d62487ccb771bf2bf9e4cf34de7cec"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/22_DSC1684.jpg",
+      "path": "images/22_DSC1684.jpg",
+      "bytes": 315710,
+      "sha256": "d919f8efdaf68e68929fbefd76e52c115edbbeedad1c8dd4131b955eacc5b31d"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/22_DSC1702.jpg",
+      "path": "images/22_DSC1702.jpg",
+      "bytes": 341926,
+      "sha256": "ba63855314837e910c73a9fec2d69f7c49c15ed1b6bd9b0c8f67279d7aa25305"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/22_DSC1711.jpg",
+      "path": "images/22_DSC1711.jpg",
+      "bytes": 342602,
+      "sha256": "cef23247f8c7838b44dd66faa00e91683668a81976c505b8a320a2fb01d165be"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/22_DSC1729.jpg",
+      "path": "images/22_DSC1729.jpg",
+      "bytes": 347051,
+      "sha256": "435b1175a7b82104389659eec80f8fa92ddf5d2aca6bd0348e01ee7416548564"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/22_DSC1738.jpg",
+      "path": "images/22_DSC1738.jpg",
+      "bytes": 351461,
+      "sha256": "40a5581ede806258cffbb27f2b2f1b1e47cc6de038b6741b86f84b4c04a7d05b"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/22_DSC1756.jpg",
+      "path": "images/22_DSC1756.jpg",
+      "bytes": 361078,
+      "sha256": "2eaccef0639bed27f2ee88c11741065091b501fa796e3ae5dff3d6b52983d2db"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/22_DSC1765.jpg",
+      "path": "images/22_DSC1765.jpg",
+      "bytes": 369495,
+      "sha256": "c93f4f3d03d810a1e1f08968912b23047580d30fbb61ac00769ed5dc24ca48a9"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/22_DSC1783.jpg",
+      "path": "images/22_DSC1783.jpg",
+      "bytes": 390282,
+      "sha256": "2524a181701a3a9188c62b102aedcb59fe236ea04c49eb66c7da66ba92300a85"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/22_DSC1792.jpg",
+      "path": "images/22_DSC1792.jpg",
+      "bytes": 394740,
+      "sha256": "412d7563e7273ac48f6e888f6ceff758c510f4ddf32049970d33a531422dbe1a"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/22_DSC1810.jpg",
+      "path": "images/22_DSC1810.jpg",
+      "bytes": 438781,
+      "sha256": "fbd0bd9c179e7de3af9f847f67fbb8efcdb92bc549b0cca93e7be5a2c9dca80d"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/22_DSC1819.jpg",
+      "path": "images/22_DSC1819.jpg",
+      "bytes": 432280,
+      "sha256": "004575bb8501d8c18a6d11d3f9a3c8d0798e47b15c7b8de837f7b6298a2b0fd2"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/22_DSC1837.jpg",
+      "path": "images/22_DSC1837.jpg",
+      "bytes": 403122,
+      "sha256": "e02513892e080338dc8bf00a9c1ce60c15d98b908fdd612250138d8c774992f3"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/22_DSC1846.jpg",
+      "path": "images/22_DSC1846.jpg",
+      "bytes": 422136,
+      "sha256": "b45b76f1a69e2dfbe70c7fef1788591de2d971fa396c2d79d244f6d153a3622c"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/22_DSC1864.jpg",
+      "path": "images/22_DSC1864.jpg",
+      "bytes": 453060,
+      "sha256": "b89fd57aa734fb1859911f1ab99d575eb5db5f302cc541fe9c57a4463a9c9ac6"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/22_DSC1873.jpg",
+      "path": "images/22_DSC1873.jpg",
+      "bytes": 480810,
+      "sha256": "1e9e4f8e3a5ad779dce6f349870296e0545a621784937cc85df10744039b997f"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/22_DSC1891.jpg",
+      "path": "images/22_DSC1891.jpg",
+      "bytes": 394193,
+      "sha256": "9e34d02832e4671f90c8ccd18bdc60e4fd6e3649682c6a78b51d1fcfca75de72"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/22_DSC1900.jpg",
+      "path": "images/22_DSC1900.jpg",
+      "bytes": 400453,
+      "sha256": "599071aad9b966d23d2d0df40347d247e8148715a7297b6956a96b5fa15e8d93"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/22_DSC1918.jpg",
+      "path": "images/22_DSC1918.jpg",
+      "bytes": 406406,
+      "sha256": "573186b284494fcfca480d0b0bdf34c840aea650ad56f3cbf049cce9c05139fc"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/22_DSC1927.jpg",
+      "path": "images/22_DSC1927.jpg",
+      "bytes": 402996,
+      "sha256": "5a64f9e3915ec50fa5b02cb4af6fb84c1cb57662b4a45c4b854eccb43d9b5694"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/22_DSC1945.jpg",
+      "path": "images/22_DSC1945.jpg",
+      "bytes": 396221,
+      "sha256": "20ae757e4327890ee7ba47c543d457b38c52a71301cc8237c9140a433a5e9697"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/22_DSC1954.jpg",
+      "path": "images/22_DSC1954.jpg",
+      "bytes": 398874,
+      "sha256": "5a5f46f53e6e56330ad210b94b240be0ca8040755c402617c2f4690fcbd65d97"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/22_DSC1972.jpg",
+      "path": "images/22_DSC1972.jpg",
+      "bytes": 391077,
+      "sha256": "1220c9fb0e06ae9ba24f7863661fb46157419489e565f6ce4abb54f4372f9d09"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/22_DSC1981.jpg",
+      "path": "images/22_DSC1981.jpg",
+      "bytes": 383054,
+      "sha256": "a7fa1f3b18eaa375deb6c31132c49c457d0adc2bc565ca4f3eabef332393bbe3"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/22_DSC1999.jpg",
+      "path": "images/22_DSC1999.jpg",
+      "bytes": 386606,
+      "sha256": "71fe5b9ba3fc9f24857e8b7e542f6ab5f5520613b50881986cf7bb06181bb25a"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/22_DSC2008.jpg",
+      "path": "images/22_DSC2008.jpg",
+      "bytes": 381015,
+      "sha256": "ff1db04e69681167efef21f9eecb338c691c5da8198635ce596e76ef100d5dcc"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/22_DSC2026.jpg",
+      "path": "images/22_DSC2026.jpg",
+      "bytes": 391122,
+      "sha256": "6ee253ca085a7ea4d77062c9726cd8292f94e0efc1b9d55e2df062d8f61b4d03"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/22_DSC2035.jpg",
+      "path": "images/22_DSC2035.jpg",
+      "bytes": 395121,
+      "sha256": "f04c47fa4b4d304daf15a711271b9ccef14266efb3011bdf0e90b2469b148a55"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/22_DSC2053.jpg",
+      "path": "images/22_DSC2053.jpg",
+      "bytes": 404913,
+      "sha256": "56471bf061787b7d6d4b1c3e8d9c8ae9a654399db24dbe1a97e447faa7a7c580"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/22_DSC2062.jpg",
+      "path": "images/22_DSC2062.jpg",
+      "bytes": 412685,
+      "sha256": "2dc6dfd71ee2de8a7e465bbe06cdce81c248724720181d89e96fbe98c7eaf78c"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/22_DSC2080.jpg",
+      "path": "images/22_DSC2080.jpg",
+      "bytes": 428146,
+      "sha256": "8c08296ec909584255e6a56ade1616a76a373e5cdbefbe74cadf66006dc8b787"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/22_DSC2089.jpg",
+      "path": "images/22_DSC2089.jpg",
+      "bytes": 433350,
+      "sha256": "3d33c00a42d827d229fc1e6eec671e4d54cae9407d0c75781d79057d7f14a5f0"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/22_DSC2107.jpg",
+      "path": "images/22_DSC2107.jpg",
+      "bytes": 454440,
+      "sha256": "09c8a673608b1217b7bdfedd7e652c4e5d270007b03f0b81d2beafac9c720803"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/22_DSC2116.jpg",
+      "path": "images/22_DSC2116.jpg",
+      "bytes": 464677,
+      "sha256": "fa49dd29b646208d8987825ed0e6d40d677f9351a0dc6a9f8f023aa2b9cb859d"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/22_DSC2134.jpg",
+      "path": "images/22_DSC2134.jpg",
+      "bytes": 470319,
+      "sha256": "83507779237c31c07b2625d3fbfecab7d739048ea146496f70debd6d28288a92"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/22_DSC2143.jpg",
+      "path": "images/22_DSC2143.jpg",
+      "bytes": 469115,
+      "sha256": "8e619a5b327eefc474428f4a3b2eeb77f31b76d21ec76452810cc0eea6dc7e7c"
+    },
+    {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/kitchen/colmap/images_8/22_DSC2161.jpg",
+      "path": "images/22_DSC2161.jpg",
+      "bytes": 446945,
+      "sha256": "3da818e67ca79392c78614616c8341274b2f1366c3bf442ddef8c49a665ae44d"
+    }
+  ],
+  "train_steps": 7000,
+  "segmentation_seed_frame": 4,
+  "segmentation_prompts": "chair",
+  "reviewed_instance_ids": [
+    1
+  ],
+  "raw_gpu_objects": 4,
+  "published_objects": 1,
+  "approximate_visual_fill": "Upper convex interior clipped at assumed 0.38 m; open leg gaps; physical hull unchanged",
+  "run_receipt": "docs/runs/quality/cafe-calibrated-20261009.json"
 }

@@ -24,9 +24,9 @@
   {
     "id": "cafe",
     "title": "Kitchen & cafe",
-    "description": "Knock a chair over in a real cafe.",
-    "objects": 6,
-    "download_mb": 20.5,
+    "description": "Push a chair over in a calibrated public cafe capture.",
+    "objects": 1,
+    "download_mb": 23.2,
     "alt": "Knock a chair over in a real cafe.",
     "gif": "docs/demos/cafe.gif",
     "video": "docs/demos/cafe.mp4",

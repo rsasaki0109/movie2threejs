@@ -15,9 +15,11 @@ python scripts/run_calibrated_prepared.py --input INPUT.zip --expected-sha256 SH
 
 This entry point requires the existing environments from `setup_gpu.sh` and
 approved SAM 3 weight access. It does not allocate or stop a runtime. Input and
-backup integrity checks have local fixture coverage; GPU execution of this new
-entry point has not yet been verified. Seed frames and object prompts need visual
-review for each capture.
+backup integrity checks have local fixture coverage. The entry point completed a
+144-photograph kitchen run on a dedicated L4 on 9 October: gsplat, SAM 3, assembly,
+checkpoint/ZIP recovery and CPU weight loading passed before GPU shutdown.
+[Measured stages and verification scope](benchmarks.md#calibrated-kitchen-9-october-2026).
+Seed frames and object prompts need visual review for each capture.
 
 ## Existing Colab workflow
 

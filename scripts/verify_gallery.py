@@ -3,6 +3,7 @@ import argparse
 import functools
 import hashlib
 import json
+import math
 import threading
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
@@ -60,7 +61,12 @@ def verify(site: Path, out: Path, deployed_url: str | None = None):
                 shot=json.loads(shot_bytes)
                 event=next(e for e in shot['events'] if e['type']=='push')
                 subject=world['demo'].get('subject_id',6)
-                frames=[0,int(event['time']*shot['fps'])-1,round(shot['duration']*shot['fps'])-1]
+                end=round(shot['duration']*shot['fps'])-1
+                before_frame=int(event['time']*shot['fps'])-1
+                motion=world.get('demo',{}).get('validation',{})
+                samples=[min(end,round((event['time']+offset)*shot['fps']))
+                         for offset in motion.get('sample_after_push_seconds',[])]
+                frames=sorted(set([0,before_frame,end,*samples]))
                 runs=[]
                 for repeat in range(2):
                     page=browser.new_page(viewport={'width':960,'height':540})
@@ -75,12 +81,16 @@ def verify(site: Path, out: Path, deployed_url: str | None = None):
                     if repeat==0:page.locator('canvas').screenshot(path=str(out/(demo['id']+'-physics.png')))
                     runs.append(states);page.close()
                 assert runs[0]==runs[1],demo['id']+' replay differs'
-                initial,before,final=runs[0]
+                initial,final=runs[0][0],runs[0][-1]
+                before=runs[0][frames.index(before_frame)]
                 assert any(a.get('object')==subject for a in final['actions']),demo['id']+' push missed'
                 position=lambda state:next(o['position'] for o in state['objects'] if o['id']==subject)
                 distance=lambda a,b:sum((a[k]-b[k])**2 for k in 'xyz')**.5
                 moved=distance(position(before),position(final))
                 assert moved>.2,demo['id']+' object did not move visibly'
+                rotations=[next(o['rotation'] for o in state['objects'] if o['id']==subject) for state in runs[0]]
+                peak_tilt=max(math.degrees(math.acos(max(-1,min(1,1-2*(q['x']**2+q['z']**2))))) for q in rotations)
+                assert peak_tilt>=motion.get('min_tilt_degrees',0),demo['id']+' object did not tip over'
                 walk=distance(initial['player'],final['player'])
                 assert walk>.1,demo['id']+' character did not walk'
                 assert len(final['balls'])==1
@@ -103,6 +113,7 @@ def verify(site: Path, out: Path, deployed_url: str | None = None):
                 page.keyboard.press('Escape');page.close()
                 reports.append({'id':demo['id'],'objects':len(world['objects']),'colliders':len(world['colliders']),
                     'deterministic_replay':True,'subject_id':subject,'movement_after_push_m':moved,
+                    'peak_sampled_tilt_degrees':peak_tilt,
                     'initial_settling_m':distance(position(initial),position(before)),
                     'scripted_character_movement_m':walk,'interactive_character_movement_m':interactive_walk,
                     'balls':1,'featured_button':True,'world_sha256':hashlib.sha256(world_bytes).hexdigest(),

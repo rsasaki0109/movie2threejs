@@ -27,7 +27,7 @@ pose hypothesis, not an exact training-view comparison. These checks do not
 establish whether pose estimation, view coverage or training is the main cause.
 [Parameters, hashes and rejected candidates](runs/quality/gpu-cleanup-comparison-20261008.json).
 
-The README hero and gallery remain unchanged. To support future diagnosis,
+That postprocessing experiment left the README hero and gallery unchanged. To support future diagnosis,
 successful notebook ZIPs now preserve available COLMAP camera/image/point models
 and pose diagnostics under `scene/`, without adding image or weight directories.
 Synthetic tests recovered the camera centers byte for byte and verified that a
@@ -237,3 +237,47 @@ This is a manual showcase operation for an inspected open box. It is separate
 from the automatic video pipeline. The synthetic regression preserves original
 collision data and source files, and checks occlusion, support tolerance, a rotated
 inset bottom and insufficient/degenerate lower geometry.
+
+## Calibrated kitchen and chair refinement, 9 October 2026
+
+The kitchen/cafe now uses **144 provided photographs and camera calibration**
+from three cameras, replacing its older video/VGGT reconstruction. A 7,000-step
+L4 run completed training, segmentation and assembly; the final checkpoint,
+raw PLY, camera models and masks were recovered before shutdown. The reviewed
+foreground chair has a complete silhouette across its masks. Other detections
+included thin fragments, so they remain static.
+
+![Actual browser capture before and after tipping the chair](runs/quality/cafe-calibrated-20261009.jpg)
+
+Removing the entire visual interior opened the gaps between the chair's legs,
+but made its unobserved reverse side too transparent when it fell. Filling only
+the convex upper interior above assumed height **0.38 m** retains those leg gaps
+while covering the unseen seat/back interior approximately. Hull-edge intersections
+preserve the upper outline; the existing physics body and floor patch remain
+unchanged. This is a colored approximation, not recovered photographic texture.
+Synthetic-room regressions check the cut plane, upper outline, degeneracy,
+source preservation and unchanged collisions and object splats.
+
+The initial forward ray push was blocked by the table. A side push moved and
+yawed the chair but failed to tip it at the final event time. A gentler ray from
+behind the chair at 3 s brings it out from the table: **0.817 m movement and
+90.03° maximum tilt** in the complete browser capture. Gallery verification now
+supports a minimum tilt requirement in addition to movement and exact replay.
+The camera follows the falling chair; its path is independent of the character.
+
+Floor and vegetation blur remain substantial, especially in close views and
+outside the supplied capture path. Input photographs, camera poses and training
+schedule differ from the old cafe; the new **26.874 dB** held-out PSNR is not a
+controlled improvement measurement. The scene remains an approximate showcase.
+[Parameters, rejected trials, hashes and measured stages](runs/quality/cafe-calibrated-20261009.json)
+and [benchmark](benchmarks.md#calibrated-kitchen-9-october-2026).
+
+To reproduce the reviewed visual cut on a world with an existing interior color,
+choose an explicit object ID, cut height and fresh destination outside the source:
+
+```bash
+python scripts/polish_visual_fill.py --world reviewed_world --out polished_world --object 1 --min-y 0.38
+```
+
+The height is manually reviewed in the assumed world scale; this correction is
+not automatically applied to every detected chair.

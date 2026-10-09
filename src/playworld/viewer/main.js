@@ -132,11 +132,12 @@ async function main() {
         geometry.rotateX(-Math.PI / 2);
         geometry.translate(0, vertices[0][1], 0);
       } else {
-        geometry = new ConvexGeometry(o.hull.map(p => new THREE.Vector3(...p).multiplyScalar(.985)));
+        const vertices = o.visual_fill?.kind === 'convex_hull' ? o.visual_fill.vertices : o.hull;
+        geometry = new ConvexGeometry(vertices.map(p => new THREE.Vector3(...p).multiplyScalar(.985)));
       }
       const color = new THREE.Color().setRGB(...o.fill_color, THREE.SRGBColorSpace);
-      // Reviewed open boxes fill only their unseen bottom. Other objects retain
-      // the far, inward-facing hull surface behind their photographed splats.
+      // Reviewed fills may cover a box bottom or only a chair's upper interior.
+      // The inward-facing surface remains behind the photographed splats.
       interior = new THREE.Mesh(geometry, new THREE.MeshBasicMaterial({ color,
         side: o.visual_fill?.kind === 'bottom_cap' ? THREE.DoubleSide : THREE.BackSide }));
       scene.add(interior);

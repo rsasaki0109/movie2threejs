@@ -19,7 +19,7 @@
 
 **Five real captures, five playable demos.** [Live gallery](https://rsasaki0109.github.io/movie2threejs/) · [Run locally](docs/live-demo.md) · [Measured runs](docs/benchmarks.md#additional-gallery-captures) · [Data & license](docs/data-attribution.md). These use public capture-rig photographs.
 
-The workbench and meeting room use **provided camera calibration and sparse points** for clearer showcases (156 and 192 photographs respectively). VGGT was not used for those two examples. The other three rooms use estimated VGGT poses. [Quality comparison and remaining artifacts](docs/quality.md).
+The workbench, meeting room and kitchen/cafe use **provided camera calibration and sparse points** (156, 192 and 144 photographs respectively). VGGT was not used for those three examples. Window office and furnished room use estimated VGGT poses. [Quality comparison and remaining artifacts](docs/quality.md).
 
 <table>
 <tr><th>Explore</th><th>Push</th><th>Throw</th></tr>

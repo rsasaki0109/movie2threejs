@@ -36,15 +36,17 @@ The exact source trim is shared by the notebook and `scripts/download_public.py 
 
 ## Additional room gallery
 
-All four additional examples use the same MIT-licensed Eyeful Tower dataset. Kitchen/cafe, window office and furnished room use camera-19 photograph-sequence videos with VGGT-estimated poses; no provided camera calibration was used for those three.
+All four additional examples use the same MIT-licensed Eyeful Tower dataset. Window office and furnished room use camera-19 photograph-sequence videos with VGGT-estimated poses. Meeting room and kitchen/cafe use provided camera calibration and sparse points.
 
 The current **meeting room** uses 192 undistorted photographs from cameras **19,16,22**, dataset-provided COLMAP camera calibration **and sparse point initialization**, with 30,000-step gsplat training and SAM 3 masks. It does not use VGGT and does not demonstrate automatic video-pose estimation. The previously committed video/VGGT run is preserved as historical benchmark evidence.
 
 | Demo | Dataset | Source trim (start / requested seconds) | Exact provenance |
 |---|---|---|---|
 | Meeting room | office1b | 192 calibrated photographs; no video trim | [Photographs, calibration and hashes](../demo-assets/meeting-room/source.json) |
-| Kitchen/cafe | kitchen | 14 / 6 | [Source and hashes](../demo-assets/cafe/source.json) |
+| Kitchen/cafe | kitchen | 144 calibrated photographs; cameras 19,16,22, ordinal interval 168:240 | [Photographs, calibration and hashes](../demo-assets/cafe/source.json) |
 | Window office | office_view2 | 0 / 5.5 | [Source and hashes](../demo-assets/lounge/source.json) |
 | Furnished room | raf_furnishedroom | 0 / 3.5 | [Source and hashes](../demo-assets/furnished-room/source.json) |
 
 Each packaged viewer includes its room-specific source, attribution and MIT notice. Keep the dataset notice with all previews and exports. Model-weight licenses apply separately. The three Explore/Push/Throw GIF excerpts are from the original apartment workbench, rather than additional spaces.
+
+The kitchen/cafe uses a reviewed chair from sixteen segmentation photographs in the same coordinate frame as the full 144-photograph reconstruction. Its upper visual interior is an approximate colored convex surface clipped at an assumed height of 0.38 m. This leaves the gaps between its legs open; it is not recovered photographic texture. The original video/VGGT source is retained in [historical provenance](runs/quality/cafe-vggt-source.json).

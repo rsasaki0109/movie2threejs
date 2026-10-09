@@ -1,54 +1,85 @@
 {
-  "id": "cafe",
-  "exit_code": 0,
-  "seconds": 558.734,
-  "scene": "/content/playworld-gallery-20261007/cafe/scene",
-  "actual_steps": 15000,
-  "gpu": "NVIDIA L4, 23034 MiB",
-  "stats": {
+  "format": "playworld-calibrated-kitchen-review/1",
+  "status": "adopted",
+  "date": "2026-10-09",
+  "scope": "Public capture-rig photographs with provided Metashape camera calibration and sparse points. No VGGT or smartphone input.",
+  "input": {
+    "frames": 144,
+    "camera": "19,16,22",
+    "primary_camera": "19",
+    "start_index": 168,
+    "stop_index_exclusive": 240,
+    "segmentation_frames": 16,
+    "initial_points": 100000
+  },
+  "gpu": "NVIDIA L4, 23034 MiB, 580.82.07",
+  "stages": {
+    "train": {
+      "status": "complete",
+      "seconds": 290.61799885899995
+    },
+    "segment": {
+      "status": "complete",
+      "seconds": 48.651398724000046
+    },
+    "pipeline": {
+      "status": "complete",
+      "seconds": 9.039808955000126
+    }
+  },
+  "reviewed_stats": {
     "cameras": 16,
-    "points": 27157,
-    "gaussians": 1063521,
-    "input_gaussians": 1069156,
-    "discarded_object_gaussians": 3406,
-    "discarded_diffuse_gaussians": 2229,
+    "points": 100000,
+    "gaussians": 1200800,
+    "input_gaussians": 1210857,
+    "discarded_object_gaussians": 867,
+    "discarded_diffuse_gaussians": 9018,
     "clean_splats": true,
-    "discarded_bounds_gaussians": 0,
-    "bounds_margin_m": null,
-    "objects": 6,
-    "colliders": 2197,
-    "support_patches": 6,
-    "floor_inliers": 2098,
-    "scale_m_per_unit": 4.37529
+    "discarded_bounds_gaussians": 172,
+    "bounds_margin_m": 6,
+    "objects": 1,
+    "colliders": 4916,
+    "support_patches": 1,
+    "floor_inliers": 64493,
+    "scale_m_per_unit": 1.152636
   },
-  "world_seconds": 7.15,
-  "old_training_stats": {
-    "val_step4499.json": {
-      "psnr": 17.53656005859375,
-      "ssim": 0.7614362239837646,
-      "lpips": 0.35858309268951416,
-      "ellipse_time": 0.004045724868774414,
-      "num_GS": 358469
-    },
-    "train_step4499_rank0.json": {
-      "mem": 0.5701541900634766,
-      "ellipse_time": 73.77409434318542,
-      "num_GS": 358469
-    }
+  "kept_instance_ids": [
+    1
+  ],
+  "held_out_metrics": {
+    "psnr": 26.873708724975586,
+    "ssim": 0.9096745252609253,
+    "lpips": 0.23985548317432404,
+    "ellipse_time": 0.008533053927951388,
+    "num_GS": 1210857
   },
-  "quality_training_stats": {
-    "train_step14999_rank0.json": {
-      "mem": 1.6331090927124023,
-      "ellipse_time": 547.797928571701,
-      "num_GS": 1069156
-    },
-    "val_step14999.json": {
-      "psnr": 18.453773498535156,
-      "ssim": 0.7668662071228027,
-      "lpips": 0.34911131858825684,
-      "ellipse_time": 0.006577253341674805,
-      "num_GS": 1069156
-    }
+  "visual_fill": {
+    "kind": "convex_hull",
+    "min_world_y": 0.38,
+    "approximate": true,
+    "collision_geometry_unchanged": true
   },
-  "input_ply_sha256": "efd9bac9430466cb9e3e47bcba038288ff02f93a3435f5445493eb82fbb3d6d1"
+  "remaining_limitations": [
+    "Floor and vegetation blur remain",
+    "Coverage outside the capture path is incomplete",
+    "Interior fill and stationary floor patch are approximate colors, not recovered photographic textures",
+    "Scale assumes a 1.5 m camera height",
+    "This does not validate a smartphone video"
+  ],
+  "browser_validation": {
+    "id": "cafe",
+    "objects": 1,
+    "colliders": 4916,
+    "deterministic_replay": true,
+    "subject_id": 1,
+    "movement_after_push_m": 0.8172626407992359,
+    "peak_sampled_tilt_degrees": 90.0012073450339,
+    "initial_settling_m": 0.0655236973085656,
+    "scripted_character_movement_m": 0.5508186216693609,
+    "interactive_character_movement_m": 0.9742031458747973,
+    "balls": 1,
+    "featured_button": true,
+    "world_sha256": "5f4f06bdced3517c58449f6400888bd6d4b3ef92691cb404fc44c3b51f094b91",
+    "shot_sha256": "ed3b125b011d1023e0a3b5de7be404a61c7c5eecd83c0f4868ca36a32096920e"
+  }
 }
