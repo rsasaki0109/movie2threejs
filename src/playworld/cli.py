@@ -163,6 +163,8 @@ def main(argv: list[str] | None = None) -> None:
         p.add_argument("--voxel", type=float, default=0.1)
         p.add_argument("--bounds-margin", type=float, help="crop distant points/splats outside the camera path plus this margin in assumed meters")
         p.add_argument("--clean-splats", action="store_true", help="reject thick diffuse background Gaussians while retaining thin surfaces")
+        p.add_argument("--object-filter", choices=["mad", "connected"], default="mad",
+                       help="object outlier filter; connected preserves attached sparse parts using 10 cm voxels in assumed meters")
 
     p = sub.add_parser("world")
     p.add_argument("scene", type=Path)
@@ -212,7 +214,7 @@ def main(argv: list[str] | None = None) -> None:
         segment_objects(a.scene, a.prompts, a.python, a.seed_frame)
     elif a.cmd == "world":
         masks = a.masks or ((a.scene / "masks") if (a.scene / "masks" / "labels.json").exists() else None)
-        w = build_world(a.scene / "sparse", a.splats or latest_ply(a.scene), a.out, masks, a.eye_height, a.voxel, bounds_margin=a.bounds_margin, clean_splats=a.clean_splats)
+        w = build_world(a.scene / "sparse", a.splats or latest_ply(a.scene), a.out, masks, a.eye_height, a.voxel, bounds_margin=a.bounds_margin, clean_splats=a.clean_splats, object_filter=a.object_filter)
         print(json.dumps(w["stats"], indent=1))
     elif a.cmd == "all":
         from .run_report import RunReport
@@ -239,7 +241,7 @@ def main(argv: list[str] | None = None) -> None:
             masks = a.scene / "masks"
         else:
             report.data["stages"]["segment"] = {"status": "provided" if masks else "disabled", "seconds": None}
-        w = stage("world", build_world, a.scene / "sparse", ply, a.out, masks, a.eye_height, a.voxel, 400.0, True, a.bounds_margin, a.clean_splats)
+        w = stage("world", build_world, a.scene / "sparse", ply, a.out, masks, a.eye_height, a.voxel, 400.0, True, a.bounds_margin, a.clean_splats, a.object_filter)
         report.finish(w)
         print(json.dumps(report.data, indent=1))
     elif a.cmd == "demo":

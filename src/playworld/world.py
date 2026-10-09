@@ -50,7 +50,10 @@ def build_world(
     copy_viewer: bool = True,
     bounds_margin: float | None = None,
     clean_splats: bool = False,
+    object_filter: str = "mad",
 ) -> dict:
+    if object_filter not in {"mad", "connected"}:
+        raise ValueError(f"unknown object filter: {object_filter}")
     out_dir = Path(out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
 
@@ -94,7 +97,7 @@ def build_world(
     # Discard those splats rather than leaving a static ghost at its old pose.
     for label in sorted(set(np.unique(labels)) - {0, -1}):
         ids = np.flatnonzero(labels == label)
-        clean = objects.movable_splat_mask(g_world[ids], sizes[ids])
+        clean = objects.movable_splat_mask(g_world[ids], sizes[ids], method=object_filter)
         if clean.sum() >= 8:
             labels[ids[~clean]] = -1
     collider_labels = labels.copy()
@@ -107,8 +110,8 @@ def build_world(
     for label in sorted(set(np.unique(labels)) - {0, -1}):
         sel = labels == label
         obj_points = g_world[sel]
-        support = objects.support_height(obj_points[objects.inlier_mask(obj_points)], support_points)
-        obj = objects.rigid_object(g_world[sel], int(label), names.get(int(label), f"object{label}"), support)
+        support = objects.support_height(obj_points[objects.inlier_mask(obj_points, method=object_filter)], support_points)
+        obj = objects.rigid_object(g_world[sel], int(label), names.get(int(label), f"object{label}"), support, method=object_filter)
         if obj is None:
             labels[sel] = 0
             continue
@@ -176,6 +179,7 @@ def build_world(
             "discarded_object_gaussians": int(((labels < 0) & within_bounds & ~discarded_diffuse).sum()),
             "discarded_diffuse_gaussians": int(discarded_diffuse.sum()),
             "clean_splats": clean_splats,
+            "object_filter": object_filter,
             "discarded_bounds_gaussians": int((~within_bounds).sum()),
             "bounds_margin_m": bounds_margin,
             "objects": len(world_objects),

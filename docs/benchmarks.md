@@ -490,3 +490,30 @@ created dark gaps, and the manually associated chair failed visible movement and
 tipping. Current README media and live assets were preserved.
 [Detailed receipt](runs/quality/lounge-calibrated-20261009.json)
 · [Actual comparison images and limitations](quality.md#window-office-calibrated-trial-not-adopted-9-october-2026).
+
+
+## CPU window-office chair repair, 9 October 2026
+
+This reuses the saved calibrated trial's PLY, camera models and SAM masks.
+No GPU runtime or paid resources were started, and train/SAM timings remain those
+of the earlier run rather than new measurements. Three manually associated mask
+views were used for assembly; the 144-view training data was unchanged.
+
+The experimental connected-voxel assembly took **11.100 s** on CPU. The subsequent
+production implementation produced byte-identical background/object PLYs and
+identical physical geometry. It retained **1,106,172 Gaussians**, with **1 reviewed
+movable chair, 4,695 colliders and 1 support patch**. This is not automatic
+multi-object segmentation validation. Distances depend on the assumed 1.5 m
+camera-height scale.
+
+Recording used the local **GTX 1660 Ti**, native Chromium/D3D11, fixed physics
+step 1/60 s. All **120 frames** (8 s, 15 fps, 960×540) were captured in **48.910 s**,
+including browser loading. The chair moved **1.202 m** and reached **140.92°**
+maximum tilt over recorded frames. Two replays matched at sampled states.
+The GIF is **1,187,731 bytes**, 480×270; the diagnostic MP4 is **1,341,045 bytes**,
+960×540. These are diagnostic media, not a replacement for the existing hero.
+
+Background blur remains unacceptable for adopting the reconstructed room. The
+repair is available as an optional object filter and an explicit mask-review tool.
+[Evidence and limitations](quality.md#window-office-chair-extraction-repair-9-october-2026)
+· [Measured receipt](runs/quality/lounge-chair-repair-20261009.json).

@@ -350,3 +350,65 @@ static chair remnants. No further GPU runtime was started.
 
 [Parameters, artifact hashes, mask counts, browser captures and rejected pushes](runs/quality/lounge-calibrated-20261009.json)
 · [Measured run](benchmarks.md#calibrated-window-office-trial-9-october-2026).
+
+
+## Window-office chair extraction repair, 9 October 2026
+
+![Projected observed chair points: green retained, red rejected; MAD left and connected voxels right](runs/quality/lounge-chair-filter-20261009.jpg)
+
+CPU diagnosis found two separate problems. SAM IDs changed for the same middle
+chair: 2 in `19_DSC0397.jpg`, 1 in `19_DSC0433.jpg`, and 9 in
+`19_DSC0595.jpg`. These three masks were visually reviewed and manually associated;
+automatic tracking remains unresolved. Separately, the per-axis median absolute
+deviation (MAD) filter rejected observed seat/leg points because the backrest
+contained most of the reconstructed points. Repeated MAD filtering eroded the
+already-cleaned object further.
+
+The optional `--object-filter connected` keeps the largest connected component
+of occupied 10 cm voxels, weighted by original point count. It excludes broad or
+invalid splats before finding connectivity. In a controlled geometry comparison
+using identical three-view masks, cameras and alignment, the hull extents changed
+from **0.231 × 1.214 × 0.926 m** with MAD to **0.494 × 1.217 × 1.036 m** with
+connected voxels. These are assumed-scale dimensions, not physical measurements.
+The standard filter remains MAD. Connected voxels can join nearby background
+spill or omit valid separated parts; they do not repair segmentation identities
+or reconstruct unseen surfaces.
+
+![Diagnostic browser recording of the reviewed chair tipping; background blur remains](runs/quality/lounge-chair-repair-20261009.gif)
+
+The reviewed scene's ray push hit the backrest and moved the chair **1.202 m**,
+with **140.92°** maximum tilt across all 120 recorded frames. Initial settling
+before the push was **0.041 m**. Two independent replays matched exactly at eight
+sampled states, with no page errors. Push direction and hit height also changed
+from the earlier failed trial; successful tipping cannot be attributed to the
+filter alone. Several other directions still hit static geometry or miss.
+The convex physics body remains an approximation: its volume-based mass estimate
+includes empty space between chair parts and is not a measured chair mass.
+
+The 8 s diagnostic is actual fixed-step browser output: 960×540 MP4 and
+480×270 GIF, 1,187,731 bytes. The chair's convex visual fill was disabled to
+preserve gaps between its legs. The approximate floor support patch remains.
+**TV/window blur is still substantial, so this reconstruction was not adopted
+for the README hero or live gallery.** No Colab runtime, training or SAM inference
+was started for this repair. Existing window-office media and live assets retain
+their baseline hashes.
+
+The review can be reproduced from the recovered trial artifacts:
+
+```bash
+python scripts/remap_instances.py --scene recovered/scene/segment-scene --review shots/lounge-chair-review.json --out reviewed-scene
+playworld world reviewed-scene --splats recovered/scene/gs/ply/point_cloud_6999.ply --out reviewed-world --object-filter connected --clean-splats --bounds-margin 6
+```
+
+The supplied review file applies only to this saved SAM run; new masks require
+their own visual associations. The tool writes a fresh assembly-only camera/mask
+scene and hashes its source inputs, preserving original masks and sparse points.
+It does not rerun training or automatically associate instances. Synthetic tests
+cover dense backrests with sparse seats/feet, detached spill, broad bridging
+splats, repeated cleanup, support surfaces and a complete synthetic room.
+The full suite passed **109 tests**, with one existing skip.
+
+[Review, controlled geometry, hashes and replay states](runs/quality/lounge-chair-repair-20261009.json)
+· [Diagnostic MP4](runs/quality/lounge-chair-repair-20261009.mp4)
+· [Encoding receipt](runs/quality/lounge-chair-repair-20261009-provenance.json)
+· [Recorded shot](../shots/lounge-chair-diagnostic.json).

@@ -72,16 +72,61 @@ def lift_labels(
     return np.where(keep, obj, 0).astype(np.int32)
 
 
-def inlier_mask(points: np.ndarray, k: float = 3.0) -> np.ndarray:
-    """Drop stray gaussians far from the object's bulk (median absolute deviation per axis)."""
+def connected_inlier_mask(points: np.ndarray, cell: float = 0.1) -> np.ndarray:
+    """Keep the largest connected occupied-voxel component, weighted by point count.
+
+    Coordinates and cell are in assumed world meters. Unlike per-axis MAD, this
+    preserves sparse seats/legs connected to a densely reconstructed backrest.
+    A 26-neighbor grid bridges small reconstruction gaps; it can also connect
+    nearby segmentation spill, so this filter is opt-in rather than a repair
+    for incorrect instance masks or unseen geometry.
+    """
+    from scipy.sparse import coo_matrix
+    from scipy.sparse.csgraph import connected_components
+    from scipy.spatial import cKDTree
+
+    if not np.isfinite(cell) or cell <= 0:
+        raise ValueError("component cell must be finite and positive")
+    points = np.asarray(points, dtype=float)
+    if points.ndim != 2 or points.shape[1] != 3:
+        raise ValueError("points must have shape (N, 3)")
+    keep = np.zeros(len(points), dtype=bool)
+    finite = np.isfinite(points).all(axis=1)
+    if not finite.any():
+        return keep
+    voxels, inverse, counts = np.unique(
+        np.floor(points[finite] / cell), axis=0, return_inverse=True, return_counts=True
+    )
+    # At most 26 neighbors per voxel: no dense all-point distance matrix.
+    pairs = cKDTree(voxels).query_pairs(np.sqrt(3) + 1e-5, output_type="ndarray")
+    graph = coo_matrix((np.ones(len(pairs)), (pairs[:, 0], pairs[:, 1])),
+                       shape=(len(voxels), len(voxels)))
+    _, components = connected_components(graph, directed=False)
+    weights = np.bincount(components, weights=counts)
+    keep[finite] = components[inverse] == weights.argmax()
+    return keep
+
+
+def inlier_mask(points: np.ndarray, k: float = 3.0, *, method: str = "mad") -> np.ndarray:
+    """Reject outliers with per-axis MAD, or the opt-in connected-voxel filter."""
+    if method == "connected":
+        return connected_inlier_mask(points)
+    if method != "mad":
+        raise ValueError(f"unknown object filter: {method}")
     med = np.median(points, axis=0)
     mad = np.median(np.abs(points - med), axis=0) + 1e-9
     return (np.abs(points - med) <= k * 1.4826 * mad).all(axis=1)
 
 
-def movable_splat_mask(points: np.ndarray, sizes: np.ndarray, max_size: float = 0.1) -> np.ndarray:
+def movable_splat_mask(points: np.ndarray, sizes: np.ndarray, max_size: float = 0.1, *, method: str = "mad") -> np.ndarray:
     """Keep the object's bulk and reject broad foreground/background spill."""
-    return inlier_mask(points) & np.isfinite(sizes) & (sizes <= max_size)
+    if method == "connected":
+        # Broad/invalid splats must not bridge otherwise disconnected objects.
+        valid = np.isfinite(sizes) & (sizes <= max_size)
+        keep = np.zeros(len(points), dtype=bool)
+        keep[valid] = inlier_mask(points[valid], method=method)
+        return keep
+    return inlier_mask(points, method=method) & np.isfinite(sizes) & (sizes <= max_size)
 
 
 @dataclass
@@ -128,8 +173,8 @@ def support_height(obj_pts: np.ndarray, static_pts: np.ndarray, cell: float = 0.
     return 0.0
 
 
-def rigid_object(points_world: np.ndarray, label: int, name: str, support_y: float = 0.0) -> RigidObject | None:
-    pts = points_world[inlier_mask(points_world)]
+def rigid_object(points_world: np.ndarray, label: int, name: str, support_y: float = 0.0, *, method: str = "mad") -> RigidObject | None:
+    pts = points_world[inlier_mask(points_world, method=method)]
     if len(pts) < 8:
         return None
     # A few noisy points can lie below an otherwise well-supported tabletop.
