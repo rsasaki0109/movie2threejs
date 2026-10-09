@@ -1,0 +1,1070 @@
+{
+  "format": "playworld-calibrated-window-office-trial/1",
+  "status": "completed-not-adopted",
+  "date": "2026-10-09",
+  "source_revision": "822afcc4555abf181cc8519b0753c165a8f2a427",
+  "dataset": "Eyeful Tower office_view2",
+  "license": "MIT",
+  "license_revision": "06a01a4915afc872b893c20a025a0e14598c8478",
+  "scope": "Public capture-rig photographs, provided camera calibration and sparse points; no VGGT or smartphone capture.",
+  "input": {
+    "frames": 144,
+    "camera": "19,16,22",
+    "primary_camera": "19",
+    "segmentation_frames": 16,
+    "initial_points": 100000,
+    "start_index": 0,
+    "stop_index_exclusive": null
+  },
+  "input_zip_sha256": "0b9f43a756cb8c0cd8f45aa7f366689216c77b04db9ce5e666091dcf7950718b",
+  "gpu": "NVIDIA L4, 23034 MiB, 580.82.07",
+  "setup_seconds": 579.246550321579,
+  "stages": {
+    "train": {
+      "status": "complete",
+      "seconds": 262.49443265
+    },
+    "segment": {
+      "status": "complete",
+      "seconds": 39.822508711999944
+    },
+    "pipeline": {
+      "status": "complete",
+      "seconds": 8.266990423999914
+    }
+  },
+  "core_stages_seconds": 310.5839317859999,
+  "enclosing_run_and_backup_preparation_seconds": 340.766437215,
+  "automatic_world_stats": {
+    "cameras": 16,
+    "points": 100000,
+    "gaussians": 1105822,
+    "input_gaussians": 1108601,
+    "discarded_object_gaussians": 650,
+    "discarded_diffuse_gaussians": 2129,
+    "clean_splats": true,
+    "discarded_bounds_gaussians": 0,
+    "bounds_margin_m": 6.0,
+    "objects": 3,
+    "colliders": 4617,
+    "support_patches": 3,
+    "floor_inliers": 69616,
+    "scale_m_per_unit": 1.321276
+  },
+  "automatic_object_review": [
+    {
+      "id": 3,
+      "name": "chair 3",
+      "centroid": [
+        -1.1235,
+        0.1113,
+        -0.3618
+      ],
+      "extent": [
+        0.087,
+        0.1889,
+        0.0928
+      ],
+      "mass": 0.376,
+      "support_y": 0.0
+    },
+    {
+      "id": 4,
+      "name": "chair 4",
+      "centroid": [
+        -2.8033,
+        0.0109,
+        0.6877
+      ],
+      "extent": [
+        1.0011,
+        0.0199,
+        0.8801
+      ],
+      "mass": 1.4,
+      "support_y": 0.0
+    },
+    {
+      "id": 7,
+      "name": "chair 7",
+      "centroid": [
+        1.6146,
+        1.1315,
+        1.8219
+      ],
+      "extent": [
+        0.4941,
+        0.2511,
+        0.14300000000000002
+      ],
+      "mass": 4.812,
+      "support_y": 0.97
+    }
+  ],
+  "original_sam_labels": {
+    "1": "chair",
+    "2": "chair 2",
+    "3": "chair 3",
+    "4": "chair 4",
+    "5": "chair 5",
+    "6": "chair 6",
+    "7": "chair 7",
+    "8": "chair 8",
+    "9": "chair 9",
+    "10": "chair 10",
+    "11": "chair 11"
+  },
+  "mask_pixel_counts_by_frame": {
+    "1": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      15719,
+      0,
+      0,
+      0,
+      0,
+      10376,
+      12030,
+      0,
+      0,
+      0,
+      0
+    ],
+    "2": [
+      0,
+      0,
+      0,
+      0,
+      30466,
+      18206,
+      0,
+      0,
+      0,
+      0,
+      43464,
+      13114,
+      0,
+      0,
+      0,
+      0
+    ],
+    "3": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      4657,
+      0,
+      0,
+      0,
+      0,
+      0,
+      4204,
+      0,
+      0,
+      7460,
+      6440
+    ],
+    "4": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      27605,
+      35906,
+      4034
+    ],
+    "5": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      2313,
+      36802
+    ],
+    "6": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      922
+    ],
+    "7": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      6323,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      2109
+    ],
+    "8": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      596
+    ],
+    "9": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      13293
+    ],
+    "10": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1339
+    ],
+    "11": [
+      0,
+      4787,
+      5229,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  "held_out_metrics": {
+    "psnr": 20.962060928344727,
+    "ssim": 0.8005677461624146,
+    "lpips": 0.3808196485042572,
+    "ellipse_time": 0.006823380788167317,
+    "num_GS": 1108601
+  },
+  "metric_comparison_limit": "Photographs, camera poses, image count and training schedule differ from the published VGGT lounge. This is not a controlled pose-only comparison.",
+  "artifact_receipts": {
+    "final_checkpoint": {
+      "file": "ckpt_6999_rank0.pt",
+      "bytes": 261632757,
+      "sha256": "b87a5467f3b85732162fc0c52a222c9ece489af61b8fcb3a85f6eb5b732e2e29"
+    },
+    "world_zip": {
+      "file": "playworld-result.zip",
+      "bytes": 521971024,
+      "sha256": "5da98d762b0f000d7ee7dd872f3c39657f9cd033339a07c206c71d157c204c7c"
+    }
+  },
+  "zip_crc_passed": true,
+  "camera_models_byte_identical_to_inputs": true,
+  "camera_model_sha256": {
+    "sparse/cameras.bin": "6046ed27e1e306b31a3370c9af7f2b7e12ec748d309a582a77630816787acf4f",
+    "sparse/images.bin": "2de452c5b9291820aa634dd73366246c5359ec836a5fca423562da69b1d09685",
+    "sparse/points3D.bin": "a68715eabb5049e103b3df749286cc2560024885db68eb3716962ce5faf97988",
+    "segment-scene/sparse/cameras.bin": "6046ed27e1e306b31a3370c9af7f2b7e12ec748d309a582a77630816787acf4f",
+    "segment-scene/sparse/images.bin": "fdae9724a49c1a7e6dc1574816053d432e90f2c679d86383991709882eab8d93",
+    "segment-scene/sparse/points3D.bin": "a68715eabb5049e103b3df749286cc2560024885db68eb3716962ce5faf97988"
+  },
+  "raw_final_ply_and_sixteen_masks_recovered": true,
+  "checkpoint_validation": {
+    "stored_step": 6999,
+    "completed_steps": 7000,
+    "bytes": 261632757,
+    "sha256": "b87a5467f3b85732162fc0c52a222c9ece489af61b8fcb3a85f6eb5b732e2e29",
+    "torch": "2.9.1+cpu",
+    "cpu_load_weights_only": true,
+    "all_tensors_finite": true,
+    "gaussians": 1108601,
+    "tensor_shapes": {
+      "means": [
+        1108601,
+        3
+      ],
+      "opacities": [
+        1108601
+      ],
+      "quats": [
+        1108601,
+        4
+      ],
+      "scales": [
+        1108601,
+        3
+      ],
+      "sh0": [
+        1108601,
+        1,
+        3
+      ],
+      "shN": [
+        1108601,
+        15,
+        3
+      ]
+    },
+    "optimizer_state_present": false
+  },
+  "stop": {
+    "session": "playworld-calibrated-window-office-20261009",
+    "terminated_utc": "2026-10-09T02:56:22.892816+00:00",
+    "elapsed_seconds": 1059.0220229625702,
+    "estimated_units_at_observed_rate": 0.453026087600655,
+    "individual_billing_measured": false,
+    "both_artifacts_validated_before_stop": true
+  },
+  "approved_limit": {
+    "seconds": 1500,
+    "units": 0.65
+  },
+  "colab_verified_after_stop": {
+    "active_assignments": 0,
+    "usage_units_per_hour": 0.0,
+    "balance_units": 0.36
+  },
+  "manual_assembly_trial": {
+    "manual_mask_remapping": {
+      "19_DSC0397.jpg": 2,
+      "19_DSC0433.jpg": 1
+    },
+    "output_instance_id": 1,
+    "assembly_views": 2,
+    "segmentation_original_views": 16,
+    "training_views": 144,
+    "world_seconds": 8.571387158000107,
+    "stats": {
+      "cameras": 2,
+      "points": 100000,
+      "gaussians": 1105946,
+      "input_gaussians": 1108601,
+      "discarded_object_gaussians": 377,
+      "discarded_diffuse_gaussians": 2123,
+      "clean_splats": true,
+      "discarded_bounds_gaussians": 155,
+      "bounds_margin_m": 6,
+      "objects": 1,
+      "colliders": 4738,
+      "support_patches": 1,
+      "floor_inliers": 69616,
+      "scale_m_per_unit": 1.322861
+    },
+    "raw_gpu_world_and_masks_preserved": true,
+    "scope": "Review selected the same physical middle chair in two neighboring supplied camera views. Original SAM IDs switched between chairs; other detections remain static."
+  },
+  "manual_association_observation": "Middle-chair labels change from 2 in 19_DSC0397.jpg to 1 in 19_DSC0433.jpg; original IDs are not stable across the wider camera loop.",
+  "cleanup_trials": {
+    "0.15": {
+      "candidate": "cleanup-015",
+      "discarded": 106077,
+      "background_points_before": 1097714,
+      "reference_distance_m": 0.15,
+      "scope": "Background-only sparse-reference pruning restricted to the captured upper window/TV view. Physics, object splats and camera path unchanged. Experimental, not adopted."
+    },
+    "0.3": {
+      "candidate": "cleanup-03",
+      "discarded": 56645,
+      "background_points_before": 1097714,
+      "reference_distance_m": 0.3,
+      "scope": "Background-only sparse-reference pruning restricted to the captured upper window/TV view. Physics, object splats and camera path unchanged. Experimental, not adopted."
+    },
+    "tv_only": {
+      "candidate": "cleanup-tv-03",
+      "discarded": 39250,
+      "background_points_before": 1097714,
+      "reference_distance_m": 0.3,
+      "scope": "Background-only sparse-reference pruning restricted to the captured upper window/TV view. Physics, object splats and camera path unchanged. Experimental, not adopted."
+    }
+  },
+  "cleanup_parameters": {
+    "reference": "100,000 provided sparse points in aligned assumed meters",
+    "upper_region_world_y_m": [
+      0.85,
+      3.0
+    ],
+    "source_view": "19_DSC0433.jpg",
+    "pixel_v": [
+      250,
+      950
+    ],
+    "pixel_u_window_and_tv": [
+      0,
+      740
+    ],
+    "pixel_u_tv_only": [
+      350,
+      740
+    ],
+    "reference_distance_thresholds_m": [
+      0.15,
+      0.3
+    ],
+    "only_background_modified": true,
+    "physics_and_object_splats_unchanged": true
+  },
+  "browser_captures": {
+    "candidate": {
+      "capture": {
+        "fps": 15,
+        "frames": 15,
+        "renderer": "ANGLE (NVIDIA, NVIDIA GeForce GTX 1660 Ti (0x00002191) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "captured_frames": 1,
+        "width": 740,
+        "height": 1118,
+        "seconds": 10.804,
+        "world_sha256": "9b77b4412ea335ee5071ce4a0303d366fe42532cb038ad34bd736f81faee92bf",
+        "shot_sha256": "9a4bd7f84612ee1e18de5785652cd8f00160ea25d9a28696203c1a598018d942"
+      },
+      "camera_shot": {
+        "version": 1,
+        "fps": 15,
+        "duration": 1,
+        "fov": 112.65221664120085,
+        "camera": [
+          {
+            "time": 0,
+            "position": [
+              -0.2704279104239089,
+              1.4981314909313643,
+              0.6439403456027011
+            ],
+            "target": [
+              -0.45536694798722094,
+              1.5069164714266583,
+              -2.3503409331857252
+            ]
+          },
+          {
+            "time": 1,
+            "position": [
+              -0.2704279104239089,
+              1.4981314909313643,
+              0.6439403456027011
+            ],
+            "target": [
+              -0.45536694798722094,
+              1.5069164714266583,
+              -2.3503409331857252
+            ]
+          }
+        ],
+        "events": []
+      },
+      "asset_manifest": {
+        "source_world_sha256": "24d37e24628d22fb2c366933e68cdc15dfc7c86d3def9cf4200d77be86d9e9c5",
+        "format": "Niantic SPZ v3",
+        "higher_order_sh": "preserved through SH3 (quantized)",
+        "files": [
+          {
+            "path": "background.spz",
+            "gaussians": 1097714,
+            "bytes": 21468494,
+            "sha256": "b131283fe827246aa0884901986894ecb000dfc0ed781a92083d0d146578509c"
+          },
+          {
+            "path": "objects/1.spz",
+            "gaussians": 8232,
+            "bytes": 149171,
+            "sha256": "7f45b0c0529b1f2522f9f0ed1b14b0dcd22ca78d90ccf2853e7fc826ea09af93"
+          }
+        ],
+        "gaussians": 1105946,
+        "splat_bytes": 21617665,
+        "objects": 1,
+        "colliders": 4738
+      },
+      "image_sha256": "abf8b9bd336d19ba304de2babbc0aae8d7a45cf7d7ae45cb8eb9bfbb4d7b681a"
+    },
+    "cleanup-015": {
+      "capture": {
+        "fps": 15,
+        "frames": 15,
+        "renderer": "ANGLE (NVIDIA, NVIDIA GeForce GTX 1660 Ti (0x00002191) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "captured_frames": 1,
+        "width": 740,
+        "height": 1118,
+        "seconds": 6.93,
+        "world_sha256": "9b77b4412ea335ee5071ce4a0303d366fe42532cb038ad34bd736f81faee92bf",
+        "shot_sha256": "9a4bd7f84612ee1e18de5785652cd8f00160ea25d9a28696203c1a598018d942"
+      },
+      "camera_shot": {
+        "version": 1,
+        "fps": 15,
+        "duration": 1,
+        "fov": 112.65221664120085,
+        "camera": [
+          {
+            "time": 0,
+            "position": [
+              -0.2704279104239089,
+              1.4981314909313643,
+              0.6439403456027011
+            ],
+            "target": [
+              -0.45536694798722094,
+              1.5069164714266583,
+              -2.3503409331857252
+            ]
+          },
+          {
+            "time": 1,
+            "position": [
+              -0.2704279104239089,
+              1.4981314909313643,
+              0.6439403456027011
+            ],
+            "target": [
+              -0.45536694798722094,
+              1.5069164714266583,
+              -2.3503409331857252
+            ]
+          }
+        ],
+        "events": []
+      },
+      "asset_manifest": {
+        "source_world_sha256": "24d37e24628d22fb2c366933e68cdc15dfc7c86d3def9cf4200d77be86d9e9c5",
+        "format": "Niantic SPZ v3",
+        "higher_order_sh": "preserved through SH3 (quantized)",
+        "files": [
+          {
+            "path": "background.spz",
+            "gaussians": 991637,
+            "bytes": 19221242,
+            "sha256": "19f683d3fd27a9bd124e01a2d3ec195d6eda3f32ea5fd36b929085a4bc1a3195"
+          },
+          {
+            "path": "objects/1.spz",
+            "gaussians": 8232,
+            "bytes": 149171,
+            "sha256": "7f45b0c0529b1f2522f9f0ed1b14b0dcd22ca78d90ccf2853e7fc826ea09af93"
+          }
+        ],
+        "gaussians": 999869,
+        "splat_bytes": 19370413,
+        "objects": 1,
+        "colliders": 4738
+      },
+      "image_sha256": "e372ed66e08ae883359e3aca10610d357ba7532d39c6c77e8a6edc4cf2206c1a"
+    },
+    "cleanup-03": {
+      "capture": {
+        "fps": 15,
+        "frames": 15,
+        "renderer": "ANGLE (NVIDIA, NVIDIA GeForce GTX 1660 Ti (0x00002191) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "captured_frames": 1,
+        "width": 740,
+        "height": 1118,
+        "seconds": 7.209,
+        "world_sha256": "9b77b4412ea335ee5071ce4a0303d366fe42532cb038ad34bd736f81faee92bf",
+        "shot_sha256": "9a4bd7f84612ee1e18de5785652cd8f00160ea25d9a28696203c1a598018d942"
+      },
+      "camera_shot": {
+        "version": 1,
+        "fps": 15,
+        "duration": 1,
+        "fov": 112.65221664120085,
+        "camera": [
+          {
+            "time": 0,
+            "position": [
+              -0.2704279104239089,
+              1.4981314909313643,
+              0.6439403456027011
+            ],
+            "target": [
+              -0.45536694798722094,
+              1.5069164714266583,
+              -2.3503409331857252
+            ]
+          },
+          {
+            "time": 1,
+            "position": [
+              -0.2704279104239089,
+              1.4981314909313643,
+              0.6439403456027011
+            ],
+            "target": [
+              -0.45536694798722094,
+              1.5069164714266583,
+              -2.3503409331857252
+            ]
+          }
+        ],
+        "events": []
+      },
+      "asset_manifest": {
+        "source_world_sha256": "24d37e24628d22fb2c366933e68cdc15dfc7c86d3def9cf4200d77be86d9e9c5",
+        "format": "Niantic SPZ v3",
+        "higher_order_sh": "preserved through SH3 (quantized)",
+        "files": [
+          {
+            "path": "background.spz",
+            "gaussians": 1041069,
+            "bytes": 20237238,
+            "sha256": "73a2b391ec2e0cf3c4a7c5d060b78b41fe4cce017cb547ace2d599867378a743"
+          },
+          {
+            "path": "objects/1.spz",
+            "gaussians": 8232,
+            "bytes": 149171,
+            "sha256": "7f45b0c0529b1f2522f9f0ed1b14b0dcd22ca78d90ccf2853e7fc826ea09af93"
+          }
+        ],
+        "gaussians": 1049301,
+        "splat_bytes": 20386409,
+        "objects": 1,
+        "colliders": 4738
+      },
+      "image_sha256": "d13b2b7a14754ba44da3f66a4b831f496d94bd0c00c9a7b58a2be579c0aa8393"
+    },
+    "cleanup-tv-03": {
+      "capture": {
+        "fps": 15,
+        "frames": 15,
+        "renderer": "ANGLE (NVIDIA, NVIDIA GeForce GTX 1660 Ti (0x00002191) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "captured_frames": 1,
+        "width": 740,
+        "height": 1118,
+        "seconds": 4.614,
+        "world_sha256": "9b77b4412ea335ee5071ce4a0303d366fe42532cb038ad34bd736f81faee92bf",
+        "shot_sha256": "9a4bd7f84612ee1e18de5785652cd8f00160ea25d9a28696203c1a598018d942"
+      },
+      "camera_shot": {
+        "version": 1,
+        "fps": 15,
+        "duration": 1,
+        "fov": 112.65221664120085,
+        "camera": [
+          {
+            "time": 0,
+            "position": [
+              -0.2704279104239089,
+              1.4981314909313643,
+              0.6439403456027011
+            ],
+            "target": [
+              -0.45536694798722094,
+              1.5069164714266583,
+              -2.3503409331857252
+            ]
+          },
+          {
+            "time": 1,
+            "position": [
+              -0.2704279104239089,
+              1.4981314909313643,
+              0.6439403456027011
+            ],
+            "target": [
+              -0.45536694798722094,
+              1.5069164714266583,
+              -2.3503409331857252
+            ]
+          }
+        ],
+        "events": []
+      },
+      "asset_manifest": {
+        "source_world_sha256": "24d37e24628d22fb2c366933e68cdc15dfc7c86d3def9cf4200d77be86d9e9c5",
+        "format": "Niantic SPZ v3",
+        "higher_order_sh": "preserved through SH3 (quantized)",
+        "files": [
+          {
+            "path": "background.spz",
+            "gaussians": 1058464,
+            "bytes": 20600352,
+            "sha256": "3b9245261b16cd655d7ac9e8039d474855b3502ca2ac4924fb07efc5fdaba0ba"
+          },
+          {
+            "path": "objects/1.spz",
+            "gaussians": 8232,
+            "bytes": 149171,
+            "sha256": "7f45b0c0529b1f2522f9f0ed1b14b0dcd22ca78d90ccf2853e7fc826ea09af93"
+          }
+        ],
+        "gaussians": 1066696,
+        "splat_bytes": 20749523,
+        "objects": 1,
+        "colliders": 4738
+      },
+      "image_sha256": "e1640649dd6e8deb1f697a88347f4ec2984be32e215a01b67525a92585d87b47"
+    }
+  },
+  "camera_comparison_limit": "Captures match provided camera center, optical axis, aspect and vertical field of view; camera.lookAt uses fitted world-up, so original individual-camera roll is not reproduced. All cleanup captures share the same camera settings and initial physics state.",
+  "ray_push_probes": {
+    "out-soft": {
+      "moved_m": 0.06292989937334419,
+      "max_tilt_degrees": 2.4719001988987457,
+      "before": {
+        "id": 1,
+        "position": {
+          "x": 1.1323115825653076,
+          "y": 0.5008561015129089,
+          "z": -1.9219870567321777
+        },
+        "rotation": {
+          "x": -0.0006941076135262847,
+          "y": -0.00032397283939644694,
+          "z": 0.018163735046982765,
+          "w": 0.9998347163200378
+        }
+      },
+      "after": {
+        "id": 1,
+        "position": {
+          "x": 1.1340798139572144,
+          "y": 0.49837738275527954,
+          "z": -1.859130859375
+        },
+        "rotation": {
+          "x": 0.0013126626145094633,
+          "y": -0.005006800405681133,
+          "z": -0.0007096808985807002,
+          "w": 0.9999864101409912
+        }
+      },
+      "actions": [
+        {
+          "time": 3,
+          "type": "push",
+          "object": null
+        }
+      ],
+      "push": {
+        "time": 3,
+        "type": "push",
+        "origin": [
+          1.6521,
+          0.8,
+          -1.939
+        ],
+        "target": [
+          1.1521,
+          0.8,
+          -1.939
+        ],
+        "strength": 2
+      }
+    },
+    "out-medium": {
+      "moved_m": 0.06292989937334419,
+      "max_tilt_degrees": 2.4719001988987457,
+      "before": {
+        "id": 1,
+        "position": {
+          "x": 1.1323115825653076,
+          "y": 0.5008561015129089,
+          "z": -1.9219870567321777
+        },
+        "rotation": {
+          "x": -0.0006941076135262847,
+          "y": -0.00032397283939644694,
+          "z": 0.018163735046982765,
+          "w": 0.9998347163200378
+        }
+      },
+      "after": {
+        "id": 1,
+        "position": {
+          "x": 1.1340798139572144,
+          "y": 0.49837738275527954,
+          "z": -1.859130859375
+        },
+        "rotation": {
+          "x": 0.0013126626145094633,
+          "y": -0.005006800405681133,
+          "z": -0.0007096808985807002,
+          "w": 0.9999864101409912
+        }
+      },
+      "actions": [
+        {
+          "time": 3,
+          "type": "push",
+          "object": null
+        }
+      ],
+      "push": {
+        "time": 3,
+        "type": "push",
+        "origin": [
+          1.6521,
+          0.8,
+          -1.939
+        ],
+        "target": [
+          1.1521,
+          0.8,
+          -1.939
+        ],
+        "strength": 3
+      }
+    },
+    "in-strong": {
+      "moved_m": 0.05365825874934999,
+      "max_tilt_degrees": 3.574259251020751,
+      "before": {
+        "id": 1,
+        "position": {
+          "x": 1.1323115825653076,
+          "y": 0.5008561015129089,
+          "z": -1.9219870567321777
+        },
+        "rotation": {
+          "x": -0.0006941076135262847,
+          "y": -0.00032397283939644694,
+          "z": 0.018163735046982765,
+          "w": 0.9998347163200378
+        }
+      },
+      "after": {
+        "id": 1,
+        "position": {
+          "x": 1.1333746910095215,
+          "y": 0.4993273913860321,
+          "z": -1.8683611154556274
+        },
+        "rotation": {
+          "x": -9.698476787889376e-06,
+          "y": 0.12606678903102875,
+          "z": -0.002976360497996211,
+          "w": 0.9920172691345215
+        }
+      },
+      "actions": [
+        {
+          "time": 3,
+          "type": "push",
+          "object": 1
+        }
+      ],
+      "push": {
+        "time": 3,
+        "type": "push",
+        "origin": [
+          0.6520999999999999,
+          0.85,
+          -1.939
+        ],
+        "target": [
+          1.1521,
+          0.85,
+          -1.939
+        ],
+        "strength": 6
+      }
+    },
+    "side-strong": {
+      "moved_m": 0.06292989937334419,
+      "max_tilt_degrees": 2.4719001988987457,
+      "before": {
+        "id": 1,
+        "position": {
+          "x": 1.1323115825653076,
+          "y": 0.5008561015129089,
+          "z": -1.9219870567321777
+        },
+        "rotation": {
+          "x": -0.0006941076135262847,
+          "y": -0.00032397283939644694,
+          "z": 0.018163735046982765,
+          "w": 0.9998347163200378
+        }
+      },
+      "after": {
+        "id": 1,
+        "position": {
+          "x": 1.1340798139572144,
+          "y": 0.49837738275527954,
+          "z": -1.859130859375
+        },
+        "rotation": {
+          "x": 0.0013126626145094633,
+          "y": -0.005006800405681133,
+          "z": -0.0007096808985807002,
+          "w": 0.9999864101409912
+        }
+      },
+      "actions": [
+        {
+          "time": 3,
+          "type": "push",
+          "object": null
+        }
+      ],
+      "push": {
+        "time": 3,
+        "type": "push",
+        "origin": [
+          1.1521,
+          0.8,
+          -1.339
+        ],
+        "target": [
+          1.1521,
+          0.8,
+          -1.939
+        ],
+        "strength": 6
+      }
+    },
+    "side-back": {
+      "moved_m": 0.06292989937334419,
+      "max_tilt_degrees": 2.4719001988987457,
+      "before": {
+        "id": 1,
+        "position": {
+          "x": 1.1323115825653076,
+          "y": 0.5008561015129089,
+          "z": -1.9219870567321777
+        },
+        "rotation": {
+          "x": -0.0006941076135262847,
+          "y": -0.00032397283939644694,
+          "z": 0.018163735046982765,
+          "w": 0.9998347163200378
+        }
+      },
+      "after": {
+        "id": 1,
+        "position": {
+          "x": 1.1340798139572144,
+          "y": 0.49837738275527954,
+          "z": -1.859130859375
+        },
+        "rotation": {
+          "x": 0.0013126626145094633,
+          "y": -0.005006800405681133,
+          "z": -0.0007096808985807002,
+          "w": 0.9999864101409912
+        }
+      },
+      "actions": [
+        {
+          "time": 3,
+          "type": "push",
+          "object": null
+        }
+      ],
+      "push": {
+        "time": 3,
+        "type": "push",
+        "origin": [
+          1.1521,
+          0.8,
+          -2.539
+        ],
+        "target": [
+          1.1521,
+          0.8,
+          -1.939
+        ],
+        "strength": 6
+      }
+    }
+  },
+  "decision": "Do not replace the public lounge GIF or live demo. Automatic extraction produces fragments; the manually associated two-view chair remains thin and fails visible movement/tipping. TV-only cleanup reduces the central floater but window blur remains; broader cleanup introduces dark gaps.",
+  "unverified": [
+    "Complete-chair extraction",
+    "Satisfactory walking-view visual quality",
+    "A publishable tipping interaction",
+    "Cause of window/TV blur"
+  ],
+  "published_lounge_assets_unchanged": true,
+  "baseline_asset_and_media_hashes": {
+    "assets/background.spz": "a8d11456887befd63758575dcf043a983671253f66ce3a9de03872a5854952e2",
+    "assets/data-attribution.md": "7a7cd7836dd961dac25f5fc959e7278717e7ae8b44cf7b1a916e9d6097196e4d",
+    "assets/EYEFULTOWER-LICENSE.txt": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93",
+    "assets/manifest.json": "dc4a9371f9ecba2c5986ba37d3707cdc280f1fb35b47cd48340e155bbf00b438",
+    "assets/quality-report.json": "f785413f19cda180c680ba836efe8ed655a11a8ffcc3a4cf484b2c13c56b4331",
+    "assets/source.json": "c381a901282ea663c08aec3d54174ad5a1a726ba9b815802bf3474766665b602",
+    "assets/world.json": "74d5f27ac3d2ea49ddc37b4dffd884a7dbbf5f96ac1a222361f287ed4adc53e2",
+    "assets/objects/1.spz": "689b45644d6c57401deed34bbccbc56713a76e66e1a250dbdca4cbdcc45975cd",
+    "assets/objects/5.spz": "d262f17cd04c35e6ed53c9fb39b7f72383c00819934bd7f7e1a14024c5122b2a",
+    "docs/demos/lounge-provenance.json": "18f9989acf3e28ba0cd4324c39f107229763a755a2f5e9fc1d96db64ab3833c3",
+    "docs/demos/lounge.gif": "f0cfa1850f9453d9177bbfe5b5811bb8348f758c92aee5bd06bd3dbaaf050735",
+    "docs/demos/lounge.mp4": "1977319321c9e12788e5542e13603a1e4bf3f4b6c732803712ab2b50544c653e",
+    "shots/gallery/lounge-profile.json": "699e2c8e10b3e49a5284ce18fb5df53d2e96c3ebc8b7687c3b6d677689d3d0c9",
+    "shots/gallery/lounge.json": "3a87ae61a9847996cc8a8804ee197ed33d7ffdfa1b54d90527e8accdd5746b7d"
+  },
+  "next_cpu_investigation": "Use the recovered masks/calibration/raw PLY to diagnose identity associations, visibility votes, geometric inlier pruning and static chair remnants before another GPU run."
+}

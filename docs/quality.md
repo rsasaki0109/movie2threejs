@@ -311,3 +311,42 @@ zero assignments and 0.00 units/hour after preparation.
 · [Photograph/calibration manifest](runs/quality/lounge-prepared-source-20261009.json)
 · [Sixteen segmentation photographs](runs/quality/lounge-prepared-contact-20261009.jpg).
 The current README GIFs and live scenes remain unchanged by this review.
+
+
+## Window-office calibrated trial: not adopted, 9 October 2026
+
+![Source photograph and actual browser outputs from the calibrated window-office trial](runs/quality/lounge-calibrated-20261009.jpg)
+
+The prepared 144-photograph window office completed 7,000 training steps, SAM 3
+and world assembly on a dedicated L4. Checkpoint, raw PLY, sixteen masks and both
+camera models were recovered and verified before shutdown. The run was **not
+adopted**: large TV/window floaters remained in a capture matching the supplied
+camera center, optical axis, aspect and field of view. The viewer uses fitted
+world-up rather than the source camera's individual roll. The causes of the
+remaining blur have not been established; the input and training schedule differ
+from the current VGGT office, so this is not a controlled pose-only comparison.
+
+SAM instance IDs also switched between neighboring chairs. The automatic world
+contained three fragments, not three complete movable chairs. A local diagnostic
+manually associated the same middle chair as label 2 in `19_DSC0397.jpg` and
+label 1 in `19_DSC0433.jpg`, and assembled only those two reviewed views. It
+recovered a 0.980 m tall body, but its horizontal extents were 0.185 × 0.824 m.
+A ray that hit that body produced only 0.054 m displacement and 3.57° sampled
+maximum tilt; other trial rays were blocked or missed. This did not pass the
+visible-movement or tipping criteria and was not published as a playable result.
+
+CPU-only sparse-reference pruning removed 39,250 background Gaussians in the TV
+region and reduced the central floating volume. Expanding the operation to the
+window/TV view removed 56,645 or 106,077 Gaussians and exposed dark window gaps.
+All variants retained the same collision data, object splats and camera/physics
+settings. TV-only cleanup still left substantial window blur and did not solve
+the interaction failure. These experimental filters were not added to the default
+pipeline or current live scene.
+
+The existing window-office GIF and live assets remain byte-identical to their
+saved baseline. The recovered masks, calibration and raw PLY support a further
+CPU investigation of identity associations, visibility votes, inlier pruning and
+static chair remnants. No further GPU runtime was started.
+
+[Parameters, artifact hashes, mask counts, browser captures and rejected pushes](runs/quality/lounge-calibrated-20261009.json)
+· [Measured run](benchmarks.md#calibrated-window-office-trial-9-october-2026).

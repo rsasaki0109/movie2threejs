@@ -443,3 +443,50 @@ replay at sampled states. The chair moves **0.817 m** and reaches **90.03°** ti
 over all recorded frames. The 8 s GIF is **1,131,733 bytes**, 480×270; the
 1920×1080 MP4 is **3,909,411 bytes**. [Encoding receipt](demos/cafe-provenance.json).
 This validates this reviewed public showcase, not automatic phone-video quality.
+
+
+## Calibrated window-office trial, 9 October 2026
+
+**Completed and recovered; not adopted for the README or live gallery.** Input:
+144 undistorted Eyeful Tower `office_view2` photographs from cameras 19, 16 and
+22, provided camera calibration, 100,000 sparse initialization points and sixteen
+primary-camera segmentation photographs. This did not run VGGT or validate a
+smartphone video. Source revision: `822afcc4555abf181cc8519b0753c165a8f2a427`.
+GPU: **NVIDIA L4, 23,034 MiB**, driver 580.82.07. SAM 3 access and native bf16
+preflight passed. The input ZIP's remote SHA-256 matched its local receipt.
+
+| Stage | Measured seconds |
+|---|---:|
+| Fresh GPU environment setup | 579.247 |
+| gsplat, 7,000 steps | 262.494 |
+| SAM 3, sixteen photographs, `chair,cushion`, seed 11 | 39.823 |
+| Automatic world assembly | 8.267 |
+| Core stages combined | 310.584 |
+| Enclosing preparation/run/backup preparation, excluding setup | 340.766 |
+| Local manual two-view assembly diagnostic | 8.571 |
+
+Training ended with **1,108,601 Gaussians**. The automatic world kept 1,105,822,
+with **3 detected fragments, 4,617 colliders and 3 support patches**. These object
+counts do not mean three complete movable chairs. Held-out metrics were PSNR
+**20.9621 dB**, SSIM **0.800568** and LPIPS **0.380820**, for this trial only.
+Photograph inputs and the schedule differ from the published VGGT window office.
+
+The final checkpoint (261,632,757 bytes, step 6,999) and world ZIP (521,971,024
+bytes) passed SHA-256/CRC checks before shutdown. Both recovered camera models
+matched their prepared inputs byte for byte. CPU `weights_only` loading verified
+all six finite Gaussian tensors; the checkpoint has no optimizer state and is
+not an exact training-resume snapshot. Raw final PLY and sixteen segmentation
+masks are retained locally.
+
+The dedicated L4 stopped after **1,059.022 s (17 min 39 s)** measured from the
+pre-allocation timer. At the observed 1.54 units/hour this is **an estimated
+0.4530 units**, below the approved 25-minute/0.65-unit cap; individual billing
+was not measured. Colab subsequently reported **0 assignments and 0.00 units/hour**.
+Setup, transfer, local review and browser recording are separate from core stage
+timing. No budget extension or further allocation was used.
+
+Visual review rejected the trial: TV/window floaters remained, broad pruning
+created dark gaps, and the manually associated chair failed visible movement and
+tipping. Current README media and live assets were preserved.
+[Detailed receipt](runs/quality/lounge-calibrated-20261009.json)
+· [Actual comparison images and limitations](quality.md#window-office-calibrated-trial-not-adopted-9-october-2026).
