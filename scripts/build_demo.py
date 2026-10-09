@@ -79,6 +79,16 @@ def package_world(source: Path, out: Path, profile: dict | None = None, format: 
     world["background"] = Path(world["background"]).with_suffix("." + format).as_posix()
     for obj in world["objects"]:
         obj["splat"] = Path(obj["splat"]).with_suffix("." + format).as_posix()
+    photo_files = []
+    for backdrop in world.get('photo_backdrops', []):
+        relative = Path(backdrop['texture'])
+        if relative.is_absolute() or '..' in relative.parts:
+            raise ValueError(f'unsafe photo backdrop path {relative}')
+        target = out / relative
+        target.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(source / relative, target)
+        photo_files.append({'path':relative.as_posix(), 'bytes':target.stat().st_size,
+                            'sha256':hashlib.sha256(target.read_bytes()).hexdigest()})
     if profile is not None:
         world["player"].update(profile.get("player", {}))
         world["demo"] = profile.get("demo", {})
@@ -88,7 +98,8 @@ def package_world(source: Path, out: Path, profile: dict | None = None, format: 
                 "higher_order_sh": "preserved through SH3 (quantized)" if format == "spz" else "omitted for download size", "files": files,
                 "gaussians": sum(f["gaussians"] for f in files),
                 "splat_bytes": sum(f["bytes"] for f in files),
-                "objects": len(world["objects"]), "colliders": len(world["colliders"])}
+                "objects": len(world["objects"]), "colliders": len(world["colliders"]),
+                "photo_backdrops": photo_files}
     (out / "manifest.json").write_text(json.dumps(manifest, indent=2), encoding="utf-8")
     print(json.dumps({k: v for k, v in manifest.items() if k != "files"}, indent=2))
 

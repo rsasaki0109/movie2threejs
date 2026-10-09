@@ -88,6 +88,23 @@ async function main() {
 
   const align = new THREE.Matrix4().fromArray(world.align);
   const loading = [];
+  // Optional reviewed photo planes; these are not reconstructed exterior geometry.
+  for (const backdrop of world.photo_backdrops ?? []) {
+    if (backdrop.vertices?.length !== 4 || backdrop.uv?.length !== 4 ||
+        !backdrop.vertices.every(p => p.length === 3 && p.every(Number.isFinite)) ||
+        !backdrop.uv.every(p => p.length === 2 && p.every(Number.isFinite))) {
+      throw new Error('Photo backdrop requires four finite world vertices and UV pairs');
+    }
+    const geometry = new THREE.BufferGeometry();
+    geometry.setAttribute('position', new THREE.Float32BufferAttribute(backdrop.vertices.flat(), 3));
+    geometry.setAttribute('uv', new THREE.Float32BufferAttribute(backdrop.uv.flat(), 2));
+    geometry.setIndex([0, 1, 2, 0, 2, 3]);
+    const texture = await new THREE.TextureLoader().loadAsync(base + backdrop.texture);
+    texture.colorSpace = THREE.SRGBColorSpace;
+    scene.add(new THREE.Mesh(geometry, new THREE.MeshBasicMaterial({
+      map: texture, side: THREE.DoubleSide, toneMapped: false,
+    })));
+  }
   const downloads = new Map();
   const splat = (url, matrix) => {
     const mesh = new SplatMesh({ url: base + url, onProgress: event => {
@@ -319,7 +336,8 @@ async function main() {
 
   setStatus(`loading ${1 + objects.length} splats…`);
   await Promise.all(loading);
-  setStatus(`${world.objects.length} physical objects · ${world.colliders.length} static colliders`);
+  setStatus([`${world.objects.length} physical objects · ${world.colliders.length} static colliders`,
+    ...(world.photo_backdrops ?? []).map(b => b.label ?? 'Source-photo plane')].join(' · '));
   window.playworld = { world, phys, objects, camera, controls, renderer, push, throwBall, reset, freeCamera: recording,
     setMoveKey(code, down) { if (down) keys.add(code); else keys.delete(code); },
     lookBy(dx, dy) {

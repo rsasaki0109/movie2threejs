@@ -160,3 +160,60 @@ Gaussians can subsequently move outside the support threshold. The measured
 split. A separate `--near-plane` option controls gsplat clipping in raw capture
 units (default 0.01); it does not change the browser camera or world geometry.
 See the [actual comparison and remaining haze](quality.md#window-office-interior-floater-cleanup-9-october-2026).
+
+## Optional observed-floor footprint and photo window
+
+For haze beyond the camera hull but over observed floor, the support filter
+offers an alternative footprint. It remains opt-in; camera mode is the default.
+Use the full sparse scene and the same verified y-up world alignment:
+
+```bash
+python scripts/clean_interior.py --scene scenes/room --splats refinement/best.ply --world reviewed-world/world.json --out floor-cleanup --footprint floor
+```
+
+`--floor-band 0.06` selects reference points near y=0, and `--floor-cell 0.2`
+sets horizontal voxel connectivity. The largest component is weighted by
+original point count, then its convex hull bounds support cleanup. Existing
+distance/inset/height settings apply. Camera centers and `--test-every` do not
+affect the floor footprint. Sparse points still come from the provided model;
+this is not a strictly isolated training-only reconstruction. All units rely
+on the assumed world scale. Missing floors or degenerate footprints fail
+explicitly, rather than silently falling back to a different filter.
+
+The GPU tool offers `--interior-footprint floor`, `--interior-floor-band` and
+`--interior-floor-cell` together with `--interior-world`. It filters once before
+fresh Adam optimizers, not continuously during training. An evaluation-only
+check reproduced the CPU/prototype mask count and pre-training metric. The
+measured 500-step run used the separately pruned checkpoint and the previous
+refinement script; the receipt preserves its actual script hash/version.
+
+For a **manually reviewed photo window**, assemble a raw PLY world first, then
+bake and serve the fresh copy:
+
+```bash
+playworld world reviewed-scene --splats floor-refinement/best.ply --out floor-world --object-filter connected --clean-splats --bounds-margin 6
+python scripts/bake_window_backdrop.py --scene scenes/room --world floor-world --config docs/runs/quality/lounge-window-backdrop-config-20261009.json --out photo-window-world
+python -m http.server -d photo-window-world 8000
+```
+
+The example configuration is **specific to the window-office trial**. Review
+the approximate plane, y/z bounds, photograph names and background strip for
+your own capture. Source photographs must be undistorted PINHOLE images and
+cover their entire assigned patch. The strip specifies x offsets from
+`x = slope*z + intercept`; positive offsets point toward the tested room. It is
+not a normal-distance cutoff. The script preserves original files, movable
+object PLYs and colliders, hashes its source photographs and refreshes the viewer
+in the new world. SPZ packaging also copies and hashes the photo texture.
+
+This is an opaque textured plane, including photographed window frames;
+exterior geometry and true parallax are not recovered. Occluding foreground
+objects can get baked into it, so the tested fallback covers only y=1.10–2.75 m.
+No automatic window detector, inpainting or camera-error correction is claimed.
+The normal viewer displays the configuration's disclosure label; recording
+receipts identify photo backdrops. For a caption burned into diagnostic media:
+
+```bash
+python scripts/encode_gallery.py --frames capture --out docs/runs/quality --name window-trial --title "Window trial" --caption "Window exterior is a photo plane" --gifski path/to/gifski
+```
+
+[Measured comparison and remaining artifacts](quality.md#window-office-floor-footprint-and-photo-window-9-october-2026).

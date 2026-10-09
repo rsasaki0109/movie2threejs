@@ -73,6 +73,52 @@ def test_interior_cleanup_requires_a_valid_footprint_and_finite_reference():
     assert interior_support_mask(np.empty((0, 3)), points, cameras).shape == (0,)
 
 
+def test_floor_footprint_extends_cleanup_to_windows_without_pruning_frames_or_exterior():
+    from playworld.cleanup import floor_footprint, interior_support_mask
+    x, z = np.meshgrid(np.arange(-1, 1.01, .1), np.arange(-1, 1.01, .1))
+    floor = np.column_stack([x.ravel(), np.zeros(x.size), z.ravel()])
+    frame = np.array([[-1.05, 1.4, 0], [-.85, 1.4, .5]])
+    reference = np.r_[floor, frame, [[0, .15, 0], [0, 3, 0]]]
+    original = reference.copy()
+    anchors = floor_footprint(reference)
+    np.testing.assert_array_equal(reference, original)
+    assert len(anchors) == len(floor)
+    cameras = np.array([[-.3, 1.5, -.8], [.8, 1.5, -.8], [.8, 1.5, .8], [-.3, 1.5, .8]])
+    # The new footprint includes a floater next to the window, beyond the
+    # camera hull. Observed frame, floor/ceiling, outdoor points and inset
+    # boundary remain; colors/opacity are not used as deletion criteria.
+    points = np.array([[-.7, 1.4, 0], [-.85, 1.4, .5], [-1.05, 1.4, 0],
+                       [-4, 1.4, 0], [-.7, 0, 0], [-.7, 3, 0], [-.98, 2, 0]])
+    assert interior_support_mask(points, reference, cameras)[0]
+    np.testing.assert_array_equal(interior_support_mask(points, reference, anchors),
+                                  [False, True, True, True, True, True, True])
+
+
+def test_floor_footprint_selects_by_point_weight_and_excludes_disconnected_outdoor_patch():
+    from playworld.cleanup import floor_footprint
+    # Four occupied cells with many points outweigh a larger but sparse patch.
+    dense = np.repeat(np.array([[.05, 0, .05], [.25, 0, .05],
+                               [.05, 0, .25], [.25, 0, .25]]), 10, axis=0)
+    x, z = np.meshgrid(np.arange(10.05, 10.86, .2), np.arange(10.05, 10.86, .2))
+    outdoor = np.column_stack([x.ravel(), np.zeros(x.size), z.ravel()])
+    np.testing.assert_array_equal(floor_footprint(np.r_[dense, outdoor]), dense)
+    # Diagonal neighbors connect without allocating a grid spanning the gap.
+    diagonal = np.array([[0, 0, 0], [.2, 0, .2], [.4, 0, .4], [.4, 0, .6]])
+    assert len(floor_footprint(diagonal)) == 4
+
+
+def test_floor_footprint_rejects_missing_degenerate_or_invalid_floor():
+    from playworld.cleanup import floor_footprint
+    with pytest.raises(ValueError, match='observed floor points'):
+        floor_footprint(np.array([[0, 1, 0], [1, 1, 0], [0, 1, 1]]))
+    with pytest.raises(ValueError, match='nonzero horizontal area'):
+        floor_footprint(np.array([[0, 0, 0], [.1, 0, 0], [.2, 0, 0]]))
+    with pytest.raises(ValueError, match='finite Nx3'):
+        floor_footprint(np.array([[0, np.nan, 0]]))
+    with pytest.raises(ValueError, match='finite and positive'):
+        floor_footprint(np.ones((3, 3)), cell=0)
+
+
 def test_interior_tool_preserves_a_complete_synthetic_room_and_original_inputs(tmp_path):
     import hashlib
     import importlib.util
@@ -110,5 +156,11 @@ def test_interior_tool_preserves_a_complete_synthetic_room_and_original_inputs(t
     serialized_input = splat_io.read_ply(input_ply)
     for k in props:
         np.testing.assert_array_equal(result[k], serialized_input[k][np.load(out/'keep.npy')])
+    # Same complete transformed room through the observed-floor option.
+    floor_out = tmp_path/'floor-cleaned'
+    floor_report = module.clean(scene, input_ply, world, floor_out, footprint='floor')
+    assert floor_report['removed_gaussians'] == 1
+    assert floor_report['settings']['footprint'] == 'floor'
+    np.testing.assert_array_equal(np.load(floor_out/'keep.npy'), np.load(out/'keep.npy'))
     with pytest.raises(FileExistsError):
         module.clean(scene, input_ply, world, out)

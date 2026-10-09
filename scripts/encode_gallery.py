@@ -10,17 +10,21 @@ from pathlib import Path
 from encode_hero import encode_with_gifski
 
 
-def encode(frames: Path, out: Path, name: str, title: str, gifski: Path | None):
+def encode(frames: Path, out: Path, name: str, title: str, gifski: Path | None, caption: str | None = None):
     capture=json.loads((frames/'capture.json').read_text())
     if capture['captured_frames']!=capture['frames']:
         raise ValueError('Gallery preview requires a complete capture')
     if not re.fullmatch(r'[a-z0-9-]+',name) or not re.fullmatch(r'[A-Za-z0-9 ]+',title):
         raise ValueError('Use a simple demo ID and title')
+    if caption is not None and not re.fullmatch(r'[A-Za-z0-9 ]{1,80}', caption):
+        raise ValueError('Use a short caption with letters, digits and spaces')
     out.mkdir(parents=True,exist_ok=True)
     duration=capture['frames']/capture['fps']
     mp4,gif=out/f'{name}.mp4',out/f'{name}.gif'
     # Dissolve back to the original room at the loop boundary, including physics.
-    filters=(f'fps={capture["fps"]},settb=AVTB,split[body][first];'
+    overlay = (f"drawtext=text='{caption}':x=12:y=h-th-12:fontsize=18:fontcolor=white:"
+               "box=1:boxcolor=black@0.75:boxborderw=6," if caption else '')
+    filters=(f'fps={capture["fps"]},{overlay}settb=AVTB,split[body][first];'
         f'[first]trim=end_frame=1,loop=loop=-1:size=1:start=0,setpts=N/({capture["fps"]}*TB),'
         f'trim=duration={duration},format=rgba,fade=t=in:st={duration-.4:.6f}:d=0.33:alpha=1[still];'
         '[body][still]overlay=shortest=1:format=rgb,format=yuv420p[out]')
@@ -39,6 +43,7 @@ def encode(frames: Path, out: Path, name: str, title: str, gifski: Path | None):
     report={'id':name,'title':title,'capture_world_sha256':capture['world_sha256'],
         'shot_sha256':capture['shot_sha256'],'captured_frames':capture['frames'],
         'source':'Actual fixed-step browser viewer output; no generated imagery',
+        'caption':caption, 'photo_backdrops':capture.get('photo_backdrops', []),
         'gif_duration_seconds':float(properties['format']['duration']),'gif_fps':fps,'quality':quality,
         'gif_width':properties['streams'][0]['width'],'gif_height':properties['streams'][0]['height'],
         'gif_bytes':gif.stat().st_size,'mp4_bytes':mp4.stat().st_size,
@@ -51,4 +56,5 @@ if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--frames',type=Path,required=True);p.add_argument('--out',type=Path,default=Path('docs/demos'))
     p.add_argument('--name',required=True);p.add_argument('--title',required=True);p.add_argument('--gifski',type=Path)
-    a=p.parse_args();encode(a.frames,a.out,a.name,a.title,a.gifski)
+    p.add_argument('--caption',help='Optional short disclosure caption, also burned into the media')
+    a=p.parse_args();encode(a.frames,a.out,a.name,a.title,a.gifski,a.caption)

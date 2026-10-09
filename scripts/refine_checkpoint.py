@@ -117,7 +117,7 @@ def refine(args):
             raise ValueError(f'invalid SH3 checkpoint tensor: {key}')
     interior_cleanup = None
     if args.interior_world is not None:
-        from playworld.cleanup import interior_support_mask
+        from playworld.cleanup import floor_footprint, interior_support_mask
         from playworld.gravity import apply
         T = np.asarray(json.loads(args.interior_world.read_text(encoding='utf-8'))['align']).reshape(4,4,order='F')
         linear = T[:3,:3]
@@ -125,14 +125,18 @@ def refine(args):
         if (not np.isfinite(T).all() or not np.allclose(T[3],[0,0,0,1]) or scale <= 0
                 or not np.allclose(linear.T@linear,np.eye(3)*scale**2,rtol=1e-5,atol=1e-8)):
             raise ValueError('interior world alignment must be a finite similarity transform')
-        keep = interior_support_mask(apply(T,tensors['means'].numpy()),apply(T,rec.xyz),
-            apply(T,np.stack([images[i].center for i in train_ids])),
+        reference = apply(T,rec.xyz)
+        footprint = getattr(args, 'interior_footprint', 'cameras')
+        anchors = (floor_footprint(reference, args.interior_floor_band, args.interior_floor_cell)
+                   if footprint == 'floor' else apply(T,np.stack([images[i].center for i in train_ids])))
+        keep = interior_support_mask(apply(T,tensors['means'].numpy()),reference,anchors,
             args.interior_distance,args.interior_margin,args.interior_min_height,args.interior_max_height)
         if not keep.any():
             raise ValueError('interior cleanup would leave an empty Gaussian cloud')
         interior_cleanup = {'input_gaussians':n,'removed_gaussians':int((~keep).sum()),
             'world_sha256':hashlib.sha256(args.interior_world.read_bytes()).hexdigest(),
-            'reference_cameras':'training split only','scale_assumed':True,
+            'reference_cameras':'training split only' if footprint == 'cameras' else 'not used for floor footprint',
+            'footprint':footprint,'footprint_anchor_points':len(anchors),'scale_assumed':True,
             'limitation':'One-time support filter, not a training constraint; unsupported interior surfaces may be lost.'}
         tensors = {key:value[torch.from_numpy(keep)] for key,value in tensors.items() if key in shapes}
         n = int(keep.sum())
@@ -282,4 +286,7 @@ if __name__ == '__main__':
     p.add_argument('--interior-margin',type=float,default=.05)
     p.add_argument('--interior-min-height',type=float,default=.25)
     p.add_argument('--interior-max-height',type=float,default=2.75)
+    p.add_argument('--interior-footprint',choices=['cameras','floor'],default='cameras')
+    p.add_argument('--interior-floor-band',type=float,default=.06)
+    p.add_argument('--interior-floor-cell',type=float,default=.2)
     refine(p.parse_args())

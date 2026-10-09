@@ -79,6 +79,7 @@ def capture(world: Path, shot: Path, out: Path, width: int, height: int,
                 const gl = playworld.renderer.getContext();
                 const ext = gl.getExtension('WEBGL_debug_renderer_info');
                 return {fps: playworld.record.fps, frames: playworld.record.frames,
+                    photo_backdrops: (playworld.world.photo_backdrops ?? []).map(({texture,label}) => ({texture,label})),
                     renderer: ext ? gl.getParameter(ext.UNMASKED_RENDERER_WEBGL) : gl.getParameter(gl.RENDERER)};
             }""")
             count = min(info["frames"], limit) if limit is not None else info["frames"]

@@ -1,0 +1,3417 @@
+{
+  "format": "playworld-window-quality-review/1",
+  "date": "2026-10-09",
+  "paid_runtime_started": false,
+  "colab_started": false,
+  "decision": "Upper-window haze visibly reduced using a disclosed photo-plane fallback; lower haze, table/wall streaks and photo seams remain. Diagnostic only; current README and gallery preserved.",
+  "data": {
+    "dataset": "Eyeful Tower office_view2",
+    "license": "MIT",
+    "source_revision": "06a01a4915afc872b893c20a025a0e14598c8478",
+    "input": "144 calibrated photographs, not phone video"
+  },
+  "window_brightness_audit": {
+    "image": null,
+    "camera_center": null,
+    "top_positive_opacity_gradients": [
+      {
+        "id": 457075,
+        "position": [
+          -3.291790008544922,
+          1.1740655899047852,
+          1.0174720287322998
+        ],
+        "scale": [
+          0.027200158685445786,
+          0.023435113951563835,
+          0.0005683719646185637
+        ],
+        "opacity": 0.14519314467906952,
+        "logit_opacity_gradient": 0.001241315738297999,
+        "nearest_camera_distance": 0.4015942675247364,
+        "removed_by_floor_filter": true,
+        "nearest_sfm_distance_capture_units": 0.5669928011601215
+      },
+      {
+        "id": 256853,
+        "position": [
+          -3.497368574142456,
+          0.666845977306366,
+          0.9077779650688171
+        ],
+        "scale": [
+          0.027340171858668327,
+          0.02429303154349327,
+          0.0033043897710740566
+        ],
+        "opacity": 0.08796066045761108,
+        "logit_opacity_gradient": 0.0004572209145408124,
+        "nearest_camera_distance": 0.6550236903049165,
+        "removed_by_floor_filter": false,
+        "nearest_sfm_distance_capture_units": 0.20911911041389855
+      },
+      {
+        "id": 260134,
+        "position": [
+          -3.380631685256958,
+          1.0626357793807983,
+          1.1953591108322144
+        ],
+        "scale": [
+          0.04436643421649933,
+          0.014293367974460125,
+          0.002131133805960417
+        ],
+        "opacity": 0.62530517578125,
+        "logit_opacity_gradient": 0.00034779662382788956,
+        "nearest_camera_distance": 0.4790169975018711,
+        "removed_by_floor_filter": true,
+        "nearest_sfm_distance_capture_units": 0.4832558388615558
+      },
+      {
+        "id": 402565,
+        "position": [
+          -3.3533334732055664,
+          1.1522170305252075,
+          1.0104761123657227
+        ],
+        "scale": [
+          0.013568381778895855,
+          9.881186269922182e-05,
+          0.02444828487932682
+        ],
+        "opacity": 0.5815871953964233,
+        "logit_opacity_gradient": 0.0003387374454177916,
+        "nearest_camera_distance": 0.4668672545502143,
+        "removed_by_floor_filter": true,
+        "nearest_sfm_distance_capture_units": 0.512025424268695
+      },
+      {
+        "id": 847054,
+        "position": [
+          -3.459824562072754,
+          1.238649606704712,
+          0.7197122573852539
+        ],
+        "scale": [
+          0.02214227244257927,
+          0.009336010552942753,
+          0.006544214673340321
+        ],
+        "opacity": 0.17701122164726257,
+        "logit_opacity_gradient": 0.00027607992524281144,
+        "nearest_camera_distance": 0.5840321439382739,
+        "removed_by_floor_filter": true,
+        "nearest_sfm_distance_capture_units": 0.45981483328359923
+      },
+      {
+        "id": 1029413,
+        "position": [
+          -3.228949546813965,
+          1.1512798070907593,
+          1.0607833862304688
+        ],
+        "scale": [
+          0.01464416366070509,
+          0.019466320052742958,
+          1.5905232430668548e-05
+        ],
+        "opacity": 0.11627142876386642,
+        "logit_opacity_gradient": 0.0002659518795553595,
+        "nearest_camera_distance": 0.3485831006144343,
+        "removed_by_floor_filter": true,
+        "nearest_sfm_distance_capture_units": 0.5734827659915724
+      },
+      {
+        "id": 310363,
+        "position": [
+          -3.33347749710083,
+          0.9740124940872192,
+          1.2013640403747559
+        ],
+        "scale": [
+          0.012830209918320179,
+          0.012572545558214188,
+          0.0004825537034776062
+        ],
+        "opacity": 0.19608797132968903,
+        "logit_opacity_gradient": 0.0002599317813292146,
+        "nearest_camera_distance": 0.4186026741855463,
+        "removed_by_floor_filter": true,
+        "nearest_sfm_distance_capture_units": 0.47643767105863705
+      },
+      {
+        "id": 122760,
+        "position": [
+          -3.3029043674468994,
+          1.3176157474517822,
+          0.6500644683837891
+        ],
+        "scale": [
+          0.04277466982603073,
+          0.01381098572164774,
+          0.0048510003834962845
+        ],
+        "opacity": 0.0411495678126812,
+        "logit_opacity_gradient": 0.00022009192616678774,
+        "nearest_camera_distance": 0.40619543972829447,
+        "removed_by_floor_filter": true,
+        "nearest_sfm_distance_capture_units": 0.49958225070971035
+      },
+      {
+        "id": 127857,
+        "position": [
+          -3.364129066467285,
+          1.1060398817062378,
+          1.2041271924972534
+        ],
+        "scale": [
+          0.03464127704501152,
+          0.018522337079048157,
+          0.014712924137711525
+        ],
+        "opacity": 0.3158677816390991,
+        "logit_opacity_gradient": 0.00020934495842084289,
+        "nearest_camera_distance": 0.47489911812962515,
+        "removed_by_floor_filter": true,
+        "nearest_sfm_distance_capture_units": 0.5012026034658149
+      },
+      {
+        "id": 840085,
+        "position": [
+          -3.1979053020477295,
+          1.116241216659546,
+          1.1216925382614136
+        ],
+        "scale": [
+          0.02207038179039955,
+          0.022669339552521706,
+          0.0019387307111173868
+        ],
+        "opacity": 0.02839665114879608,
+        "logit_opacity_gradient": 0.00020514315110631287,
+        "nearest_camera_distance": 0.3255971959249017,
+        "removed_by_floor_filter": true,
+        "nearest_sfm_distance_capture_units": 0.5694319338669565
+      },
+      {
+        "id": 125853,
+        "position": [
+          -3.2071125507354736,
+          1.123904824256897,
+          1.1201059818267822
+        ],
+        "scale": [
+          0.035029176622629166,
+          0.03652707859873772,
+          0.004245952237397432
+        ],
+        "opacity": 0.012951408512890339,
+        "logit_opacity_gradient": 0.00020365869568195194,
+        "nearest_camera_distance": 0.3373884604422298,
+        "removed_by_floor_filter": true,
+        "nearest_sfm_distance_capture_units": 0.5810578467313442
+      },
+      {
+        "id": 658727,
+        "position": [
+          -3.3485231399536133,
+          1.2797985076904297,
+          0.653831958770752
+        ],
+        "scale": [
+          0.01691891998052597,
+          0.014434227719902992,
+          0.0030835054349154234
+        ],
+        "opacity": 0.3655819892883301,
+        "logit_opacity_gradient": 0.00018593134882394224,
+        "nearest_camera_distance": 0.45066529544404776,
+        "removed_by_floor_filter": true,
+        "nearest_sfm_distance_capture_units": 0.5233856149869255
+      },
+      {
+        "id": 297298,
+        "position": [
+          -3.3466601371765137,
+          1.2914140224456787,
+          0.5968446731567383
+        ],
+        "scale": [
+          0.02083003893494606,
+          0.031088612973690033,
+          0.0013972246088087559
+        ],
+        "opacity": 0.10507107526063919,
+        "logit_opacity_gradient": 0.0001663463917793706,
+        "nearest_camera_distance": 0.4253284478718291,
+        "removed_by_floor_filter": true,
+        "nearest_sfm_distance_capture_units": 0.5293724739927915
+      },
+      {
+        "id": 209941,
+        "position": [
+          -3.361116409301758,
+          1.107290267944336,
+          1.2080694437026978
+        ],
+        "scale": [
+          0.032881755381822586,
+          0.01842784881591797,
+          0.015167069621384144
+        ],
+        "opacity": 0.23442474007606506,
+        "logit_opacity_gradient": 0.00016508271801285446,
+        "nearest_camera_distance": 0.46988783928169164,
+        "removed_by_floor_filter": true,
+        "nearest_sfm_distance_capture_units": 0.501894757271477
+      },
+      {
+        "id": 167631,
+        "position": [
+          -3.161726951599121,
+          1.0646941661834717,
+          1.486855387687683
+        ],
+        "scale": [
+          0.03598448261618614,
+          0.0019084650557488203,
+          0.04559670016169548
+        ],
+        "opacity": 0.006512397434562445,
+        "logit_opacity_gradient": 0.000156918351422064,
+        "nearest_camera_distance": 0.15040040028340176,
+        "removed_by_floor_filter": true,
+        "nearest_sfm_distance_capture_units": 0.5759079053811761
+      },
+      {
+        "id": 225926,
+        "position": [
+          -3.4761314392089844,
+          0.7669903635978699,
+          0.7628191113471985
+        ],
+        "scale": [
+          0.011476701125502586,
+          0.031937070190906525,
+          0.011724820360541344
+        ],
+        "opacity": 0.07296714186668396,
+        "logit_opacity_gradient": 0.00014506616571452469,
+        "nearest_camera_distance": 0.6362033593799882,
+        "removed_by_floor_filter": false,
+        "nearest_sfm_distance_capture_units": 0.2017041324650624
+      },
+      {
+        "id": 360222,
+        "position": [
+          -3.3740952014923096,
+          1.2002382278442383,
+          0.9359938502311707
+        ],
+        "scale": [
+          0.017938341945409775,
+          0.0004869886615779251,
+          0.011349496431648731
+        ],
+        "opacity": 0.15614061057567596,
+        "logit_opacity_gradient": 0.0001437547616660595,
+        "nearest_camera_distance": 0.49104010223231837,
+        "removed_by_floor_filter": true,
+        "nearest_sfm_distance_capture_units": 0.5142559628112409
+      },
+      {
+        "id": 183637,
+        "position": [
+          -3.434295177459717,
+          1.2328336238861084,
+          0.6370162963867188
+        ],
+        "scale": [
+          0.029782921075820923,
+          0.02457568608224392,
+          0.021209895610809326
+        ],
+        "opacity": 0.7470096945762634,
+        "logit_opacity_gradient": 0.0001319814909948036,
+        "nearest_camera_distance": 0.5284711867249269,
+        "removed_by_floor_filter": true,
+        "nearest_sfm_distance_capture_units": 0.44399679058221175
+      },
+      {
+        "id": 126535,
+        "position": [
+          -3.3592684268951416,
+          1.1066066026687622,
+          1.208846926689148
+        ],
+        "scale": [
+          0.03223240375518799,
+          0.018414853140711784,
+          0.014279171824455261
+        ],
+        "opacity": 0.23636262118816376,
+        "logit_opacity_gradient": 0.0001310226070927456,
+        "nearest_camera_distance": 0.4683205794640879,
+        "removed_by_floor_filter": true,
+        "nearest_sfm_distance_capture_units": 0.5030828367781541
+      },
+      {
+        "id": 694779,
+        "position": [
+          -3.44875431060791,
+          0.8305595517158508,
+          0.7458473443984985
+        ],
+        "scale": [
+          0.0013209040043875575,
+          0.015410537831485271,
+          0.010640614666044712
+        ],
+        "opacity": 0.7019588947296143,
+        "logit_opacity_gradient": 0.00013094235328026116,
+        "nearest_camera_distance": 0.5906534587472362,
+        "removed_by_floor_filter": false,
+        "nearest_sfm_distance_capture_units": 0.19335627914833212
+      }
+    ],
+    "brightness_probe_mean_squared": 0.4353175759315491,
+    "scope": "Novel shot camera at t=0, x0:260 window-region squared brightness; no ground truth for this pose.",
+    "removed_top_100": 68,
+    "listed_gradients": "First 20 of 100 audited candidates"
+  },
+  "floor_cleanup": {
+    "format": "playworld-interior-support-cleanup/1",
+    "gpu_used": false,
+    "input_gaussians": 1074530,
+    "retained_gaussians": 1023096,
+    "removed_gaussians": 51434,
+    "reference_points": 100000,
+    "reference_cameras": [],
+    "footprint_uses_camera_centers": false,
+    "settings": {
+      "max_reference_distance_m": 0.3,
+      "footprint_inset_m": 0.05,
+      "min_height_m": 0.25,
+      "max_height_m": 2.75,
+      "test_every": 8,
+      "footprint": "floor",
+      "floor_band_m": 0.06,
+      "floor_voxel_m": 0.2
+    },
+    "footprint_anchor_points": 69389,
+    "alignment": [
+      1.32030934,
+      0.00855735,
+      0.04803173,
+      0.0,
+      -0.00854384,
+      1.32118271,
+      -0.00052709,
+      0.0,
+      -0.04803414,
+      0.00021612,
+      1.32033697,
+      0.0,
+      3.79760787,
+      0.01497499,
+      0.06999346,
+      1.0
+    ],
+    "scale_assumed": true,
+    "limitation": "Footprint is not measured free space; unsupported interior surfaces can be removed. Floor mode can extend beyond camera centers.",
+    "inputs": {
+      "splats": {
+        "bytes": 253590558,
+        "sha256": "d9604010175c29bcde0d8b2ddfead89ccde81b156925a25925e80319986f3d55"
+      },
+      "world": {
+        "bytes": 355852,
+        "sha256": "d5991e65cd059e980204e00098ca3042d7a4085edefcbcb1d49851c076ef5c7f"
+      },
+      "sparse": {
+        "cameras.bin": {
+          "bytes": 176,
+          "sha256": "6046ed27e1e306b31a3370c9af7f2b7e12ec748d309a582a77630816787acf4f"
+        },
+        "images.bin": {
+          "bytes": 12536,
+          "sha256": "2de452c5b9291820aa634dd73366246c5359ec836a5fca423562da69b1d09685"
+        },
+        "points3D.bin": {
+          "bytes": 5100008,
+          "sha256": "a68715eabb5049e103b3df749286cc2560024885db68eb3716962ce5faf97988"
+        }
+      }
+    },
+    "outputs": {
+      "cleaned.ply": {
+        "bytes": 241452134,
+        "sha256": "6203473191af294c510eae9efaf415881b5f214f2969e7df27ef0c048ab606d1"
+      },
+      "keep.npy": {
+        "bytes": 1074658,
+        "sha256": "8f3481d8fc94477c1ed59e0edc4604e8cd8156e5d791ba46ad85bc943eb155b4"
+      }
+    },
+    "seconds": 4.515690599975642
+  },
+  "production_mask_matches_checkpoint_prototype": true,
+  "footprint": {
+    "removed": 51434,
+    "retained": 1023096,
+    "floor_band_m": 0.06,
+    "floor_voxel_m": 0.2,
+    "floor_component_points": 69389,
+    "footprint_vertices_world": [
+      [
+        5.505919390501069,
+        -3.444831873259807
+      ],
+      [
+        5.261231636107252,
+        2.2638919949206886
+      ],
+      [
+        5.142862188810139,
+        4.148942959348606
+      ],
+      [
+        5.085734912619415,
+        4.296465600403169
+      ],
+      [
+        4.985388771427225,
+        4.359219391546783
+      ],
+      [
+        3.092090235628924,
+        4.374675955970363
+      ],
+      [
+        -0.39375948136891736,
+        4.254330584187642
+      ],
+      [
+        -0.6904091785105368,
+        4.14699770894972
+      ],
+      [
+        -0.8392221114262499,
+        4.0443401496389075
+      ],
+      [
+        -1.144900679266045,
+        3.6516130932570348
+      ],
+      [
+        -1.1417497626996091,
+        2.465557370686642
+      ],
+      [
+        -1.0298265608708146,
+        -3.9196336086412815
+      ],
+      [
+        -0.9277873181035137,
+        -4.06967864076057
+      ],
+      [
+        -0.8719474056353889,
+        -4.091087891471398
+      ],
+      [
+        0.30935481164342526,
+        -4.079149961133361
+      ],
+      [
+        1.203948977208381,
+        -4.057366867914133
+      ],
+      [
+        5.0513997661607934,
+        -3.9319075589346335
+      ],
+      [
+        5.205213542004362,
+        -3.8748774817821627
+      ],
+      [
+        5.253575520724475,
+        -3.8214819613534567
+      ]
+    ],
+    "distance_m": 0.3,
+    "margin_m": 0.05,
+    "height_m": [
+      0.25,
+      2.75
+    ]
+  },
+  "cli_filter_evaluation": {
+    "format": "playworld-checkpoint-refinement/1",
+    "status": "evaluated",
+    "source_checkpoint_sha256": "c7a06705017babae50c19d4b36e619c635e2f3d110c8e52718d71bce2b9628bf",
+    "source_step": 9499,
+    "warm_start_not_exact_resume": true,
+    "optimizer_state": "fresh Adam",
+    "gaussians": 1023096,
+    "interior_cleanup": {
+      "input_gaussians": 1074530,
+      "removed_gaussians": 51434,
+      "world_sha256": "d5991e65cd059e980204e00098ca3042d7a4085edefcbcb1d49851c076ef5c7f",
+      "reference_cameras": "not used for floor footprint",
+      "footprint": "floor",
+      "footprint_anchor_points": 69389,
+      "scale_assumed": true,
+      "limitation": "One-time support filter, not a training constraint; unsupported interior surfaces may be lost."
+    },
+    "camera_optimization": false,
+    "densification": false,
+    "seed": 13,
+    "train_images": [
+      "16_DSC0010.jpg",
+      "16_DSC0028.jpg",
+      "16_DSC0037.jpg",
+      "16_DSC0055.jpg",
+      "16_DSC0064.jpg",
+      "16_DSC0073.jpg",
+      "16_DSC0091.jpg",
+      "16_DSC0118.jpg",
+      "16_DSC0127.jpg",
+      "16_DSC0136.jpg",
+      "16_DSC0154.jpg",
+      "16_DSC0163.jpg",
+      "16_DSC0181.jpg",
+      "16_DSC0190.jpg",
+      "16_DSC0217.jpg",
+      "16_DSC0226.jpg",
+      "16_DSC0244.jpg",
+      "16_DSC0253.jpg",
+      "16_DSC0262.jpg",
+      "16_DSC0280.jpg",
+      "16_DSC0289.jpg",
+      "16_DSC0316.jpg",
+      "16_DSC0334.jpg",
+      "16_DSC0343.jpg",
+      "16_DSC0352.jpg",
+      "16_DSC0370.jpg",
+      "16_DSC0379.jpg",
+      "16_DSC0397.jpg",
+      "16_DSC0415.jpg",
+      "16_DSC0433.jpg",
+      "16_DSC0442.jpg",
+      "16_DSC0460.jpg",
+      "16_DSC0469.jpg",
+      "16_DSC0478.jpg",
+      "16_DSC0496.jpg",
+      "16_DSC0523.jpg",
+      "16_DSC0532.jpg",
+      "16_DSC0541.jpg",
+      "16_DSC0559.jpg",
+      "16_DSC0568.jpg",
+      "16_DSC0586.jpg",
+      "16_DSC0595.jpg",
+      "19_DSC0010.jpg",
+      "19_DSC0028.jpg",
+      "19_DSC0037.jpg",
+      "19_DSC0055.jpg",
+      "19_DSC0064.jpg",
+      "19_DSC0073.jpg",
+      "19_DSC0091.jpg",
+      "19_DSC0118.jpg",
+      "19_DSC0127.jpg",
+      "19_DSC0136.jpg",
+      "19_DSC0154.jpg",
+      "19_DSC0163.jpg",
+      "19_DSC0181.jpg",
+      "19_DSC0190.jpg",
+      "19_DSC0217.jpg",
+      "19_DSC0226.jpg",
+      "19_DSC0244.jpg",
+      "19_DSC0253.jpg",
+      "19_DSC0262.jpg",
+      "19_DSC0280.jpg",
+      "19_DSC0289.jpg",
+      "19_DSC0316.jpg",
+      "19_DSC0334.jpg",
+      "19_DSC0343.jpg",
+      "19_DSC0352.jpg",
+      "19_DSC0370.jpg",
+      "19_DSC0379.jpg",
+      "19_DSC0397.jpg",
+      "19_DSC0415.jpg",
+      "19_DSC0433.jpg",
+      "19_DSC0442.jpg",
+      "19_DSC0460.jpg",
+      "19_DSC0469.jpg",
+      "19_DSC0478.jpg",
+      "19_DSC0496.jpg",
+      "19_DSC0523.jpg",
+      "19_DSC0532.jpg",
+      "19_DSC0541.jpg",
+      "19_DSC0559.jpg",
+      "19_DSC0568.jpg",
+      "19_DSC0586.jpg",
+      "19_DSC0595.jpg",
+      "22_DSC0010.jpg",
+      "22_DSC0028.jpg",
+      "22_DSC0037.jpg",
+      "22_DSC0055.jpg",
+      "22_DSC0064.jpg",
+      "22_DSC0073.jpg",
+      "22_DSC0091.jpg",
+      "22_DSC0118.jpg",
+      "22_DSC0127.jpg",
+      "22_DSC0136.jpg",
+      "22_DSC0154.jpg",
+      "22_DSC0163.jpg",
+      "22_DSC0181.jpg",
+      "22_DSC0190.jpg",
+      "22_DSC0217.jpg",
+      "22_DSC0226.jpg",
+      "22_DSC0244.jpg",
+      "22_DSC0253.jpg",
+      "22_DSC0262.jpg",
+      "22_DSC0280.jpg",
+      "22_DSC0289.jpg",
+      "22_DSC0316.jpg",
+      "22_DSC0334.jpg",
+      "22_DSC0343.jpg",
+      "22_DSC0352.jpg",
+      "22_DSC0370.jpg",
+      "22_DSC0379.jpg",
+      "22_DSC0397.jpg",
+      "22_DSC0415.jpg",
+      "22_DSC0433.jpg",
+      "22_DSC0442.jpg",
+      "22_DSC0460.jpg",
+      "22_DSC0469.jpg",
+      "22_DSC0478.jpg",
+      "22_DSC0496.jpg",
+      "22_DSC0523.jpg",
+      "22_DSC0532.jpg",
+      "22_DSC0541.jpg",
+      "22_DSC0559.jpg",
+      "22_DSC0568.jpg",
+      "22_DSC0586.jpg",
+      "22_DSC0595.jpg"
+    ],
+    "validation_images": [
+      "16_DSC0001.jpg",
+      "16_DSC0100.jpg",
+      "16_DSC0199.jpg",
+      "16_DSC0307.jpg",
+      "16_DSC0406.jpg",
+      "16_DSC0505.jpg",
+      "19_DSC0001.jpg",
+      "19_DSC0100.jpg",
+      "19_DSC0199.jpg",
+      "19_DSC0307.jpg",
+      "19_DSC0406.jpg",
+      "19_DSC0505.jpg",
+      "22_DSC0001.jpg",
+      "22_DSC0100.jpg",
+      "22_DSC0199.jpg",
+      "22_DSC0307.jpg",
+      "22_DSC0406.jpg",
+      "22_DSC0505.jpg"
+    ],
+    "settings": {
+      "scene": ".cache/calibrated-lounge-20261009/input-final",
+      "checkpoint": ".cache/local-refine-20261009/interior-warm-500/best.pt",
+      "out": ".cache/window-cleanup-20261009/cli-floor-evaluation",
+      "steps": 1000,
+      "eval_every": 250,
+      "patch_size": 2048,
+      "max_size": 1118,
+      "test_every": 8,
+      "seed": 13,
+      "scale_reg": 0,
+      "opacity_reg": 0,
+      "means_lr": 1.6e-05,
+      "depth_weight": 0,
+      "evaluate_only": true,
+      "near_plane": 0.01,
+      "interior_world": ".cache/local-refine-20261009/site-interior-warm/world.json",
+      "interior_distance": 0.3,
+      "interior_margin": 0.05,
+      "interior_min_height": 0.25,
+      "interior_max_height": 2.75,
+      "interior_footprint": "floor",
+      "interior_floor_band": 0.06,
+      "interior_floor_cell": 0.2
+    },
+    "learning_rates": {
+      "means": 1.6e-05,
+      "scales": 0.001,
+      "quats": 0.0005,
+      "opacities": 0.01,
+      "sh0": 0.001,
+      "shN": 0.0001
+    },
+    "gpu": "NVIDIA GeForce GTX 1660 Ti",
+    "torch": "2.9.1+cu128",
+    "gsplat": "1.5.3",
+    "evaluations": [
+      {
+        "added_steps": 0,
+        "psnr": 23.410194930939838,
+        "ssim": 0.8286033868789673,
+        "per_image": [
+          {
+            "image": "16_DSC0001.jpg",
+            "psnr": 18.572370718218302,
+            "ssim": 0.7473267912864685
+          },
+          {
+            "image": "16_DSC0100.jpg",
+            "psnr": 27.810626522382485,
+            "ssim": 0.8606250286102295
+          },
+          {
+            "image": "16_DSC0199.jpg",
+            "psnr": 19.52512297992374,
+            "ssim": 0.7811522483825684
+          },
+          {
+            "image": "16_DSC0307.jpg",
+            "psnr": 27.90276435999354,
+            "ssim": 0.8348888158798218
+          },
+          {
+            "image": "16_DSC0406.jpg",
+            "psnr": 26.669745026708892,
+            "ssim": 0.809731662273407
+          },
+          {
+            "image": "16_DSC0505.jpg",
+            "psnr": 16.954712575129275,
+            "ssim": 0.7178999185562134
+          },
+          {
+            "image": "19_DSC0001.jpg",
+            "psnr": 19.532140103166775,
+            "ssim": 0.8742883205413818
+          },
+          {
+            "image": "19_DSC0100.jpg",
+            "psnr": 26.805522564033343,
+            "ssim": 0.910581648349762
+          },
+          {
+            "image": "19_DSC0199.jpg",
+            "psnr": 27.107068321342386,
+            "ssim": 0.897487461566925
+          },
+          {
+            "image": "19_DSC0307.jpg",
+            "psnr": 26.42727861375461,
+            "ssim": 0.8016242384910583
+          },
+          {
+            "image": "19_DSC0406.jpg",
+            "psnr": 22.19605335916932,
+            "ssim": 0.7912032604217529
+          },
+          {
+            "image": "19_DSC0505.jpg",
+            "psnr": 25.655821303412814,
+            "ssim": 0.8762942552566528
+          },
+          {
+            "image": "22_DSC0001.jpg",
+            "psnr": 17.532297440700493,
+            "ssim": 0.7601384520530701
+          },
+          {
+            "image": "22_DSC0100.jpg",
+            "psnr": 28.049233732178244,
+            "ssim": 0.9065814018249512
+          },
+          {
+            "image": "22_DSC0199.jpg",
+            "psnr": 19.22492221888144,
+            "ssim": 0.800602912902832
+          },
+          {
+            "image": "22_DSC0307.jpg",
+            "psnr": 26.857746798473357,
+            "ssim": 0.8839919567108154
+          },
+          {
+            "image": "22_DSC0406.jpg",
+            "psnr": 26.926510107351504,
+            "ssim": 0.8839991688728333
+          },
+          {
+            "image": "22_DSC0505.jpg",
+            "psnr": 17.633572012096593,
+            "ssim": 0.7764434218406677
+          }
+        ]
+      }
+    ],
+    "depth_prior_training_samples": {},
+    "source_script_sha256": "515ec8e3144a05a1ffae2e31bb2d8f6b1fbe9ad71ac89d00039e1b58d8ff8784",
+    "completed_added_steps": 0,
+    "best_added_steps": 0,
+    "best_psnr": 23.410194930939838,
+    "seconds": 2.820114942,
+    "peak_memory_mib": 644.07861328125
+  },
+  "additional_refinement": {
+    "format": "playworld-checkpoint-refinement/1",
+    "status": "complete",
+    "source_checkpoint_sha256": "734f58fd027296b35f83058e72a53caedcb521b7352793ce8e616f3365317cc5",
+    "source_step": 9499,
+    "warm_start_not_exact_resume": true,
+    "optimizer_state": "fresh Adam",
+    "gaussians": 1023096,
+    "interior_cleanup": null,
+    "camera_optimization": false,
+    "densification": false,
+    "seed": 13,
+    "train_images": [
+      "16_DSC0010.jpg",
+      "16_DSC0028.jpg",
+      "16_DSC0037.jpg",
+      "16_DSC0055.jpg",
+      "16_DSC0064.jpg",
+      "16_DSC0073.jpg",
+      "16_DSC0091.jpg",
+      "16_DSC0118.jpg",
+      "16_DSC0127.jpg",
+      "16_DSC0136.jpg",
+      "16_DSC0154.jpg",
+      "16_DSC0163.jpg",
+      "16_DSC0181.jpg",
+      "16_DSC0190.jpg",
+      "16_DSC0217.jpg",
+      "16_DSC0226.jpg",
+      "16_DSC0244.jpg",
+      "16_DSC0253.jpg",
+      "16_DSC0262.jpg",
+      "16_DSC0280.jpg",
+      "16_DSC0289.jpg",
+      "16_DSC0316.jpg",
+      "16_DSC0334.jpg",
+      "16_DSC0343.jpg",
+      "16_DSC0352.jpg",
+      "16_DSC0370.jpg",
+      "16_DSC0379.jpg",
+      "16_DSC0397.jpg",
+      "16_DSC0415.jpg",
+      "16_DSC0433.jpg",
+      "16_DSC0442.jpg",
+      "16_DSC0460.jpg",
+      "16_DSC0469.jpg",
+      "16_DSC0478.jpg",
+      "16_DSC0496.jpg",
+      "16_DSC0523.jpg",
+      "16_DSC0532.jpg",
+      "16_DSC0541.jpg",
+      "16_DSC0559.jpg",
+      "16_DSC0568.jpg",
+      "16_DSC0586.jpg",
+      "16_DSC0595.jpg",
+      "19_DSC0010.jpg",
+      "19_DSC0028.jpg",
+      "19_DSC0037.jpg",
+      "19_DSC0055.jpg",
+      "19_DSC0064.jpg",
+      "19_DSC0073.jpg",
+      "19_DSC0091.jpg",
+      "19_DSC0118.jpg",
+      "19_DSC0127.jpg",
+      "19_DSC0136.jpg",
+      "19_DSC0154.jpg",
+      "19_DSC0163.jpg",
+      "19_DSC0181.jpg",
+      "19_DSC0190.jpg",
+      "19_DSC0217.jpg",
+      "19_DSC0226.jpg",
+      "19_DSC0244.jpg",
+      "19_DSC0253.jpg",
+      "19_DSC0262.jpg",
+      "19_DSC0280.jpg",
+      "19_DSC0289.jpg",
+      "19_DSC0316.jpg",
+      "19_DSC0334.jpg",
+      "19_DSC0343.jpg",
+      "19_DSC0352.jpg",
+      "19_DSC0370.jpg",
+      "19_DSC0379.jpg",
+      "19_DSC0397.jpg",
+      "19_DSC0415.jpg",
+      "19_DSC0433.jpg",
+      "19_DSC0442.jpg",
+      "19_DSC0460.jpg",
+      "19_DSC0469.jpg",
+      "19_DSC0478.jpg",
+      "19_DSC0496.jpg",
+      "19_DSC0523.jpg",
+      "19_DSC0532.jpg",
+      "19_DSC0541.jpg",
+      "19_DSC0559.jpg",
+      "19_DSC0568.jpg",
+      "19_DSC0586.jpg",
+      "19_DSC0595.jpg",
+      "22_DSC0010.jpg",
+      "22_DSC0028.jpg",
+      "22_DSC0037.jpg",
+      "22_DSC0055.jpg",
+      "22_DSC0064.jpg",
+      "22_DSC0073.jpg",
+      "22_DSC0091.jpg",
+      "22_DSC0118.jpg",
+      "22_DSC0127.jpg",
+      "22_DSC0136.jpg",
+      "22_DSC0154.jpg",
+      "22_DSC0163.jpg",
+      "22_DSC0181.jpg",
+      "22_DSC0190.jpg",
+      "22_DSC0217.jpg",
+      "22_DSC0226.jpg",
+      "22_DSC0244.jpg",
+      "22_DSC0253.jpg",
+      "22_DSC0262.jpg",
+      "22_DSC0280.jpg",
+      "22_DSC0289.jpg",
+      "22_DSC0316.jpg",
+      "22_DSC0334.jpg",
+      "22_DSC0343.jpg",
+      "22_DSC0352.jpg",
+      "22_DSC0370.jpg",
+      "22_DSC0379.jpg",
+      "22_DSC0397.jpg",
+      "22_DSC0415.jpg",
+      "22_DSC0433.jpg",
+      "22_DSC0442.jpg",
+      "22_DSC0460.jpg",
+      "22_DSC0469.jpg",
+      "22_DSC0478.jpg",
+      "22_DSC0496.jpg",
+      "22_DSC0523.jpg",
+      "22_DSC0532.jpg",
+      "22_DSC0541.jpg",
+      "22_DSC0559.jpg",
+      "22_DSC0568.jpg",
+      "22_DSC0586.jpg",
+      "22_DSC0595.jpg"
+    ],
+    "validation_images": [
+      "16_DSC0001.jpg",
+      "16_DSC0100.jpg",
+      "16_DSC0199.jpg",
+      "16_DSC0307.jpg",
+      "16_DSC0406.jpg",
+      "16_DSC0505.jpg",
+      "19_DSC0001.jpg",
+      "19_DSC0100.jpg",
+      "19_DSC0199.jpg",
+      "19_DSC0307.jpg",
+      "19_DSC0406.jpg",
+      "19_DSC0505.jpg",
+      "22_DSC0001.jpg",
+      "22_DSC0100.jpg",
+      "22_DSC0199.jpg",
+      "22_DSC0307.jpg",
+      "22_DSC0406.jpg",
+      "22_DSC0505.jpg"
+    ],
+    "settings": {
+      "scene": ".cache/calibrated-lounge-20261009/input-final",
+      "checkpoint": ".cache/window-cleanup-20261009/floor-probe-03/pruned.pt",
+      "out": ".cache/window-cleanup-20261009/floor-warm-500",
+      "steps": 500,
+      "eval_every": 250,
+      "patch_size": 2048,
+      "max_size": 1118,
+      "test_every": 8,
+      "seed": 13,
+      "scale_reg": 0,
+      "opacity_reg": 0,
+      "means_lr": 1.6e-05,
+      "depth_weight": 0.5,
+      "evaluate_only": false,
+      "near_plane": 0.01,
+      "interior_world": null,
+      "interior_distance": 0.3,
+      "interior_margin": 0.05,
+      "interior_min_height": 0.25,
+      "interior_max_height": 2.75
+    },
+    "learning_rates": {
+      "means": 1.6e-05,
+      "scales": 0.001,
+      "quats": 0.0005,
+      "opacities": 0.01,
+      "sh0": 0.001,
+      "shN": 0.0001
+    },
+    "gpu": "NVIDIA GeForce GTX 1660 Ti",
+    "torch": "2.9.1+cu128",
+    "gsplat": "1.5.3",
+    "evaluations": [
+      {
+        "added_steps": 0,
+        "psnr": 23.410194930939838,
+        "ssim": 0.8286033868789673,
+        "per_image": [
+          {
+            "image": "16_DSC0001.jpg",
+            "psnr": 18.572370718218302,
+            "ssim": 0.7473267912864685
+          },
+          {
+            "image": "16_DSC0100.jpg",
+            "psnr": 27.810626522382485,
+            "ssim": 0.8606250286102295
+          },
+          {
+            "image": "16_DSC0199.jpg",
+            "psnr": 19.52512297992374,
+            "ssim": 0.7811522483825684
+          },
+          {
+            "image": "16_DSC0307.jpg",
+            "psnr": 27.90276435999354,
+            "ssim": 0.8348888158798218
+          },
+          {
+            "image": "16_DSC0406.jpg",
+            "psnr": 26.669745026708892,
+            "ssim": 0.809731662273407
+          },
+          {
+            "image": "16_DSC0505.jpg",
+            "psnr": 16.954712575129275,
+            "ssim": 0.7178999185562134
+          },
+          {
+            "image": "19_DSC0001.jpg",
+            "psnr": 19.532140103166775,
+            "ssim": 0.8742883205413818
+          },
+          {
+            "image": "19_DSC0100.jpg",
+            "psnr": 26.805522564033343,
+            "ssim": 0.910581648349762
+          },
+          {
+            "image": "19_DSC0199.jpg",
+            "psnr": 27.107068321342386,
+            "ssim": 0.897487461566925
+          },
+          {
+            "image": "19_DSC0307.jpg",
+            "psnr": 26.42727861375461,
+            "ssim": 0.8016242384910583
+          },
+          {
+            "image": "19_DSC0406.jpg",
+            "psnr": 22.19605335916932,
+            "ssim": 0.7912032604217529
+          },
+          {
+            "image": "19_DSC0505.jpg",
+            "psnr": 25.655821303412814,
+            "ssim": 0.8762942552566528
+          },
+          {
+            "image": "22_DSC0001.jpg",
+            "psnr": 17.532297440700493,
+            "ssim": 0.7601384520530701
+          },
+          {
+            "image": "22_DSC0100.jpg",
+            "psnr": 28.049233732178244,
+            "ssim": 0.9065814018249512
+          },
+          {
+            "image": "22_DSC0199.jpg",
+            "psnr": 19.22492221888144,
+            "ssim": 0.800602912902832
+          },
+          {
+            "image": "22_DSC0307.jpg",
+            "psnr": 26.857746798473357,
+            "ssim": 0.8839919567108154
+          },
+          {
+            "image": "22_DSC0406.jpg",
+            "psnr": 26.926510107351504,
+            "ssim": 0.8839991688728333
+          },
+          {
+            "image": "22_DSC0505.jpg",
+            "psnr": 17.633572012096593,
+            "ssim": 0.7764434218406677
+          }
+        ]
+      },
+      {
+        "added_steps": 250,
+        "psnr": 23.806021703917665,
+        "ssim": 0.8323723905616336,
+        "per_image": [
+          {
+            "image": "16_DSC0001.jpg",
+            "psnr": 18.661781097882283,
+            "ssim": 0.7467082142829895
+          },
+          {
+            "image": "16_DSC0100.jpg",
+            "psnr": 29.265369702500138,
+            "ssim": 0.8673680424690247
+          },
+          {
+            "image": "16_DSC0199.jpg",
+            "psnr": 19.54513233218273,
+            "ssim": 0.7849348783493042
+          },
+          {
+            "image": "16_DSC0307.jpg",
+            "psnr": 28.13311740428757,
+            "ssim": 0.8352450728416443
+          },
+          {
+            "image": "16_DSC0406.jpg",
+            "psnr": 26.63935642883841,
+            "ssim": 0.8114189505577087
+          },
+          {
+            "image": "16_DSC0505.jpg",
+            "psnr": 17.04466426609587,
+            "ssim": 0.7211725115776062
+          },
+          {
+            "image": "19_DSC0001.jpg",
+            "psnr": 19.49304300189794,
+            "ssim": 0.8727806806564331
+          },
+          {
+            "image": "19_DSC0100.jpg",
+            "psnr": 27.38403922659267,
+            "ssim": 0.9163889288902283
+          },
+          {
+            "image": "19_DSC0199.jpg",
+            "psnr": 26.7071140603195,
+            "ssim": 0.8986732363700867
+          },
+          {
+            "image": "19_DSC0307.jpg",
+            "psnr": 26.75788667669159,
+            "ssim": 0.8027138710021973
+          },
+          {
+            "image": "19_DSC0406.jpg",
+            "psnr": 22.94231122460857,
+            "ssim": 0.8034997582435608
+          },
+          {
+            "image": "19_DSC0505.jpg",
+            "psnr": 26.21475312423417,
+            "ssim": 0.8814781308174133
+          },
+          {
+            "image": "22_DSC0001.jpg",
+            "psnr": 17.61068093160499,
+            "ssim": 0.7596580982208252
+          },
+          {
+            "image": "22_DSC0100.jpg",
+            "psnr": 29.69699907322099,
+            "ssim": 0.9144124984741211
+          },
+          {
+            "image": "22_DSC0199.jpg",
+            "psnr": 19.26370662762346,
+            "ssim": 0.8057205677032471
+          },
+          {
+            "image": "22_DSC0307.jpg",
+            "psnr": 28.1979411923116,
+            "ssim": 0.8917283415794373
+          },
+          {
+            "image": "22_DSC0406.jpg",
+            "psnr": 27.200455056008494,
+            "ssim": 0.8890452980995178
+          },
+          {
+            "image": "22_DSC0505.jpg",
+            "psnr": 17.7500392436169,
+            "ssim": 0.7797559499740601
+          }
+        ]
+      },
+      {
+        "added_steps": 500,
+        "psnr": 23.932246285739605,
+        "ssim": 0.8334821230835385,
+        "per_image": [
+          {
+            "image": "16_DSC0001.jpg",
+            "psnr": 18.771718731583352,
+            "ssim": 0.7495049238204956
+          },
+          {
+            "image": "16_DSC0100.jpg",
+            "psnr": 29.69803652737559,
+            "ssim": 0.8696966767311096
+          },
+          {
+            "image": "16_DSC0199.jpg",
+            "psnr": 19.547853756105376,
+            "ssim": 0.7854703068733215
+          },
+          {
+            "image": "16_DSC0307.jpg",
+            "psnr": 28.115198678092316,
+            "ssim": 0.8356267809867859
+          },
+          {
+            "image": "16_DSC0406.jpg",
+            "psnr": 26.780000557115173,
+            "ssim": 0.812972366809845
+          },
+          {
+            "image": "16_DSC0505.jpg",
+            "psnr": 17.100295600475064,
+            "ssim": 0.7209979891777039
+          },
+          {
+            "image": "19_DSC0001.jpg",
+            "psnr": 19.552196115279237,
+            "ssim": 0.8742640614509583
+          },
+          {
+            "image": "19_DSC0100.jpg",
+            "psnr": 27.331418748913396,
+            "ssim": 0.9164115786552429
+          },
+          {
+            "image": "19_DSC0199.jpg",
+            "psnr": 26.88286585522262,
+            "ssim": 0.9008310437202454
+          },
+          {
+            "image": "19_DSC0307.jpg",
+            "psnr": 26.719386920409107,
+            "ssim": 0.8022077679634094
+          },
+          {
+            "image": "19_DSC0406.jpg",
+            "psnr": 23.011348966578026,
+            "ssim": 0.8036022186279297
+          },
+          {
+            "image": "19_DSC0505.jpg",
+            "psnr": 26.51666529023714,
+            "ssim": 0.88504558801651
+          },
+          {
+            "image": "22_DSC0001.jpg",
+            "psnr": 17.692532781719564,
+            "ssim": 0.7619320750236511
+          },
+          {
+            "image": "22_DSC0100.jpg",
+            "psnr": 30.158231688697853,
+            "ssim": 0.9166958332061768
+          },
+          {
+            "image": "22_DSC0199.jpg",
+            "psnr": 19.26726916282346,
+            "ssim": 0.805602490901947
+          },
+          {
+            "image": "22_DSC0307.jpg",
+            "psnr": 28.88521355168407,
+            "ssim": 0.8944640159606934
+          },
+          {
+            "image": "22_DSC0406.jpg",
+            "psnr": 26.99058217304474,
+            "ssim": 0.8879539966583252
+          },
+          {
+            "image": "22_DSC0505.jpg",
+            "psnr": 17.759618037956784,
+            "ssim": 0.779398500919342
+          }
+        ]
+      }
+    ],
+    "depth_prior_training_samples": {
+      "16_DSC0010.jpg": 4096,
+      "16_DSC0028.jpg": 4096,
+      "16_DSC0037.jpg": 4096,
+      "16_DSC0055.jpg": 4096,
+      "16_DSC0064.jpg": 4096,
+      "16_DSC0073.jpg": 4096,
+      "16_DSC0091.jpg": 4096,
+      "16_DSC0118.jpg": 4096,
+      "16_DSC0127.jpg": 4096,
+      "16_DSC0136.jpg": 4096,
+      "16_DSC0154.jpg": 4096,
+      "16_DSC0163.jpg": 4096,
+      "16_DSC0181.jpg": 4096,
+      "16_DSC0190.jpg": 4096,
+      "16_DSC0217.jpg": 4096,
+      "16_DSC0226.jpg": 4096,
+      "16_DSC0244.jpg": 4096,
+      "16_DSC0253.jpg": 4096,
+      "16_DSC0262.jpg": 4096,
+      "16_DSC0280.jpg": 4096,
+      "16_DSC0289.jpg": 4096,
+      "16_DSC0316.jpg": 4096,
+      "16_DSC0334.jpg": 4096,
+      "16_DSC0343.jpg": 4096,
+      "16_DSC0352.jpg": 4096,
+      "16_DSC0370.jpg": 4096,
+      "16_DSC0379.jpg": 4096,
+      "16_DSC0397.jpg": 4096,
+      "16_DSC0415.jpg": 4096,
+      "16_DSC0433.jpg": 4096,
+      "16_DSC0442.jpg": 4096,
+      "16_DSC0460.jpg": 4014,
+      "16_DSC0469.jpg": 3230,
+      "16_DSC0478.jpg": 2492,
+      "16_DSC0496.jpg": 4096,
+      "16_DSC0523.jpg": 4096,
+      "16_DSC0532.jpg": 4096,
+      "16_DSC0541.jpg": 4096,
+      "16_DSC0559.jpg": 4096,
+      "16_DSC0568.jpg": 4096,
+      "16_DSC0586.jpg": 4096,
+      "16_DSC0595.jpg": 4096,
+      "19_DSC0010.jpg": 2788,
+      "19_DSC0028.jpg": 4096,
+      "19_DSC0037.jpg": 4096,
+      "19_DSC0055.jpg": 4096,
+      "19_DSC0064.jpg": 4096,
+      "19_DSC0073.jpg": 4096,
+      "19_DSC0091.jpg": 204,
+      "19_DSC0118.jpg": 3803,
+      "19_DSC0127.jpg": 4096,
+      "19_DSC0136.jpg": 4096,
+      "19_DSC0154.jpg": 4096,
+      "19_DSC0163.jpg": 4096,
+      "19_DSC0181.jpg": 4096,
+      "19_DSC0190.jpg": 4096,
+      "19_DSC0217.jpg": 2961,
+      "19_DSC0226.jpg": 843,
+      "19_DSC0244.jpg": 4096,
+      "19_DSC0253.jpg": 4096,
+      "19_DSC0262.jpg": 4096,
+      "19_DSC0280.jpg": 4096,
+      "19_DSC0289.jpg": 4096,
+      "19_DSC0316.jpg": 4096,
+      "19_DSC0334.jpg": 4096,
+      "19_DSC0343.jpg": 4096,
+      "19_DSC0352.jpg": 4096,
+      "19_DSC0370.jpg": 4096,
+      "19_DSC0379.jpg": 4096,
+      "19_DSC0397.jpg": 4096,
+      "19_DSC0415.jpg": 4096,
+      "19_DSC0433.jpg": 4096,
+      "19_DSC0442.jpg": 4096,
+      "19_DSC0460.jpg": 1502,
+      "19_DSC0469.jpg": 938,
+      "19_DSC0478.jpg": 1185,
+      "19_DSC0496.jpg": 4096,
+      "19_DSC0523.jpg": 4096,
+      "19_DSC0532.jpg": 4096,
+      "19_DSC0541.jpg": 4096,
+      "19_DSC0559.jpg": 4096,
+      "19_DSC0568.jpg": 4096,
+      "19_DSC0586.jpg": 4096,
+      "19_DSC0595.jpg": 4096,
+      "22_DSC0010.jpg": 4096,
+      "22_DSC0028.jpg": 4096,
+      "22_DSC0037.jpg": 4096,
+      "22_DSC0055.jpg": 4096,
+      "22_DSC0064.jpg": 4096,
+      "22_DSC0073.jpg": 4096,
+      "22_DSC0091.jpg": 3994,
+      "22_DSC0118.jpg": 4096,
+      "22_DSC0127.jpg": 4096,
+      "22_DSC0136.jpg": 4096,
+      "22_DSC0154.jpg": 4096,
+      "22_DSC0163.jpg": 4096,
+      "22_DSC0181.jpg": 4096,
+      "22_DSC0190.jpg": 4096,
+      "22_DSC0217.jpg": 4096,
+      "22_DSC0226.jpg": 4096,
+      "22_DSC0244.jpg": 4096,
+      "22_DSC0253.jpg": 4096,
+      "22_DSC0262.jpg": 4096,
+      "22_DSC0280.jpg": 4096,
+      "22_DSC0289.jpg": 4096,
+      "22_DSC0316.jpg": 4096,
+      "22_DSC0334.jpg": 4096,
+      "22_DSC0343.jpg": 4096,
+      "22_DSC0352.jpg": 4096,
+      "22_DSC0370.jpg": 4096,
+      "22_DSC0379.jpg": 4096,
+      "22_DSC0397.jpg": 4096,
+      "22_DSC0415.jpg": 4096,
+      "22_DSC0433.jpg": 4096,
+      "22_DSC0442.jpg": 4096,
+      "22_DSC0460.jpg": 2181,
+      "22_DSC0469.jpg": 1583,
+      "22_DSC0478.jpg": 1278,
+      "22_DSC0496.jpg": 3874,
+      "22_DSC0523.jpg": 4096,
+      "22_DSC0532.jpg": 4096,
+      "22_DSC0541.jpg": 4096,
+      "22_DSC0559.jpg": 4096,
+      "22_DSC0568.jpg": 4096,
+      "22_DSC0586.jpg": 4096,
+      "22_DSC0595.jpg": 4096
+    },
+    "source_script_sha256": "2d80eaf7c63dfc898256ff386f48bb5c326d07bf2dba6ed97fe536c98a386e23",
+    "completed_added_steps": 500,
+    "best_added_steps": 500,
+    "best_psnr": 23.932246285739605,
+    "seconds": 94.304869659,
+    "peak_memory_mib": 1418.75634765625
+  },
+  "final_checkpoint_reload_evaluation": {
+    "format": "playworld-checkpoint-refinement/1",
+    "status": "evaluated",
+    "source_checkpoint_sha256": "507002b5b4f03953eb1a273a2ba5df54ed402649423695c79781060fda65bb73",
+    "source_step": 9999,
+    "warm_start_not_exact_resume": true,
+    "optimizer_state": "fresh Adam",
+    "gaussians": 1023096,
+    "interior_cleanup": null,
+    "camera_optimization": false,
+    "densification": false,
+    "seed": 13,
+    "train_images": [
+      "16_DSC0010.jpg",
+      "16_DSC0028.jpg",
+      "16_DSC0037.jpg",
+      "16_DSC0055.jpg",
+      "16_DSC0064.jpg",
+      "16_DSC0073.jpg",
+      "16_DSC0091.jpg",
+      "16_DSC0118.jpg",
+      "16_DSC0127.jpg",
+      "16_DSC0136.jpg",
+      "16_DSC0154.jpg",
+      "16_DSC0163.jpg",
+      "16_DSC0181.jpg",
+      "16_DSC0190.jpg",
+      "16_DSC0217.jpg",
+      "16_DSC0226.jpg",
+      "16_DSC0244.jpg",
+      "16_DSC0253.jpg",
+      "16_DSC0262.jpg",
+      "16_DSC0280.jpg",
+      "16_DSC0289.jpg",
+      "16_DSC0316.jpg",
+      "16_DSC0334.jpg",
+      "16_DSC0343.jpg",
+      "16_DSC0352.jpg",
+      "16_DSC0370.jpg",
+      "16_DSC0379.jpg",
+      "16_DSC0397.jpg",
+      "16_DSC0415.jpg",
+      "16_DSC0433.jpg",
+      "16_DSC0442.jpg",
+      "16_DSC0460.jpg",
+      "16_DSC0469.jpg",
+      "16_DSC0478.jpg",
+      "16_DSC0496.jpg",
+      "16_DSC0523.jpg",
+      "16_DSC0532.jpg",
+      "16_DSC0541.jpg",
+      "16_DSC0559.jpg",
+      "16_DSC0568.jpg",
+      "16_DSC0586.jpg",
+      "16_DSC0595.jpg",
+      "19_DSC0010.jpg",
+      "19_DSC0028.jpg",
+      "19_DSC0037.jpg",
+      "19_DSC0055.jpg",
+      "19_DSC0064.jpg",
+      "19_DSC0073.jpg",
+      "19_DSC0091.jpg",
+      "19_DSC0118.jpg",
+      "19_DSC0127.jpg",
+      "19_DSC0136.jpg",
+      "19_DSC0154.jpg",
+      "19_DSC0163.jpg",
+      "19_DSC0181.jpg",
+      "19_DSC0190.jpg",
+      "19_DSC0217.jpg",
+      "19_DSC0226.jpg",
+      "19_DSC0244.jpg",
+      "19_DSC0253.jpg",
+      "19_DSC0262.jpg",
+      "19_DSC0280.jpg",
+      "19_DSC0289.jpg",
+      "19_DSC0316.jpg",
+      "19_DSC0334.jpg",
+      "19_DSC0343.jpg",
+      "19_DSC0352.jpg",
+      "19_DSC0370.jpg",
+      "19_DSC0379.jpg",
+      "19_DSC0397.jpg",
+      "19_DSC0415.jpg",
+      "19_DSC0433.jpg",
+      "19_DSC0442.jpg",
+      "19_DSC0460.jpg",
+      "19_DSC0469.jpg",
+      "19_DSC0478.jpg",
+      "19_DSC0496.jpg",
+      "19_DSC0523.jpg",
+      "19_DSC0532.jpg",
+      "19_DSC0541.jpg",
+      "19_DSC0559.jpg",
+      "19_DSC0568.jpg",
+      "19_DSC0586.jpg",
+      "19_DSC0595.jpg",
+      "22_DSC0010.jpg",
+      "22_DSC0028.jpg",
+      "22_DSC0037.jpg",
+      "22_DSC0055.jpg",
+      "22_DSC0064.jpg",
+      "22_DSC0073.jpg",
+      "22_DSC0091.jpg",
+      "22_DSC0118.jpg",
+      "22_DSC0127.jpg",
+      "22_DSC0136.jpg",
+      "22_DSC0154.jpg",
+      "22_DSC0163.jpg",
+      "22_DSC0181.jpg",
+      "22_DSC0190.jpg",
+      "22_DSC0217.jpg",
+      "22_DSC0226.jpg",
+      "22_DSC0244.jpg",
+      "22_DSC0253.jpg",
+      "22_DSC0262.jpg",
+      "22_DSC0280.jpg",
+      "22_DSC0289.jpg",
+      "22_DSC0316.jpg",
+      "22_DSC0334.jpg",
+      "22_DSC0343.jpg",
+      "22_DSC0352.jpg",
+      "22_DSC0370.jpg",
+      "22_DSC0379.jpg",
+      "22_DSC0397.jpg",
+      "22_DSC0415.jpg",
+      "22_DSC0433.jpg",
+      "22_DSC0442.jpg",
+      "22_DSC0460.jpg",
+      "22_DSC0469.jpg",
+      "22_DSC0478.jpg",
+      "22_DSC0496.jpg",
+      "22_DSC0523.jpg",
+      "22_DSC0532.jpg",
+      "22_DSC0541.jpg",
+      "22_DSC0559.jpg",
+      "22_DSC0568.jpg",
+      "22_DSC0586.jpg",
+      "22_DSC0595.jpg"
+    ],
+    "validation_images": [
+      "16_DSC0001.jpg",
+      "16_DSC0100.jpg",
+      "16_DSC0199.jpg",
+      "16_DSC0307.jpg",
+      "16_DSC0406.jpg",
+      "16_DSC0505.jpg",
+      "19_DSC0001.jpg",
+      "19_DSC0100.jpg",
+      "19_DSC0199.jpg",
+      "19_DSC0307.jpg",
+      "19_DSC0406.jpg",
+      "19_DSC0505.jpg",
+      "22_DSC0001.jpg",
+      "22_DSC0100.jpg",
+      "22_DSC0199.jpg",
+      "22_DSC0307.jpg",
+      "22_DSC0406.jpg",
+      "22_DSC0505.jpg"
+    ],
+    "settings": {
+      "scene": ".cache/calibrated-lounge-20261009/input-final",
+      "checkpoint": ".cache/window-cleanup-20261009/floor-warm-500/best.pt",
+      "out": ".cache/window-cleanup-20261009/final-evaluation",
+      "steps": 1000,
+      "eval_every": 250,
+      "patch_size": 2048,
+      "max_size": 1118,
+      "test_every": 8,
+      "seed": 13,
+      "scale_reg": 0,
+      "opacity_reg": 0,
+      "means_lr": 1.6e-05,
+      "depth_weight": 0,
+      "evaluate_only": true,
+      "near_plane": 0.01,
+      "interior_world": null,
+      "interior_distance": 0.3,
+      "interior_margin": 0.05,
+      "interior_min_height": 0.25,
+      "interior_max_height": 2.75
+    },
+    "learning_rates": {
+      "means": 1.6e-05,
+      "scales": 0.001,
+      "quats": 0.0005,
+      "opacities": 0.01,
+      "sh0": 0.001,
+      "shN": 0.0001
+    },
+    "gpu": "NVIDIA GeForce GTX 1660 Ti",
+    "torch": "2.9.1+cu128",
+    "gsplat": "1.5.3",
+    "evaluations": [
+      {
+        "added_steps": 0,
+        "psnr": 23.932246285739605,
+        "ssim": 0.8334821230835385,
+        "per_image": [
+          {
+            "image": "16_DSC0001.jpg",
+            "psnr": 18.771718731583352,
+            "ssim": 0.7495049238204956
+          },
+          {
+            "image": "16_DSC0100.jpg",
+            "psnr": 29.69803652737559,
+            "ssim": 0.8696966767311096
+          },
+          {
+            "image": "16_DSC0199.jpg",
+            "psnr": 19.547853756105376,
+            "ssim": 0.7854703068733215
+          },
+          {
+            "image": "16_DSC0307.jpg",
+            "psnr": 28.115198678092316,
+            "ssim": 0.8356267809867859
+          },
+          {
+            "image": "16_DSC0406.jpg",
+            "psnr": 26.780000557115173,
+            "ssim": 0.812972366809845
+          },
+          {
+            "image": "16_DSC0505.jpg",
+            "psnr": 17.100295600475064,
+            "ssim": 0.7209979891777039
+          },
+          {
+            "image": "19_DSC0001.jpg",
+            "psnr": 19.552196115279237,
+            "ssim": 0.8742640614509583
+          },
+          {
+            "image": "19_DSC0100.jpg",
+            "psnr": 27.331418748913396,
+            "ssim": 0.9164115786552429
+          },
+          {
+            "image": "19_DSC0199.jpg",
+            "psnr": 26.88286585522262,
+            "ssim": 0.9008310437202454
+          },
+          {
+            "image": "19_DSC0307.jpg",
+            "psnr": 26.719386920409107,
+            "ssim": 0.8022077679634094
+          },
+          {
+            "image": "19_DSC0406.jpg",
+            "psnr": 23.011348966578026,
+            "ssim": 0.8036022186279297
+          },
+          {
+            "image": "19_DSC0505.jpg",
+            "psnr": 26.51666529023714,
+            "ssim": 0.88504558801651
+          },
+          {
+            "image": "22_DSC0001.jpg",
+            "psnr": 17.692532781719564,
+            "ssim": 0.7619320750236511
+          },
+          {
+            "image": "22_DSC0100.jpg",
+            "psnr": 30.158231688697853,
+            "ssim": 0.9166958332061768
+          },
+          {
+            "image": "22_DSC0199.jpg",
+            "psnr": 19.26726916282346,
+            "ssim": 0.805602490901947
+          },
+          {
+            "image": "22_DSC0307.jpg",
+            "psnr": 28.88521355168407,
+            "ssim": 0.8944640159606934
+          },
+          {
+            "image": "22_DSC0406.jpg",
+            "psnr": 26.99058217304474,
+            "ssim": 0.8879539966583252
+          },
+          {
+            "image": "22_DSC0505.jpg",
+            "psnr": 17.759618037956784,
+            "ssim": 0.779398500919342
+          }
+        ]
+      }
+    ],
+    "depth_prior_training_samples": {},
+    "source_script_sha256": "2d80eaf7c63dfc898256ff386f48bb5c326d07bf2dba6ed97fe536c98a386e23",
+    "completed_added_steps": 0,
+    "best_added_steps": 0,
+    "best_psnr": 23.932246285739605,
+    "seconds": 6.505320376,
+    "peak_memory_mib": 644.06884765625
+  },
+  "metrics_scope": "Raw Gaussian render before photo plane. Parameters and checkpoint selected on existing 18-image validation split; not an independent final test.",
+  "training_script_version": "Training used scripts/refine_checkpoint.py from commit 2fb4efb; the new CLI floor mode was evaluated separately and reproduced the same mask/count and pre-training metric.",
+  "window_photo_bake": {
+    "format": "playworld-reviewed-window-photo/1",
+    "gpu_used": false,
+    "exterior_reconstructed_3d": false,
+    "generated_imagery": false,
+    "settings": {
+      "plane": {
+        "slope": -0.02929357500467569,
+        "intercept": -1.3624077800271734,
+        "inliers": 926,
+        "median_distance_m": 0.011403123769391453
+      },
+      "y": [
+        1.1,
+        2.75
+      ],
+      "patches": [
+        {
+          "z": [
+            -4.05,
+            -2.2
+          ],
+          "image": "22_DSC0073.jpg"
+        },
+        {
+          "z": [
+            -2.2,
+            -0.2
+          ],
+          "image": "22_DSC0064.jpg"
+        },
+        {
+          "z": [
+            -0.2,
+            1.82
+          ],
+          "image": "22_DSC0010.jpg"
+        },
+        {
+          "z": [
+            1.82,
+            3.75
+          ],
+          "image": "22_DSC0460.jpg"
+        }
+      ],
+      "resolution": [
+        2048,
+        512
+      ],
+      "interior_strip_m": [
+        -0.06,
+        0.95
+      ],
+      "cut_height_padding_m": 0.05,
+      "label": "Window: source-photo plane; exterior is not reconstructed 3D",
+      "limitation": "Manually reviewed approximate plane and bounds. Exterior has no true parallax. Source-photo seams and lower-window haze remain."
+    },
+    "source_world": {
+      "bytes": 797292,
+      "sha256": "88d4136393f9830a513090c7d98929614c8cfb40010fbbf93b36b5640bbcbf1d"
+    },
+    "source_config": {
+      "bytes": 985,
+      "sha256": "a520de5f6e5185961147afffe00d80b5195324ed54cb8253cdd7a6dce81ba8a6"
+    },
+    "source_photographs": {
+      "22_DSC0073.jpg": {
+        "bytes": 434936,
+        "sha256": "0fd88c41ee89195a2d5e1012c95ba5bc436f4d7364f209973384d55d6aa5c02d"
+      },
+      "22_DSC0064.jpg": {
+        "bytes": 440608,
+        "sha256": "0495670f51f1c260e89a66fc8eb2ffdfdaac8cf5c94ce5b7265eb3843d65151d"
+      },
+      "22_DSC0010.jpg": {
+        "bytes": 471033,
+        "sha256": "9ad610bb8f9eee2d3744a819014f6d9dcb509c513a0a80acf50bd80d90ee6cdf"
+      },
+      "22_DSC0460.jpg": {
+        "bytes": 346962,
+        "sha256": "71d88cc2015d53445a8df00157569903c655c47509354a9be6fd0d66c31b76f6"
+      }
+    },
+    "removed_background_gaussians": 79713,
+    "coverage": 1.0,
+    "physics_unchanged": true,
+    "movable_objects_unchanged": true,
+    "texture": {
+      "bytes": 156833,
+      "sha256": "40bb1483b2328a7ea128cbf3a226e5a128bebe397302d7f41504f32060a10e7a"
+    },
+    "background": {
+      "bytes": 218510101,
+      "sha256": "429f6b83309aee259de9282da88a19bd89b95b10801eb73d5562912e5dcfa55c"
+    },
+    "seconds": 3.061446200008504
+  },
+  "before_photo_world": {
+    "cameras": 3,
+    "points": 100000,
+    "gaussians": 1020607,
+    "input_gaussians": 1023096,
+    "discarded_object_gaussians": 407,
+    "discarded_diffuse_gaussians": 1999,
+    "clean_splats": true,
+    "object_filter": "connected",
+    "discarded_bounds_gaussians": 83,
+    "bounds_margin_m": 6.0,
+    "objects": 1,
+    "colliders": 4047,
+    "support_patches": 1,
+    "floor_inliers": 69616,
+    "scale_m_per_unit": 1.32121
+  },
+  "photo_world": {
+    "cameras": 3,
+    "points": 100000,
+    "gaussians": 940894,
+    "input_gaussians": 1023096,
+    "discarded_object_gaussians": 407,
+    "discarded_diffuse_gaussians": 1999,
+    "clean_splats": true,
+    "object_filter": "connected",
+    "discarded_bounds_gaussians": 83,
+    "bounds_margin_m": 6.0,
+    "objects": 1,
+    "colliders": 4047,
+    "support_patches": 1,
+    "floor_inliers": 69616,
+    "scale_m_per_unit": 1.32121,
+    "window_photo_replaced_gaussians": 79713
+  },
+  "packaging": {
+    "source_world_sha256": "9c0002117d9ae4b7aaf8477172d89b461180708ba6aa76ab9c09a874e9adae28",
+    "format": "Niantic SPZ v3",
+    "higher_order_sh": "preserved through SH3 (quantized)",
+    "files": [
+      {
+        "path": "background.spz",
+        "gaussians": 925884,
+        "bytes": 18418833,
+        "sha256": "bc366cb10380b5f42a1cd36e755cc997bb1fecb28d1af70c296c73fa4a880311"
+      },
+      {
+        "path": "objects/1.spz",
+        "gaussians": 15010,
+        "bytes": 284724,
+        "sha256": "9c3aa57a025787649941e536a26e16ee447c007ca1aa7508dafe72a94cc6d77b"
+      }
+    ],
+    "gaussians": 940894,
+    "splat_bytes": 18703557,
+    "objects": 1,
+    "colliders": 4047,
+    "photo_backdrops": [
+      {
+        "path": "window-photo.jpg",
+        "bytes": 156833,
+        "sha256": "40bb1483b2328a7ea128cbf3a226e5a128bebe397302d7f41504f32060a10e7a"
+      }
+    ]
+  },
+  "physics": {
+    "displacement_m": 0.6346659571621968,
+    "initial_settle_m": 0.005848159110587246,
+    "max_tilt_all_frames_degrees": 130.87462902653922
+  },
+  "photo_plane_preserves_all_recorded_physics_states": true,
+  "floor_replay": {
+    "format": "playworld-chair-repair-validation/1",
+    "world_sha256": "ab9d50c2f47ad50f065316f819f1aceb02cf927b9f2bee5c3e9d570afe0fa7cb",
+    "shot_sha256": "3acba105a9bf0d2582d3684c63ba718a4b089fd82653fe3eaba65bb2075ff3fc",
+    "replays": 2,
+    "exact_replay_match": true,
+    "fixed_physics_step": 0.016666666666666666,
+    "gpu_training_started": true,
+    "paid_runtime_started": false,
+    "scope": "Local diagnostic scene and reviewed ray push; gallery/featured controls were not changed or revalidated.",
+    "push": {
+      "time": 3,
+      "type": "push",
+      "origin": [
+        1.7733,
+        1.1,
+        -0.5797
+      ],
+      "target": [
+        0.9733,
+        1.1,
+        -0.5797
+      ],
+      "strength": 3
+    },
+    "runs": [
+      {
+        "states": [
+          {
+            "frame": 0,
+            "time": 0,
+            "tick": 0,
+            "objects": [
+              {
+                "id": 1,
+                "position": {
+                  "x": 0.9894999861717224,
+                  "y": 0.6689000129699707,
+                  "z": -0.6136000156402588
+                },
+                "rotation": {
+                  "x": 0,
+                  "y": 0,
+                  "z": 0,
+                  "w": 1
+                }
+              }
+            ],
+            "player": {
+              "x": -0.406360000371933,
+              "y": 0.800000011920929,
+              "z": 2.043839931488037
+            },
+            "balls": [],
+            "actions": []
+          },
+          {
+            "frame": 44,
+            "time": 2.933333333333333,
+            "tick": 176,
+            "objects": [
+              {
+                "id": 1,
+                "position": {
+                  "x": 0.9882104396820068,
+                  "y": 0.6638646721839905,
+                  "z": -0.6109198331832886
+                },
+                "rotation": {
+                  "x": 2.385898187640123e-05,
+                  "y": 0.00040435142000205815,
+                  "z": 1.0587457381916465e-06,
+                  "w": 0.9999999403953552
+                }
+              }
+            ],
+            "player": {
+              "x": -0.01196097582578659,
+              "y": 0.7701000571250916,
+              "z": 2.244821310043335
+            },
+            "balls": [],
+            "actions": []
+          },
+          {
+            "frame": 48,
+            "time": 3.2,
+            "tick": 192,
+            "objects": [
+              {
+                "id": 1,
+                "position": {
+                  "x": 0.222011536359787,
+                  "y": 0.6979852914810181,
+                  "z": -0.6566307544708252
+                },
+                "rotation": {
+                  "x": -0.12544672191143036,
+                  "y": 0.18101516366004944,
+                  "z": 0.6455256938934326,
+                  "w": 0.7312955856323242
+                }
+              }
+            ],
+            "player": {
+              "x": -0.01196097582578659,
+              "y": 0.7701000571250916,
+              "z": 2.244821310043335
+            },
+            "balls": [],
+            "actions": [
+              {
+                "time": 3,
+                "type": "push",
+                "object": 1
+              }
+            ]
+          },
+          {
+            "frame": 55,
+            "time": 3.6666666666666665,
+            "tick": 220,
+            "objects": [
+              {
+                "id": 1,
+                "position": {
+                  "x": 0.2873241901397705,
+                  "y": 0.45194992423057556,
+                  "z": -0.5152212977409363
+                },
+                "rotation": {
+                  "x": -0.06728290766477585,
+                  "y": -0.04758735001087189,
+                  "z": 0.8898469805717468,
+                  "w": 0.4487547278404236
+                }
+              }
+            ],
+            "player": {
+              "x": -0.01196097582578659,
+              "y": 0.7701000571250916,
+              "z": 2.244821310043335
+            },
+            "balls": [],
+            "actions": [
+              {
+                "time": 3,
+                "type": "push",
+                "object": 1
+              }
+            ]
+          },
+          {
+            "frame": 65,
+            "time": 4.333333333333333,
+            "tick": 260,
+            "objects": [
+              {
+                "id": 1,
+                "position": {
+                  "x": 0.4882717728614807,
+                  "y": 0.2825130522251129,
+                  "z": -0.5434306263923645
+                },
+                "rotation": {
+                  "x": -0.4032314419746399,
+                  "y": 0.13597583770751953,
+                  "z": 0.5808759331703186,
+                  "w": 0.6939007639884949
+                }
+              }
+            ],
+            "player": {
+              "x": -0.01196097582578659,
+              "y": 0.7701000571250916,
+              "z": 2.244821310043335
+            },
+            "balls": [],
+            "actions": [
+              {
+                "time": 3,
+                "type": "push",
+                "object": 1
+              }
+            ]
+          },
+          {
+            "frame": 75,
+            "time": 5,
+            "tick": 300,
+            "objects": [
+              {
+                "id": 1,
+                "position": {
+                  "x": 0.4869247376918793,
+                  "y": 0.2811397314071655,
+                  "z": -0.5399610996246338
+                },
+                "rotation": {
+                  "x": -0.3995078504085541,
+                  "y": 0.13095493614673615,
+                  "z": 0.5834442973136902,
+                  "w": 0.694864809513092
+                }
+              }
+            ],
+            "player": {
+              "x": -0.01196097582578659,
+              "y": 0.7701000571250916,
+              "z": 2.244821310043335
+            },
+            "balls": [],
+            "actions": [
+              {
+                "time": 3,
+                "type": "push",
+                "object": 1
+              }
+            ]
+          },
+          {
+            "frame": 90,
+            "time": 6,
+            "tick": 360,
+            "objects": [
+              {
+                "id": 1,
+                "position": {
+                  "x": 0.4869247376918793,
+                  "y": 0.2811397314071655,
+                  "z": -0.5399610996246338
+                },
+                "rotation": {
+                  "x": -0.3995078504085541,
+                  "y": 0.13095493614673615,
+                  "z": 0.5834442973136902,
+                  "w": 0.694864809513092
+                }
+              }
+            ],
+            "player": {
+              "x": -0.01196097582578659,
+              "y": 0.7701000571250916,
+              "z": 2.244821310043335
+            },
+            "balls": [],
+            "actions": [
+              {
+                "time": 3,
+                "type": "push",
+                "object": 1
+              }
+            ]
+          },
+          {
+            "frame": 119,
+            "time": 7.933333333333334,
+            "tick": 476,
+            "objects": [
+              {
+                "id": 1,
+                "position": {
+                  "x": 0.4869247376918793,
+                  "y": 0.2811397314071655,
+                  "z": -0.5399610996246338
+                },
+                "rotation": {
+                  "x": -0.3995078504085541,
+                  "y": 0.13095493614673615,
+                  "z": 0.5834442973136902,
+                  "w": 0.694864809513092
+                }
+              }
+            ],
+            "player": {
+              "x": -0.01196097582578659,
+              "y": 0.7701000571250916,
+              "z": 2.244821310043335
+            },
+            "balls": [],
+            "actions": [
+              {
+                "time": 3,
+                "type": "push",
+                "object": 1
+              }
+            ]
+          }
+        ],
+        "settle_m": 0.005848159110587246,
+        "displacement_m": 0.6346659571621968,
+        "max_sampled_tilt_degrees": 126.3495033551831
+      },
+      {
+        "states": [
+          {
+            "frame": 0,
+            "time": 0,
+            "tick": 0,
+            "objects": [
+              {
+                "id": 1,
+                "position": {
+                  "x": 0.9894999861717224,
+                  "y": 0.6689000129699707,
+                  "z": -0.6136000156402588
+                },
+                "rotation": {
+                  "x": 0,
+                  "y": 0,
+                  "z": 0,
+                  "w": 1
+                }
+              }
+            ],
+            "player": {
+              "x": -0.406360000371933,
+              "y": 0.800000011920929,
+              "z": 2.043839931488037
+            },
+            "balls": [],
+            "actions": []
+          },
+          {
+            "frame": 44,
+            "time": 2.933333333333333,
+            "tick": 176,
+            "objects": [
+              {
+                "id": 1,
+                "position": {
+                  "x": 0.9882104396820068,
+                  "y": 0.6638646721839905,
+                  "z": -0.6109198331832886
+                },
+                "rotation": {
+                  "x": 2.385898187640123e-05,
+                  "y": 0.00040435142000205815,
+                  "z": 1.0587457381916465e-06,
+                  "w": 0.9999999403953552
+                }
+              }
+            ],
+            "player": {
+              "x": -0.01196097582578659,
+              "y": 0.7701000571250916,
+              "z": 2.244821310043335
+            },
+            "balls": [],
+            "actions": []
+          },
+          {
+            "frame": 48,
+            "time": 3.2,
+            "tick": 192,
+            "objects": [
+              {
+                "id": 1,
+                "position": {
+                  "x": 0.222011536359787,
+                  "y": 0.6979852914810181,
+                  "z": -0.6566307544708252
+                },
+                "rotation": {
+                  "x": -0.12544672191143036,
+                  "y": 0.18101516366004944,
+                  "z": 0.6455256938934326,
+                  "w": 0.7312955856323242
+                }
+              }
+            ],
+            "player": {
+              "x": -0.01196097582578659,
+              "y": 0.7701000571250916,
+              "z": 2.244821310043335
+            },
+            "balls": [],
+            "actions": [
+              {
+                "time": 3,
+                "type": "push",
+                "object": 1
+              }
+            ]
+          },
+          {
+            "frame": 55,
+            "time": 3.6666666666666665,
+            "tick": 220,
+            "objects": [
+              {
+                "id": 1,
+                "position": {
+                  "x": 0.2873241901397705,
+                  "y": 0.45194992423057556,
+                  "z": -0.5152212977409363
+                },
+                "rotation": {
+                  "x": -0.06728290766477585,
+                  "y": -0.04758735001087189,
+                  "z": 0.8898469805717468,
+                  "w": 0.4487547278404236
+                }
+              }
+            ],
+            "player": {
+              "x": -0.01196097582578659,
+              "y": 0.7701000571250916,
+              "z": 2.244821310043335
+            },
+            "balls": [],
+            "actions": [
+              {
+                "time": 3,
+                "type": "push",
+                "object": 1
+              }
+            ]
+          },
+          {
+            "frame": 65,
+            "time": 4.333333333333333,
+            "tick": 260,
+            "objects": [
+              {
+                "id": 1,
+                "position": {
+                  "x": 0.4882717728614807,
+                  "y": 0.2825130522251129,
+                  "z": -0.5434306263923645
+                },
+                "rotation": {
+                  "x": -0.4032314419746399,
+                  "y": 0.13597583770751953,
+                  "z": 0.5808759331703186,
+                  "w": 0.6939007639884949
+                }
+              }
+            ],
+            "player": {
+              "x": -0.01196097582578659,
+              "y": 0.7701000571250916,
+              "z": 2.244821310043335
+            },
+            "balls": [],
+            "actions": [
+              {
+                "time": 3,
+                "type": "push",
+                "object": 1
+              }
+            ]
+          },
+          {
+            "frame": 75,
+            "time": 5,
+            "tick": 300,
+            "objects": [
+              {
+                "id": 1,
+                "position": {
+                  "x": 0.4869247376918793,
+                  "y": 0.2811397314071655,
+                  "z": -0.5399610996246338
+                },
+                "rotation": {
+                  "x": -0.3995078504085541,
+                  "y": 0.13095493614673615,
+                  "z": 0.5834442973136902,
+                  "w": 0.694864809513092
+                }
+              }
+            ],
+            "player": {
+              "x": -0.01196097582578659,
+              "y": 0.7701000571250916,
+              "z": 2.244821310043335
+            },
+            "balls": [],
+            "actions": [
+              {
+                "time": 3,
+                "type": "push",
+                "object": 1
+              }
+            ]
+          },
+          {
+            "frame": 90,
+            "time": 6,
+            "tick": 360,
+            "objects": [
+              {
+                "id": 1,
+                "position": {
+                  "x": 0.4869247376918793,
+                  "y": 0.2811397314071655,
+                  "z": -0.5399610996246338
+                },
+                "rotation": {
+                  "x": -0.3995078504085541,
+                  "y": 0.13095493614673615,
+                  "z": 0.5834442973136902,
+                  "w": 0.694864809513092
+                }
+              }
+            ],
+            "player": {
+              "x": -0.01196097582578659,
+              "y": 0.7701000571250916,
+              "z": 2.244821310043335
+            },
+            "balls": [],
+            "actions": [
+              {
+                "time": 3,
+                "type": "push",
+                "object": 1
+              }
+            ]
+          },
+          {
+            "frame": 119,
+            "time": 7.933333333333334,
+            "tick": 476,
+            "objects": [
+              {
+                "id": 1,
+                "position": {
+                  "x": 0.4869247376918793,
+                  "y": 0.2811397314071655,
+                  "z": -0.5399610996246338
+                },
+                "rotation": {
+                  "x": -0.3995078504085541,
+                  "y": 0.13095493614673615,
+                  "z": 0.5834442973136902,
+                  "w": 0.694864809513092
+                }
+              }
+            ],
+            "player": {
+              "x": -0.01196097582578659,
+              "y": 0.7701000571250916,
+              "z": 2.244821310043335
+            },
+            "balls": [],
+            "actions": [
+              {
+                "time": 3,
+                "type": "push",
+                "object": 1
+              }
+            ]
+          }
+        ],
+        "settle_m": 0.005848159110587246,
+        "displacement_m": 0.6346659571621968,
+        "max_sampled_tilt_degrees": 126.3495033551831
+      }
+    ],
+    "page_errors": []
+  },
+  "photo_replay": {
+    "format": "playworld-chair-repair-validation/1",
+    "world_sha256": "ad3ba43977a48a2cf885d73d9dd862f2350773fa6998de0ecb84679d00fbf2ae",
+    "shot_sha256": "3acba105a9bf0d2582d3684c63ba718a4b089fd82653fe3eaba65bb2075ff3fc",
+    "replays": 2,
+    "exact_replay_match": true,
+    "fixed_physics_step": 0.016666666666666666,
+    "gpu_training_started": true,
+    "paid_runtime_started": false,
+    "scope": "Local diagnostic scene and reviewed ray push; gallery/featured controls were not changed or revalidated.",
+    "push": {
+      "time": 3,
+      "type": "push",
+      "origin": [
+        1.7733,
+        1.1,
+        -0.5797
+      ],
+      "target": [
+        0.9733,
+        1.1,
+        -0.5797
+      ],
+      "strength": 3
+    },
+    "runs": [
+      {
+        "states": [
+          {
+            "frame": 0,
+            "time": 0,
+            "tick": 0,
+            "objects": [
+              {
+                "id": 1,
+                "position": {
+                  "x": 0.9894999861717224,
+                  "y": 0.6689000129699707,
+                  "z": -0.6136000156402588
+                },
+                "rotation": {
+                  "x": 0,
+                  "y": 0,
+                  "z": 0,
+                  "w": 1
+                }
+              }
+            ],
+            "player": {
+              "x": -0.406360000371933,
+              "y": 0.800000011920929,
+              "z": 2.043839931488037
+            },
+            "balls": [],
+            "actions": []
+          },
+          {
+            "frame": 44,
+            "time": 2.933333333333333,
+            "tick": 176,
+            "objects": [
+              {
+                "id": 1,
+                "position": {
+                  "x": 0.9882104396820068,
+                  "y": 0.6638646721839905,
+                  "z": -0.6109198331832886
+                },
+                "rotation": {
+                  "x": 2.385898187640123e-05,
+                  "y": 0.00040435142000205815,
+                  "z": 1.0587457381916465e-06,
+                  "w": 0.9999999403953552
+                }
+              }
+            ],
+            "player": {
+              "x": -0.01196097582578659,
+              "y": 0.7701000571250916,
+              "z": 2.244821310043335
+            },
+            "balls": [],
+            "actions": []
+          },
+          {
+            "frame": 48,
+            "time": 3.2,
+            "tick": 192,
+            "objects": [
+              {
+                "id": 1,
+                "position": {
+                  "x": 0.222011536359787,
+                  "y": 0.6979852914810181,
+                  "z": -0.6566307544708252
+                },
+                "rotation": {
+                  "x": -0.12544672191143036,
+                  "y": 0.18101516366004944,
+                  "z": 0.6455256938934326,
+                  "w": 0.7312955856323242
+                }
+              }
+            ],
+            "player": {
+              "x": -0.01196097582578659,
+              "y": 0.7701000571250916,
+              "z": 2.244821310043335
+            },
+            "balls": [],
+            "actions": [
+              {
+                "time": 3,
+                "type": "push",
+                "object": 1
+              }
+            ]
+          },
+          {
+            "frame": 55,
+            "time": 3.6666666666666665,
+            "tick": 220,
+            "objects": [
+              {
+                "id": 1,
+                "position": {
+                  "x": 0.2873241901397705,
+                  "y": 0.45194992423057556,
+                  "z": -0.5152212977409363
+                },
+                "rotation": {
+                  "x": -0.06728290766477585,
+                  "y": -0.04758735001087189,
+                  "z": 0.8898469805717468,
+                  "w": 0.4487547278404236
+                }
+              }
+            ],
+            "player": {
+              "x": -0.01196097582578659,
+              "y": 0.7701000571250916,
+              "z": 2.244821310043335
+            },
+            "balls": [],
+            "actions": [
+              {
+                "time": 3,
+                "type": "push",
+                "object": 1
+              }
+            ]
+          },
+          {
+            "frame": 65,
+            "time": 4.333333333333333,
+            "tick": 260,
+            "objects": [
+              {
+                "id": 1,
+                "position": {
+                  "x": 0.4882717728614807,
+                  "y": 0.2825130522251129,
+                  "z": -0.5434306263923645
+                },
+                "rotation": {
+                  "x": -0.4032314419746399,
+                  "y": 0.13597583770751953,
+                  "z": 0.5808759331703186,
+                  "w": 0.6939007639884949
+                }
+              }
+            ],
+            "player": {
+              "x": -0.01196097582578659,
+              "y": 0.7701000571250916,
+              "z": 2.244821310043335
+            },
+            "balls": [],
+            "actions": [
+              {
+                "time": 3,
+                "type": "push",
+                "object": 1
+              }
+            ]
+          },
+          {
+            "frame": 75,
+            "time": 5,
+            "tick": 300,
+            "objects": [
+              {
+                "id": 1,
+                "position": {
+                  "x": 0.4869247376918793,
+                  "y": 0.2811397314071655,
+                  "z": -0.5399610996246338
+                },
+                "rotation": {
+                  "x": -0.3995078504085541,
+                  "y": 0.13095493614673615,
+                  "z": 0.5834442973136902,
+                  "w": 0.694864809513092
+                }
+              }
+            ],
+            "player": {
+              "x": -0.01196097582578659,
+              "y": 0.7701000571250916,
+              "z": 2.244821310043335
+            },
+            "balls": [],
+            "actions": [
+              {
+                "time": 3,
+                "type": "push",
+                "object": 1
+              }
+            ]
+          },
+          {
+            "frame": 90,
+            "time": 6,
+            "tick": 360,
+            "objects": [
+              {
+                "id": 1,
+                "position": {
+                  "x": 0.4869247376918793,
+                  "y": 0.2811397314071655,
+                  "z": -0.5399610996246338
+                },
+                "rotation": {
+                  "x": -0.3995078504085541,
+                  "y": 0.13095493614673615,
+                  "z": 0.5834442973136902,
+                  "w": 0.694864809513092
+                }
+              }
+            ],
+            "player": {
+              "x": -0.01196097582578659,
+              "y": 0.7701000571250916,
+              "z": 2.244821310043335
+            },
+            "balls": [],
+            "actions": [
+              {
+                "time": 3,
+                "type": "push",
+                "object": 1
+              }
+            ]
+          },
+          {
+            "frame": 119,
+            "time": 7.933333333333334,
+            "tick": 476,
+            "objects": [
+              {
+                "id": 1,
+                "position": {
+                  "x": 0.4869247376918793,
+                  "y": 0.2811397314071655,
+                  "z": -0.5399610996246338
+                },
+                "rotation": {
+                  "x": -0.3995078504085541,
+                  "y": 0.13095493614673615,
+                  "z": 0.5834442973136902,
+                  "w": 0.694864809513092
+                }
+              }
+            ],
+            "player": {
+              "x": -0.01196097582578659,
+              "y": 0.7701000571250916,
+              "z": 2.244821310043335
+            },
+            "balls": [],
+            "actions": [
+              {
+                "time": 3,
+                "type": "push",
+                "object": 1
+              }
+            ]
+          }
+        ],
+        "settle_m": 0.005848159110587246,
+        "displacement_m": 0.6346659571621968,
+        "max_sampled_tilt_degrees": 126.3495033551831
+      },
+      {
+        "states": [
+          {
+            "frame": 0,
+            "time": 0,
+            "tick": 0,
+            "objects": [
+              {
+                "id": 1,
+                "position": {
+                  "x": 0.9894999861717224,
+                  "y": 0.6689000129699707,
+                  "z": -0.6136000156402588
+                },
+                "rotation": {
+                  "x": 0,
+                  "y": 0,
+                  "z": 0,
+                  "w": 1
+                }
+              }
+            ],
+            "player": {
+              "x": -0.406360000371933,
+              "y": 0.800000011920929,
+              "z": 2.043839931488037
+            },
+            "balls": [],
+            "actions": []
+          },
+          {
+            "frame": 44,
+            "time": 2.933333333333333,
+            "tick": 176,
+            "objects": [
+              {
+                "id": 1,
+                "position": {
+                  "x": 0.9882104396820068,
+                  "y": 0.6638646721839905,
+                  "z": -0.6109198331832886
+                },
+                "rotation": {
+                  "x": 2.385898187640123e-05,
+                  "y": 0.00040435142000205815,
+                  "z": 1.0587457381916465e-06,
+                  "w": 0.9999999403953552
+                }
+              }
+            ],
+            "player": {
+              "x": -0.01196097582578659,
+              "y": 0.7701000571250916,
+              "z": 2.244821310043335
+            },
+            "balls": [],
+            "actions": []
+          },
+          {
+            "frame": 48,
+            "time": 3.2,
+            "tick": 192,
+            "objects": [
+              {
+                "id": 1,
+                "position": {
+                  "x": 0.222011536359787,
+                  "y": 0.6979852914810181,
+                  "z": -0.6566307544708252
+                },
+                "rotation": {
+                  "x": -0.12544672191143036,
+                  "y": 0.18101516366004944,
+                  "z": 0.6455256938934326,
+                  "w": 0.7312955856323242
+                }
+              }
+            ],
+            "player": {
+              "x": -0.01196097582578659,
+              "y": 0.7701000571250916,
+              "z": 2.244821310043335
+            },
+            "balls": [],
+            "actions": [
+              {
+                "time": 3,
+                "type": "push",
+                "object": 1
+              }
+            ]
+          },
+          {
+            "frame": 55,
+            "time": 3.6666666666666665,
+            "tick": 220,
+            "objects": [
+              {
+                "id": 1,
+                "position": {
+                  "x": 0.2873241901397705,
+                  "y": 0.45194992423057556,
+                  "z": -0.5152212977409363
+                },
+                "rotation": {
+                  "x": -0.06728290766477585,
+                  "y": -0.04758735001087189,
+                  "z": 0.8898469805717468,
+                  "w": 0.4487547278404236
+                }
+              }
+            ],
+            "player": {
+              "x": -0.01196097582578659,
+              "y": 0.7701000571250916,
+              "z": 2.244821310043335
+            },
+            "balls": [],
+            "actions": [
+              {
+                "time": 3,
+                "type": "push",
+                "object": 1
+              }
+            ]
+          },
+          {
+            "frame": 65,
+            "time": 4.333333333333333,
+            "tick": 260,
+            "objects": [
+              {
+                "id": 1,
+                "position": {
+                  "x": 0.4882717728614807,
+                  "y": 0.2825130522251129,
+                  "z": -0.5434306263923645
+                },
+                "rotation": {
+                  "x": -0.4032314419746399,
+                  "y": 0.13597583770751953,
+                  "z": 0.5808759331703186,
+                  "w": 0.6939007639884949
+                }
+              }
+            ],
+            "player": {
+              "x": -0.01196097582578659,
+              "y": 0.7701000571250916,
+              "z": 2.244821310043335
+            },
+            "balls": [],
+            "actions": [
+              {
+                "time": 3,
+                "type": "push",
+                "object": 1
+              }
+            ]
+          },
+          {
+            "frame": 75,
+            "time": 5,
+            "tick": 300,
+            "objects": [
+              {
+                "id": 1,
+                "position": {
+                  "x": 0.4869247376918793,
+                  "y": 0.2811397314071655,
+                  "z": -0.5399610996246338
+                },
+                "rotation": {
+                  "x": -0.3995078504085541,
+                  "y": 0.13095493614673615,
+                  "z": 0.5834442973136902,
+                  "w": 0.694864809513092
+                }
+              }
+            ],
+            "player": {
+              "x": -0.01196097582578659,
+              "y": 0.7701000571250916,
+              "z": 2.244821310043335
+            },
+            "balls": [],
+            "actions": [
+              {
+                "time": 3,
+                "type": "push",
+                "object": 1
+              }
+            ]
+          },
+          {
+            "frame": 90,
+            "time": 6,
+            "tick": 360,
+            "objects": [
+              {
+                "id": 1,
+                "position": {
+                  "x": 0.4869247376918793,
+                  "y": 0.2811397314071655,
+                  "z": -0.5399610996246338
+                },
+                "rotation": {
+                  "x": -0.3995078504085541,
+                  "y": 0.13095493614673615,
+                  "z": 0.5834442973136902,
+                  "w": 0.694864809513092
+                }
+              }
+            ],
+            "player": {
+              "x": -0.01196097582578659,
+              "y": 0.7701000571250916,
+              "z": 2.244821310043335
+            },
+            "balls": [],
+            "actions": [
+              {
+                "time": 3,
+                "type": "push",
+                "object": 1
+              }
+            ]
+          },
+          {
+            "frame": 119,
+            "time": 7.933333333333334,
+            "tick": 476,
+            "objects": [
+              {
+                "id": 1,
+                "position": {
+                  "x": 0.4869247376918793,
+                  "y": 0.2811397314071655,
+                  "z": -0.5399610996246338
+                },
+                "rotation": {
+                  "x": -0.3995078504085541,
+                  "y": 0.13095493614673615,
+                  "z": 0.5834442973136902,
+                  "w": 0.694864809513092
+                }
+              }
+            ],
+            "player": {
+              "x": -0.01196097582578659,
+              "y": 0.7701000571250916,
+              "z": 2.244821310043335
+            },
+            "balls": [],
+            "actions": [
+              {
+                "time": 3,
+                "type": "push",
+                "object": 1
+              }
+            ]
+          }
+        ],
+        "settle_m": 0.005848159110587246,
+        "displacement_m": 0.6346659571621968,
+        "max_sampled_tilt_degrees": 126.3495033551831
+      }
+    ],
+    "page_errors": []
+  },
+  "capture": {
+    "fps": 15,
+    "frames": 120,
+    "photo_backdrops": [
+      {
+        "texture": "window-photo.jpg",
+        "label": "Window: source-photo plane; exterior is not reconstructed 3D"
+      }
+    ],
+    "renderer": "ANGLE (NVIDIA, NVIDIA GeForce GTX 1660 Ti (0x00002191) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "captured_frames": 120,
+    "width": 960,
+    "height": 540,
+    "seconds": 38.347,
+    "world_sha256": "ad3ba43977a48a2cf885d73d9dd862f2350773fa6998de0ecb84679d00fbf2ae",
+    "shot_sha256": "3acba105a9bf0d2582d3684c63ba718a4b089fd82653fe3eaba65bb2075ff3fc"
+  },
+  "encoding": {
+    "id": "lounge-window-cleanup-20261009",
+    "title": "Window office source photo window",
+    "capture_world_sha256": "ad3ba43977a48a2cf885d73d9dd862f2350773fa6998de0ecb84679d00fbf2ae",
+    "shot_sha256": "3acba105a9bf0d2582d3684c63ba718a4b089fd82653fe3eaba65bb2075ff3fc",
+    "captured_frames": 120,
+    "source": "Actual fixed-step browser viewer output; no generated imagery",
+    "caption": "Window exterior is a photo plane",
+    "photo_backdrops": [
+      {
+        "texture": "window-photo.jpg",
+        "label": "Window: source-photo plane; exterior is not reconstructed 3D"
+      }
+    ],
+    "gif_duration_seconds": 8.0,
+    "gif_fps": 15,
+    "quality": 65,
+    "gif_width": 480,
+    "gif_height": 270,
+    "gif_bytes": 1017721,
+    "mp4_bytes": 1185017,
+    "gif_sha256": "3b184bbaef5af490feca1866d68c7905abdf5611c78db474baba7d38a3156c12",
+    "mp4_sha256": "04156168ba32979cbd86a18491de3c84f601034212d6a3a37b672831f2eb3771"
+  },
+  "rejected_photo_probes": [
+    {
+      "method": "Per-pixel photo choice",
+      "reason": "Horizontal tears and parallax seams across exterior buildings"
+    },
+    {
+      "method": "Whole window down to y=.18",
+      "reason": "Foreground chairs in selected photographs became baked into window plane"
+    },
+    {
+      "method": "Only nearby cameras with full-pane coverage",
+      "reason": "Only 50.6 percent coverage; rejected instead of filling missing pixels"
+    }
+  ],
+  "artifacts": {
+    ".cache/window-cleanup-20261009/floor-warm-500/best.pt": {
+      "bytes": 241453361,
+      "sha256": "507002b5b4f03953eb1a273a2ba5df54ed402649423695c79781060fda65bb73"
+    },
+    ".cache/window-cleanup-20261009/floor-warm-500/best.ply": {
+      "bytes": 241452134,
+      "sha256": "9d5a38ffc00f58ab453bc89c92216fb96257ef75352b8b601e627dca32b7129e"
+    },
+    ".cache/window-cleanup-20261009/site-floor/world.json": {
+      "bytes": 327971,
+      "sha256": "ab9d50c2f47ad50f065316f819f1aceb02cf927b9f2bee5c3e9d570afe0fa7cb"
+    },
+    ".cache/window-cleanup-20261009/site-photo-final/world.json": {
+      "bytes": 328395,
+      "sha256": "ad3ba43977a48a2cf885d73d9dd862f2350773fa6998de0ecb84679d00fbf2ae"
+    },
+    ".cache/window-cleanup-20261009/site-photo-final/main.js": {
+      "bytes": 20705,
+      "sha256": "2d634f80af4076853cd4f39ff09c2ce6cda55337e72cf8df015ca27f66606813"
+    },
+    "scripts/bake_window_backdrop.py": {
+      "bytes": 7261,
+      "sha256": "18426f0a37812051734703546dd5b0f1fa9a48685bc09ce7d44347dfb67682a8",
+      "published_git_blob_sha256": "18426f0a37812051734703546dd5b0f1fa9a48685bc09ce7d44347dfb67682a8",
+      "published_git_blob_bytes": 7261
+    },
+    "scripts/refine_checkpoint.py": {
+      "bytes": 16677,
+      "sha256": "515ec8e3144a05a1ffae2e31bb2d8f6b1fbe9ad71ac89d00039e1b58d8ff8784",
+      "published_git_blob_sha256": "515ec8e3144a05a1ffae2e31bb2d8f6b1fbe9ad71ac89d00039e1b58d8ff8784",
+      "published_git_blob_bytes": 16677
+    },
+    "scripts/clean_interior.py": {
+      "bytes": 5566,
+      "sha256": "6029a468ce34b0eea10c078658c8d9c35fe6013091655a71508e1f31606d0068",
+      "published_git_blob_sha256": "6029a468ce34b0eea10c078658c8d9c35fe6013091655a71508e1f31606d0068",
+      "published_git_blob_bytes": 5566
+    },
+    "src/playworld/cleanup.py": {
+      "bytes": 5152,
+      "sha256": "c62b7eed82e4b69853e438dcc71e2623d5708483e9345c12c34bdb88b9a1498e",
+      "published_git_blob_sha256": "e4e9375579bb6ed6bdca3bd6c838845a79beb51d3576eacb9fd0cb174398f8a7",
+      "published_git_blob_bytes": 5094
+    },
+    "src/playworld/viewer/main.js": {
+      "bytes": 20800,
+      "sha256": "94e4431238238f9c0b830c6b21ea946cfb0bcbd2e860417d29c0b3a07e7ec79a",
+      "published_git_blob_sha256": "94e4431238238f9c0b830c6b21ea946cfb0bcbd2e860417d29c0b3a07e7ec79a",
+      "published_git_blob_bytes": 20800
+    }
+  },
+  "preserved_public_hashes": {
+    "assets/background.spz": "a8d11456887befd63758575dcf043a983671253f66ce3a9de03872a5854952e2",
+    "assets/data-attribution.md": "7a7cd7836dd961dac25f5fc959e7278717e7ae8b44cf7b1a916e9d6097196e4d",
+    "assets/EYEFULTOWER-LICENSE.txt": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93",
+    "assets/manifest.json": "dc4a9371f9ecba2c5986ba37d3707cdc280f1fb35b47cd48340e155bbf00b438",
+    "assets/quality-report.json": "f785413f19cda180c680ba836efe8ed655a11a8ffcc3a4cf484b2c13c56b4331",
+    "assets/source.json": "c381a901282ea663c08aec3d54174ad5a1a726ba9b815802bf3474766665b602",
+    "assets/world.json": "74d5f27ac3d2ea49ddc37b4dffd884a7dbbf5f96ac1a222361f287ed4adc53e2",
+    "assets/objects/1.spz": "689b45644d6c57401deed34bbccbc56713a76e66e1a250dbdca4cbdcc45975cd",
+    "assets/objects/5.spz": "d262f17cd04c35e6ed53c9fb39b7f72383c00819934bd7f7e1a14024c5122b2a",
+    "docs/demos/lounge-provenance.json": "18f9989acf3e28ba0cd4324c39f107229763a755a2f5e9fc1d96db64ab3833c3",
+    "docs/demos/lounge.gif": "f0cfa1850f9453d9177bbfe5b5811bb8348f758c92aee5bd06bd3dbaaf050735",
+    "docs/demos/lounge.mp4": "1977319321c9e12788e5542e13603a1e4bf3f4b6c732803712ab2b50544c653e",
+    "shots/gallery/lounge-profile.json": "699e2c8e10b3e49a5284ce18fb5df53d2e96c3ebc8b7687c3b6d677689d3d0c9",
+    "shots/gallery/lounge.json": "3a87ae61a9847996cc8a8804ee197ed33d7ffdfa1b54d90527e8accdd5746b7d"
+  },
+  "tests": {
+    "full_native": {
+      "passed": 124,
+      "skipped": 2
+    },
+    "refinement_cleanup_window_in_torch_env": {
+      "passed": 19
+    }
+  },
+  "baking_cli_reproduces_recorded_world_texture_and_background": true,
+  "current_baking_cli": {
+    "format": "playworld-reviewed-window-photo/1",
+    "gpu_used": false,
+    "exterior_reconstructed_3d": false,
+    "generated_imagery": false,
+    "settings": {
+      "plane": {
+        "slope": -0.02929357500467569,
+        "intercept": -1.3624077800271734,
+        "inliers": 926,
+        "median_distance_m": 0.011403123769391453
+      },
+      "y": [
+        1.1,
+        2.75
+      ],
+      "patches": [
+        {
+          "z": [
+            -4.05,
+            -2.2
+          ],
+          "image": "22_DSC0073.jpg"
+        },
+        {
+          "z": [
+            -2.2,
+            -0.2
+          ],
+          "image": "22_DSC0064.jpg"
+        },
+        {
+          "z": [
+            -0.2,
+            1.82
+          ],
+          "image": "22_DSC0010.jpg"
+        },
+        {
+          "z": [
+            1.82,
+            3.75
+          ],
+          "image": "22_DSC0460.jpg"
+        }
+      ],
+      "resolution": [
+        2048,
+        512
+      ],
+      "interior_strip_m": [
+        -0.06,
+        0.95
+      ],
+      "cut_height_padding_m": 0.05,
+      "label": "Window: source-photo plane; exterior is not reconstructed 3D",
+      "limitation": "Manually reviewed approximate plane and bounds. Exterior has no true parallax. Source-photo seams and lower-window haze remain."
+    },
+    "source_world": {
+      "bytes": 797292,
+      "sha256": "88d4136393f9830a513090c7d98929614c8cfb40010fbbf93b36b5640bbcbf1d"
+    },
+    "source_config": {
+      "bytes": 985,
+      "sha256": "a520de5f6e5185961147afffe00d80b5195324ed54cb8253cdd7a6dce81ba8a6"
+    },
+    "source_photographs": {
+      "22_DSC0073.jpg": {
+        "bytes": 434936,
+        "sha256": "0fd88c41ee89195a2d5e1012c95ba5bc436f4d7364f209973384d55d6aa5c02d"
+      },
+      "22_DSC0064.jpg": {
+        "bytes": 440608,
+        "sha256": "0495670f51f1c260e89a66fc8eb2ffdfdaac8cf5c94ce5b7265eb3843d65151d"
+      },
+      "22_DSC0010.jpg": {
+        "bytes": 471033,
+        "sha256": "9ad610bb8f9eee2d3744a819014f6d9dcb509c513a0a80acf50bd80d90ee6cdf"
+      },
+      "22_DSC0460.jpg": {
+        "bytes": 346962,
+        "sha256": "71d88cc2015d53445a8df00157569903c655c47509354a9be6fd0d66c31b76f6"
+      }
+    },
+    "removed_background_gaussians": 79713,
+    "coverage": 1.0,
+    "physics_unchanged": true,
+    "movable_objects_unchanged": true,
+    "texture": {
+      "bytes": 156833,
+      "sha256": "40bb1483b2328a7ea128cbf3a226e5a128bebe397302d7f41504f32060a10e7a"
+    },
+    "background": {
+      "bytes": 218510101,
+      "sha256": "429f6b83309aee259de9282da88a19bd89b95b10801eb73d5562912e5dcfa55c"
+    },
+    "seconds": 2.870269500010181
+  },
+  "normal_ui_smoke": {
+    "ready": true,
+    "status": "1 physical objects \u00b7 4047 static colliders \u00b7 Window: source-photo plane; exterior is not reconstructed 3D",
+    "page_errors": [],
+    "scope": "Normal drag-control page loading and photo-plane disclosure, not a gallery featured-action check."
+  },
+  "published_configuration_reproduction": {
+    "format": "playworld-reviewed-window-photo/1",
+    "gpu_used": false,
+    "exterior_reconstructed_3d": false,
+    "generated_imagery": false,
+    "settings": {
+      "plane": {
+        "slope": -0.02929357500467569,
+        "intercept": -1.3624077800271734,
+        "inliers": 926,
+        "median_distance_m": 0.011403123769391453
+      },
+      "y": [
+        1.1,
+        2.75
+      ],
+      "patches": [
+        {
+          "z": [
+            -4.05,
+            -2.2
+          ],
+          "image": "22_DSC0073.jpg"
+        },
+        {
+          "z": [
+            -2.2,
+            -0.2
+          ],
+          "image": "22_DSC0064.jpg"
+        },
+        {
+          "z": [
+            -0.2,
+            1.82
+          ],
+          "image": "22_DSC0010.jpg"
+        },
+        {
+          "z": [
+            1.82,
+            3.75
+          ],
+          "image": "22_DSC0460.jpg"
+        }
+      ],
+      "resolution": [
+        2048,
+        512
+      ],
+      "interior_strip_m": [
+        -0.06,
+        0.95
+      ],
+      "cut_height_padding_m": 0.05,
+      "label": "Window: source-photo plane; exterior is not reconstructed 3D",
+      "limitation": "Manually reviewed approximate plane and bounds. Exterior has no true parallax. Source-photo seams and lower-window haze remain."
+    },
+    "source_world": {
+      "bytes": 797292,
+      "sha256": "88d4136393f9830a513090c7d98929614c8cfb40010fbbf93b36b5640bbcbf1d"
+    },
+    "source_config": {
+      "bytes": 932,
+      "sha256": "a6b2c6df18f5bad59cd5ddf1e65bd735ee24c3ccdec58cfee913254ad2d230eb"
+    },
+    "source_photographs": {
+      "22_DSC0073.jpg": {
+        "bytes": 434936,
+        "sha256": "0fd88c41ee89195a2d5e1012c95ba5bc436f4d7364f209973384d55d6aa5c02d"
+      },
+      "22_DSC0064.jpg": {
+        "bytes": 440608,
+        "sha256": "0495670f51f1c260e89a66fc8eb2ffdfdaac8cf5c94ce5b7265eb3843d65151d"
+      },
+      "22_DSC0010.jpg": {
+        "bytes": 471033,
+        "sha256": "9ad610bb8f9eee2d3744a819014f6d9dcb509c513a0a80acf50bd80d90ee6cdf"
+      },
+      "22_DSC0460.jpg": {
+        "bytes": 346962,
+        "sha256": "71d88cc2015d53445a8df00157569903c655c47509354a9be6fd0d66c31b76f6"
+      }
+    },
+    "removed_background_gaussians": 79713,
+    "coverage": 1.0,
+    "physics_unchanged": true,
+    "movable_objects_unchanged": true,
+    "texture": {
+      "bytes": 156833,
+      "sha256": "40bb1483b2328a7ea128cbf3a226e5a128bebe397302d7f41504f32060a10e7a"
+    },
+    "background": {
+      "bytes": 218510101,
+      "sha256": "429f6b83309aee259de9282da88a19bd89b95b10801eb73d5562912e5dcfa55c"
+    },
+    "seconds": 2.854228999989573
+  },
+  "hash_scope": "Training/capture inputs and sha256 fields describe actual local bytes. Published JSON config is LF-normalized; its reproduction below preserves rendered world/texture/background bytes. Code artifacts also list Git-blob hashes to account for checkout line endings."
+}

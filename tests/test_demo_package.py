@@ -57,3 +57,22 @@ def test_spz_preserves_capture_axes_and_spherical_harmonics(tmp_path):
     # PLY stores channels in blocks; SPZ stores channels inside coefficients.
     expected = np.zeros((2, 15, 3)); expected[:, 0, 0] = .2
     np.testing.assert_allclose(decoded.sh.reshape(2, 15, 3), expected, atol=.065)
+
+
+def test_demo_packages_reviewed_photo_texture_without_changing_its_bytes(tmp_path):
+    import json
+    spec = importlib.util.spec_from_file_location('build_demo_photo', Path(__file__).parents[1]/'scripts/build_demo.py')
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    source, out = tmp_path/'source', tmp_path/'packed'
+    source.mkdir()
+    splat_io.write_ply(source/'background.ply', splat_io.make_splats(np.array([[0., 0, 1]]), np.full((1, 3), .5), .01))
+    (source/'window.jpg').write_bytes(b'exact reviewed photo bytes')
+    world = {'background':'background.ply', 'objects':[], 'colliders':[],
+             'photo_backdrops':[{'texture':'window.jpg', 'label':'Source photo plane'}]}
+    (source/'world.json').write_text(json.dumps(world), encoding='utf-8')
+    module.package_world(source, out)
+    assert (out/'window.jpg').read_bytes() == (source/'window.jpg').read_bytes()
+    manifest = json.loads((out/'manifest.json').read_text())
+    assert manifest['photo_backdrops'][0]['path'] == 'window.jpg'
+    assert manifest['gaussians'] == 1

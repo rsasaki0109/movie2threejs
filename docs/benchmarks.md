@@ -586,3 +586,46 @@ MP4: **1,290,700 bytes**, 960×540. Window haze remains, and this diagnostic was
 not adopted for the current README/gallery.
 [Visual comparison and limits](quality.md#window-office-interior-floater-cleanup-9-october-2026)
 · [Full receipt](runs/quality/lounge-interior-cleanup-20261009.json).
+
+## Local window cleanup and photo fallback, 9 October 2026
+
+This continues the saved calibrated window-office trial on the local
+**GTX 1660 Ti (6GB)**, with the same 144 photos and 126/18 training/validation
+split. Existing poses, sparse points and manually associated SAM masks were
+reused. No Colab allocation, paid resource or new SAM inference occurred.
+
+| Operation | Measured seconds |
+| --- | ---: |
+| CPU observed-floor support filter, PLY/mask export and hashes | 4.516 |
+| 500-step warm start, evaluations and checkpoint/PLY exports | 94.305 |
+| CPU reviewed-photo baking, viewer refresh, export and hashes | 2.870 |
+| Floor-cleaned browser capture, 120 frames including loading | 39.704 |
+| Photo-window browser capture, 120 frames including loading | 38.347 |
+
+Refinement excludes checkpoint/image loading and setup. Peak **allocated Torch
+CUDA memory** was **1,418.756 MiB**, excluding driver/non-Torch allocations.
+Assembly, SPZ packaging and encoding are separate; no combined video-to-world
+time is claimed. The current baking CLI reproduced the recorded trial's texture,
+background and world JSON hashes. The GIF uses **1,017,721 bytes**, 480×270, 8 s,
+15 fps; MP4 uses **1,185,017 bytes**, 960×540.
+
+Floor filtering removed **51,434** Gaussians and left **1,023,096** for refinement.
+Raw Gaussian mean validation PSNR/SSIM changed from **23.1516 / 0.830077** to
+**23.4102 / 0.828603** after filtering, then **23.9322 / 0.833482** after training.
+These scores exclude the photo plane and use the same validation split that
+guided selection; they are not independent final-test results.
+
+The assembled diagnostic before photo replacement has **1,020,607 Gaussians**.
+The photo-window version has **940,894**, with **1 reviewed movable chair,
+4,047 static colliders, 1 support patch and 1 photo plane**. A fixed-step ray push
+moved the chair **0.635 m**, maximum recorded tilt **130.87°**, initial settling
+**0.006 m**. Two sampled replays matched exactly; all 120 recorded physics states
+also matched between the floor-only and photo-window versions.
+
+Photo texture represents the upper window and its exterior; true outdoor
+parallax is absent. Lower-window haze and room streaks remain. This diagnostic
+was not adopted for the README hero/live gallery. Full native tests passed
+**124 tests**, with two skips; refinement, cleanup and photo-projection tests
+passed **19 tests** in the Torch environment.
+[Visual comparison and disclosure](quality.md#window-office-floor-footprint-and-photo-window-9-october-2026)
+· [Full receipt](runs/quality/lounge-window-cleanup-20261009.json).

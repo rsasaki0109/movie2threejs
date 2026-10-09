@@ -553,3 +553,87 @@ the warm-start option performs one-time filtering, not a persistent constraint.
 · [Heldout photograph comparisons](runs/quality/lounge-interior-cleanup-heldout-20261009.jpg)
 · [Diagnostic MP4](runs/quality/lounge-interior-cleanup-20261009.mp4)
 · [Encoding receipt](runs/quality/lounge-interior-cleanup-20261009-provenance.json).
+
+## Window-office floor footprint and photo window, 9 October 2026
+
+![Same first recorded frame: previous camera-footprint cleanup, observed-floor cleanup plus refinement, and upper-window photo plane](runs/quality/lounge-window-cleanup-browser-20261009.jpg)
+
+The upper window's large white floating volume is reduced in the last view.
+**The window in that view uses a disclosed source-photo plane, not reconstructed
+exterior geometry.** Lower-window haze, table/wall streaks and photographic seams
+remain. This is a diagnostic; the current README hero and five gallery worlds
+have not been replaced. The calibrated chair trial is a different model from
+the live window-office demo with its movable cushion.
+
+The previous filter stopped at the capture-camera hull. Many window-region
+contributors lay just outside it, but inside the observed floor footprint.
+The opt-in `--footprint floor` mode takes sparse points within **0.06 m** of
+aligned y=0, connects horizontal **0.20 m** voxels with eight-neighbor adjacency,
+and selects the component with the largest original point count. In this room
+that component contained **69,389 points**. Its convex hull uses the same
+**0.05 m** inset, **0.25–2.75 m** height band and **0.30 m** reference-distance
+threshold. It removed another **51,434 of 1,074,530 Gaussians**. All distances
+depend on the existing assumed scale. Unlike camera mode, floor mode does not
+use camera centers; its sparse reference model includes the provided dataset
+points. Neither footprint is measured free space. Real unsupported surfaces
+can be lost, and disconnected exterior floor patches are excluded only by the
+component heuristic.
+
+The squared-brightness probe in the scripted camera's leftmost 260 pixels found
+that **68 of its 100 leading positive opacity-gradient candidates** were removed.
+This probe has no ground-truth target and does not prove every candidate invalid.
+The CPU PLY mask exactly matched the checkpoint prototype; evaluation through
+the new CLI reproduced its Gaussian count and pre-training metric.
+
+| Same 18-image validation split, raw Gaussian render | Mean PSNR (dB) | Local SSIM |
+| --- | ---: | ---: |
+| Previous camera-footprint cleanup + refinement | 23.1516 | 0.830077 |
+| Observed-floor cleanup, no extra learning | 23.4102 | 0.828603 |
+| Floor cleanup then 500 fresh-Adam steps | 23.9322 | 0.833482 |
+
+These metrics are **before the photo plane**. The initial floor-only result had
+lower SSIM despite higher PSNR, and individual views can regress. Parameters
+and the final checkpoint were selected on the existing validation split, not an
+independent test set. Reloading the final checkpoint reproduced its metrics.
+The run kept cameras and Gaussian count fixed, without densification, and used
+the existing three-mask manual chair association rather than fresh SAM inference.
+
+![Actual browser replay; caption identifies the photo-plane window](runs/quality/lounge-window-cleanup-20261009.gif)
+
+`scripts/bake_window_backdrop.py` is a separate, optional presentation fallback.
+An approximate vertical window plane was fitted to **926 sparse points**, with
+median inlier distance **0.0114 m**; its bounds and four source photographs were
+reviewed manually. The tested region spans **y=1.10–2.75 m**. The script resamples
+the calibrated, undistorted photographs onto a **2048×512** texture, replacing
+**79,713 background Gaussians** in the configured window strip. The strip uses
+world-x offsets relative to the fitted plane, not normal distance. Window frames
+in that region are also represented by the photograph. No image generation or
+inpainting occurs. Exterior depth and true parallax are absent; seams can become
+visible from other viewpoints. This configuration is specific to this capture.
+
+Per-pixel photo selection produced tears across outdoor buildings. Extending
+the plane down to y=0.18 m copied foreground chairs into the window texture;
+that version was rejected. Restricting full-pane source photos to nearby
+cameras covered only 50.6% of the texture and was also rejected. The narrower
+upper-window fallback avoids those photographed chairs but leaves lower haze.
+
+Before the photo fallback, assembly retained **1,020,607 Gaussians**. The displayed
+fallback has **940,894 Gaussians**, **1 reviewed movable chair**, **4,047 static
+colliders**, **1 support patch** and **1 photo plane**. The chair moved **0.635 m**,
+settled initially by **0.006 m** and reached **130.87°** maximum tilt over the
+120-frame replay. Two replays matched at eight sampled states with no page errors.
+Adding the photo plane preserved **all 120 recorded physics states** relative
+to the floor-cleaned world. Normal page loading also verified the visible
+photo-plane disclosure; gallery featured actions were not revalidated here.
+
+The GIF/MP4 burn in “Window exterior is a photo plane”, and recording/encoding
+receipts identify the fallback. No Colab, paid runtime or SAM inference was
+started. Computation used the local GTX 1660 Ti. Input remains MIT-licensed
+Eyeful Tower `office_view2` capture-rig photographs, not smartphone footage;
+[attribution](data-attribution.md) and [license](EYEFULTOWER-LICENSE.txt) apply.
+
+[CPU/GPU recipes and reviewed-photo workflow](gpu.md#optional-observed-floor-footprint-and-photo-window)
+· [Metrics, audits, hashes and replay states](runs/quality/lounge-window-cleanup-20261009.json)
+· [Heldout comparisons without the photo plane](runs/quality/lounge-window-cleanup-heldout-20261009.jpg)
+· [Diagnostic MP4](runs/quality/lounge-window-cleanup-20261009.mp4)
+· [Encoding receipt](runs/quality/lounge-window-cleanup-20261009-provenance.json).

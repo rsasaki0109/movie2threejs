@@ -1,0 +1,53 @@
+{
+  "plane": {
+    "slope": -0.02929357500467569,
+    "intercept": -1.3624077800271734,
+    "inliers": 926,
+    "median_distance_m": 0.011403123769391453
+  },
+  "y": [
+    1.1,
+    2.75
+  ],
+  "patches": [
+    {
+      "z": [
+        -4.05,
+        -2.2
+      ],
+      "image": "22_DSC0073.jpg"
+    },
+    {
+      "z": [
+        -2.2,
+        -0.2
+      ],
+      "image": "22_DSC0064.jpg"
+    },
+    {
+      "z": [
+        -0.2,
+        1.82
+      ],
+      "image": "22_DSC0010.jpg"
+    },
+    {
+      "z": [
+        1.82,
+        3.75
+      ],
+      "image": "22_DSC0460.jpg"
+    }
+  ],
+  "resolution": [
+    2048,
+    512
+  ],
+  "interior_strip_m": [
+    -0.06,
+    0.95
+  ],
+  "cut_height_padding_m": 0.05,
+  "label": "Window: source-photo plane; exterior is not reconstructed 3D",
+  "limitation": "Manually reviewed approximate plane and bounds. Exterior has no true parallax. Source-photo seams and lower-window haze remain."
+}
