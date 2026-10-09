@@ -553,3 +553,36 @@ It was not adopted or browser/physics-validated; the recording above uses the
 unpruned refined checkpoint. Its radius is a free-space heuristic, not a measurement.
 [Evidence and unresolved blur](quality.md#local-window-office-refinement-9-october-2026)
 · [Full receipt](runs/quality/lounge-refinement-20261009.json).
+
+## Local interior cleanup and refinement, 9 October 2026
+
+This continues the saved window-office checkpoint, not a new video reconstruction.
+The same 144 calibrated public photographs, 126/18 split, reference points and
+local **GTX 1660 Ti (6GB)** were used. No Colab allocation or SAM inference ran.
+
+| Operation | Measured seconds |
+| --- | ---: |
+| CPU support filter, PLY/mask export and hashes | 4.228 |
+| 500-step warm start, evaluations and checkpoint/PLY exports | 88.368 |
+| Final 120-frame browser capture, including loading | 38.070 |
+
+Refinement timing excludes checkpoint/image loading and setup. World assembly,
+SPZ packaging and encoding are separate from these values; no combined
+end-to-end runtime is claimed. Torch peak allocated CUDA memory for refinement
+was **1,485.897 MiB**, excluding driver/non-Torch allocations. Original poses and
+SAM masks were reused, so their old stage times are not new measurements.
+
+Support filtering removed **34,071** Gaussians, leaving **1,074,530** for
+refinement. Final assembly kept **1,072,039**, with **1 reviewed movable chair,
+4,394 static colliders and 1 support patch**. Mean validation PSNR/SSIM changed
+from **21.4842 / 0.805519** to **22.9816 / 0.824828** after filtering, then
+**23.1516 / 0.830077** after 500 additional steps. Results were selected on the
+same validation split, not an independent test set.
+
+The final 8 s recording uses 15 fps, 960×540, native Chromium/D3D11 and fixed
+1/60 s physics. The chair moved **0.672 m**, maximum recorded tilt **174.05°**;
+two replays matched at eight sampled states. GIF: **1,105,676 bytes**, 480×270;
+MP4: **1,290,700 bytes**, 960×540. Window haze remains, and this diagnostic was
+not adopted for the current README/gallery.
+[Visual comparison and limits](quality.md#window-office-interior-floater-cleanup-9-october-2026)
+· [Full receipt](runs/quality/lounge-interior-cleanup-20261009.json).

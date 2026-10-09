@@ -477,3 +477,79 @@ snapshots. The experimental depth prior is disabled by default.
 · [Diagnostic MP4](runs/quality/lounge-refinement-20261009.mp4)
 · [Encoding receipt](runs/quality/lounge-refinement-20261009-provenance.json)
 · [Same-camera browser comparison](runs/quality/lounge-refinement-browser-20261009.jpg).
+
+## Window-office interior floater cleanup, 9 October 2026
+
+![Same scripted browser view before cleanup and after cleanup plus 500 refinement steps](runs/quality/lounge-interior-cleanup-browser-20261009.jpg)
+
+The central floating volume is now substantially reduced in the recorded view.
+GPU diagnostics reproduced the browser artifact in the raw checkpoint, before
+SPZ packaging. It was therefore not explained by SPZ conversion alone. In the
+problematic `19_DSC0406.jpg` view, some off-screen Gaussian centers had camera
+depths around **0.011 capture units** and projected radii of thousands of pixels.
+For example, Gaussian 327652 had radii **3,848 × 5,019 pixels**, with its center
+about **0.407 capture units** from the nearest sparse reference point. Increasing
+gsplat's near clip from 0.01 to 0.1 reduced extreme projection artifacts but left
+substantial window blur. No default clip setting was changed.
+
+In the diagnostic browser camera's TV-region projection, the 100 Gaussians with
+largest positive opacity gradients of squared rendered brightness were all
+rejected by the new support filter. That brightness probe is not ground-truth
+image error or proof that every selected Gaussian is invalid; the actual
+before/after rendering demonstrates the visible effect. Sparse distances for
+its leading contributors were approximately **0.4–0.6 capture units**. These
+observations identify a contributing floating cluster, not the cause of every
+remaining artifact or proof that all camera poses are correct.
+
+The optional CPU `scripts/clean_interior.py` removes unsupported centers only
+inside the horizontal convex hull of capture-camera centers, inset **0.05 m**,
+within the **0.25–2.75 m** height band. The tested distance limit was **0.30 m**
+from the sparse point cloud. Distances depend on the existing world's assumed
+scale. The trial used the 126 training-camera centers, excluding the 18 heldout
+centers, and removed **34,071 of 1,108,601 Gaussians**. It preserves points outside
+the footprint and band; this avoids blanket exterior/window pruning. The hull
+is not measured free space: unsupported real interior surfaces can also be lost.
+This filter is opt-in and has not been added to `playworld all` defaults.
+
+| Same 18-image validation split | Mean PSNR (dB) | Local SSIM |
+| --- | ---: | ---: |
+| Previous refined checkpoint | 21.4842 | 0.805519 |
+| Near clip 0.1 only, unchanged weights | 22.1068 | 0.818701 |
+| Interior support cleanup, no extra learning | 22.9816 | 0.824828 |
+| Cleanup then 500 fresh-Adam steps | 23.1516 | 0.830077 |
+
+The local baseline before either refinement remains **20.9642 dB**. Hyperparameters
+and the final checkpoint were selected using this validation split and visual
+review; these are not independent final-test results. Some individual views
+regressed. `19_DSC0406.jpg` improved from **6.981 dB** in the previous refined
+checkpoint to **21.304 dB** after cleanup alone.
+
+![Actual final browser output after interior cleanup and further refinement](runs/quality/lounge-interior-cleanup-20261009.gif)
+
+The final reconstructed diagnostic has **1,072,039 Gaussians**, **1 reviewed
+movable chair**, **4,394 static colliders** and **1 support patch**. The same shot
+and ray push moved the chair **0.672 m**, with **0.006 m** initial settling and
+**174.05°** maximum tilt over 120 recorded frames. Two independent replays matched
+exactly at eight sampled states, with no page errors. The approximate convex
+chair body and assumed scale remain limitations. This uses the earlier manual
+three-mask association, not newly validated automatic SAM tracking.
+
+**Window haze and chair/wall streaks remain.** This is a stronger diagnostic,
+but was not adopted as the README hero or live-gallery replacement. Current
+published window-office media/assets retain their baseline hashes. No Colab or
+paid resource was allocated; GPU evaluation/refinement used the local GTX 1660 Ti.
+Input remains MIT-licensed Eyeful Tower `office_view2` photographs, not phone video;
+[attribution](data-attribution.md) and [license](EYEFULTOWER-LICENSE.txt) apply.
+
+The [CPU cleanup and optional warm-start recipe](gpu.md#optional-interior-support-cleanup)
+writes fresh outputs and hashes source inputs. Synthetic tests preserve the
+complete observed room, rigid-body parts and exterior geometry while removing an
+injected interior floater. The full native suite passed **118 tests**, with two
+skips; the combined refinement/cleanup tests passed **14 tests** in the Torch
+environment. A post-refinement support check found 33 newly unsupported centers:
+the warm-start option performs one-time filtering, not a persistent constraint.
+
+[Audit, metrics, hashes and replay states](runs/quality/lounge-interior-cleanup-20261009.json)
+· [Heldout photograph comparisons](runs/quality/lounge-interior-cleanup-heldout-20261009.jpg)
+· [Diagnostic MP4](runs/quality/lounge-interior-cleanup-20261009.mp4)
+· [Encoding receipt](runs/quality/lounge-interior-cleanup-20261009-provenance.json).

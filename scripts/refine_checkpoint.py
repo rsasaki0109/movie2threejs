@@ -97,6 +97,8 @@ def refine(args):
         raise ValueError('invalid step, crop, image-size or holdout settings')
     if any(not math.isfinite(v) or v < 0 for v in [args.scale_reg,args.opacity_reg,args.depth_weight]) or not math.isfinite(args.means_lr) or args.means_lr <= 0:
         raise ValueError('regularization must be finite and nonnegative')
+    if not math.isfinite(args.near_plane) or args.near_plane <= 0:
+        raise ValueError('near plane must be finite and positive in capture coordinates')
     if args.out.exists():
         raise FileExistsError(args.out)
     rec = read_model(args.scene/'sparse')
@@ -113,6 +115,27 @@ def refine(args):
     for key, shape in shapes.items():
         if tuple(tensors[key].shape) != shape or not torch.isfinite(tensors[key]).all():
             raise ValueError(f'invalid SH3 checkpoint tensor: {key}')
+    interior_cleanup = None
+    if args.interior_world is not None:
+        from playworld.cleanup import interior_support_mask
+        from playworld.gravity import apply
+        T = np.asarray(json.loads(args.interior_world.read_text(encoding='utf-8'))['align']).reshape(4,4,order='F')
+        linear = T[:3,:3]
+        scale = np.linalg.norm(linear[:,0])
+        if (not np.isfinite(T).all() or not np.allclose(T[3],[0,0,0,1]) or scale <= 0
+                or not np.allclose(linear.T@linear,np.eye(3)*scale**2,rtol=1e-5,atol=1e-8)):
+            raise ValueError('interior world alignment must be a finite similarity transform')
+        keep = interior_support_mask(apply(T,tensors['means'].numpy()),apply(T,rec.xyz),
+            apply(T,np.stack([images[i].center for i in train_ids])),
+            args.interior_distance,args.interior_margin,args.interior_min_height,args.interior_max_height)
+        if not keep.any():
+            raise ValueError('interior cleanup would leave an empty Gaussian cloud')
+        interior_cleanup = {'input_gaussians':n,'removed_gaussians':int((~keep).sum()),
+            'world_sha256':hashlib.sha256(args.interior_world.read_bytes()).hexdigest(),
+            'reference_cameras':'training split only','scale_assumed':True,
+            'limitation':'One-time support filter, not a training constraint; unsupported interior surfaces may be lost.'}
+        tensors = {key:value[torch.from_numpy(keep)] for key,value in tensors.items() if key in shapes}
+        n = int(keep.sum())
     args.out.mkdir(parents=True)
     rng = np.random.default_rng(args.seed)
     torch.manual_seed(args.seed)
@@ -130,6 +153,7 @@ def refine(args):
               'source_checkpoint_sha256':hashlib.sha256(args.checkpoint.read_bytes()).hexdigest(),
               'source_step':int(torch.load(args.checkpoint,map_location='cpu',weights_only=True)['step']),
               'warm_start_not_exact_resume':True,'optimizer_state':'fresh Adam','gaussians':n,
+              'interior_cleanup':interior_cleanup,
               'camera_optimization':False,'densification':False,'seed':args.seed,
               'train_images':[images[i].name for i in train_ids],
               'validation_images':[images[i].name for i in val_ids],
@@ -147,6 +171,7 @@ def refine(args):
             viewmats=torch.tensor(viewmat,device='cuda',dtype=torch.float32).unsqueeze(0),
             Ks=torch.tensor(K,device='cuda',dtype=torch.float32).unsqueeze(0),
             width=pixels.shape[1],height=pixels.shape[0],sh_degree=3,packed=True,
+            near_plane=args.near_plane,
             render_mode='RGB+ED' if args.depth_weight else 'RGB')
         return colors[...,:3], target, colors[...,3] if args.depth_weight else None
     def evaluate(step):
@@ -249,4 +274,12 @@ if __name__ == '__main__':
     p.add_argument('--depth-weight',type=float,default=0,
                    help='experimental color-gated sparse-depth prior; zero disables it')
     p.add_argument('--evaluate-only',action='store_true',help='render heldout views without optimizer steps')
+    p.add_argument('--near-plane',type=float,default=.01,
+                   help='gsplat near clip depth in capture coordinates; default preserves upstream behavior')
+    p.add_argument('--interior-world',type=Path,
+                   help='opt-in one-time sparse-support cleanup before warm-start training; existing world.json alignment')
+    p.add_argument('--interior-distance',type=float,default=.3)
+    p.add_argument('--interior-margin',type=float,default=.05)
+    p.add_argument('--interior-min-height',type=float,default=.25)
+    p.add_argument('--interior-max-height',type=float,default=2.75)
     refine(p.parse_args())

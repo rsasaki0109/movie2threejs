@@ -122,3 +122,41 @@ heldout photographs on a **GTX 1660 Ti, 6GB**. The selected 2,000-step run took
 **361.575 s**, with **1,531.119 MiB peak allocated CUDA memory**. This does not
 establish that the complete VGGT/SAM pipeline fits this GPU. Background blur
 still failed visual review; see the [quality assessment](quality.md#local-window-office-refinement-9-october-2026).
+
+## Optional interior support cleanup
+
+For a saved reconstruction with verified cameras, `scripts/clean_interior.py`
+uses only NumPy/SciPy and the existing world alignment/assumed scale. Supply the
+full camera/point scene and a world from the same capture/coordinate frame.
+The smaller reviewed mask scene is used for later object assembly.
+
+```bash
+python scripts/clean_interior.py --scene scenes/room --splats refinement/best.ply --world reviewed-world/world.json --out interior-cleanup --test-every 8
+playworld world reviewed-scene --splats interior-cleanup/cleaned.ply --out cleaned-world --object-filter connected --clean-splats --bounds-margin 6
+```
+
+`cleaned.ply`, `keep.npy` and `cleanup.json` retain the original property order,
+SH coefficients and source hashes. Output must be fresh. The filter rejects
+centers farther than `--distance 0.3` assumed meters from sparse points, only
+inside the camera footprint (`--margin 0.05`) and `--min-height 0.25` /
+`--max-height 2.75`. Exterior/boundary geometry and heights outside that band
+are preserved. `--test-every 8` excludes validation-camera centers, matching
+the measured trainer split; default zero uses all provided cameras.
+This is a heuristic support filter, not free-space measurement or a fix for
+camera errors. It can remove real untracked interior surfaces. Review its output.
+
+The GPU refinement tool can apply the same one-time filter directly to checkpoint
+tensors before creating fresh optimizers, using training-camera centers only:
+
+```bash
+CUDA_HOME=/usr/local/cuda-12.8 OMP_NUM_THREADS=4 "$HOME/.local/share/playworld/refine-gpu/bin/python" scripts/refine_checkpoint.py --scene scenes/room --checkpoint refinement/best.pt --out interior-refinement --interior-world reviewed-world/world.json --steps 500 --eval-every 250 --patch-size 2048 --depth-weight 0.5
+```
+
+`--interior-distance`, `--interior-margin`, `--interior-min-height` and
+`--interior-max-height` set the matching bounds. Filtering is disabled unless
+`--interior-world` is supplied. It is not a persistent training constraint;
+Gaussians can subsequently move outside the support threshold. The measured
+500-step run took **88.368 s**, reaching **23.1516 dB** on the existing validation
+split. A separate `--near-plane` option controls gsplat clipping in raw capture
+units (default 0.01); it does not change the browser camera or world geometry.
+See the [actual comparison and remaining haze](quality.md#window-office-interior-floater-cleanup-9-october-2026).
